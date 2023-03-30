@@ -1,5 +1,7 @@
+import 'react-native-gesture-handler';
 import { useFonts } from 'expo-font';
 import { ThemeProvider } from 'styled-components/native';
+import { NavigationContainer } from '@react-navigation/native';
 import theme from './src/assets/theme';
 import Main from './src/Main';
 
@@ -17,7 +19,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <Main />
+      <NavigationContainer>
+        <Main />
+      </NavigationContainer>
     </ThemeProvider>
   );
 }

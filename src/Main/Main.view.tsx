@@ -3,6 +3,7 @@ import { MainViewProps } from './Main';
 import * as styled from './Main.styles';
 
 import Login from '../screens/Login';
+import AuthRoutes from '../routes/auth.routes';
 
 interface Props {
   viewModel: MainViewModelProps;
@@ -14,7 +15,8 @@ export function MainView({ viewModel, props }: Props) {
 
   return (
     <styled.Main>
-      <Login />
+      {/* <Login /> */}
+      <AuthRoutes />
     </styled.Main>
   );
 }

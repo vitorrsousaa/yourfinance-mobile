@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const Login = styled.View`
+export const Login = styled.KeyboardAvoidingView`
   flex: 1;
   background: ${({ theme }) => theme.colors.black[800]};
   align-items: center;

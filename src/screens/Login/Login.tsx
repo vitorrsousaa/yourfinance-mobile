@@ -1,7 +1,7 @@
 import { memo } from 'react';
 
 import { LoginView } from './Login.view';
-import { LoginViewModel, LoginViewModelProps } from './Login.view-model';
+import { LoginViewModel } from './Login.view-model';
 
 export interface LoginProps {}
 

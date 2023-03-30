@@ -38,9 +38,9 @@ export function InputView({ viewModel, props }: Props) {
           }
           {...inputProps}
         />
-        <View
+        {/* <View
           style={{ width: '16px', height: '16px', backgroundColor: 'blue' }}
-        />
+        /> */}
       </View>
 
       {!!error && (
