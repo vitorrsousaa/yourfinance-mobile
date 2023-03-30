@@ -31,4 +31,5 @@ export const Input = styled.TextInput<{ isFocus: boolean; error?: boolean }>`
   height: 50px;
   padding: 16px 13px;
   font-size: 16px;
+  font-family: 'Gotham-400';
 `;
