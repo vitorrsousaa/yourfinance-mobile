@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { InputViewModelProps } from './Input.view-model';
 import { InputViewProps } from './Input';
 import * as styled from './Input.styles';

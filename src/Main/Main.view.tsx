@@ -3,6 +3,7 @@ import { MainViewProps } from './Main';
 import * as styled from './Main.styles';
 import Welcome from '../components/Welcome';
 import Input from '../components/Input';
+import Button from '../components/Button';
 
 interface Props {
   viewModel: MainViewModelProps;
@@ -22,6 +23,9 @@ export function MainView({ viewModel, props }: Props) {
         keyboardType="email-address"
       />
       <Input label="Senha" placeholder="Digite sua senha" />
+      <Button variant="primary" disabled={true}>
+        Fazer login
+      </Button>
     </styled.Main>
   );
 }

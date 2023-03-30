@@ -5,10 +5,10 @@ export interface ButtonViewModelProps {
 }
 
 export function ButtonViewModel() {
-  const [state, setState] = useState('')
+  const [state, setState] = useState('');
 
   return {
     state,
-    setState
-  }
+    setState,
+  };
 }

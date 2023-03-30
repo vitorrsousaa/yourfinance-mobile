@@ -2,7 +2,7 @@ import { memo } from 'react';
 import { TextInputProps } from 'react-native';
 
 import { InputView } from './Input.view';
-import { InputViewModel, InputViewModelProps } from './Input.view-model';
+import { InputViewModel } from './Input.view-model';
 
 export interface InputProps extends TextInputProps {
   label: string;
