@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-export interface HomeViewModelProps {
+export interface TransactionViewModelProps {
   state: string;
 }
 
-export function HomeViewModel() {
+export function TransactionViewModel() {
   const [state, setState] = useState('');
 
   return {

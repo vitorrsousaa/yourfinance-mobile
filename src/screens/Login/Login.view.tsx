@@ -6,7 +6,6 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { View } from 'react-native';
 import { isAndroid } from '../../utils/isAndroid';
-import { useState } from 'react';
 
 interface Props {
   viewModel: LoginViewModelProps;
@@ -14,9 +13,19 @@ interface Props {
 }
 
 export function LoginView({ viewModel, props }: Props) {
-  const { ...loginProps } = props;
+  const { handleSubmit } = props;
 
-  const { email, handleEmailChange, getErrorMessageByFieldName } = viewModel;
+  const {
+    email,
+    password,
+    isFormValid,
+    isSubmitting,
+    handleEmailChange,
+    handlePasswordChange,
+    getErrorMessageByFieldName,
+  } = viewModel;
+
+  // Criar a prop de isLoading no Button e passar a isSubmitting pra ele
 
   return (
     <styled.Login behavior={isAndroid ? 'height' : 'padding'}>
@@ -35,10 +44,13 @@ export function LoginView({ viewModel, props }: Props) {
           label="Senha"
           placeholder="Digite sua senha"
           autoCorrect={false}
+          error={getErrorMessageByFieldName('password')}
           returnKeyType="go"
+          value={password}
+          onChangeText={handlePasswordChange}
         />
       </View>
-      <Button variant="primary" disabled={true}>
+      <Button variant="primary" disabled={!isFormValid} onPress={handleSubmit}>
         Fazer login
       </Button>
     </styled.Login>

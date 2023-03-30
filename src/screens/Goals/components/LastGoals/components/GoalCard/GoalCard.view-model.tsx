@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-export interface HomeViewModelProps {
+export interface GoalCardViewModelProps {
   state: string;
 }
 
-export function HomeViewModel() {
+export function GoalCardViewModel() {
   const [state, setState] = useState('');
 
   return {

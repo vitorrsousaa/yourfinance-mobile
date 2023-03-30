@@ -1,14 +1,13 @@
 import { memo } from 'react';
 
 import { HomeView } from './Home.view';
-import { HomeViewModel, HomeViewModelProps } from './Home.view-model';
+import { HomeViewModel } from './Home.view-model';
 
 export interface HomeProps {}
 
 // Quando a prop é usada somente aqui, devemos omitir para não ir pra View
-export interface HomeViewProps
-    extends Omit<HomeProps, ''> {
-// Quando alguma prop vai ser utilizada somente na View, devemos acrescentar aqui
+export interface HomeViewProps extends Omit<HomeProps, ''> {
+  // Quando alguma prop vai ser utilizada somente na View, devemos acrescentar aqui
 }
 
 function Home(props: HomeProps) {
@@ -16,13 +15,11 @@ function Home(props: HomeProps) {
 
   const viewModel = useViewModel();
 
-  return (
-      <HomeView viewModel={viewModel} props={viewProps} />
-  );
+  return <HomeView viewModel={viewModel} props={viewProps} />;
 }
 
-export function useViewModel(){
-  const viewModel = HomeViewModel()
+export function useViewModel() {
+  const viewModel = HomeViewModel();
 
   return viewModel;
 }

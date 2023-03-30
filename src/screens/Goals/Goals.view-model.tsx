@@ -1,10 +1,10 @@
 import { useState } from 'react';
 
-export interface HomeViewModelProps {
+export interface GoalsViewModelProps {
   state: string;
 }
 
-export function HomeViewModel() {
+export function GoalsViewModel() {
   const [state, setState] = useState('');
 
   return {

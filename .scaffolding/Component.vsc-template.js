@@ -44,9 +44,9 @@ export default ${toPascalCase(inputs.name)};`,
 import { ${toPascalCase(inputs.name)}View } from './${toPascalCase(
               inputs.name
             )}.view';
-import { ${toPascalCase(inputs.name)}ViewModel, ${toPascalCase(
+import { ${toPascalCase(inputs.name)}ViewModel } from './${toPascalCase(
               inputs.name
-            )}ViewModelProps } from './${toPascalCase(inputs.name)}.view-model';
+            )}.view-model';
 
 export interface ${toPascalCase(inputs.name)}Props {}
 
