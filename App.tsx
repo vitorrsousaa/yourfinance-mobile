@@ -1,20 +1,26 @@
+import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
+import { ThemeProvider } from 'styled-components/native';
+import theme from './src/assets/theme';
+import Main from './src/Main';
 
 export default function App() {
+  const [isFontsLoaded] = useFonts({
+    'Gotham-600': require('./src/assets/fonts/Gotham-Bold.otf'),
+    'Gotham-500': require('./src/assets/fonts/Gotham-Medium.otf'),
+    'Gotham-400': require('./src/assets/fonts/Gotham-Book.otf'),
+    'Gotham-300': require('./src/assets/fonts/Gotham-Light.otf'),
+    'Gotham-200': require('./src/assets/fonts/Gotham-Thin.otf'),
+  });
+
+  if (!isFontsLoaded) {
+    return null;
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <ThemeProvider theme={theme}>
+      <Main />
+    </ThemeProvider>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
