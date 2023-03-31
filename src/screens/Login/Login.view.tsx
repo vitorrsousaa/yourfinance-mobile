@@ -6,6 +6,9 @@ import Input from '../../components/Input';
 import Button from '../../components/Button';
 import { View } from 'react-native';
 import { isAndroid } from '../../utils/isAndroid';
+import { Text } from '../../components/Text';
+import { useTheme } from 'styled-components/native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 interface Props {
   viewModel: LoginViewModelProps;
@@ -14,6 +17,7 @@ interface Props {
 
 export function LoginView({ viewModel, props }: Props) {
   const { handleSubmit } = props;
+  const { colors } = useTheme();
 
   const {
     email,
@@ -25,11 +29,12 @@ export function LoginView({ viewModel, props }: Props) {
     getErrorMessageByFieldName,
   } = viewModel;
 
-  // Criar a prop de isLoading no Button e passar a isSubmitting pra ele
-
   return (
     <styled.Login behavior={isAndroid ? 'height' : 'padding'}>
       <Welcome />
+      <Text weight="500" size={20} color={colors.white[100]}>
+        Faça seu login
+      </Text>
       <View>
         <Input
           label="E-mail"
@@ -53,9 +58,26 @@ export function LoginView({ viewModel, props }: Props) {
           secureTextEntry
         />
       </View>
-      <Button variant="primary" disabled={!isFormValid} onPress={handleSubmit}>
-        Fazer login
-      </Button>
+      <styled.ContainerButton>
+        <Text color={colors.white[100]}>Esqueceu sua senha?</Text>
+        <Button
+          variant="primary"
+          disabled={!isFormValid}
+          loading={isSubmitting}
+          onPress={handleSubmit}
+        >
+          Fazer login
+        </Button>
+
+        <View style={{ flexDirection: 'row' }}>
+          <Text color={colors.white[100]}>Ainda não tem uma conta? </Text>
+          <TouchableOpacity activeOpacity={0.8}>
+            <Text color={colors.green[400]} weight="700">
+              Crie uma agora
+            </Text>
+          </TouchableOpacity>
+        </View>
+      </styled.ContainerButton>
     </styled.Login>
   );
 }

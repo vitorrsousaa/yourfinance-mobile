@@ -19,6 +19,7 @@ export function MainView({ viewModel, props }: Props) {
     <styled.Main>
       {/* <Login /> */}
       {/* <AuthRoutes /> */}
+      {/* <Home /> */}
       <Transactions />
     </styled.Main>
   );

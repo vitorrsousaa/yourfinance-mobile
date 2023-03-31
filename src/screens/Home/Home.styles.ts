@@ -12,14 +12,16 @@ export const Container = styled.View`
 export const ContainerHeader = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  padding: 0 24px;
-`;
-
-export const ContainerHero = styled.View`
   padding: 12px 24px;
 `;
 
-export const ContainerBalance = styled.View``;
+export const ContainerHero = styled.View`
+  padding: 24px 24px;
+`;
+
+export const ContainerButtons = styled.View`
+  flex-direction: row;
+`;
 
 export const ContainerSummary = styled.View`
   flex-direction: row;

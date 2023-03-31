@@ -7,6 +7,8 @@ import { Text } from '../../components/Text';
 import { useTheme } from 'styled-components/native';
 import formatAmount from '../../utils/formatAmout';
 import LastTransactions from '../../components/LastTransactions';
+import { Logo } from '../../components/Icons/Logo';
+import Touchable from '../../components/Touchable';
 
 interface Props {
   viewModel: HomeViewModelProps;
@@ -24,19 +26,20 @@ export function HomeView({ viewModel, props }: Props) {
     <styled.Home>
       <styled.Container>
         <styled.ContainerHeader>
-          <Text>Logo</Text>
-          <View>
-            <Text>Notification</Text>
-            <Text>User</Text>
-          </View>
+          <Logo />
+
+          <styled.ContainerButtons>
+            <Touchable item="bell" style={{ marginRight: 8 }} />
+            <Touchable item="user" background="white" />
+          </styled.ContainerButtons>
         </styled.ContainerHeader>
         <styled.ContainerHero>
-          <styled.ContainerBalance>
+          <View>
             <Text color={theme.colors.black[200]}>Saldo disponível</Text>
             <Text weight="500" size={28} color={theme.colors.white[100]}>
               {formatAmount(4521)}
             </Text>
-          </styled.ContainerBalance>
+          </View>
           <styled.ContainerSummary>
             <CategorySummary
               categoryName="Receitas"
@@ -46,7 +49,7 @@ export function HomeView({ viewModel, props }: Props) {
             <CategorySummary
               categoryName="Despesas"
               amount={456}
-              difference={15}
+              difference={-15}
             />
           </styled.ContainerSummary>
         </styled.ContainerHero>

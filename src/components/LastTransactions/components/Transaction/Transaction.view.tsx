@@ -5,6 +5,8 @@ import { View } from 'react-native';
 import formatAmount from '../../../../utils/formatAmout';
 import { Text } from '../../../Text';
 import { useTheme } from 'styled-components/native';
+import { Income } from '../../../Icons/Income';
+import { Outcome } from '../../../Icons/Outcome';
 
 interface Props {
   viewModel: TransactionViewModelProps;

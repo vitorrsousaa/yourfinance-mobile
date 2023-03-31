@@ -13,13 +13,21 @@ interface Props {
 
 export function InputView({ viewModel, props }: Props) {
   const { label, error, ...inputProps } = props;
-  const theme = useTheme();
+  const { colors } = useTheme();
 
   const { handleBlurInput, handleFocusInput, isFocus } = viewModel;
 
   return (
     <styled.Container>
-      <Text color={!error ? theme.colors.black[300] : theme.colors.red[400]}>
+      <Text
+        color={
+          !error
+            ? isFocus
+              ? colors.green[400]
+              : colors.black[300]
+            : colors.red[400]
+        }
+      >
         {label}
       </Text>
 
@@ -31,10 +39,10 @@ export function InputView({ viewModel, props }: Props) {
           error={!!error}
           placeholderTextColor={
             error
-              ? theme.colors.red[400]
+              ? colors.red[400]
               : isFocus
-              ? theme.colors.green[500]
-              : theme.colors.black[300]
+              ? colors.green[500]
+              : colors.black[300]
           }
           {...inputProps}
         />
@@ -44,7 +52,7 @@ export function InputView({ viewModel, props }: Props) {
       </View>
 
       {!!error && (
-        <Text size={14} color={theme.colors.red[400]}>
+        <Text size={14} color={colors.red[400]}>
           {error}
         </Text>
       )}

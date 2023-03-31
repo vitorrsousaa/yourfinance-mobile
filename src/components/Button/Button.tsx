@@ -10,6 +10,7 @@ export interface ButtonProps extends TouchableOpacityProps {
   children: string;
   variant: variants;
   disabled?: boolean;
+  loading?: boolean;
 }
 
 // Quando a prop é usada somente aqui, devemos omitir para não ir pra View
