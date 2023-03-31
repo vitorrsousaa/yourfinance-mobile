@@ -1,5 +1,6 @@
 {
   "env": {
+    "browser": true,
     "es2021": true
   },
   "extends": [
@@ -17,10 +18,13 @@
   },
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
-    "indent": ["error", 2],
+    "indent": ["warn", 2],
     "linebreak-style": ["error", "windows"],
-    "quotes": ["error", "single"],
-    "semi": ["error", "always"],
-    "react/react-in-jsx-scope": "off"
+    "quotes": ["warn", "single"],
+    "semi": ["warn", "always"],
+    "react/react-in-jsx-scope": "off",
+    "react/no-unknown-property": "off",
+    "@typescript-eslint/no-empty-interface": "off",
+    "react/prop-types": "off"
   }
 }
