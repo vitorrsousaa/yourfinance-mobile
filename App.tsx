@@ -1,9 +1,9 @@
 import 'react-native-gesture-handler';
 import { useFonts } from 'expo-font';
 import { ThemeProvider } from 'styled-components/native';
-import { NavigationContainer } from '@react-navigation/native';
 import theme from './src/assets/theme';
 import Main from './src/Main';
+import { AuthProvider } from './src/contexts/AuthContext';
 
 export default function App() {
   const [isFontsLoaded] = useFonts({
@@ -19,9 +19,9 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
-      <NavigationContainer>
+      <AuthProvider>
         <Main />
-      </NavigationContainer>
+      </AuthProvider>
     </ThemeProvider>
   );
 }

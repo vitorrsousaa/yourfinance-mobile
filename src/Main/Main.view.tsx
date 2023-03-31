@@ -6,6 +6,7 @@ import Login from '../screens/Login';
 import AuthRoutes from '../routes/auth.routes';
 import Home from '../screens/Home';
 import Transactions from '../screens/Transactions';
+import { Router } from '../routes';
 
 interface Props {
   viewModel: MainViewModelProps;
@@ -20,7 +21,8 @@ export function MainView({ viewModel, props }: Props) {
       {/* <Login /> */}
       {/* <AuthRoutes /> */}
       {/* <Home /> */}
-      <Transactions />
+      <Router />
+      {/* <Transactions /> */}
     </styled.Main>
   );
 }

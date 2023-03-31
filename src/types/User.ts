@@ -5,6 +5,7 @@ export interface User {
   createdAt?: string;
   _id?: string;
   __v?: number;
+  token?: string;
 }
 
 export interface UserRequest extends User {}

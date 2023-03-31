@@ -6,7 +6,7 @@ class AuthService implements IAuthService {
   private httpClient;
 
   constructor() {
-    this.httpClient = new HttpClient('http://localhost:3001/api');
+    this.httpClient = new HttpClient('http://192.168.0.105:3001/api');
   }
 
   login(user: UserRequest) {

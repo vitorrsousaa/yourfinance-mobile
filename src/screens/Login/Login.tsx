@@ -2,6 +2,10 @@ import { memo } from 'react';
 
 import { LoginView } from './Login.view';
 import { LoginViewModel } from './Login.view-model';
+import { useAuth } from '../../hooks/useAuth';
+import { Alert } from 'react-native';
+import { api } from '../../service/api';
+import AuthService from '../../service/AuthService';
 
 export interface LoginProps {}
 
@@ -13,6 +17,7 @@ export interface LoginViewProps extends Omit<LoginProps, ''> {
 
 function Login(props: LoginProps) {
   const viewModel = useViewModel();
+  const { handleLogin } = useAuth();
 
   const { setIsSubmitting, email, password, setPassword } = viewModel;
 
@@ -24,7 +29,7 @@ function Login(props: LoginProps) {
     const user = { email, password };
 
     try {
-      // Executa a função para fazer login
+      await handleLogin(user);
     } catch (err) {
       setPassword('');
       // Informa apra o usuário que o email ou senha esta invalido
