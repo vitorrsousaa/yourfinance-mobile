@@ -1,1 +1,1 @@
-export { CardSummary } from './CardSummary';
+export { TCardSummary } from './CardSummary';

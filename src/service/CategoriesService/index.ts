@@ -1,4 +1,4 @@
-import { Category } from '../../types/Category';
+import { TCategory } from '../../types/Category';
 import HttpClient from '../HttpClient';
 import { ICategoriesService } from './ICategoriesService';
 
@@ -10,7 +10,7 @@ class CategoriesService implements ICategoriesService {
   }
 
   async list() {
-    return this.httpClient.get<Category[]>('/category');
+    return this.httpClient.get<TCategory[]>('/category');
   }
 }
 

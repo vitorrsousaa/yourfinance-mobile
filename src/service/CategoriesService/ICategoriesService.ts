@@ -1,5 +1,5 @@
-import { Category } from '../../types/Category';
+import { TCategory } from '../../types/Category';
 
 export interface ICategoriesService {
-  list(): Promise<Category[]>;
+  list(): Promise<TCategory[]>;
 }

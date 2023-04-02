@@ -1,4 +1,4 @@
-import { CardSummary } from '../../types/Analytics';
+import { TCardSummary } from '../../types/Analytics';
 import HttpClient from '../HttpClient';
 import { IAnalyticsService } from './IAnalyticsService';
 
@@ -10,7 +10,7 @@ class AnalyticsService implements IAnalyticsService {
   }
 
   async getCardsSummary(categoryId: string) {
-    return this.httpClient.get<CardSummary>(
+    return this.httpClient.get<TCardSummary>(
       `/getSummaryByCategory/${categoryId}`
     );
   }

@@ -1,7 +1,7 @@
 import { Category } from '../Category';
 import { Modality } from '../Modality';
 
-export interface Transaction {
+export interface TTransaction {
   _id: string;
   __v: 0;
   user: string;

@@ -1,3 +1,3 @@
-export { Transaction } from './Transaction';
-export { TransactionResponse } from './TransactionResponse';
-export { TransactionCreate } from './TransactionCreate';
+export { TTransaction } from './Transaction';
+export { TTransactionResponse } from './TransactionResponse';
+export { TTransactionCreate } from './TransactionCreate';

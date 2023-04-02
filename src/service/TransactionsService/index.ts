@@ -1,4 +1,4 @@
-import { TransactionResponse } from '../../types/Transaction';
+import { TTransactionResponse } from '../../types/Transaction';
 import HttpClient from '../HttpClient';
 
 class TransactionsService {
@@ -12,10 +12,10 @@ class TransactionsService {
 
   async list(page?: number) {
     if (page) {
-      return this.httpClient.get<TransactionResponse>(`/?page=${page}`);
+      return this.httpClient.get<TTransactionResponse>(`/?page=${page}`);
     }
 
-    return this.httpClient.get<TransactionResponse>('/');
+    return this.httpClient.get<TTransactionResponse>('/');
   }
 }
 

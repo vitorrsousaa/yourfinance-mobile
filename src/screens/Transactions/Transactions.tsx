@@ -3,14 +3,14 @@ import { memo, useEffect } from 'react';
 import { TransactionsView } from './Transactions.view';
 import { TransactionsViewModel } from './Transactions.view-model';
 import TransactionsService from '../../service/TransactionsService';
-import { Transaction } from '../../types/Transaction';
+import { TTransaction } from '../../types/Transaction';
 
 export interface TransactionsProps {}
 
 // Quando a prop é usada somente aqui, devemos omitir para não ir pra View
 export interface TransactionsViewProps extends Omit<TransactionsProps, ''> {
   // Quando alguma prop vai ser utilizada somente na View, devemos acrescentar aqui
-  transactions: Transaction[];
+  transactions: TTransaction[];
 }
 
 function Transactions(props: TransactionsProps) {

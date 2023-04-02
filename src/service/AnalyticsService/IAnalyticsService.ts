@@ -1,5 +1,5 @@
-import { CardSummary } from '../../types/Analytics';
+import { TCardSummary } from '../../types/Analytics';
 
 export interface IAnalyticsService {
-  getCardsSummary(categoryId: string): Promise<CardSummary>;
+  getCardsSummary(categoryId: string): Promise<TCardSummary>;
 }

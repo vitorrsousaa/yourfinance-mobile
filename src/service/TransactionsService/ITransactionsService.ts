@@ -1,5 +1,5 @@
-import { TransactionResponse } from '../../types/Transaction';
+import { TTransactionResponse } from '../../types/Transaction';
 
 export interface ITransactionsService {
-  list(page?: number): Promise<TransactionResponse>;
+  list(page?: number): Promise<TTransactionResponse>;
 }

@@ -1,4 +1,4 @@
-export interface TransactionCreate {
+export interface TTransactionCreate {
   modality: string;
   description: string;
   amount: number;

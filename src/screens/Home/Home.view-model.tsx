@@ -1,23 +1,23 @@
 import { useState } from 'react';
-import { Transaction } from '../../types/Transaction';
-import { CardSummary } from '../../types/Analytics';
+import { TTransaction } from '../../types/Transaction';
+import { TCardSummary } from '../../types/Analytics';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack';
 
 export interface HomeViewModelProps {
-  transactions: Transaction[];
-  incomeSummary: CardSummary;
-  outcomeSummary: CardSummary;
-  setTransactions: (transaction: Transaction[]) => void;
-  setIncomeSummary: (summary: CardSummary) => void;
-  setOutcomeSummary: (summary: CardSummary) => void;
+  transactions: TTransaction[];
+  incomeSummary: TCardSummary;
+  outcomeSummary: TCardSummary;
+  setTransactions: (transaction: TTransaction[]) => void;
+  setIncomeSummary: (summary: TCardSummary) => void;
+  setOutcomeSummary: (summary: TCardSummary) => void;
   handleNavigateSettings: () => void;
 }
 
 export function HomeViewModel() {
-  const [transactions, setTransactions] = useState<Transaction[]>([]);
-  const [incomeSummary, setIncomeSummary] = useState<CardSummary>();
-  const [outcomeSummary, setOutcomeSummary] = useState<CardSummary>();
+  const [transactions, setTransactions] = useState<TTransaction[]>([]);
+  const [incomeSummary, setIncomeSummary] = useState<TCardSummary>();
+  const [outcomeSummary, setOutcomeSummary] = useState<TCardSummary>();
 
   const navigation = useNavigation();
 
