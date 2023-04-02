@@ -1,14 +1,16 @@
 import { useState } from 'react';
+import { Transaction } from '../../types/Transaction';
 
 export interface TransactionsViewModelProps {
-  state: string;
+  transactions: Transaction[];
+  setTransactions: (transactions: Transaction[]) => void;
 }
 
 export function TransactionsViewModel() {
-  const [state, setState] = useState('');
+  const [transactions, setTransactions] = useState<Transaction[]>([]);
 
   return {
-    state,
-    setState,
+    transactions,
+    setTransactions,
   };
 }

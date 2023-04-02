@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const Home = styled.View`
+export const Home = styled.SafeAreaView`
   flex: 1;
 `;
 
@@ -31,6 +31,7 @@ export const ContainerSummary = styled.View`
 
 export const ContainerTransactions = styled.View`
   padding: 12px 24px;
+  flex: 1;
 
   background: ${({ theme }) => theme.colors.white[200]};
 `;

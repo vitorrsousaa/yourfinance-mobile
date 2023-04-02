@@ -26,10 +26,6 @@ declare module 'styled-components' {
         200: string;
         100: string;
       };
-      gray: {
-        700: string;
-        200: string;
-      };
 
       red: {
         700: string;

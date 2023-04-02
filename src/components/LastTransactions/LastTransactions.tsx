@@ -2,10 +2,12 @@ import { memo } from 'react';
 
 import { LastTransactionsView } from './LastTransactions.view';
 import { LastTransactionsViewModel } from './LastTransactions.view-model';
+import { Transaction } from '../../types/Transaction';
 
 export interface LastTransactionsProps {
   title?: string;
   showFilter?: boolean;
+  transactions: Transaction[];
 }
 
 // Quando a prop é usada somente aqui, devemos omitir para não ir pra View

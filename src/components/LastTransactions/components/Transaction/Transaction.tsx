@@ -2,8 +2,11 @@ import { memo } from 'react';
 
 import { TransactionView } from './Transaction.view';
 import { TransactionViewModel } from './Transaction.view-model';
+import { Transaction as TransactionType } from '../../../../types/Transaction';
 
-export interface TransactionProps {}
+export interface TransactionProps {
+  data: TransactionType;
+}
 
 // Quando a prop é usada somente aqui, devemos omitir para não ir pra View
 export interface TransactionViewProps extends Omit<TransactionProps, ''> {

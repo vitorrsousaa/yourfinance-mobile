@@ -9,6 +9,7 @@ import formatAmount from '../../utils/formatAmout';
 import LastTransactions from '../../components/LastTransactions';
 import { Logo } from '../../components/Icons/Logo';
 import Touchable from '../../components/Touchable';
+import { useNavigation } from '@react-navigation/native';
 
 interface Props {
   viewModel: HomeViewModelProps;
@@ -17,6 +18,13 @@ interface Props {
 
 export function HomeView({ viewModel, props }: Props) {
   const { ...homeProps } = props;
+
+  const {
+    transactions,
+    incomeSummary,
+    outcomeSummary,
+    handleNavigateSettings,
+  } = viewModel;
 
   const theme = useTheme();
 
@@ -30,7 +38,11 @@ export function HomeView({ viewModel, props }: Props) {
 
           <styled.ContainerButtons>
             <Touchable item="bell" style={{ marginRight: 8 }} />
-            <Touchable item="user" background="white" />
+            <Touchable
+              item="user"
+              background="white"
+              onPress={handleNavigateSettings}
+            />
           </styled.ContainerButtons>
         </styled.ContainerHeader>
         <styled.ContainerHero>
@@ -55,7 +67,7 @@ export function HomeView({ viewModel, props }: Props) {
         </styled.ContainerHero>
       </styled.Container>
       <styled.ContainerTransactions>
-        <LastTransactions />
+        <LastTransactions transactions={transactions} />
       </styled.ContainerTransactions>
     </styled.Home>
   );

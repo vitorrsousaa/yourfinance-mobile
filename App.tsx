@@ -4,6 +4,7 @@ import { ThemeProvider } from 'styled-components/native';
 import theme from './src/assets/theme';
 import Main from './src/Main';
 import { AuthProvider } from './src/contexts/AuthContext';
+import { StatusBar } from 'expo-status-bar';
 
 export default function App() {
   const [isFontsLoaded] = useFonts({
@@ -21,6 +22,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <AuthProvider>
         <Main />
+        <StatusBar style="light" />
       </AuthProvider>
     </ThemeProvider>
   );

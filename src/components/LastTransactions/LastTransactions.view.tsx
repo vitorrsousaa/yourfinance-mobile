@@ -5,6 +5,7 @@ import { Text } from '../Text';
 import { useTheme } from 'styled-components/native';
 import Transaction from './components/Transaction';
 import { Filter } from '../Icons/Filter';
+import { FlatList, View } from 'react-native';
 
 interface Props {
   viewModel: LastTransactionsViewModelProps;
@@ -12,7 +13,7 @@ interface Props {
 }
 
 export function LastTransactionsView({ viewModel, props }: Props) {
-  const { title = 'Últimas transações', showFilter } = props;
+  const { title = 'Últimas transações', showFilter, transactions } = props;
   const theme = useTheme();
 
   return (
@@ -30,7 +31,14 @@ export function LastTransactionsView({ viewModel, props }: Props) {
         )}
       </styled.ContainerHeader>
 
-      <Transaction />
+      <View style={{ gap: 16 }}>
+        <FlatList
+          data={transactions}
+          renderItem={({ item }) => <Transaction data={item} />}
+          keyExtractor={(item) => item._id}
+          ItemSeparatorComponent={() => <View style={{ height: 8 }} />}
+        />
+      </View>
     </styled.LastTransactions>
   );
 }

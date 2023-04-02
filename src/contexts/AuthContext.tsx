@@ -13,6 +13,7 @@ interface AuthContextProviderProps {
 
 interface AuthContextProps {
   authenticated: boolean;
+  loading: boolean;
   handleLogin: (user: User) => Promise<void>;
   handleLogout: () => Promise<void>;
   user: User;
@@ -116,7 +117,7 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
 
   return (
     <AuthContext.Provider
-      value={{ authenticated, handleLogin, handleLogout, user }}
+      value={{ authenticated, handleLogin, handleLogout, user, loading }}
     >
       {children}
     </AuthContext.Provider>

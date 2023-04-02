@@ -25,10 +25,6 @@ const theme: DefaultTheme = {
       200: '#F1F1F1',
       100: '#FAFAFA',
     },
-    gray: {
-      700: '#98A2B2',
-      200: '#CCC',
-    },
 
     red: {
       700: '#681823',

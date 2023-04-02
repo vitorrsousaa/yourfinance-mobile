@@ -1,10 +1,16 @@
 import { NavigationContainer } from '@react-navigation/native';
-import AuthRoutes from './auth.routes';
-import PrivateRoutes from './private.routes';
+
 import { useAuth } from '../hooks/useAuth';
+import { AuthRoutes } from './public';
+import PrivateRoutes from './private';
 
 export function Router() {
-  const { authenticated } = useAuth();
+  const { authenticated, loading } = useAuth();
+
+  if (loading) {
+    return null;
+  }
+
   return (
     <NavigationContainer>
       {authenticated ? <PrivateRoutes /> : <AuthRoutes />}
