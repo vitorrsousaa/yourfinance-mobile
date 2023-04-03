@@ -9,7 +9,6 @@ import formatAmount from '../../utils/formatAmout';
 import LastTransactions from '../../components/LastTransactions';
 import { Logo } from '../../components/Icons/Logo';
 import Touchable from '../../components/Touchable';
-import { useNavigation } from '@react-navigation/native';
 
 interface Props {
   viewModel: HomeViewModelProps;
@@ -24,6 +23,7 @@ export function HomeView({ viewModel, props }: Props) {
     incomeSummary,
     outcomeSummary,
     handleNavigateSettings,
+    handleNavigateNotifications,
   } = viewModel;
 
   const theme = useTheme();
@@ -37,7 +37,11 @@ export function HomeView({ viewModel, props }: Props) {
           <Logo />
 
           <styled.ContainerButtons>
-            <Touchable item="bell" style={{ marginRight: 8 }} />
+            <Touchable
+              item="bell"
+              style={{ marginRight: 8 }}
+              onPress={handleNavigateNotifications}
+            />
             <Touchable
               item="user"
               background="white"
@@ -55,19 +59,19 @@ export function HomeView({ viewModel, props }: Props) {
           <styled.ContainerSummary>
             <CategorySummary
               categoryName="Receitas"
-              amount={123}
-              difference={41}
+              currentMonth={incomeSummary.currentMonth}
+              percent={incomeSummary.percent}
             />
             <CategorySummary
               categoryName="Despesas"
-              amount={456}
-              difference={-15}
+              currentMonth={outcomeSummary.currentMonth}
+              percent={outcomeSummary.percent}
             />
           </styled.ContainerSummary>
         </styled.ContainerHero>
       </styled.Container>
       <styled.ContainerTransactions>
-        <LastTransactions transactions={transactions} />
+        <LastTransactions transactions={transactions.slice(0, 4)} />
       </styled.ContainerTransactions>
     </styled.Home>
   );

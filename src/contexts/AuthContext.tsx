@@ -56,8 +56,6 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
 
       setAuthenticated(true);
     } catch (error) {
-      console.log('Desculpa, tivemos um problema. Tente novamente mais tarde.');
-
       handleLogout();
     } finally {
       setLoading(false);
@@ -75,13 +73,11 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
       setUser(data);
       setAuthenticated(true);
     } catch (error: any) {
-      Alert.alert(error.message);
       if (error instanceof APIError) {
-        console.log('Email ou senha inválido');
-        throw new Error('Not Authorized');
+        throw new Error('Email ou senha inválido');
       }
 
-      console.log('não conseguimos fazer login');
+      Alert.alert('Não conseguimos fazer login, tente novamnete mais tarde');
     }
   }
 

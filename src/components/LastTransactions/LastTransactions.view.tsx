@@ -30,13 +30,13 @@ export function LastTransactionsView({ viewModel, props }: Props) {
           </styled.Filter>
         )}
       </styled.ContainerHeader>
-
       <View style={{ gap: 16 }}>
         <FlatList
           data={transactions}
           renderItem={({ item }) => <Transaction data={item} />}
           keyExtractor={(item) => item._id}
           ItemSeparatorComponent={() => <View style={{ height: 8 }} />}
+          contentContainerStyle={{ paddingBottom: 96 }}
         />
       </View>
     </styled.LastTransactions>

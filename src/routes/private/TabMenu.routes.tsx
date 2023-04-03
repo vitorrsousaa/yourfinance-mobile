@@ -41,7 +41,6 @@ export function TabMenuRoutes() {
           tabBarLabel: 'Home',
         }}
       />
-
       <TabMenu.Screen
         name="Analytics"
         component={Analytics}

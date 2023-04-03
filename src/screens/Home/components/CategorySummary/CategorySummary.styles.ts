@@ -15,7 +15,7 @@ export const ContainerDifference = styled.View`
   flex-direction: row;
   align-items: center;
   justify-content: center;
-  width: 67px;
+  max-width: 82px;
   margin-top: 4px;
 
   background-color: ${({ theme }) => theme.colors.white[200]};

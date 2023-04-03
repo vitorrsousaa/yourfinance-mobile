@@ -12,17 +12,26 @@ export interface HomeViewModelProps {
   setIncomeSummary: (summary: TCardSummary) => void;
   setOutcomeSummary: (summary: TCardSummary) => void;
   handleNavigateSettings: () => void;
+  handleNavigateNotifications: () => void;
 }
 
 export function HomeViewModel() {
   const [transactions, setTransactions] = useState<TTransaction[]>([]);
-  const [incomeSummary, setIncomeSummary] = useState<TCardSummary>();
-  const [outcomeSummary, setOutcomeSummary] = useState<TCardSummary>();
+  const [incomeSummary, setIncomeSummary] = useState<TCardSummary>(
+    {} as TCardSummary
+  );
+  const [outcomeSummary, setOutcomeSummary] = useState<TCardSummary>(
+    {} as TCardSummary
+  );
 
   const navigation = useNavigation<NavigationProp<RootHomeParamList>>();
 
   function handleNavigateSettings() {
     navigation.navigate('Settings', undefined);
+  }
+
+  function handleNavigateNotifications() {
+    navigation.navigate('Notifications', { tabBarVisible: false });
   }
 
   return {
@@ -33,5 +42,6 @@ export function HomeViewModel() {
     setIncomeSummary,
     setOutcomeSummary,
     handleNavigateSettings,
+    handleNavigateNotifications,
   };
 }

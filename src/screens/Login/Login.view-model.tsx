@@ -12,6 +12,7 @@ export interface LoginViewModelProps {
   getErrorMessageByFieldName: (fieldName: string) => string | undefined;
   setPassword: (password: string) => void;
   setIsSubmitting: (state: boolean) => void;
+  setError: ({ field, message }: { field: string; message: string }) => void;
 }
 
 export function LoginViewModel() {
@@ -55,5 +56,6 @@ export function LoginViewModel() {
     getErrorMessageByFieldName,
     setPassword,
     setIsSubmitting,
+    setError,
   };
 }

@@ -6,6 +6,7 @@ import CategoriesService from '../../service/CategoriesService';
 import { categories } from '../../mock/categories';
 import TransactionsService from '../../service/TransactionsService';
 import AnalyticsService from '../../service/AnalyticsService';
+import { useQueries } from 'react-query';
 
 export interface HomeProps {}
 
@@ -23,17 +24,26 @@ function Home(props: HomeProps) {
 
   useEffect(() => {
     async function loadData() {
+      // const results = useQueries([
+      //   {
+      //     queryKey: 'transactions',
+      //     queryFn: async () => {
+      //       const transactions = await TransactionsService.list();
+
+      //       return transactions;
+      //     },
+      //   },
+      // ]);
+
       const [dataTransactions, dataOutcome, dataIncome] = await Promise.all([
         TransactionsService.list(),
-        AnalyticsService.getCardsSummary(categories[0]?._id),
-        AnalyticsService.getCardsSummary(categories[1]?._id),
+        AnalyticsService.getCardsSummary(categories[0]._id),
+        AnalyticsService.getCardsSummary(categories[1]._id),
       ]);
 
-      // console.log(dataOutcome);
-
       setTransactions(dataTransactions.transactions.slice(0, 5));
-      // setIncomeSummary(dataIncome);
-      // setOutcomeSummary(dataOutcome);
+      setIncomeSummary(dataIncome);
+      setOutcomeSummary(dataOutcome);
     }
 
     loadData();

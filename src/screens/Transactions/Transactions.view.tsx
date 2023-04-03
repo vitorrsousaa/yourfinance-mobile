@@ -16,6 +16,8 @@ export function TransactionsView({ viewModel, props }: Props) {
 
   const { colors } = useTheme();
 
+  console.log(transactions);
+
   return (
     <styled.Transactions>
       <styled.ContainerHeader>

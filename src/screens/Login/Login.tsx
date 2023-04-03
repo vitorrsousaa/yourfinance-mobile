@@ -19,7 +19,7 @@ function Login(props: LoginProps) {
   const viewModel = useViewModel();
   const { handleLogin } = useAuth();
 
-  const { setIsSubmitting, email, password, setPassword } = viewModel;
+  const { setIsSubmitting, email, password, setPassword, setError } = viewModel;
 
   // Precisa verificar inicialmente se o usuário esta logado e redirecionar para a página Home
 
@@ -32,7 +32,7 @@ function Login(props: LoginProps) {
       await handleLogin(user);
     } catch (err) {
       setPassword('');
-      // Informa apra o usuário que o email ou senha esta invalido
+      setError({ field: 'password', message: 'E-mail ou senha inválidos' });
     } finally {
       setIsSubmitting(false);
     }

@@ -5,8 +5,8 @@ import { CategorySummaryViewModel } from './CategorySummary.view-model';
 
 export interface CategorySummaryProps {
   categoryName: string;
-  amount: number;
-  difference: number;
+  currentMonth: number;
+  percent: number;
 }
 
 // Quando a prop é usada somente aqui, devemos omitir para não ir pra View
