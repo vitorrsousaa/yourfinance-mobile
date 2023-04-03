@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { TTransaction } from '../../types/Transaction';
 import { TCardSummary } from '../../types/Analytics';
-import { useNavigation } from '@react-navigation/native';
-import { StackNavigationProp } from '@react-navigation/stack';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { RootHomeParamList } from '../../routes/private/Stack.routes';
 
 export interface HomeViewModelProps {
   transactions: TTransaction[];
@@ -19,10 +19,10 @@ export function HomeViewModel() {
   const [incomeSummary, setIncomeSummary] = useState<TCardSummary>();
   const [outcomeSummary, setOutcomeSummary] = useState<TCardSummary>();
 
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp<RootHomeParamList>>();
 
   function handleNavigateSettings() {
-    navigation.navigate<RootStackParamList>('Settings');
+    navigation.navigate('Settings', undefined);
   }
 
   return {

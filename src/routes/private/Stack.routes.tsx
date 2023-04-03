@@ -2,21 +2,27 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 import Settings from '../../screens/Settings';
 import Notifications from '../../screens/Notifications';
-import Home from '../../screens/Home';
+import HomeScreen from '../../screens/Home';
 
-const Stack = createStackNavigator();
+export type RootHomeParamList = {
+  Home: undefined;
+  Settings: undefined;
+  Notifications: undefined;
+};
 
-export function StackRoutes() {
+const Home = createStackNavigator<RootHomeParamList>();
+
+export function HomeRoutes() {
   return (
-    <Stack.Navigator
+    <Home.Navigator
       screenOptions={{
         headerShown: false,
       }}
     >
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="Settings" component={Settings} />
+      <Home.Screen name="Home" component={HomeScreen} />
+      <Home.Screen name="Settings" component={Settings} />
 
-      <Stack.Screen name="Notifications" component={Notifications} />
-    </Stack.Navigator>
+      <Home.Screen name="Notifications" component={Notifications} />
+    </Home.Navigator>
   );
 }
