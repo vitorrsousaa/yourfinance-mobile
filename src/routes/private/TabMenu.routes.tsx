@@ -8,7 +8,7 @@ import Transactions from '../../screens/Transactions';
 import { ArrowLeftRight } from '../../components/Icons/ArrowLeftRight';
 import Goals from '../../screens/Goals';
 import { Target } from '../../components/Icons/Target';
-import { StackRoutes } from './Stack.routes';
+import { HomeRoutes } from './Home.routes';
 
 const TabMenu = createBottomTabNavigator();
 
@@ -33,7 +33,7 @@ export function TabMenuRoutes() {
     >
       <TabMenu.Screen
         name="Home"
-        component={StackRoutes}
+        component={HomeRoutes}
         options={{
           tabBarIcon: ({ focused }) => {
             return <HomeIcon isActive={focused} />;
