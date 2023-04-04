@@ -6,6 +6,7 @@ import APIError from '../errors/APIErrors';
 import { api } from '../service/api';
 import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { USER_COLLECTION } from '../storage/storageConfig';
 
 interface AuthContextProviderProps {
   children: ReactNode;
@@ -16,6 +17,11 @@ interface AuthContextProps {
   loading: boolean;
   handleLogin: (user: User) => Promise<void>;
   handleLogout: () => Promise<void>;
+  auth: AuthData;
+}
+
+interface AuthData {
+  token: string;
   user: User;
 }
 
@@ -26,26 +32,27 @@ export const AuthContext = createContext<AuthContextProps>(
 export function AuthProvider({ children }: AuthContextProviderProps) {
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [user, setUser] = useState<User>({});
+  const [auth, setAuth] = useState<AuthData>({} as AuthData);
 
   useEffect(() => {
     loadStorageData();
   }, []);
 
   async function loadStorageData(): Promise<void> {
-    const authDataSerialized = await AsyncStorage.getItem('@auth');
+    const authDataSerialized = await AsyncStorage.getItem(USER_COLLECTION);
 
-    const authData: User = JSON.parse(authDataSerialized || '');
+    const authData: AuthData = JSON.parse(authDataSerialized || '');
 
     if (!authData.token) {
       setAuthenticated(false);
       setLoading(false);
+      handleLogout();
       return;
     }
 
     const { token, ...user } = authData;
 
-    setUser(user);
+    setAuth(authData);
 
     api.defaults.headers.Authorization = `Bearer ${token}`;
 
@@ -66,11 +73,11 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
     try {
       const data = await AuthService.login(user);
 
-      AsyncStorage.setItem('@auth', JSON.stringify(data));
+      AsyncStorage.setItem(USER_COLLECTION, JSON.stringify(data));
 
       api.defaults.headers.Authorization = `Bearer ${data.token}`;
 
-      setUser(data);
+      setAuth(data);
       setAuthenticated(true);
     } catch (error: any) {
       if (error instanceof APIError) {
@@ -85,11 +92,10 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
     try {
       const data = await AuthService.register(user);
 
-      localStorage.setItem('@Aion-token', JSON.stringify(data.token));
-      localStorage.setItem('@Aion-user', JSON.stringify(data.user.name));
+      localStorage.setItem(USER_COLLECTION, JSON.stringify(data));
       api.defaults.headers.Authorization = `Bearer ${data.token}`;
 
-      setUser({ name: data.user.name });
+      setAuth(data);
       setAuthenticated(true);
     } catch (error: any) {
       if (error instanceof APIError) {
@@ -105,15 +111,15 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
 
   async function handleLogout() {
     setAuthenticated(false);
-    setUser({});
-    await AsyncStorage.removeItem('@auth');
+    setAuth({} as AuthData);
+    await AsyncStorage.removeItem(USER_COLLECTION);
 
     api.defaults.headers.Authorization = null;
   }
 
   return (
     <AuthContext.Provider
-      value={{ authenticated, handleLogin, handleLogout, user, loading }}
+      value={{ authenticated, handleLogin, handleLogout, auth, loading }}
     >
       {children}
     </AuthContext.Provider>

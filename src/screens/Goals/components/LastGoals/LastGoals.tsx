@@ -2,8 +2,11 @@ import { memo } from 'react';
 
 import { LastGoalsView } from './LastGoals.view';
 import { LastGoalsViewModel } from './LastGoals.view-model';
+import { TGoalResponse } from '../../../../types/Goal';
 
-export interface LastGoalsProps {}
+export interface LastGoalsProps {
+  goals?: TGoalResponse[];
+}
 
 // Quando a prop é usada somente aqui, devemos omitir para não ir pra View
 export interface LastGoalsViewProps extends Omit<LastGoalsProps, ''> {

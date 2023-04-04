@@ -2,8 +2,11 @@ import { memo } from 'react';
 
 import { GoalCardView } from './GoalCard.view';
 import { GoalCardViewModel } from './GoalCard.view-model';
+import { TGoalResponse } from '../../../../../../types/Goal';
 
-export interface GoalCardProps {}
+export interface GoalCardProps {
+  goal?: TGoalResponse;
+}
 
 // Quando a prop é usada somente aqui, devemos omitir para não ir pra View
 export interface GoalCardViewProps extends Omit<GoalCardProps, ''> {

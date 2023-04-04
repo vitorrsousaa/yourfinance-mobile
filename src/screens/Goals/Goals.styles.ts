@@ -1,6 +1,8 @@
 import styled from 'styled-components/native';
 
-export const Goals = styled.View``;
+export const Goals = styled.SafeAreaView`
+  flex: 1;
+`;
 
 export const ContainerHeader = styled.View`
   background: ${({ theme }) => theme.colors.black[900]};

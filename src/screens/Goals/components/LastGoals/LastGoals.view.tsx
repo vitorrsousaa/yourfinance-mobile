@@ -10,14 +10,10 @@ interface Props {
 }
 
 export function LastGoalsView({ viewModel, props }: Props) {
-  const { ...lastGoalsProps } = props;
+  const { goals, ...lastGoalsProps } = props;
 
   return (
     <styled.LastGoals>
-      <View>
-        <Text>Suas metas</Text>
-        <Text>Filtro</Text>
-      </View>
       <GoalCard />
     </styled.LastGoals>
   );

@@ -8,6 +8,7 @@ declare module 'styled-components' {
         800: string;
         700: string;
         600: string;
+        500: string;
         300: string;
         200: string;
       };

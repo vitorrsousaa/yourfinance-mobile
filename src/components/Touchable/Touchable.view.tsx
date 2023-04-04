@@ -5,19 +5,21 @@ import { Bell } from '../Icons/Bell';
 import { User } from '../Icons/User';
 import { Arrow } from '../Icons/Arrow';
 import { Search } from '../Icons/Search';
+import { Plus } from '../Icons/Plus';
 
 interface Props {
   viewModel: TouchableViewModelProps;
   props: TouchableViewProps;
 }
 
-export type icons = 'bell' | 'user' | 'arrow' | 'search';
+export type icons = 'bell' | 'user' | 'arrow' | 'search' | 'plus';
 
 const icons: Record<icons, JSX.Element> = {
   bell: <Bell />,
   user: <User />,
   arrow: <Arrow />,
   search: <Search />,
+  plus: <Plus />,
 };
 
 export function TouchableView({ viewModel, props }: Props) {

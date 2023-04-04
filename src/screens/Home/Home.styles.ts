@@ -7,16 +7,17 @@ export const Home = styled.SafeAreaView`
 export const Container = styled.View`
   background: ${({ theme }) => theme.colors.black[900]};
   padding-top: 56px;
+  padding: 56px 24px 24px;
 `;
 
 export const ContainerHeader = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  padding: 12px 24px;
+  padding: 12px 0;
 `;
 
 export const ContainerHero = styled.View`
-  padding: 24px 24px;
+  gap: 16px;
 `;
 
 export const ContainerButtons = styled.View`
@@ -26,7 +27,7 @@ export const ContainerButtons = styled.View`
 export const ContainerSummary = styled.View`
   flex-direction: row;
   justify-content: space-between;
-  margin-top: 16px;
+  /* margin-top: 16px; */
 `;
 
 export const ContainerTransactions = styled.View`

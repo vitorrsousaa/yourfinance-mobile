@@ -1,8 +1,12 @@
 import { GoalCardViewModelProps } from './GoalCard.view-model';
 import { GoalCardViewProps } from './GoalCard';
 import * as styled from './GoalCard.styles';
-import { Text, View } from 'react-native';
+import { View } from 'react-native';
 import formatAmount from '../../../../../../utils/formatAmout';
+import { Target } from '../../../../../../components/Icons/Target';
+import { useTheme } from 'styled-components/native';
+import { Text } from '../../../../../../components/Text';
+import { DotMenu } from '../../../../../../components/Icons/DotMenu';
 
 interface Props {
   viewModel: GoalCardViewModelProps;
@@ -10,25 +14,57 @@ interface Props {
 }
 
 export function GoalCardView({ viewModel, props }: Props) {
-  const { ...goalCardProps } = props;
+  const { goal, ...goalCardProps } = props;
+
+  const { colors } = useTheme();
 
   return (
     <styled.GoalCard>
-      <View>
-        <View>
-          <Text>Nome da meta</Text>
-          <Text>17/02/2023</Text>
+      <styled.GoalHeader>
+        <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+          <Target color={colors.black[900]} />
+          <View>
+            <Text weight="500" size={16} color={colors.black[800]}>
+              Nome da meta
+            </Text>
+            <Text weight="500" size={12} color={colors.black[500]}>
+              17/02/2023
+            </Text>
+          </View>
         </View>
-        <Text>Menu</Text>
-      </View>
-      <View>
-        <View>
-          <Text>{formatAmount(500)}</Text>
-          <Text>de {formatAmount(1500)}</Text>
+        <DotMenu />
+      </styled.GoalHeader>
+
+      <styled.GoalTargets>
+        <View style={{ flexDirection: 'row', gap: 4 }}>
+          <Text weight="500" size={12} color={colors.black[800]}>
+            {formatAmount(500)}
+          </Text>
+          <Text weight="500" size={12} color={colors.black[500]}>
+            de {formatAmount(1500)}
+          </Text>
         </View>
-        <Text>{formatAmount(1000)}</Text>
+        <Text weight="500" size={12} color={colors.black[500]}>
+          {formatAmount(1000)}
+        </Text>
+      </styled.GoalTargets>
+      <View
+        style={{
+          width: '100%',
+          height: 8,
+          borderRadius: 8,
+          backgroundColor: colors.black[200],
+        }}
+      >
+        <View
+          style={{
+            width: '70%',
+            height: 8,
+            borderRadius: 8,
+            backgroundColor: colors.green[400],
+          }}
+        />
       </View>
-      <Text>progress bar</Text>
     </styled.GoalCard>
   );
 }

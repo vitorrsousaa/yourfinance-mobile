@@ -9,6 +9,7 @@ import { ArrowLeftRight } from '../../components/Icons/ArrowLeftRight';
 import Goals from '../../screens/Goals';
 import { Target } from '../../components/Icons/Target';
 import { HomeRoutes } from './Home.routes';
+import { GoalsRoutes } from '../../screens/Goals/Goals.routes';
 
 const TabMenu = createBottomTabNavigator();
 
@@ -65,7 +66,7 @@ export function TabMenuRoutes() {
 
       <TabMenu.Screen
         name="Goals"
-        component={Goals}
+        component={GoalsRoutes}
         options={{
           tabBarIcon: ({ focused }) => {
             return <Target isActive={focused} />;

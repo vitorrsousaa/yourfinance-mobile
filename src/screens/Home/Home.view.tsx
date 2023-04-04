@@ -9,6 +9,7 @@ import formatAmount from '../../utils/formatAmout';
 import LastTransactions from '../../components/LastTransactions';
 import { Logo } from '../../components/Icons/Logo';
 import Touchable from '../../components/Touchable';
+import { useAuth } from '../../hooks/useAuth';
 
 interface Props {
   viewModel: HomeViewModelProps;
@@ -18,6 +19,10 @@ interface Props {
 export function HomeView({ viewModel, props }: Props) {
   const { ...homeProps } = props;
 
+  const { auth } = useAuth();
+
+  const { user } = auth;
+
   const {
     transactions,
     incomeSummary,
@@ -26,7 +31,7 @@ export function HomeView({ viewModel, props }: Props) {
     handleNavigateNotifications,
   } = viewModel;
 
-  const theme = useTheme();
+  const { colors } = useTheme();
 
   // Preciso adicionar um margin top do tamanho da status bar
 
@@ -50,12 +55,20 @@ export function HomeView({ viewModel, props }: Props) {
           </styled.ContainerButtons>
         </styled.ContainerHeader>
         <styled.ContainerHero>
+          <Text size={24} color={colors.white[100]}>
+            Olá,
+            <Text weight="700" size={24} color={colors.white[100]}>
+              {` ${user.name}`}
+            </Text>
+          </Text>
+
           <View>
-            <Text color={theme.colors.black[200]}>Saldo disponível</Text>
-            <Text weight="500" size={28} color={theme.colors.white[100]}>
+            <Text color={colors.black[200]}>Saldo disponível</Text>
+            <Text weight="500" size={28} color={colors.white[100]}>
               {formatAmount(4521)}
             </Text>
           </View>
+
           <styled.ContainerSummary>
             <CategorySummary
               categoryName="Receitas"
