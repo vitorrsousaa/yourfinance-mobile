@@ -27,8 +27,8 @@ export default function App() {
         <QueryClientProvider client={queryClient}>
           <Main />
         </QueryClientProvider>
-        <StatusBar style="light" />
       </AuthProvider>
+      <StatusBar style="light" />
     </ThemeProvider>
   );
 }

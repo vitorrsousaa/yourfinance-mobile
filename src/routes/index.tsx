@@ -10,7 +10,7 @@ export function Router() {
 
   if (loading) {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
         <ActivityIndicator />
       </View>
     );

@@ -3,7 +3,6 @@ import {
   StackNavigationOptions,
 } from '@react-navigation/stack';
 import GoalsScreen from './Goals';
-import Teste from './screens/Teste';
 
 export type RootGoalsParamList = {
   GoalsScreen: undefined;
@@ -20,11 +19,6 @@ export function GoalsRoutes() {
       }}
     >
       <Goals.Screen name="GoalsScreen" component={GoalsScreen} />
-      <Goals.Screen
-        name="Teste"
-        component={Teste}
-        // options={{ tabBarVisible: false } as StackNavigationOptions}
-      />
     </Goals.Navigator>
   );
 }
