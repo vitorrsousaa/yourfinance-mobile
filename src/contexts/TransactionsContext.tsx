@@ -1,11 +1,16 @@
-import { ReactNode, createContext, useEffect, useState } from 'react';
+import {
+  ReactNode,
+  createContext,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react';
 import { TTransaction, TTransactionResponse } from '../types/Transaction';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { TRANSACTIONS_COLLECTION } from '../storage/storageConfig';
-import { useQuery } from 'react-query';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
-import TransactionsService from '../service/TransactionsService';
+import { TransactionQuery } from '../query/TransactionsQuery';
 
 const queryClient = new QueryClient();
 
@@ -47,36 +52,47 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
       : [];
 
     if (transactionsStorage.length === 0) {
-      console.log('aqui dentro');
-      // Faço a request pro banco para atualizar as transações
-      const { data: transactionsResponse } = useQuery<TTransactionResponse>({
-        queryKey: ['@transactions'],
-        queryFn: () => TransactionsService.list(),
-        onError: () => setErrorTransactions(true),
-        onSuccess: (data) => {
-          setTransactions(data.transactions);
-        },
-        onSettled: () => setLoadingTransactions(false),
-        staleTime: 1000 * 60 * 60, // 1hour
-        cacheTime: 1000 * 60 * 60,
-      });
-
-      AsyncStorage.setItem(
-        TRANSACTIONS_COLLECTION,
-        JSON.stringify(transactionsResponse?.transactions)
-      );
-
-      console.log('response context', transactionsResponse);
+      setLoadingTransactions(true);
+      setErrorTransactions(false);
     }
 
     setTransactions(transactionsStorage);
+    setLoadingTransactions(false);
   }
+
+  const handleErrorQuery = useCallback((error: unknown) => {
+    console.log(error);
+    setErrorTransactions(true);
+  }, []);
+
+  const handleCompleteQuery = useCallback(() => {
+    setLoadingTransactions(false);
+  }, []);
+
+  const handleSuccessQuery = useCallback((data: TTransactionResponse) => {
+    setTransactions(data.transactions);
+    AsyncStorage.setItem(
+      TRANSACTIONS_COLLECTION,
+      JSON.stringify(data.transactions)
+    );
+  }, []);
 
   return (
     <TransactionsContext.Provider
-      value={{ transactions, loadingTransactions, errorTransactions }}
+      value={{
+        transactions,
+        loadingTransactions,
+        errorTransactions,
+      }}
     >
-      <QueryClientProvider client={queryClient}>{children}</QueryClientProvider>
+      <QueryClientProvider client={queryClient}>
+        <TransactionQuery
+          onError={handleErrorQuery}
+          onSettled={handleCompleteQuery}
+          onSuccess={handleSuccessQuery}
+        />
+        {children}
+      </QueryClientProvider>
     </TransactionsContext.Provider>
   );
 }

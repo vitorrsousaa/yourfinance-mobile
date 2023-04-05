@@ -1,16 +1,19 @@
-import { useState } from 'react';
 import { TTransaction } from '../../types/Transaction';
+import { useTransactions } from '../../hooks/useTransactions';
 
 export interface TransactionsViewModelProps {
   transactions: TTransaction[];
-  setTransactions: (transactions: TTransaction[]) => void;
+  errorTransactions: boolean;
+  loadingTransactions: boolean;
 }
 
 export function TransactionsViewModel() {
-  const [transactions, setTransactions] = useState<TTransaction[]>([]);
+  const { transactions, errorTransactions, loadingTransactions } =
+    useTransactions();
 
   return {
     transactions,
-    setTransactions,
+    errorTransactions,
+    loadingTransactions,
   };
 }

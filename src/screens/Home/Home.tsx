@@ -20,28 +20,15 @@ function Home(props: HomeProps) {
 
   const viewModel = useViewModel();
 
-  const { setTransactions, setIncomeSummary, setOutcomeSummary } = viewModel;
+  const { setIncomeSummary, setOutcomeSummary } = viewModel;
 
   useEffect(() => {
     async function loadData() {
-      // const results = useQueries([
-      //   {
-      //     queryKey: 'transactions',
-      //     queryFn: async () => {
-      //       const transactions = await TransactionsService.list();
-
-      //       return transactions;
-      //     },
-      //   },
-      // ]);
-
-      const [dataTransactions, dataOutcome, dataIncome] = await Promise.all([
-        TransactionsService.list(),
+      const [dataOutcome, dataIncome] = await Promise.all([
         AnalyticsService.getCardsSummary(categories[0]._id),
         AnalyticsService.getCardsSummary(categories[1]._id),
       ]);
 
-      setTransactions(dataTransactions.transactions.slice(0, 5));
       setIncomeSummary(dataIncome);
       setOutcomeSummary(dataOutcome);
     }

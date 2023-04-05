@@ -12,11 +12,11 @@ interface Props {
 }
 
 export function TransactionsView({ viewModel, props }: Props) {
-  const { transactions, ...transactionsProps } = props;
+  const { ...transactionsProps } = props;
+
+  const { transactions, loadingTransactions, errorTransactions } = viewModel;
 
   const { colors } = useTheme();
-
-  console.log(transactions);
 
   return (
     <styled.Transactions>
@@ -31,6 +31,8 @@ export function TransactionsView({ viewModel, props }: Props) {
           title="Transações"
           showFilter={true}
           transactions={transactions}
+          isLoading={loadingTransactions}
+          hasError={errorTransactions}
         />
       </styled.ContainerTransactions>
     </styled.Transactions>

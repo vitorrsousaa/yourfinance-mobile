@@ -10,7 +10,7 @@ import LastTransactions from '../../components/LastTransactions';
 import { Logo } from '../../components/Icons/Logo';
 import Touchable from '../../components/Touchable';
 import { useAuth } from '../../hooks/useAuth';
-import { useTransactions } from '../../hooks/useTransactions';
+import PlusButton from '../../components/PlusButton';
 
 interface Props {
   viewModel: HomeViewModelProps;
@@ -23,11 +23,12 @@ export function HomeView({ viewModel, props }: Props) {
   const { auth } = useAuth();
   const { user } = auth;
 
-  const { transactions } = useTransactions();
-
   const {
     incomeSummary,
     outcomeSummary,
+    transactions,
+    loadingTransactions,
+    errorTransactions,
     handleNavigateSettings,
     handleNavigateNotifications,
   } = viewModel;
@@ -85,8 +86,14 @@ export function HomeView({ viewModel, props }: Props) {
         </styled.ContainerHero>
       </styled.Container>
       <styled.ContainerTransactions>
-        <LastTransactions transactions={transactions.slice(0, 4)} />
+        <LastTransactions
+          transactions={transactions.slice(0, 4)}
+          isLoading={loadingTransactions}
+          hasError={errorTransactions}
+        />
       </styled.ContainerTransactions>
+
+      <PlusButton />
     </styled.Home>
   );
 }

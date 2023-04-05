@@ -2,6 +2,7 @@ import styled from 'styled-components/native';
 
 export const LastTransactions = styled.View`
   margin-top: 24px;
+  flex: 1;
 `;
 
 export const ContainerHeader = styled.View<{ showFilter?: boolean }>`
