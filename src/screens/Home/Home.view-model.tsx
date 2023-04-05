@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { TTransaction } from '../../types/Transaction';
 import { TCardSummary } from '../../types/Analytics';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { RootHomeParamList } from '../../routes/private/Home.routes';
+import { RootHomeParamList } from './Home.routes';
 
 export interface HomeViewModelProps {
   transactions: TTransaction[];

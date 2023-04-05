@@ -3,9 +3,9 @@ import {
   StackNavigationOptions,
 } from '@react-navigation/stack';
 
-import Settings from '../../screens/Settings';
-import Notifications from '../../screens/Notifications';
-import HomeScreen from '../../screens/Home';
+import HomeScreen from '../Home/Home';
+import Settings from './screens/Settings';
+import Notifications from './screens/Notifications';
 
 export type RootHomeParamList = {
   Home: undefined;

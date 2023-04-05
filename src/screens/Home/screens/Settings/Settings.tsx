@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 
 import { SettingsView } from './Settings.view';
 import { SettingsViewModel } from './Settings.view-model';

@@ -10,6 +10,7 @@ import LastTransactions from '../../components/LastTransactions';
 import { Logo } from '../../components/Icons/Logo';
 import Touchable from '../../components/Touchable';
 import { useAuth } from '../../hooks/useAuth';
+import { useTransactions } from '../../hooks/useTransactions';
 
 interface Props {
   viewModel: HomeViewModelProps;
@@ -20,11 +21,11 @@ export function HomeView({ viewModel, props }: Props) {
   const { ...homeProps } = props;
 
   const { auth } = useAuth();
-
   const { user } = auth;
 
+  const { transactions } = useTransactions();
+
   const {
-    transactions,
     incomeSummary,
     outcomeSummary,
     handleNavigateSettings,

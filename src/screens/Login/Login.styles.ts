@@ -5,7 +5,7 @@ export const Login = styled.KeyboardAvoidingView`
   background: ${({ theme }) => theme.colors.black[800]};
   align-items: center;
   justify-content: center;
-  gap: 32px;
+  /* gap: 32px; */
 `;
 
 export const ContainerButton = styled.View`

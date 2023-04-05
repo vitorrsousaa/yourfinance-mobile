@@ -4,10 +4,8 @@ import { ThemeProvider } from 'styled-components/native';
 import theme from './src/assets/theme';
 import Main from './src/Main';
 import { AuthProvider } from './src/contexts/AuthContext';
-import { QueryClient, QueryClientProvider } from 'react-query';
 import { StatusBar } from 'expo-status-bar';
-
-const queryClient = new QueryClient();
+import { TransactionsProvider } from './src/contexts/TransactionsContext';
 
 export default function App() {
   const [isFontsLoaded] = useFonts({
@@ -24,9 +22,9 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <AuthProvider>
-        <QueryClientProvider client={queryClient}>
+        <TransactionsProvider>
           <Main />
-        </QueryClientProvider>
+        </TransactionsProvider>
       </AuthProvider>
       <StatusBar style="light" />
     </ThemeProvider>

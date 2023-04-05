@@ -10,8 +10,15 @@ export function Router() {
 
   if (loading) {
     return (
-      <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-        <ActivityIndicator />
+      <View
+        style={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+          backgroundColor: '#395bfc',
+        }}
+      >
+        <ActivityIndicator size={'large'} />
       </View>
     );
   }

@@ -41,7 +41,7 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
   async function loadStorageData(): Promise<void> {
     const authDataSerialized = await AsyncStorage.getItem(USER_COLLECTION);
 
-    const authData: AuthData = JSON.parse(authDataSerialized || '');
+    const authData = JSON.parse(authDataSerialized || '{}');
 
     if (!authData.token) {
       setAuthenticated(false);
@@ -64,6 +64,7 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
       setAuthenticated(true);
     } catch (error) {
       handleLogout();
+      setLoading(false);
     } finally {
       setLoading(false);
     }

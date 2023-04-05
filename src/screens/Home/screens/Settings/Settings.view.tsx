@@ -1,9 +1,10 @@
+import React from 'react';
 import { SettingsViewModelProps } from './Settings.view-model';
 import { SettingsViewProps } from './Settings';
 import * as styled from './Settings.styles';
 import { Text } from 'react-native';
-import Touchable from '../../components/Touchable';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../../../../hooks/useAuth';
+import Touchable from '../../../../components/Touchable';
 
 interface Props {
   viewModel: SettingsViewModelProps;

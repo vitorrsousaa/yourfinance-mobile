@@ -32,13 +32,19 @@ export function LoginView({ viewModel, props }: Props) {
   return (
     <styled.Login behavior={isAndroid ? 'height' : 'padding'}>
       <ScrollView
-        contentContainerStyle={{ flex: 1 }}
+        contentContainerStyle={{
+          flex: 1,
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
         keyboardShouldPersistTaps="handled"
       >
         <Welcome />
-        <Text weight="500" size={20} color={colors.white[100]}>
-          Faça seu login
-        </Text>
+        <View style={{ marginVertical: 32 }}>
+          <Text weight="500" size={20} color={colors.white[100]}>
+            Faça seu login
+          </Text>
+        </View>
         <View>
           <Input
             label="E-mail"
