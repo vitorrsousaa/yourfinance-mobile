@@ -5,6 +5,7 @@ import LastTransactions from '../../components/LastTransactions';
 import { Text } from '../../components/Text';
 import { useTheme } from 'styled-components/native';
 import Touchable from '../../components/Touchable';
+import { useTransactions } from '../../hooks/useTransactions';
 
 interface Props {
   viewModel: TransactionsViewModelProps;
@@ -14,7 +15,8 @@ interface Props {
 export function TransactionsView({ viewModel, props }: Props) {
   const { ...transactionsProps } = props;
 
-  const { transactions, loadingTransactions, errorTransactions } = viewModel;
+  const { transactions, errorTransactions, loadingTransactions } =
+    useTransactions();
 
   const { colors } = useTheme();
 

@@ -11,6 +11,7 @@ import { Logo } from '../../components/Icons/Logo';
 import Touchable from '../../components/Touchable';
 import { useAuth } from '../../hooks/useAuth';
 import PlusButton from '../../components/PlusButton';
+import { useTransactions } from '../../hooks/useTransactions';
 
 interface Props {
   viewModel: HomeViewModelProps;
@@ -26,12 +27,12 @@ export function HomeView({ viewModel, props }: Props) {
   const {
     incomeSummary,
     outcomeSummary,
-    transactions,
-    loadingTransactions,
-    errorTransactions,
     handleNavigateSettings,
     handleNavigateNotifications,
   } = viewModel;
+
+  const { errorTransactions, loadingTransactions, transactions } =
+    useTransactions();
 
   const { colors } = useTheme();
 

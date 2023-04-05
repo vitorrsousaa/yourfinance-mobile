@@ -1,16 +1,11 @@
 import { useState } from 'react';
-import { TTransaction } from '../../types/Transaction';
 import { TCardSummary } from '../../types/Analytics';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
 import { RootHomeParamList } from './Home.routes';
-import { useTransactions } from '../../hooks/useTransactions';
 
 export interface HomeViewModelProps {
-  transactions: TTransaction[];
   incomeSummary: TCardSummary;
   outcomeSummary: TCardSummary;
-  errorTransactions: boolean;
-  loadingTransactions: boolean;
   setIncomeSummary: (summary: TCardSummary) => void;
   setOutcomeSummary: (summary: TCardSummary) => void;
   handleNavigateSettings: () => void;
@@ -18,8 +13,6 @@ export interface HomeViewModelProps {
 }
 
 export function HomeViewModel() {
-  const { errorTransactions, loadingTransactions, transactions } =
-    useTransactions();
   const [incomeSummary, setIncomeSummary] = useState<TCardSummary>(
     {} as TCardSummary
   );
@@ -38,11 +31,8 @@ export function HomeViewModel() {
   }
 
   return {
-    transactions,
     incomeSummary,
     outcomeSummary,
-    errorTransactions,
-    loadingTransactions,
     setIncomeSummary,
     setOutcomeSummary,
     handleNavigateSettings,

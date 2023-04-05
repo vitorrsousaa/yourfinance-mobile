@@ -43,6 +43,7 @@ export function TransactionsProvider({ children }: TransactionsProviderProps) {
   }, []);
 
   async function loadTransactions() {
+    setLoadingTransactions(true);
     const transactionsSerialized = await AsyncStorage.getItem(
       TRANSACTIONS_COLLECTION
     );
