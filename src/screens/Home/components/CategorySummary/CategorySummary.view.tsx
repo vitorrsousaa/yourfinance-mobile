@@ -14,19 +14,17 @@ interface Props {
 
 export function CategorySummaryView({ viewModel, props }: Props) {
   const { currentMonth, categoryName, percent } = props;
-  const theme = useTheme();
+  const { colors } = useTheme();
 
   const color =
-    categoryName === 'Receitas'
-      ? theme.colors.green[400]
-      : theme.colors.red[400];
+    categoryName === 'Receitas' ? colors.green[400] : colors.red[400];
 
   return (
     <styled.CategorySummary>
-      <Text size={14} color={theme.colors.black[700]}>
+      <Text size={14} color={colors.black[700]}>
         {categoryName}
       </Text>
-      <Text size={18} weight="500" color={theme.colors.black[900]}>
+      <Text size={18} weight="500" color={colors.black[900]}>
         {formatAmount(currentMonth)}
       </Text>
       <styled.ContainerDifference>

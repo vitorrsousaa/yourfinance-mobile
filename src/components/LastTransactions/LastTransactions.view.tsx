@@ -22,16 +22,18 @@ export function LastTransactionsView({ viewModel, props }: Props) {
     hasError,
   } = props;
 
-  const theme = useTheme();
+  const { colors } = useTheme();
 
   return (
     <styled.LastTransactions>
-      {isLoading ? (
-        <Loader size="large" />
+      {hasError ? (
+        <View>
+          <Text>Tivemos um erro para encontrar suas transações</Text>
+        </View>
       ) : (
         <>
           <styled.ContainerHeader showFilter={showFilter}>
-            <Text weight="500" color={theme.colors.black[900]} size={17}>
+            <Text weight="500" color={colors.black[900]} size={17}>
               {title}
             </Text>
 
@@ -42,11 +44,9 @@ export function LastTransactionsView({ viewModel, props }: Props) {
               </styled.Filter>
             )}
           </styled.ContainerHeader>
-          {hasError ? (
-            <View>
-              <Text>Tivemos um erro para encontrar suas transações</Text>
-            </View>
-          ) : (
+          {isLoading ? (
+            <Loader size="large" color={colors.green[400]} />
+          ) : transactions.length > 0 ? (
             <View style={{ gap: 16 }}>
               <FlatList
                 data={transactions}
@@ -55,6 +55,10 @@ export function LastTransactionsView({ viewModel, props }: Props) {
                 ItemSeparatorComponent={() => <View style={{ height: 8 }} />}
                 contentContainerStyle={{ paddingBottom: 48 }}
               />
+            </View>
+          ) : (
+            <View>
+              <Text>Você ainda não cadastrou transações</Text>
             </View>
           )}
         </>
