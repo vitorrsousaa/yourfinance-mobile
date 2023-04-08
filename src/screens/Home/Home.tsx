@@ -2,11 +2,8 @@ import { memo, useEffect } from 'react';
 
 import { HomeView } from './Home.view';
 import { HomeViewModel } from './Home.view-model';
-import CategoriesService from '../../service/CategoriesService';
-import { categories } from '../../mock/categories';
-import TransactionsService from '../../service/TransactionsService';
 import AnalyticsService from '../../service/AnalyticsService';
-import { useQueries } from 'react-query';
+import { useCategories } from '../../hooks/useCategories';
 
 export interface HomeProps {}
 
@@ -20,21 +17,32 @@ function Home(props: HomeProps) {
 
   const viewModel = useViewModel();
 
-  const { setIncomeSummary, setOutcomeSummary } = viewModel;
+  const { setIncomeSummary, setOutcomeSummary, setIsLoading, setHasError } =
+    viewModel;
+
+  const { categories } = useCategories();
 
   useEffect(() => {
     async function loadData() {
-      const [dataOutcome, dataIncome] = await Promise.all([
-        AnalyticsService.getCardsSummary(categories[0]._id),
-        AnalyticsService.getCardsSummary(categories[1]._id),
-      ]);
+      try {
+        const [dataOutcome, dataIncome] = await Promise.all([
+          AnalyticsService.getCardsSummary(categories[0]._id),
+          AnalyticsService.getCardsSummary(categories[1]._id),
+        ]);
 
-      setIncomeSummary(dataIncome);
-      setOutcomeSummary(dataOutcome);
+        setIncomeSummary(dataIncome);
+        setOutcomeSummary(dataOutcome);
+      } catch {
+        setHasError(true);
+      } finally {
+        setIsLoading(false);
+      }
     }
 
-    loadData();
-  }, []);
+    if (categories) {
+      loadData();
+    }
+  }, [categories]);
 
   return <HomeView viewModel={viewModel} props={viewProps} />;
 }

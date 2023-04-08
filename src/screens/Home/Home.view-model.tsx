@@ -6,6 +6,10 @@ import { PrivateRootParamList } from '../../routes/private';
 export interface HomeViewModelProps {
   incomeSummary: TCardSummary;
   outcomeSummary: TCardSummary;
+  isLoading: boolean;
+  hasError: boolean;
+  setHasError: (state: boolean) => void;
+  setIsLoading: (state: boolean) => void;
   setIncomeSummary: (summary: TCardSummary) => void;
   setOutcomeSummary: (summary: TCardSummary) => void;
   handleNavigateSettings: () => void;
@@ -20,6 +24,9 @@ export function HomeViewModel() {
     {} as TCardSummary
   );
 
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
+
   const navigation = useNavigation<NavigationProp<PrivateRootParamList>>();
 
   function handleNavigateSettings() {
@@ -33,6 +40,10 @@ export function HomeViewModel() {
   return {
     incomeSummary,
     outcomeSummary,
+    isLoading,
+    hasError,
+    setHasError,
+    setIsLoading,
     setIncomeSummary,
     setOutcomeSummary,
     handleNavigateSettings,

@@ -1,7 +1,7 @@
 import { HomeViewModelProps } from './Home.view-model';
 import { HomeViewProps } from './Home';
 import * as styled from './Home.styles';
-import { View } from 'react-native';
+import { ActivityIndicator, View } from 'react-native';
 import CategorySummary from './components/CategorySummary';
 import { Text } from '../../components/Text';
 import { useTheme } from 'styled-components/native';
@@ -12,7 +12,6 @@ import Touchable from '../../components/Touchable';
 import { useAuth } from '../../hooks/useAuth';
 import PlusButton from '../../components/PlusButton';
 import { useTransactions } from '../../hooks/useTransactions';
-import { useCategories } from '../../hooks/useCategories';
 
 interface Props {
   viewModel: HomeViewModelProps;
@@ -23,12 +22,12 @@ export function HomeView({ viewModel, props }: Props) {
   const { ...homeProps } = props;
 
   const { auth } = useAuth();
-  const { categories, isLoading, isError } = useCategories();
   const { user } = auth;
 
   const {
     incomeSummary,
     outcomeSummary,
+    isLoading,
     handleNavigateSettings,
     handleNavigateNotifications,
   } = viewModel;
@@ -37,8 +36,6 @@ export function HomeView({ viewModel, props }: Props) {
     useTransactions();
 
   const { colors } = useTheme();
-
-  // Preciso adicionar um margin top do tamanho da status bar
 
   return (
     <styled.Home>
@@ -75,22 +72,28 @@ export function HomeView({ viewModel, props }: Props) {
           </View>
 
           <styled.ContainerSummary>
-            <CategorySummary
-              categoryName="Receitas"
-              currentMonth={incomeSummary.currentMonth}
-              percent={incomeSummary.percent}
-            />
-            <CategorySummary
-              categoryName="Despesas"
-              currentMonth={outcomeSummary.currentMonth}
-              percent={outcomeSummary.percent}
-            />
+            {isLoading ? (
+              <ActivityIndicator size={'large'} color={colors.green[400]} />
+            ) : (
+              <>
+                <CategorySummary
+                  categoryName="Receitas"
+                  currentMonth={incomeSummary.currentMonth}
+                  percent={incomeSummary.percent}
+                />
+                <CategorySummary
+                  categoryName="Despesas"
+                  currentMonth={outcomeSummary.currentMonth}
+                  percent={outcomeSummary.percent}
+                />
+              </>
+            )}
           </styled.ContainerSummary>
         </styled.ContainerHero>
       </styled.Container>
       <styled.ContainerTransactions>
         <LastTransactions
-          transactions={transactions.slice(0, 4)}
+          transactions={transactions?.slice(0, 4)}
           isLoading={isLoadingTransactions}
           hasError={isErrorTransactions}
         />

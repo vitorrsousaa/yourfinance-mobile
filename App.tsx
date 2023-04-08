@@ -5,7 +5,6 @@ import theme from './src/assets/theme';
 import Main from './src/Main';
 import { AuthProvider } from './src/contexts/AuthContext';
 import { StatusBar } from 'expo-status-bar';
-import { TransactionsProvider } from './src/contexts/TransactionsContext';
 import { QueryClient, QueryClientProvider } from 'react-query';
 
 const queryClient = new QueryClient();
@@ -26,9 +25,7 @@ export default function App() {
     <ThemeProvider theme={theme}>
       <AuthProvider>
         <QueryClientProvider client={queryClient}>
-          <TransactionsProvider>
-            <Main />
-          </TransactionsProvider>
+          <Main />
         </QueryClientProvider>
       </AuthProvider>
       <StatusBar style="light" />
