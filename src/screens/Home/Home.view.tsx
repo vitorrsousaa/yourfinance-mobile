@@ -12,6 +12,7 @@ import Touchable from '../../components/Touchable';
 import { useAuth } from '../../hooks/useAuth';
 import PlusButton from '../../components/PlusButton';
 import { useTransactions } from '../../hooks/useTransactions';
+import { useCategories } from '../../hooks/useCategories';
 
 interface Props {
   viewModel: HomeViewModelProps;
@@ -22,6 +23,7 @@ export function HomeView({ viewModel, props }: Props) {
   const { ...homeProps } = props;
 
   const { auth } = useAuth();
+  const { categories, isLoading, isError } = useCategories();
   const { user } = auth;
 
   const {
@@ -31,7 +33,7 @@ export function HomeView({ viewModel, props }: Props) {
     handleNavigateNotifications,
   } = viewModel;
 
-  const { errorTransactions, loadingTransactions, transactions } =
+  const { isLoadingTransactions, isErrorTransactions, transactions } =
     useTransactions();
 
   const { colors } = useTheme();
@@ -48,7 +50,7 @@ export function HomeView({ viewModel, props }: Props) {
             <Touchable
               item="bell"
               style={{ marginRight: 8 }}
-              // onPress={handleNavigateNotifications}
+              onPress={handleNavigateNotifications}
             />
             <Touchable
               item="user"
@@ -89,8 +91,8 @@ export function HomeView({ viewModel, props }: Props) {
       <styled.ContainerTransactions>
         <LastTransactions
           transactions={transactions.slice(0, 4)}
-          isLoading={loadingTransactions}
-          hasError={errorTransactions}
+          isLoading={isLoadingTransactions}
+          hasError={isErrorTransactions}
         />
       </styled.ContainerTransactions>
 

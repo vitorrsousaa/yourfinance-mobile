@@ -6,6 +6,9 @@ import Main from './src/Main';
 import { AuthProvider } from './src/contexts/AuthContext';
 import { StatusBar } from 'expo-status-bar';
 import { TransactionsProvider } from './src/contexts/TransactionsContext';
+import { QueryClient, QueryClientProvider } from 'react-query';
+
+const queryClient = new QueryClient();
 
 export default function App() {
   const [isFontsLoaded] = useFonts({
@@ -22,9 +25,11 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <AuthProvider>
-        <TransactionsProvider>
-          <Main />
-        </TransactionsProvider>
+        <QueryClientProvider client={queryClient}>
+          <TransactionsProvider>
+            <Main />
+          </TransactionsProvider>
+        </QueryClientProvider>
       </AuthProvider>
       <StatusBar style="light" />
     </ThemeProvider>

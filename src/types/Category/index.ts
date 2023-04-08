@@ -1,5 +1,2 @@
-export interface TCategory {
-  _id: string;
-  name: string;
-  __v: number;
-}
+export { TCategory } from './Category';
+export { TCategoryResponse } from './CategoryResponse';

@@ -1,14 +1,26 @@
-import { useContext } from 'react';
-import { TransactionsContext } from '../contexts/TransactionsContext';
+import { TTransactionResponse } from '../types/Transaction';
+import TransactionsService from '../service/TransactionsService';
+import { useQuery } from 'react-query';
 
 export function useTransactions() {
-  const context = useContext(TransactionsContext);
+  const {
+    data: transactionsResponse,
+    isError,
+    isLoading,
+    refetch,
+  } = useQuery<TTransactionResponse>({
+    queryKey: ['@transactions'],
+    queryFn: () => TransactionsService.list(),
+    staleTime: 1000 * 60 * 30, // 30 minutos
+    cacheTime: 1000 * 60 * 20, // 20 minutos
+  });
 
-  if (!context) {
-    throw new Error(
-      'useTransactions must be used within an TransactionsProvider'
-    );
-  }
+  const transactions = transactionsResponse?.transactions;
 
-  return context;
+  return {
+    transactions: transactions!,
+    isErrorTransactions: isError,
+    isLoadingTransactions: isLoading,
+    refetch,
+  };
 }
