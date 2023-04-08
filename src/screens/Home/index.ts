@@ -1,5 +1,5 @@
-import { HomeRoutes } from './Home.routes';
+import Home from './Home';
 
 export type { HomeProps } from './Home';
 
-export default HomeRoutes;
+export default Home;

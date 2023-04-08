@@ -8,16 +8,22 @@ import Transactions from '../../screens/Transactions';
 import { ArrowLeftRight } from '../../components/Icons/ArrowLeftRight';
 import Goals from '../../screens/Goals';
 import { Target } from '../../components/Icons/Target';
-import { GoalsRoutes } from '../../screens/Goals/Goals.routes';
 import Home from '../../screens/Home';
 
-const TabMenu = createBottomTabNavigator();
+export type HomeTabParamList = {
+  Home: undefined;
+  Analytics: undefined;
+  Transactions: undefined;
+  Goals: undefined;
+};
 
-export function TabMenuRoutes() {
+const HomeTab = createBottomTabNavigator<HomeTabParamList>();
+
+export function HomeTabRoutes() {
   const { colors } = useTheme();
 
   return (
-    <TabMenu.Navigator
+    <HomeTab.Navigator
       screenOptions={{
         headerShown: false,
         tabBarActiveTintColor: colors.black[900],
@@ -32,8 +38,8 @@ export function TabMenuRoutes() {
         },
       }}
     >
-      <TabMenu.Screen
-        name="HomeScreen"
+      <HomeTab.Screen
+        name="Home"
         component={Home}
         options={{
           tabBarIcon: ({ focused }) => {
@@ -42,7 +48,7 @@ export function TabMenuRoutes() {
           tabBarLabel: 'Home',
         }}
       />
-      <TabMenu.Screen
+      <HomeTab.Screen
         name="Analytics"
         component={Analytics}
         options={{
@@ -53,7 +59,7 @@ export function TabMenuRoutes() {
         }}
       />
 
-      <TabMenu.Screen
+      <HomeTab.Screen
         name="Transactions"
         component={Transactions}
         options={{
@@ -64,7 +70,7 @@ export function TabMenuRoutes() {
         }}
       />
 
-      <TabMenu.Screen
+      <HomeTab.Screen
         name="Goals"
         component={Goals}
         options={{
@@ -74,6 +80,6 @@ export function TabMenuRoutes() {
           tabBarLabel: 'Metas',
         }}
       />
-    </TabMenu.Navigator>
+    </HomeTab.Navigator>
   );
 }

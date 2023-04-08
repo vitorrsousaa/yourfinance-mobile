@@ -48,7 +48,7 @@ export function HomeView({ viewModel, props }: Props) {
             <Touchable
               item="bell"
               style={{ marginRight: 8 }}
-              onPress={handleNavigateNotifications}
+              // onPress={handleNavigateNotifications}
             />
             <Touchable
               item="user"

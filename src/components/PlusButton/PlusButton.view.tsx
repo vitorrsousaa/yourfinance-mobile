@@ -13,6 +13,7 @@ export function PlusButtonView({ viewModel, props }: Props) {
   return (
     <Touchable
       item="plus"
+      activeOpacity={0.9}
       style={{
         width: 64,
         height: 64,

@@ -1,5 +1,5 @@
-import { GoalsRoutes } from './Goals.routes';
+import Goals from './Goals';
 
 export type { GoalsProps } from './Goals';
 
-export default GoalsRoutes;
+export default Goals;

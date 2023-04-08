@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { TCardSummary } from '../../types/Analytics';
 import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { RootHomeParamList } from './Home.routes';
+import { PrivateRootParamList } from '../../routes/private';
 
 export interface HomeViewModelProps {
   incomeSummary: TCardSummary;
@@ -20,14 +20,14 @@ export function HomeViewModel() {
     {} as TCardSummary
   );
 
-  const navigation = useNavigation<NavigationProp<RootHomeParamList>>();
+  const navigation = useNavigation<NavigationProp<PrivateRootParamList>>();
 
   function handleNavigateSettings() {
     navigation.navigate('Settings', undefined);
   }
 
   function handleNavigateNotifications() {
-    navigation.navigate('Notifications', { tabBarVisible: false });
+    navigation.navigate('Notifications', undefined);
   }
 
   return {

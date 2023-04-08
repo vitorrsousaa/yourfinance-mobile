@@ -7,7 +7,7 @@ export default class APIError extends Error {
   constructor(response: AxiosResponse) {
     super();
 
-    this.message = `${response.status} - ${response.statusText}`;
+    this.message = `${response.status} - ${response.data.message}`;
 
     this.name = 'APIError';
     this.response = response;
