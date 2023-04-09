@@ -1,6 +1,2 @@
-export interface TModality {
-  name: string;
-  __v: number;
-  _id: string;
-  category: string;
-}
+export { TModality } from './Modality';
+export { TModalityResponse } from './ModalityResponse';
