@@ -17,8 +17,8 @@ export function useCategories() {
 
   return {
     categories: categories!,
-    isError,
+    isErrorCategories: isError,
     refetch,
-    isLoading,
+    isLoadingCategories: isLoading,
   };
 }

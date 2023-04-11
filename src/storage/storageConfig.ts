@@ -1,4 +1,4 @@
-const DATABASE_NAME = '@youFinance';
+const DATABASE_NAME = '@yourFinance';
 /**
  * @app:collection
  */
