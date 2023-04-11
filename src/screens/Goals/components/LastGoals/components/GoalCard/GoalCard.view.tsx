@@ -7,6 +7,7 @@ import { Target } from '../../../../../../components/Icons/Target';
 import { useTheme } from 'styled-components/native';
 import { Text } from '../../../../../../components/Text';
 import { DotMenu } from '../../../../../../components/Icons/DotMenu';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 interface Props {
   viewModel: GoalCardViewModelProps;
@@ -15,6 +16,8 @@ interface Props {
 
 export function GoalCardView({ viewModel, props }: Props) {
   const { goal, ...goalCardProps } = props;
+
+  const { handleNavigateToDetailsGoals } = viewModel;
 
   const { colors } = useTheme();
 
@@ -32,7 +35,12 @@ export function GoalCardView({ viewModel, props }: Props) {
             </Text>
           </View>
         </View>
-        <DotMenu />
+        <TouchableOpacity
+          activeOpacity={0.9}
+          onPress={handleNavigateToDetailsGoals}
+        >
+          <DotMenu />
+        </TouchableOpacity>
       </styled.GoalHeader>
 
       <styled.GoalTargets>

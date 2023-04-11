@@ -4,6 +4,7 @@ export const CategorySummary = styled.View`
   padding: 10px 12px;
   width: 165px;
   border-radius: 16px;
+  gap: 4px;
   background: ${({ theme }) => theme.colors.white[100]};
   /* width: 100%; */
 `;

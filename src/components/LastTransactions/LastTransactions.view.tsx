@@ -7,6 +7,8 @@ import Transaction from './components/Transaction';
 import { Filter } from '../Icons/Filter';
 import { ActivityIndicator, FlatList, View } from 'react-native';
 import Loader from '../Loader';
+import { NoData } from '../Illustrations/NoData';
+import { ErrorContent } from '../Illustrations/ErrorContent';
 
 interface Props {
   viewModel: LastTransactionsViewModelProps;
@@ -27,8 +29,12 @@ export function LastTransactionsView({ viewModel, props }: Props) {
   return (
     <styled.LastTransactions>
       {hasError ? (
-        <View>
-          <Text>Tivemos um erro para encontrar suas transações</Text>
+        <View style={{ marginTop: 16, alignItems: 'center', gap: 16 }}>
+          <ErrorContent />
+          <Text style={{ textAlign: 'center' }}>
+            Tivemos um erro para encontrar suas transações. Tente novamente mais
+            tarde.
+          </Text>
         </View>
       ) : (
         <>
@@ -57,7 +63,8 @@ export function LastTransactionsView({ viewModel, props }: Props) {
               />
             </View>
           ) : (
-            <View>
+            <View style={{ marginTop: 16, alignItems: 'center', gap: 16 }}>
+              <NoData />
               <Text>Você ainda não cadastrou transações</Text>
             </View>
           )}

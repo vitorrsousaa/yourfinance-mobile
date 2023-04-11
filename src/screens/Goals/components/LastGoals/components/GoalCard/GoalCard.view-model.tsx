@@ -1,14 +1,18 @@
-import { useState } from 'react';
+import { NavigationProp, useNavigation } from '@react-navigation/native';
+import { PrivateRootParamList } from '../../../../../../routes/private';
 
 export interface GoalCardViewModelProps {
-  state: string;
+  handleNavigateToDetailsGoals: () => void;
 }
 
 export function GoalCardViewModel() {
-  const [state, setState] = useState('');
+  const navigation = useNavigation<NavigationProp<PrivateRootParamList>>();
+
+  function handleNavigateToDetailsGoals() {
+    navigation.navigate('DetailsGoals', undefined);
+  }
 
   return {
-    state,
-    setState,
+    handleNavigateToDetailsGoals,
   };
 }

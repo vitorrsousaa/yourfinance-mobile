@@ -12,7 +12,7 @@ export interface TGoalResponse {
   historicTransaction: {
     date: string;
     amount: number;
-    modeTransaction: 'LESS';
+    modeTransaction: string;
   };
   user: string;
 }

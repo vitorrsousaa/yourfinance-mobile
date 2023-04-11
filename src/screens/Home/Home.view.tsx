@@ -64,12 +64,12 @@ export function HomeView({ viewModel, props }: Props) {
             </Text>
           </Text>
 
-          <View>
+          {/* <View>
             <Text color={colors.black[200]}>Saldo disponível</Text>
             <Text weight="500" size={28} color={colors.white[100]}>
               {formatAmount(4521)}
             </Text>
-          </View>
+          </View> */}
 
           <styled.ContainerSummary>
             {isLoading ? (
@@ -80,11 +80,13 @@ export function HomeView({ viewModel, props }: Props) {
                   categoryName="Receitas"
                   currentMonth={incomeSummary.currentMonth}
                   percent={incomeSummary.percent}
+                  difference={incomeSummary.difference}
                 />
                 <CategorySummary
                   categoryName="Despesas"
                   currentMonth={outcomeSummary.currentMonth}
                   percent={outcomeSummary.percent}
+                  difference={outcomeSummary.difference}
                 />
               </>
             )}

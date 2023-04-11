@@ -29,15 +29,12 @@
             content: (inputs) => `import ${toPascalCase(
               inputs.name
             )} from './${toPascalCase(inputs.name)}';
-import { ${toPascalCase(inputs.name)}Routes } from './${toPascalCase(
-              inputs.name
-            )}.routes';
 
 export type { ${toPascalCase(inputs.name)}Props } from './${toPascalCase(
               inputs.name
             )}';
 
-export default ${toPascalCase(inputs.name)}Routes;`,
+export default ${toPascalCase(inputs.name)};`,
           },
           {
             type: 'file',
@@ -138,39 +135,6 @@ export function ${toPascalCase(inputs.name)}View({ viewModel, props }: Props) {
 export const ${toPascalCase(inputs.name)} = styled.View\`\`;
 `,
           },
-          {
-            type: 'file',
-            name: (inputs) => `${toPascalCase(inputs.name)}.routes.tsx`,
-            content: (
-              inputs
-            ) => `import { createStackNavigator } from '@react-navigation/stack';
-import ${toPascalCase(inputs.name)}Screen from './${toPascalCase(inputs.name)}';
-
-export type Root${toPascalCase(inputs.name)}ParamList = {
-    ${toPascalCase(inputs.name)}Screen: undefined;
-};
-
-const ${toPascalCase(inputs.name)} = createStackNavigator<Root${toPascalCase(
-              inputs.name
-            )}ParamList>();
-
-export function ${toPascalCase(inputs.name)}Routes() {
-  return (
-    <${toPascalCase(inputs.name)}.Navigator
-      screenOptions={{
-        headerShown: false,
-      }}
-    >
-      <${toPascalCase(inputs.name)}.Screen
-        name="${toPascalCase(inputs.name)}Screen"
-        component={${toPascalCase(inputs.name)}Screen}
-      />
-    </${toPascalCase(inputs.name)}.Navigator>
-  );
-}
-`,
-          },
-
           {
             type: 'file',
             name: (inputs) => `${toPascalCase(inputs.name)}.spec.tsx`,

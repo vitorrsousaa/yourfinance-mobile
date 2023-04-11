@@ -13,7 +13,7 @@ interface Props {
 }
 
 export function CategorySummaryView({ viewModel, props }: Props) {
-  const { currentMonth, categoryName, percent } = props;
+  const { currentMonth, categoryName, percent, difference } = props;
   const { colors } = useTheme();
 
   const color =
@@ -26,6 +26,9 @@ export function CategorySummaryView({ viewModel, props }: Props) {
       </Text>
       <Text size={18} weight="500" color={colors.black[900]}>
         {formatAmount(currentMonth)}
+      </Text>
+      <Text size={14} color={colors.black[600]}>
+        {formatAmount(difference)}
       </Text>
       <styled.ContainerDifference>
         <Text weight="500" color={color} style={{ marginRight: 4 }}>

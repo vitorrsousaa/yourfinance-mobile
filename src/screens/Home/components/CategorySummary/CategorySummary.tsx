@@ -7,6 +7,7 @@ export interface CategorySummaryProps {
   categoryName: string;
   currentMonth: number;
   percent: number;
+  difference: number;
 }
 
 // Quando a prop é usada somente aqui, devemos omitir para não ir pra View

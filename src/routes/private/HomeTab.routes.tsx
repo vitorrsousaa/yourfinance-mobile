@@ -32,9 +32,9 @@ export function HomeTabRoutes() {
           fontFamily: 'Gotham-500',
           fontSize: 14,
         },
-
         tabBarStyle: {
           padding: 12,
+          height: 72,
         },
       }}
     >
