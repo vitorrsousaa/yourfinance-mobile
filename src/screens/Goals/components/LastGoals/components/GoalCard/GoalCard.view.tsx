@@ -8,6 +8,9 @@ import { useTheme } from 'styled-components/native';
 import { Text } from '../../../../../../components/Text';
 import { DotMenu } from '../../../../../../components/Icons/DotMenu';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import ProgressBar from '../../../ProgressBar';
+import { formatDate } from '../../../../../../utils/formatDate';
+import { useMemo } from 'react';
 
 interface Props {
   viewModel: GoalCardViewModelProps;
@@ -15,7 +18,13 @@ interface Props {
 }
 
 export function GoalCardView({ viewModel, props }: Props) {
-  const { goal, ...goalCardProps } = props;
+  const { goal } = props;
+
+  const { goalName, goalTime, balance, payOff, goalCost } = goal;
+
+  const progress = useMemo(() => {
+    return (balance / goalCost) * 100;
+  }, [goal._id]);
 
   const { handleNavigateToDetailsGoals } = viewModel;
 
@@ -28,16 +37,16 @@ export function GoalCardView({ viewModel, props }: Props) {
           <Target color={colors.black[900]} />
           <View>
             <Text weight="500" size={16} color={colors.black[800]}>
-              Nome da meta
+              {goalName}
             </Text>
             <Text weight="500" size={12} color={colors.black[500]}>
-              17/02/2023
+              {formatDate(goalTime.initialDate)}
             </Text>
           </View>
         </View>
         <TouchableOpacity
           activeOpacity={0.9}
-          onPress={handleNavigateToDetailsGoals}
+          onPress={() => handleNavigateToDetailsGoals(goal)}
         >
           <DotMenu />
         </TouchableOpacity>
@@ -46,33 +55,18 @@ export function GoalCardView({ viewModel, props }: Props) {
       <styled.GoalTargets>
         <View style={{ flexDirection: 'row', gap: 4 }}>
           <Text weight="500" size={12} color={colors.black[800]}>
-            {formatAmount(500)}
+            {formatAmount(balance)}
           </Text>
           <Text weight="500" size={12} color={colors.black[500]}>
-            de {formatAmount(1500)}
+            de {formatAmount(goalCost)}
           </Text>
         </View>
         <Text weight="500" size={12} color={colors.black[500]}>
-          {formatAmount(1000)}
+          {formatAmount(payOff)}
         </Text>
       </styled.GoalTargets>
-      <View
-        style={{
-          width: '100%',
-          height: 8,
-          borderRadius: 8,
-          backgroundColor: colors.black[200],
-        }}
-      >
-        <View
-          style={{
-            width: '70%',
-            height: 8,
-            borderRadius: 8,
-            backgroundColor: colors.green[400],
-          }}
-        />
-      </View>
+
+      <ProgressBar progress={progress} />
     </styled.GoalCard>
   );
 }

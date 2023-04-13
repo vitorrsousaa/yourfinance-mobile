@@ -9,6 +9,7 @@ import { useTheme } from 'styled-components/native';
 import { Upload } from '../../../../components/Icons/Upload';
 import { Download } from '../../../../components/Icons/Download';
 import { useNavigation } from '@react-navigation/native';
+import ProgressBar from '../../components/ProgressBar';
 
 interface Props {
   viewModel: DetailsGoalsViewModelProps;
@@ -23,17 +24,23 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
 
   const { colors } = useTheme();
 
+  const text = 'Nome da metaaaaaaa';
+
   return (
     <styled.DetailsGoals>
       <styled.Header>
         <styled.ContainerTextMain>
           <Target />
-          <Text weight="500" size={24} color={colors.white[100]}>
-            Nome da meta
+          <Text weight="500" size={20} color={colors.white[100]}>
+            {text}
           </Text>
         </styled.ContainerTextMain>
-        <View style={{ flexDirection: 'row', gap: 4 }}>
-          <Touchable item="arrow" onPress={navigation.goBack} />
+        <View style={{ flexDirection: 'row' }}>
+          <Touchable
+            item="arrow"
+            onPress={navigation.goBack}
+            style={{ marginRight: 8 }}
+          />
           <Touchable item="trash" onPress={handleRemoveGoal} />
         </View>
       </styled.Header>
@@ -48,7 +55,7 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
           </Text>
         </View>
 
-        <Text>progress bar</Text>
+        <ProgressBar progress={65} />
       </styled.ContainerInfo>
 
       <styled.ContainerHistoric>

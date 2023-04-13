@@ -6,8 +6,7 @@ import { useTheme } from 'styled-components/native';
 import Touchable from '../../components/Touchable';
 import { Text } from '../../components/Text';
 import PlusButton from '../../components/PlusButton';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { RootGoalsParamList } from './Goals.routes';
+import { useGoals } from '../../hooks/useGoals';
 
 interface Props {
   viewModel: GoalsViewModelProps;
@@ -17,9 +16,11 @@ interface Props {
 export function GoalsView({ viewModel, props }: Props) {
   const { ...goalsProps } = props;
 
+  const { handleNavigateToCreateGoalInformation } = viewModel;
+
   const { colors } = useTheme();
 
-  const navigation = useNavigation<NavigationProp<RootGoalsParamList>>();
+  const { goals, isErrorGoals, isLoadingGoals } = useGoals();
 
   return (
     <styled.Goals>
@@ -29,8 +30,12 @@ export function GoalsView({ viewModel, props }: Props) {
         </Text>
         <Touchable item="search" />
       </styled.ContainerHeader>
-      <LastGoals />
-      <PlusButton onPress={() => navigation.navigate('Teste', undefined)} />
+      <LastGoals
+        goals={goals}
+        hasError={isErrorGoals}
+        isLoading={isLoadingGoals}
+      />
+      <PlusButton onPress={handleNavigateToCreateGoalInformation} />
     </styled.Goals>
   );
 }

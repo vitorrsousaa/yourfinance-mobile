@@ -17,8 +17,8 @@ export function useGoals() {
 
   return {
     goals: goalsResponse!,
-    isErrorTGoals: isError,
-    isLoadingTGoals: isLoading,
+    isErrorGoals: isError,
+    isLoadingGoals: isLoading,
     refetch,
   };
 }

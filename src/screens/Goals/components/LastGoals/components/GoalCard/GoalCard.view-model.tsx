@@ -1,15 +1,19 @@
-import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { PrivateRootParamList } from '../../../../../../routes/private';
+import { useNavigation } from '@react-navigation/native';
+import { PrivateRouteNavigationProp } from '../../../../../../routes/private';
+import { TGoalResponse } from '../../../../../../types/Goal';
 
 export interface GoalCardViewModelProps {
-  handleNavigateToDetailsGoals: () => void;
+  handleNavigateToDetailsGoals: (goal: TGoalResponse) => void;
 }
 
 export function GoalCardViewModel() {
-  const navigation = useNavigation<NavigationProp<PrivateRootParamList>>();
+  const navigation = useNavigation<PrivateRouteNavigationProp>();
 
-  function handleNavigateToDetailsGoals() {
-    navigation.navigate('DetailsGoals', undefined);
+  function handleNavigateToDetailsGoals(goal: TGoalResponse) {
+    navigation.navigate('GoalsRoutes', {
+      screen: 'DetailsGoals',
+      params: { goal },
+    });
   }
 
   return {

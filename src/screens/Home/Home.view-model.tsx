@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { TCardSummary } from '../../types/Analytics';
-import { NavigationProp, useNavigation } from '@react-navigation/native';
-import { PrivateRootParamList } from '../../routes/private';
+import { useNavigation } from '@react-navigation/native';
+import { PrivateRouteNavigationProp } from '../../routes/private';
 
 export interface HomeViewModelProps {
   incomeSummary: TCardSummary;
@@ -27,7 +27,7 @@ export function HomeViewModel() {
   const [isLoading, setIsLoading] = useState(true);
   const [hasError, setHasError] = useState(false);
 
-  const navigation = useNavigation<NavigationProp<PrivateRootParamList>>();
+  const navigation = useNavigation<PrivateRouteNavigationProp>();
 
   function handleNavigateSettings() {
     navigation.navigate('Settings', undefined);

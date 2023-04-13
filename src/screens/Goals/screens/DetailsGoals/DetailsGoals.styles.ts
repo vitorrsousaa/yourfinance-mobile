@@ -14,7 +14,7 @@ export const Header = styled.View`
 export const ContainerTextMain = styled.View`
   flex-direction: row;
   align-items: center;
-  gap: 4;
+  gap: 4px;
 `;
 
 export const ContainerInfo = styled.View`

@@ -5,7 +5,7 @@ import { GoalCardViewModel } from './GoalCard.view-model';
 import { TGoalResponse } from '../../../../../../types/Goal';
 
 export interface GoalCardProps {
-  goal?: TGoalResponse;
+  goal: TGoalResponse;
 }
 
 // Quando a prop é usada somente aqui, devemos omitir para não ir pra View

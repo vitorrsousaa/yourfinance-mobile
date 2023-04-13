@@ -65,7 +65,7 @@ export function LastTransactionsView({ viewModel, props }: Props) {
           ) : (
             <View style={{ marginTop: 16, alignItems: 'center', gap: 16 }}>
               <NoData />
-              <Text>Você ainda não cadastrou transações</Text>
+              <Text>Você ainda não cadastrou transações.</Text>
             </View>
           )}
         </>

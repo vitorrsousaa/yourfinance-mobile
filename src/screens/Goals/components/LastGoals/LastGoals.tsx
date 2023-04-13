@@ -5,7 +5,9 @@ import { LastGoalsViewModel } from './LastGoals.view-model';
 import { TGoalResponse } from '../../../../types/Goal';
 
 export interface LastGoalsProps {
-  goals?: TGoalResponse[];
+  goals: TGoalResponse[];
+  hasError: boolean;
+  isLoading: boolean;
 }
 
 // Quando a prop é usada somente aqui, devemos omitir para não ir pra View
