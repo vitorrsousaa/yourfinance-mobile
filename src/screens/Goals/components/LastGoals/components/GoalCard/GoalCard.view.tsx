@@ -46,7 +46,7 @@ export function GoalCardView({ viewModel, props }: Props) {
         </View>
         <TouchableOpacity
           activeOpacity={0.9}
-          onPress={() => handleNavigateToDetailsGoals(goal)}
+          onPress={handleNavigateToDetailsGoals}
         >
           <DotMenu />
         </TouchableOpacity>

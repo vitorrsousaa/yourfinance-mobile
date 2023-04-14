@@ -16,13 +16,13 @@ export interface GoalCardViewProps extends Omit<GoalCardProps, ''> {
 function GoalCard(props: GoalCardProps) {
   const { ...viewProps } = props;
 
-  const viewModel = useViewModel();
+  const viewModel = useViewModel(props.goal);
 
   return <GoalCardView viewModel={viewModel} props={viewProps} />;
 }
 
-export function useViewModel() {
-  const viewModel = GoalCardViewModel();
+export function useViewModel(goal: TGoalResponse) {
+  const viewModel = GoalCardViewModel(goal);
 
   return viewModel;
 }

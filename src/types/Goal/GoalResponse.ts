@@ -1,3 +1,5 @@
+import { THistoricTransaction } from './HistoricTransaction';
+
 export interface TGoalResponse {
   goalName: string;
   goalCost: number;
@@ -9,10 +11,6 @@ export interface TGoalResponse {
   balance: number;
   payOff: number;
   _id: string;
-  historicTransaction: {
-    date: string;
-    amount: number;
-    modeTransaction: string;
-  };
+  historicTransaction: THistoricTransaction[];
   user: string;
 }

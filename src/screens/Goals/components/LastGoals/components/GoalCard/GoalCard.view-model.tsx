@@ -3,13 +3,13 @@ import { PrivateRouteNavigationProp } from '../../../../../../routes/private';
 import { TGoalResponse } from '../../../../../../types/Goal';
 
 export interface GoalCardViewModelProps {
-  handleNavigateToDetailsGoals: (goal: TGoalResponse) => void;
+  handleNavigateToDetailsGoals: () => void;
 }
 
-export function GoalCardViewModel() {
+export function GoalCardViewModel(goal: TGoalResponse) {
   const navigation = useNavigation<PrivateRouteNavigationProp>();
 
-  function handleNavigateToDetailsGoals(goal: TGoalResponse) {
+  function handleNavigateToDetailsGoals() {
     navigation.navigate('GoalsRoutes', {
       screen: 'DetailsGoals',
       params: { goal },

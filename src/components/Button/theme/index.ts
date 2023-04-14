@@ -57,8 +57,8 @@ const buttonVariants: ButtonVariants = {
   },
   danger: {
     initial: {
-      background: 'transparent',
-      color: theme.colors.red[400],
+      background: theme.colors.red[400],
+      color: theme.colors.white[100],
       border: `${border} ${theme.colors.red[400]}`,
     },
     active: {

@@ -4,6 +4,7 @@ import { DetailsGoalsView } from './DetailsGoals.view';
 import { DetailsGoalsViewModel } from './DetailsGoals.view-model';
 import { RouteProp } from '@react-navigation/native';
 import { GoalsRootParamList } from '../../../../routes/private/Goal.routes';
+import { TGoalResponse } from '../../../../types/Goal';
 
 type RouteProps = RouteProp<GoalsRootParamList, 'DetailsGoals'>;
 
@@ -15,18 +16,21 @@ export interface DetailsGoalsProps {
 export interface DetailsGoalsViewProps
   extends Omit<DetailsGoalsProps, 'route'> {
   // Quando alguma prop vai ser utilizada somente na View, devemos acrescentar aqui
+  goal: TGoalResponse;
 }
 
 function DetailsGoals(props: DetailsGoalsProps) {
   const { route, ...viewProps } = props;
 
-  const viewModel = useViewModel();
+  const viewModel = useViewModel(route.params.goal);
 
-  return <DetailsGoalsView viewModel={viewModel} props={viewProps} />;
+  const newProps = { goal: route.params.goal, ...viewProps };
+
+  return <DetailsGoalsView viewModel={viewModel} props={newProps} />;
 }
 
-export function useViewModel() {
-  const viewModel = DetailsGoalsViewModel();
+export function useViewModel(goal: TGoalResponse) {
+  const viewModel = DetailsGoalsViewModel(goal);
 
   return viewModel;
 }
