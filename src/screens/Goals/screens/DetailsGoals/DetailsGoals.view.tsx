@@ -15,6 +15,7 @@ import formatAmount from '../../../../utils/formatAmout';
 import { FlatList } from 'react-native-gesture-handler';
 import TransactionDetailHistoric from './components/TransactionDetailHistoric';
 import Modal from '../../../../components/Modal';
+import InputOutlined from '../../../../components/InputOutlined';
 
 interface Props {
   viewModel: DetailsGoalsViewModelProps;
@@ -22,15 +23,24 @@ interface Props {
 }
 
 export function DetailsGoalsView({ viewModel, props }: Props) {
-  const { goal } = props;
+  const { ...detailProps } = props;
+
   const {
+    removing,
+    goal,
+    amount,
+    updatingGoal,
     modalIncomeVisible,
     modalOutcomeVisible,
     modalRemoveVisible,
+    inputIsValid,
     handleRemoveGoal,
-    handleVisibleModalIncome,
-    handleVisibleModalOutcome,
-    handleVisibleModalRemove,
+    toggleVisibleModalIncome,
+    toggleVisibleModalOutcome,
+    toggleVisibleModalRemove,
+    handleAmountChange,
+    getErrorMessageByFieldName,
+    handleCreateTransactionGoal,
   } = viewModel;
 
   const { balance, goalName, goalCost, historicTransaction } = goal;
@@ -58,7 +68,7 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
             onPress={navigation.goBack}
             style={{ marginRight: 8 }}
           />
-          <Touchable item="trash" onPress={handleVisibleModalRemove} />
+          <Touchable item="trash" onPress={toggleVisibleModalRemove} />
         </View>
       </styled.Header>
 
@@ -76,15 +86,24 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
       </styled.ContainerInfo>
 
       <styled.ContainerHistoric>
-        <Text size={16} weight="500">
+        <Text size={18} weight="500">
           Histórico
         </Text>
-        <View>
+        <View style={{ flex: 1, paddingBottom: 86 }}>
           <FlatList
             data={historicTransaction}
             keyExtractor={(item) => item._id}
             renderItem={({ item }) => (
               <TransactionDetailHistoric transaction={item} />
+            )}
+            ItemSeparatorComponent={() => (
+              <View
+                style={{
+                  height: 2,
+                  backgroundColor: colors.black[200],
+                  marginVertical: 16,
+                }}
+              />
             )}
           />
         </View>
@@ -93,7 +112,7 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
       <styled.Footer>
         <styled.ButtonFooter
           activeOpacity={0.9}
-          onPress={handleVisibleModalOutcome}
+          onPress={toggleVisibleModalOutcome}
         >
           <Upload />
           <Text weight="500">Resgatar</Text>
@@ -102,7 +121,7 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
         <styled.ButtonFooter
           income
           activeOpacity={0.9}
-          onPress={handleVisibleModalIncome}
+          onPress={toggleVisibleModalIncome}
         >
           <Download />
           <Text weight="500">Guardar</Text>
@@ -112,28 +131,56 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
       <Modal
         visible={modalRemoveVisible}
         type="danger"
-        onClose={handleVisibleModalRemove}
+        onClose={toggleVisibleModalRemove}
         title="Você tem certeza que deseja excluir sua meta?"
         subtitle="Essa ação não pode ser desfeita!"
         action="Deletar"
+        onAction={handleRemoveGoal}
+        isLoadingAction={removing}
       />
 
       <Modal
         visible={modalOutcomeVisible}
-        onClose={handleVisibleModalOutcome}
+        onClose={toggleVisibleModalOutcome}
         type="danger"
         title="Quanto você deseja resgatar?"
         subtitle="Lembre-se, você esta cada vez mais distante da sua meta."
         action="Resgatar"
-      />
+        onAction={() => handleCreateTransactionGoal('LESS')}
+        isLoadingAction={updatingGoal}
+        isDisabledAction={inputIsValid}
+      >
+        <InputOutlined
+          placeholder="R$ 0,00"
+          keyboardType="number-pad"
+          autoCorrect={false}
+          returnKeyType="next"
+          value={formatAmount(amount)}
+          onChangeText={handleAmountChange}
+          error={getErrorMessageByFieldName('amount')}
+        />
+      </Modal>
 
       <Modal
         visible={modalIncomeVisible}
-        onClose={handleVisibleModalIncome}
+        onClose={toggleVisibleModalIncome}
         title="Quanto você deseja guardar?"
         subtitle="Você esta cada vez mais próximo de atingir seu objetivo!"
         action="Guardar"
-      />
+        onAction={() => handleCreateTransactionGoal('MORE')}
+        isLoadingAction={updatingGoal}
+        isDisabledAction={inputIsValid}
+      >
+        <InputOutlined
+          placeholder="R$ 0,00"
+          keyboardType="number-pad"
+          autoCorrect={false}
+          returnKeyType="next"
+          value={formatAmount(amount)}
+          onChangeText={handleAmountChange}
+          error={getErrorMessageByFieldName('amount')}
+        />
+      </Modal>
     </styled.DetailsGoals>
   );
 }

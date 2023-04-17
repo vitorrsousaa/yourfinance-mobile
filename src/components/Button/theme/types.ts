@@ -4,7 +4,7 @@ type ButtonTheme = {
     color: string;
     border: string;
   };
-  active: {
+  loading: {
     background: string;
     color: string;
     border: string;

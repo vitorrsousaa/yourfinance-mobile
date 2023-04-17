@@ -6,7 +6,7 @@ class AnalyticsService implements IAnalyticsService {
   private httpClient;
 
   constructor() {
-    this.httpClient = new HttpClient('http://192.168.0.105:3001/api/analytics');
+    this.httpClient = new HttpClient('http://192.168.0.106:3001/api/analytics');
   }
 
   async getCardsSummary(categoryId: string) {

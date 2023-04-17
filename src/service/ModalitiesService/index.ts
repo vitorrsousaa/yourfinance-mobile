@@ -6,7 +6,7 @@ class ModalitiesService implements IModalitiesService {
   private httpClient;
 
   constructor() {
-    this.httpClient = new HttpClient('http://192.168.0.105:3001/api/modality');
+    this.httpClient = new HttpClient('http://192.168.0.106:3001/api/modality');
   }
 
   async list() {

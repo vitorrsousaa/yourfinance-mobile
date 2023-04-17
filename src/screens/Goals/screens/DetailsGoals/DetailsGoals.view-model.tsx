@@ -1,63 +1,145 @@
 import { useState } from 'react';
-import { TGoalResponse } from '../../../../types/Goal';
+import { TGoalResponse, TGoalTransaction } from '../../../../types/Goal';
 import GoalsService from '../../../../service/GoalsService';
 import { useGoals } from '../../../../hooks/useGoals';
 import { useNavigation } from '@react-navigation/native';
+import useErrors from '../../../../hooks/useErrors';
+import { TModeTransaction } from '../../../../types/Goal/modeTransaction';
 
 export interface DetailsGoalsViewModelProps {
-  loading: boolean;
+  removing: boolean;
   modalIncomeVisible: boolean;
   modalOutcomeVisible: boolean;
   modalRemoveVisible: boolean;
+  inputIsValid: boolean;
+  updatingGoal: boolean;
+  amount: number;
+  goal: TGoalResponse;
   handleRemoveGoal: () => Promise<void>;
-  handleVisibleModalIncome: () => void;
-  handleVisibleModalOutcome: () => void;
-  handleVisibleModalRemove: () => void;
+  toggleVisibleModalIncome: () => void;
+  toggleVisibleModalOutcome: () => void;
+  toggleVisibleModalRemove: () => void;
+  handleAmountChange: (text: string) => void;
+  handleCreateTransactionGoal: (mode: TModeTransaction) => Promise<void>;
+  getErrorMessageByFieldName: (fieldName: string) => string | undefined;
 }
 
-export function DetailsGoalsViewModel(goal: TGoalResponse) {
-  const [loading, setIsLoading] = useState(false);
+export function DetailsGoalsViewModel(goalResponse: TGoalResponse) {
+  const [goal, setGoal] = useState<TGoalResponse>(goalResponse);
+  const [removing, setRemoving] = useState(false);
+  const [updatingGoal, setUpdatingGoal] = useState(false);
   const [modalIncomeVisible, setIsModalIncomeVisible] = useState(false);
   const [modalOutcomeVisible, setIsModalOutcomeVisible] = useState(false);
   const [modalRemoveVisible, setIsModalRemoveVisible] = useState(false);
+  const [amount, setAmount] = useState(0);
 
   const { refetch } = useGoals();
   const navigation = useNavigation();
+  const { setError, removeError, getErrorMessageByFieldName, errors } =
+    useErrors();
+
+  const inputIsValid = Boolean(errors.length > 0 || amount === 0);
 
   async function handleRemoveGoal() {
     try {
-      setIsLoading(true);
+      setRemoving(true);
+
       await GoalsService.delete(goal._id);
+
       refetch();
-      navigation.goBack();
     } catch (error) {
       console.log(error);
       console.log(
         'Adicionar um toast caso tenha um erro para excluir a transação'
       );
     } finally {
-      setIsLoading(false);
+      setRemoving(false);
+
+      toggleVisibleModalRemove();
+
+      navigation.goBack();
     }
   }
 
-  function handleVisibleModalIncome() {
+  function toggleVisibleModalIncome() {
     setIsModalIncomeVisible(!modalIncomeVisible);
+    setAmount(0);
+    removeError('amount');
   }
-  function handleVisibleModalOutcome() {
+
+  function toggleVisibleModalOutcome() {
     setIsModalOutcomeVisible(!modalOutcomeVisible);
+    setAmount(0);
+    removeError('amount');
   }
-  function handleVisibleModalRemove() {
+
+  function toggleVisibleModalRemove() {
     setIsModalRemoveVisible(!modalRemoveVisible);
   }
 
+  function handleAmountChange(text: string) {
+    const numericValue = !text ? 0 : parseFloat(text.replace(/\D/g, '')) / 100;
+
+    if (!isNaN(numericValue)) {
+      setAmount(numericValue);
+    } else {
+      setAmount(0);
+    }
+
+    if (numericValue === 0) {
+      setError({
+        field: 'amount',
+        message: 'O valor precisa ser maior do que R$0,00',
+      });
+    } else {
+      removeError('amount');
+    }
+  }
+
+  async function handleCreateTransactionGoal(mode: TModeTransaction) {
+    const goalTransaction: TGoalTransaction = {
+      balanceValue: amount,
+      modeSum: mode,
+    };
+
+    setUpdatingGoal(true);
+
+    try {
+      const response = await GoalsService.createTransaction(
+        goal._id,
+        goalTransaction
+      );
+
+      setGoal(response);
+      refetch();
+    } catch (error) {
+      console.log(error);
+      console.log(
+        'Falta adicionar um toast quando der erro para criar uma transação da meta'
+      );
+    } finally {
+      setUpdatingGoal(false);
+      mode === 'MORE'
+        ? toggleVisibleModalIncome()
+        : toggleVisibleModalOutcome();
+    }
+  }
+
   return {
-    loading,
+    removing,
     modalIncomeVisible,
     modalOutcomeVisible,
     modalRemoveVisible,
+    amount,
+    inputIsValid,
+    updatingGoal,
+    goal,
     handleRemoveGoal,
-    handleVisibleModalIncome,
-    handleVisibleModalOutcome,
-    handleVisibleModalRemove,
+    toggleVisibleModalIncome,
+    toggleVisibleModalOutcome,
+    toggleVisibleModalRemove,
+    handleAmountChange,
+    handleCreateTransactionGoal,
+    getErrorMessageByFieldName,
   };
 }

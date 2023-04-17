@@ -5,8 +5,8 @@ import { GoalsRoutesNavigationProp } from '../../../../routes/private/Goal.route
 
 export interface CreateGoalInformationViewModelProps {
   name: string;
-  initialValue: string;
-  goalCost: string;
+  initialValue: number;
+  goalCost: number;
   isFormValid: boolean;
   getErrorMessageByFieldName: (fieldName: string) => string | undefined;
   handleNameGoalChange: (text: string) => void;
@@ -18,15 +18,15 @@ export interface CreateGoalInformationViewModelProps {
 
 export function CreateGoalInformationViewModel() {
   const [name, setName] = useState('');
-  const [goalCost, setGoalCost] = useState('');
-  const [initialValue, setInitialValue] = useState('');
+  const [goalCost, setGoalCost] = useState(0);
+  const [initialValue, setInitialValue] = useState(0);
 
   const { errors, getErrorMessageByFieldName, removeError, setError } =
     useErrors();
 
   const navigation = useNavigation<GoalsRoutesNavigationProp>();
 
-  const isFormValid = name && goalCost && errors.length === 0;
+  const isFormValid = Boolean(name && goalCost && errors.length === 0);
 
   function handleNameGoalChange(text: string) {
     setName(text);
@@ -38,24 +38,37 @@ export function CreateGoalInformationViewModel() {
     }
   }
   function handleGoalCostChange(text: string) {
-    const numericValue = text.replace(/[^0-9]/g, '');
-    setGoalCost(numericValue);
+    const numericValue = !text ? 0 : parseFloat(text.replace(/\D/g, '')) / 100;
 
-    if (!text) {
-      setError({ field: 'goalCost', message: 'Insira um nome para a meta' });
+    if (!isNaN(numericValue)) {
+      setGoalCost(numericValue);
+    } else {
+      setGoalCost(0);
+    }
+
+    if (numericValue === 0) {
+      setError({
+        field: 'goalCost',
+        message: 'O valor precisa ser maior do que R$ 0,00',
+      });
     } else {
       removeError('goalCost');
     }
   }
 
   function handleInitialValueGoalChange(text: string) {
-    const numericValue = text.replace(/[^0-9]/g, '');
-    setInitialValue(numericValue);
+    const numericValue = !text ? 0 : parseFloat(text.replace(/\D/g, '')) / 100;
+
+    if (!isNaN(numericValue)) {
+      setInitialValue(numericValue);
+    } else {
+      setInitialValue(0);
+    }
   }
 
   function handleResetValues() {
     setName('');
-    setInitialValue('');
+    setInitialValue(0);
     navigation.goBack();
   }
 

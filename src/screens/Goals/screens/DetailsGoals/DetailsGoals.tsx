@@ -16,7 +16,6 @@ export interface DetailsGoalsProps {
 export interface DetailsGoalsViewProps
   extends Omit<DetailsGoalsProps, 'route'> {
   // Quando alguma prop vai ser utilizada somente na View, devemos acrescentar aqui
-  goal: TGoalResponse;
 }
 
 function DetailsGoals(props: DetailsGoalsProps) {
@@ -24,9 +23,7 @@ function DetailsGoals(props: DetailsGoalsProps) {
 
   const viewModel = useViewModel(route.params.goal);
 
-  const newProps = { goal: route.params.goal, ...viewProps };
-
-  return <DetailsGoalsView viewModel={viewModel} props={newProps} />;
+  return <DetailsGoalsView viewModel={viewModel} props={viewProps} />;
 }
 
 export function useViewModel(goal: TGoalResponse) {

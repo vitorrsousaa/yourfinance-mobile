@@ -8,6 +8,7 @@ import ContainerInformation from '../../components/ContainerInformation';
 import InputOutlined from '../../../../components/InputOutlined';
 import { isAndroid } from '../../../../utils/isAndroid';
 import ContinuousButton from '../../components/ContinuousButton';
+import formatAmount from '../../../../utils/formatAmout';
 
 interface Props {
   viewModel: CreateGoalInformationViewModelProps;
@@ -58,7 +59,7 @@ export function CreateGoalInformationView({ viewModel, props }: Props) {
 
             <ContainerInformation
               title="Quanto você quer guardar para sua meta?"
-              subtitle="Defina o valor total da sua meta. Mas lembre-se, precisa ser um valor realista para a sua vida atual."
+              subtitle="Defina o valor por mês para a sua meta. Mas lembre-se, precisa ser um valor realista para a sua vida atual."
             >
               <InputOutlined
                 placeholder="R$ 0,00"
@@ -66,8 +67,9 @@ export function CreateGoalInformationView({ viewModel, props }: Props) {
                 keyboardType="number-pad"
                 autoCapitalize="none"
                 returnKeyType="next"
-                value={goalCost}
+                value={formatAmount(goalCost)}
                 onChangeText={handleGoalCostChange}
+                error={getErrorMessageByFieldName('goalCost')}
               />
             </ContainerInformation>
 
@@ -81,7 +83,7 @@ export function CreateGoalInformationView({ viewModel, props }: Props) {
                 keyboardType="number-pad"
                 autoCapitalize="none"
                 returnKeyType="go"
-                value={initialValue}
+                value={formatAmount(initialValue)}
                 onChangeText={handleInitialValueGoalChange}
               />
             </ContainerInformation>

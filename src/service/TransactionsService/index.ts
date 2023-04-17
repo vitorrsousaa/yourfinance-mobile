@@ -6,7 +6,7 @@ class TransactionsService {
 
   constructor() {
     this.httpClient = new HttpClient(
-      'http://192.168.0.105:3001/api/transactions'
+      'http://192.168.0.106:3001/api/transactions'
     );
   }
 

@@ -10,15 +10,15 @@ const buttonVariants: ButtonVariants = {
       color: theme.colors.black[900],
       border: 'none',
     },
-    active: {
-      background: theme.colors.green[300],
+    loading: {
+      background: theme.colors.green[400],
       color: theme.colors.black[900],
       border: 'none',
     },
     disabled: {
       background: theme.colors.black[200],
-      color: theme.colors.white[100],
-      border: 'none',
+      color: theme.colors.black[600],
+      border: `${border} ${theme.colors.black[300]}`,
     },
   },
   secondary: {
@@ -27,7 +27,7 @@ const buttonVariants: ButtonVariants = {
       color: theme.colors.green[400],
       border: `${border} ${theme.colors.green[400]}`,
     },
-    active: {
+    loading: {
       background: theme.colors.white[100],
       color: theme.colors.green[300],
       border: `${border} ${theme.colors.green[300]}`,
@@ -44,7 +44,7 @@ const buttonVariants: ButtonVariants = {
       color: theme.colors.black[600],
       border: 'none',
     },
-    active: {
+    loading: {
       background: 'transparent',
       color: theme.colors.black[700],
       border: 'none',
@@ -61,7 +61,7 @@ const buttonVariants: ButtonVariants = {
       color: theme.colors.white[100],
       border: `${border} ${theme.colors.red[400]}`,
     },
-    active: {
+    loading: {
       background: theme.colors.red[400],
       color: theme.colors.white[100],
       border: 'none',

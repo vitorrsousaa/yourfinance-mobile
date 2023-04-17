@@ -3,7 +3,7 @@ import styled from 'styled-components/native';
 export const ModalBody = styled.View`
   background: #fafafa;
   padding: 16px 24px;
-  gap: 16px;
+  gap: 32px;
 `;
 
 export const Overlay = styled.KeyboardAvoidingView`
@@ -20,6 +20,6 @@ export const Header = styled.View`
 export const Actions = styled.View`
   width: 100%;
 
-  justify-content: center;
+  justify-content: flex-end;
   flex-direction: row;
 `;

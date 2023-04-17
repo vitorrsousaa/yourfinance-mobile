@@ -21,11 +21,11 @@ export function TransactionDetailHistoricView({ viewModel, props }: Props) {
 
   return (
     <styled.TransactionDetailHistoric>
-      <View style={{ gap: 8 }}>
+      <View style={{ gap: 4 }}>
         <Text color={colors.black[600]} weight="500" size={16}>
           {formatDate(date)}
         </Text>
-        <Text weight="500" size={16}>
+        <Text weight="500" size={14}>
           {modeTransaction === 'MORE' ? 'Aplicação' : 'Resgate'}
         </Text>
       </View>

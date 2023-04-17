@@ -33,6 +33,14 @@ class HttpClient {
     });
   }
 
+  patch<T>(path: string, data: unknown) {
+    return this.makeRequest<T>({
+      method: 'patch',
+      url: `${this.baseURL}${path}`,
+      data,
+    });
+  }
+
   async makeRequest<T>(options: AxiosRequestConfig): Promise<T> {
     await delay(1000);
 

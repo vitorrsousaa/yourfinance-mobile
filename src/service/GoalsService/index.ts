@@ -1,4 +1,4 @@
-import { TGoalResponse, TGoalCreate } from '../../types/Goal';
+import { TGoalResponse, TGoalCreate, TGoalTransaction } from '../../types/Goal';
 import HttpClient from '../HttpClient';
 import { IGoalsService } from './IGoalsService';
 
@@ -6,7 +6,7 @@ class GoalsService implements IGoalsService {
   private httpClient;
 
   constructor() {
-    this.httpClient = new HttpClient('http://192.168.0.105:3001/api/goalbox');
+    this.httpClient = new HttpClient('http://192.168.0.106:3001/api/goalbox');
   }
 
   async list() {
@@ -23,6 +23,10 @@ class GoalsService implements IGoalsService {
 
   async delete(goalId: string) {
     return this.httpClient.delete<void>(`/${goalId}`);
+  }
+
+  async createTransaction(goalId: string, data: TGoalTransaction) {
+    return this.httpClient.patch<TGoalResponse>(`/${goalId}`, data);
   }
 }
 

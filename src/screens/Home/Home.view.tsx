@@ -1,7 +1,7 @@
 import { HomeViewModelProps } from './Home.view-model';
 import { HomeViewProps } from './Home';
 import * as styled from './Home.styles';
-import { ActivityIndicator, View } from 'react-native';
+import { View } from 'react-native';
 import CategorySummary from './components/CategorySummary';
 import { Text } from '../../components/Text';
 import { useTheme } from 'styled-components/native';
@@ -12,6 +12,7 @@ import Touchable from '../../components/Touchable';
 import { useAuth } from '../../hooks/useAuth';
 import PlusButton from '../../components/PlusButton';
 import { useTransactions } from '../../hooks/useTransactions';
+import Loader from '../../components/Loader';
 
 interface Props {
   viewModel: HomeViewModelProps;
@@ -34,6 +35,8 @@ export function HomeView({ viewModel, props }: Props) {
 
   const { isLoadingTransactions, isErrorTransactions, transactions } =
     useTransactions();
+
+  const difference = incomeSummary.currentMonth - outcomeSummary.currentMonth;
 
   const { colors } = useTheme();
 
@@ -64,16 +67,18 @@ export function HomeView({ viewModel, props }: Props) {
             </Text>
           </Text>
 
-          {/* <View>
-            <Text color={colors.black[200]}>Saldo disponível</Text>
-            <Text weight="500" size={28} color={colors.white[100]}>
-              {formatAmount(4521)}
-            </Text>
-          </View> */}
+          {!isLoading && (
+            <View>
+              <Text color={colors.black[200]}>Saldo disponível</Text>
+              <Text weight="500" size={28} color={colors.white[100]}>
+                {formatAmount(difference)}
+              </Text>
+            </View>
+          )}
 
           <styled.ContainerSummary>
             {isLoading ? (
-              <ActivityIndicator size={'large'} color={colors.green[400]} />
+              <Loader size={'large'} color={colors.green[400]} />
             ) : (
               <>
                 <CategorySummary

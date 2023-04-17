@@ -7,6 +7,7 @@ export function useGoals() {
     data: goalsResponse,
     isError,
     isLoading,
+    isFetching,
     refetch,
   } = useQuery<TGoalResponse[]>({
     queryKey: ['@goals'],
@@ -18,7 +19,7 @@ export function useGoals() {
   return {
     goals: goalsResponse!,
     isErrorGoals: isError,
-    isLoadingGoals: isLoading,
+    isLoadingGoals: isLoading || isFetching,
     refetch,
   };
 }

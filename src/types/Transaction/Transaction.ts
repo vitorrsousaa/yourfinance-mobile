@@ -1,14 +1,14 @@
-import { Category } from '../Category';
-import { Modality } from '../Modality';
+import { TCategory } from '../Category';
+import { TModality } from '../Modality';
 
 export interface TTransaction {
   _id: string;
   __v: 0;
   user: string;
-  modality: Modality;
+  modality: TModality;
   description: string;
   amount: number;
-  category: Category;
+  category: TCategory;
   type: string;
   date: string;
   updatedAt: string;

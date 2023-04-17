@@ -26,7 +26,7 @@ export const Input = styled.TextInput<{ isFocus: boolean; error?: boolean }>`
       : theme.colors.black[600]};
 
   margin: 8px 0px;
-  width: 320px;
+  width: 100%;
   height: 50px;
   /* padding: 8px 13px; */
   font-size: 16px;

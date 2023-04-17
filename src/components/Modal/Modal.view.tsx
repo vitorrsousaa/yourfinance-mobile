@@ -20,7 +20,10 @@ export function ModalView({ viewModel, props }: Props) {
     subtitle,
     type = 'primary',
     visible,
+    isLoadingAction,
+    isDisabledAction,
     onClose,
+    onAction,
   } = props;
 
   const { colors } = useTheme();
@@ -49,12 +52,20 @@ export function ModalView({ viewModel, props }: Props) {
           {children && children}
 
           <styled.Actions>
-            <Button variant="empty" style={{ width: 160 }} onPress={onClose}>
+            <Button
+              variant="empty"
+              style={{ flex: 1 }}
+              onPress={onClose}
+              disabled={isLoadingAction}
+            >
               Cancelar
             </Button>
             <Button
               variant={type === 'danger' ? 'danger' : 'primary'}
-              style={{ width: 160 }}
+              style={{ flex: 1 }}
+              onPress={onAction}
+              loading={isLoadingAction}
+              disabled={isDisabledAction}
             >
               {action}
             </Button>

@@ -35,7 +35,9 @@ export function GoalsView({ viewModel, props }: Props) {
         hasError={isErrorGoals}
         isLoading={isLoadingGoals}
       />
-      <PlusButton onPress={handleNavigateToCreateGoalInformation} />
+      {!isErrorGoals && (
+        <PlusButton onPress={handleNavigateToCreateGoalInformation} />
+      )}
     </styled.Goals>
   );
 }

@@ -3,9 +3,6 @@ import { memo } from 'react';
 import { LoginView } from './Login.view';
 import { LoginViewModel } from './Login.view-model';
 import { useAuth } from '../../hooks/useAuth';
-import { Alert } from 'react-native';
-import { api } from '../../service/api';
-import AuthService from '../../service/AuthService';
 
 export interface LoginProps {}
 

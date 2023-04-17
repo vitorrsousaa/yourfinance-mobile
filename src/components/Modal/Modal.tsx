@@ -11,6 +11,9 @@ export interface ModalProps {
   subtitle: string;
   children?: ReactNode;
   action: string;
+  onAction: () => void;
+  isLoadingAction: boolean;
+  isDisabledAction?: boolean;
 }
 
 // Quando a prop é usada somente aqui, devemos omitir para não ir pra View

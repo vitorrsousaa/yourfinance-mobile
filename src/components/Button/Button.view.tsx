@@ -31,7 +31,9 @@ export function ButtonView({ viewModel, props }: Props) {
         </styled.TextBase>
       )}
 
-      {loading && <ActivityIndicator />}
+      {loading && (
+        <ActivityIndicator color={buttonVariants[variant].loading.background} />
+      )}
     </styled.Button>
   );
 }

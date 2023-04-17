@@ -39,7 +39,11 @@ export function LastGoalsView({ viewModel, props }: Props) {
         </View>
       ) : isLoading ? (
         <View
-          style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}
+          style={{
+            alignItems: 'center',
+            justifyContent: 'center',
+            flex: 1,
+          }}
         >
           <Loader size="large" color={colors.green[400]} />
         </View>
