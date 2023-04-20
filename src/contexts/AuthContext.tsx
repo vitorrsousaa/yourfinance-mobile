@@ -3,10 +3,13 @@ import React, { createContext, ReactNode, useEffect, useState } from 'react';
 import { User } from '../types/User';
 import AuthService from '../service/AuthService';
 import APIError from '../errors/APIErrors';
-import { api } from '../service/api';
 import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { USER_COLLECTION } from '../storage/storageConfig';
+import { TOKEN_COLLECTION, USER_COLLECTION } from '../storage/storageConfig';
+import {
+  removeAuthorizationHeader,
+  setAuthorizationHeader,
+} from '../service/utils/authorizationHeader';
 
 interface AuthContextProviderProps {
   children: ReactNode;
@@ -21,7 +24,7 @@ interface AuthContextProps {
 }
 
 interface AuthData {
-  token: string;
+  access: string;
   user: User;
 }
 
@@ -39,49 +42,58 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
   }, []);
 
   async function loadStorageData(): Promise<void> {
+    setLoading(true);
     const authDataSerialized = await AsyncStorage.getItem(USER_COLLECTION);
 
-    const authData = JSON.parse(authDataSerialized || '{}');
+    const authData: AuthData = JSON.parse(authDataSerialized || '{}');
 
-    if (!authData.token) {
+    if (!authData.access) {
       setAuthenticated(false);
       setLoading(false);
       handleLogout();
       return;
     }
 
-    const { token, ...user } = authData;
+    const { access, ...user } = authData;
 
     setAuth(authData);
 
-    api.defaults.headers.Authorization = `Bearer ${token}`;
+    setAuthorizationHeader(access);
 
-    try {
-      setLoading(true);
+    setLoading(false);
 
-      await AuthService.auth();
+    // try {
+    //   await TransactionsService.list();
 
-      setAuthenticated(true);
-    } catch (error) {
-      handleLogout();
-      setLoading(false);
-    } finally {
-      setLoading(false);
-    }
+    //   setAuthenticated(true);
+    // } catch (error) {
+    //   handleLogout();
+    //   // setLoading(false);
+    // } finally {
+    //   setLoading(false);
+    // }
   }
 
   async function handleLogin(user: User) {
     try {
       const data = await AuthService.login(user);
 
-      AsyncStorage.setItem(USER_COLLECTION, JSON.stringify(data));
+      const authData: AuthData = { user: data.user, access: data.token.access };
 
-      api.defaults.headers.Authorization = `Bearer ${data.token}`;
+      await AsyncStorage.setItem(USER_COLLECTION, JSON.stringify(authData));
+      setAuth(authData);
 
-      setAuth(data);
+      setAuthorizationHeader(data.token.access);
       setAuthenticated(true);
+
+      // Salvar o refresh Token
+      await AsyncStorage.setItem(
+        TOKEN_COLLECTION,
+        JSON.stringify(data.token.refresh)
+      );
     } catch (error: any) {
       if (error instanceof APIError) {
+        Alert.alert('Email ou senha inválido');
         throw new Error('Email ou senha inválido');
       }
 
@@ -90,13 +102,17 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
   }
 
   async function handleRegister(user: User) {
+    // Ainda preciso atualizar essa função
     try {
       const data = await AuthService.register(user);
 
-      localStorage.setItem(USER_COLLECTION, JSON.stringify(data));
-      api.defaults.headers.Authorization = `Bearer ${data.token}`;
+      const authData: AuthData = { user: data.user, access: data.token.access };
 
-      setAuth(data);
+      await AsyncStorage.setItem(USER_COLLECTION, JSON.stringify(authData));
+      setAuth(authData);
+
+      setAuthorizationHeader(data.token.access);
+
       setAuthenticated(true);
     } catch (error: any) {
       if (error instanceof APIError) {
@@ -115,7 +131,7 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
     setAuth({} as AuthData);
     await AsyncStorage.removeItem(USER_COLLECTION);
 
-    api.defaults.headers.Authorization = null;
+    removeAuthorizationHeader();
   }
 
   return (

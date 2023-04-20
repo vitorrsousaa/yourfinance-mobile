@@ -7,6 +7,7 @@ import ContainerInformation from '../../components/ContainerInformation';
 import { Text } from '../../../../components/Text';
 import { View } from 'react-native';
 import ContinuousButton from '../../components/ContinuousButton';
+import CheckBoxForm from './components/CheckBoxForm';
 
 interface Props {
   viewModel: CreateGoalTimeViewModelProps;
@@ -16,7 +17,8 @@ interface Props {
 export function CreateGoalTimeView({ viewModel, props }: Props) {
   const { ...createGoalTimeProps } = props;
 
-  const { goBack, handleCreateGoal } = viewModel;
+  const { month, checkForm, goBack, handleCreateGoal, handleChangeMonth } =
+    viewModel;
 
   return (
     <styled.CreateGoalTime>
@@ -24,16 +26,18 @@ export function CreateGoalTimeView({ viewModel, props }: Props) {
         <Touchable item="arrow" onPress={goBack} />
       </styled.Header>
 
-      <ScrollView>
-        <View style={{ padding: 24 }}>
-          <ContainerInformation
-            title="Em quanto tempo você quer atingir essa meta?"
-            subtitle="O prazo para definição de uma meta é muito importante. Ele deve ser realista e alcançavel."
-          >
-            <Text>Radio button</Text>
-          </ContainerInformation>
-        </View>
-      </ScrollView>
+      <View style={{ padding: 32 }}>
+        <ContainerInformation
+          title="Em quanto tempo você quer atingir essa meta?"
+          subtitle="O prazo para definição de uma meta é muito importante. Ele deve ser realista e alcançavel."
+        >
+          <CheckBoxForm
+            data={checkForm}
+            onChange={handleChangeMonth}
+            selected={month}
+          />
+        </ContainerInformation>
+      </View>
 
       <ContinuousButton isValid={true} onPress={handleCreateGoal} />
     </styled.CreateGoalTime>

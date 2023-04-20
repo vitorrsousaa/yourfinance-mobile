@@ -16,6 +16,7 @@ import { FlatList } from 'react-native-gesture-handler';
 import TransactionDetailHistoric from './components/TransactionDetailHistoric';
 import Modal from '../../../../components/Modal';
 import InputOutlined from '../../../../components/InputOutlined';
+import { formatDate } from '../../../../utils/formatDate';
 
 interface Props {
   viewModel: DetailsGoalsViewModelProps;
@@ -80,6 +81,7 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
           <Text weight="500" size={16} color={colors.black[500]}>
             de {formatAmount(goalCost)}
           </Text>
+          <Text>{formatDate(goal.goalTime.endDate)}</Text>
         </View>
 
         <ProgressBar progress={progress} />

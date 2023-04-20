@@ -11,6 +11,9 @@ export interface User {
 export interface UserRequest extends User {}
 
 export interface UserResponse {
-  token: string;
+  token: {
+    access: string;
+    refresh: string;
+  };
   user: User;
 }

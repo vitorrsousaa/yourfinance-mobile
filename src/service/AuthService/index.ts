@@ -17,8 +17,8 @@ class AuthService implements IAuthService {
     return this.httpClient.post<UserResponse>('/auth/register', user);
   }
 
-  auth() {
-    return this.httpClient.get<void>('/auth');
+  refresh() {
+    return this.httpClient.post<{ token: string }>('/refresh', {});
   }
 }
 

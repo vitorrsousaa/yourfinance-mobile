@@ -64,6 +64,16 @@ export function CreateGoalInformationViewModel() {
     } else {
       setInitialValue(0);
     }
+
+    if (numericValue > goalCost) {
+      setError({
+        field: 'initialValue',
+        message:
+          'Você não pode armazenar um valor initial maior do que a meta.',
+      });
+    } else {
+      removeError('initialValue');
+    }
   }
 
   function handleResetValues() {
@@ -75,8 +85,8 @@ export function CreateGoalInformationViewModel() {
   function handleNavigateToCreateGoalTime() {
     navigation.navigate('CreateGoalTime', {
       goalName: name,
-      goalCost: 100,
-      initialValue: 50,
+      goalCost,
+      initialValue,
     });
   }
 

@@ -1,8 +1,8 @@
-import { AxiosRequestConfig, AxiosResponse } from 'axios';
+import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
 import APIError from '../errors/APIErrors';
 
 import delay from '../utils/delay';
-import { api } from './api';
+import api from './api';
 
 class HttpClient {
   private baseURL;

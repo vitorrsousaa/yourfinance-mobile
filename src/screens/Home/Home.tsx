@@ -22,6 +22,8 @@ function Home(props: HomeProps) {
 
   const { categories } = useCategories();
 
+  console.log('Alterar o carregamento da página Home para React Query');
+
   useEffect(() => {
     async function loadData() {
       try {

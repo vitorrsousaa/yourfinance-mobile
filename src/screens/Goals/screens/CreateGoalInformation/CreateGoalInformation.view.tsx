@@ -85,6 +85,7 @@ export function CreateGoalInformationView({ viewModel, props }: Props) {
                 returnKeyType="go"
                 value={formatAmount(initialValue)}
                 onChangeText={handleInitialValueGoalChange}
+                error={getErrorMessageByFieldName('initialValue')}
               />
             </ContainerInformation>
           </View>
