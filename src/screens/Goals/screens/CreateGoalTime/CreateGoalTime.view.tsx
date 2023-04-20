@@ -1,13 +1,12 @@
 import { CreateGoalTimeViewModelProps } from './CreateGoalTime.view-model';
 import { CreateGoalTimeViewProps } from './CreateGoalTime';
 import * as styled from './CreateGoalTime.styles';
-import Touchable from '../../../../components/Touchable';
-import { ScrollView } from 'react-native-gesture-handler';
+
 import ContainerInformation from '../../components/ContainerInformation';
-import { Text } from '../../../../components/Text';
 import { View } from 'react-native';
 import ContinuousButton from '../../components/ContinuousButton';
 import CheckBoxForm from './components/CheckBoxForm';
+import Header from '../../../../components/Header';
 
 interface Props {
   viewModel: CreateGoalTimeViewModelProps;
@@ -17,14 +16,18 @@ interface Props {
 export function CreateGoalTimeView({ viewModel, props }: Props) {
   const { ...createGoalTimeProps } = props;
 
-  const { month, checkForm, goBack, handleCreateGoal, handleChangeMonth } =
-    viewModel;
+  const {
+    month,
+    checkForm,
+    isValid,
+    goBack,
+    handleNavigateToCreateGoalDetails,
+    handleChangeMonth,
+  } = viewModel;
 
   return (
     <styled.CreateGoalTime>
-      <styled.Header>
-        <Touchable item="arrow" onPress={goBack} />
-      </styled.Header>
+      <Header onPressLeftIcon={goBack} title="Criando uma meta" />
 
       <View style={{ padding: 32 }}>
         <ContainerInformation
@@ -39,7 +42,10 @@ export function CreateGoalTimeView({ viewModel, props }: Props) {
         </ContainerInformation>
       </View>
 
-      <ContinuousButton isValid={true} onPress={handleCreateGoal} />
+      <ContinuousButton
+        isValid={isValid}
+        onPress={handleNavigateToCreateGoalDetails}
+      />
     </styled.CreateGoalTime>
   );
 }

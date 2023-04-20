@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useErrors from '../../../../hooks/useErrors';
 import { useNavigation } from '@react-navigation/native';
 import { GoalsRoutesNavigationProp } from '../../../../routes/private/Goal.routes';
@@ -27,6 +27,18 @@ export function CreateGoalInformationViewModel() {
   const navigation = useNavigation<GoalsRoutesNavigationProp>();
 
   const isFormValid = Boolean(name && goalCost && errors.length === 0);
+  7;
+
+  useEffect(() => {
+    if (initialValue > goalCost) {
+      setError({
+        field: 'initialValue',
+        message: 'Você não pode armazenar um valor maior do que a meta.',
+      });
+    } else {
+      removeError('initialValue');
+    }
+  }, [goalCost, initialValue]);
 
   function handleNameGoalChange(text: string) {
     setName(text);

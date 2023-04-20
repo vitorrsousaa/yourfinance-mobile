@@ -4,12 +4,14 @@ import DetailsGoals from '../../screens/Goals/screens/DetailsGoals';
 import CreateGoalInformation from '../../screens/Goals/screens/CreateGoalInformation';
 import CreateGoalTime from '../../screens/Goals/screens/CreateGoalTime';
 import { NavigationProp } from '@react-navigation/native';
-import { TGoalResponse } from '../../types/Goal';
+import { TGoalCreate, TGoalResponse } from '../../types/Goal';
+import CreateGoalDetails from '../../screens/Goals/screens/CreateGoalDetails';
 
 export type GoalsRootParamList = {
   DetailsGoals: { goal: TGoalResponse };
   CreateGoalInformation: undefined;
   CreateGoalTime: { goalName: string; goalCost: number; initialValue: number };
+  CreateGoalDetails: { goal: TGoalCreate; month: number };
 };
 
 export type GoalsRoutesNavigationProp = NavigationProp<GoalsRootParamList>;
@@ -29,6 +31,7 @@ export default function GoalsRoutes() {
         component={CreateGoalInformation}
       />
       <Goals.Screen name="CreateGoalTime" component={CreateGoalTime} />
+      <Goals.Screen name="CreateGoalDetails" component={CreateGoalDetails} />
     </Goals.Navigator>
   );
 }

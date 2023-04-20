@@ -2,8 +2,8 @@ export interface TGoalCreate {
   goalName: string;
   goalCost: number;
   goalTime: {
-    initialDate: Date;
-    endDate: Date;
+    initialDate: string;
+    endDate: string;
   };
   initialValue: number;
 }

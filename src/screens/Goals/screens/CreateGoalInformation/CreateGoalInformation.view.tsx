@@ -2,13 +2,13 @@ import { CreateGoalInformationViewModelProps } from './CreateGoalInformation.vie
 import { CreateGoalInformationViewProps } from './CreateGoalInformation';
 import * as styled from './CreateGoalInformation.styles';
 import { KeyboardAvoidingView, ScrollView, View } from 'react-native';
-import Touchable from '../../../../components/Touchable';
 
 import ContainerInformation from '../../components/ContainerInformation';
 import InputOutlined from '../../../../components/InputOutlined';
 import { isAndroid } from '../../../../utils/isAndroid';
 import ContinuousButton from '../../components/ContinuousButton';
 import formatAmount from '../../../../utils/formatAmout';
+import Header from '../../../../components/Header';
 
 interface Props {
   viewModel: CreateGoalInformationViewModelProps;
@@ -34,9 +34,7 @@ export function CreateGoalInformationView({ viewModel, props }: Props) {
   return (
     <styled.CreateGoalInformation>
       <KeyboardAvoidingView behavior={isAndroid ? 'height' : 'padding'}>
-        <styled.Header>
-          <Touchable item="arrow" onPress={goBack} />
-        </styled.Header>
+        <Header title={'Criando uma meta'} onPressLeftIcon={goBack} />
 
         <ScrollView>
           <View style={{ padding: 24 }}>

@@ -1,26 +1,23 @@
 import { useNavigation } from '@react-navigation/native';
 import { GoalsRoutesNavigationProp } from '../../../../routes/private/Goal.routes';
 import { CreateGoalTimeParams } from './CreateGoalTime';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { TGoalCreate } from '../../../../types/Goal';
-import GoalsService from '../../../../service/GoalsService';
-import { PrivateRouteNavigationProp } from '../../../../routes/private';
-import { useGoals } from '../../../../hooks/useGoals';
+
 import { CheckBoxItem } from './components/CheckBoxForm/CheckBoxForm';
 
 export interface CreateGoalTimeViewModelProps {
   checkForm: CheckBoxItem[];
   month: number;
+  isValid: boolean;
   goBack: () => void;
-  handleCreateGoal: () => Promise<void>;
   handleChangeMonth: (item: CheckBoxItem) => void;
+  handleNavigateToCreateGoalDetails: () => void;
 }
 
 export function CreateGoalTimeViewModel(params: CreateGoalTimeParams) {
   const [month, setMonth] = useState(0);
   const navigation = useNavigation<GoalsRoutesNavigationProp>();
-  const navigationStack = useNavigation<PrivateRouteNavigationProp>();
-  const { refetch } = useGoals();
 
   const checkForm: CheckBoxItem[] = [
     {
@@ -41,31 +38,13 @@ export function CreateGoalTimeViewModel(params: CreateGoalTimeParams) {
     },
   ];
 
-  async function handleCreateGoal() {
-    const now = new Date();
-
-    const goalCreate: TGoalCreate = {
-      ...params,
-      goalTime: {
-        initialDate: now,
-        endDate: new Date(
-          now.getFullYear(),
-          now.getMonth() + month,
-          now.getDate()
-        ),
-      },
-    };
-
-    try {
-      await GoalsService.create(goalCreate);
-
-      refetch();
-    } catch (error) {
-      console.log(error);
-    } finally {
-      navigationStack.navigate('HomeTabs', undefined);
+  const isValid = useMemo(() => {
+    if (month === 0) {
+      return false;
+    } else {
+      return true;
     }
-  }
+  }, [month]);
 
   function goBack() {
     navigation.goBack();
@@ -75,11 +54,32 @@ export function CreateGoalTimeViewModel(params: CreateGoalTimeParams) {
     setMonth(item.value);
   }
 
+  function handleNavigateToCreateGoalDetails() {
+    const now = new Date();
+    const nowUtcString = now.toISOString(); // cria uma string UTC no formato ISO 8601
+    const nowUtc = new Date(nowUtcString);
+
+    const goal: TGoalCreate = {
+      ...params,
+      goalTime: {
+        initialDate: nowUtcString,
+        endDate: new Date(
+          nowUtc.getFullYear(),
+          nowUtc.getMonth() + month,
+          nowUtc.getDate()
+        ).toISOString(),
+      },
+    };
+
+    navigation.navigate('CreateGoalDetails', { goal, month: month });
+  }
+
   return {
     checkForm,
     month,
+    isValid,
     handleChangeMonth,
     goBack,
-    handleCreateGoal,
+    handleNavigateToCreateGoalDetails,
   };
 }
