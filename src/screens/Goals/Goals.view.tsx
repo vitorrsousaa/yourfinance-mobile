@@ -7,6 +7,7 @@ import Touchable from '../../components/Touchable';
 import { Text } from '../../components/Text';
 import PlusButton from '../../components/PlusButton';
 import { useGoals } from '../../hooks/useGoals';
+import Header from '../../components/Header';
 
 interface Props {
   viewModel: GoalsViewModelProps;
@@ -24,12 +25,8 @@ export function GoalsView({ viewModel, props }: Props) {
 
   return (
     <styled.Goals>
-      <styled.ContainerHeader>
-        <Text weight="500" size={18} color={colors.white[100]}>
-          Metas
-        </Text>
-        <Touchable item="search" />
-      </styled.ContainerHeader>
+      <Header title="Metas" rightIcon={<Touchable item="search" />} />
+
       <LastGoals
         goals={goals}
         hasError={isErrorGoals}

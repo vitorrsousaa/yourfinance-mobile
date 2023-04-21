@@ -1,7 +1,7 @@
 import { HeaderViewModelProps } from './Header.view-model';
 import { HeaderViewProps } from './Header';
 import * as styled from './Header.styles';
-import {} from 'react-native';
+import { View } from 'react-native';
 import { Text } from '../Text';
 import { useTheme } from 'styled-components/native';
 import Touchable from '../Touchable';
@@ -12,15 +12,21 @@ interface Props {
 }
 
 export function HeaderView({ viewModel, props }: Props) {
-  const { title, onPressLeftIcon } = props;
+  const { title, rightIcon, onPressLeftIcon } = props;
+
   const { colors } = useTheme();
 
   return (
     <styled.Header>
-      <Touchable item="arrow" onPress={onPressLeftIcon} />
-      <Text weight="500" size={22} color={colors.white[100]}>
-        {title}
-      </Text>
+      <View style={{ gap: 8, flexDirection: 'row', alignItems: 'center' }}>
+        {onPressLeftIcon && (
+          <Touchable item="arrow" onPress={onPressLeftIcon} />
+        )}
+        <Text weight="500" size={22} color={colors.white[100]}>
+          {title}
+        </Text>
+      </View>
+      {rightIcon && rightIcon}
     </styled.Header>
   );
 }

@@ -5,6 +5,10 @@ import { Text } from '../../components/Text';
 
 import { useTheme } from 'styled-components/native';
 import Touchable from '../../components/Touchable';
+import Header from '../../components/Header';
+import { View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import PieChart from './components/PieChart';
 
 interface Props {
   viewModel: AnalyticsViewModelProps;
@@ -18,12 +22,11 @@ export function AnalyticsView({ viewModel, props }: Props) {
 
   return (
     <styled.Analytics>
-      <styled.ContainerHeader>
-        <Text weight="500" size={18} color={colors.white[100]}>
-          Analytics
-        </Text>
-        <Touchable item="search" />
-      </styled.ContainerHeader>
+      <Header title="Analytics" rightIcon={<Touchable item="search" />} />
+
+      <styled.Container>
+        <PieChart />
+      </styled.Container>
     </styled.Analytics>
   );
 }

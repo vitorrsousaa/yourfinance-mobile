@@ -5,10 +5,10 @@ export interface NotificationsViewModelProps {
 }
 
 export function NotificationsViewModel() {
-  const [state, setState] = useState('');
+  const [state, setState] = useState('')
 
   return {
     state,
-    setState,
-  };
+    setState
+  }
 }

@@ -30,11 +30,11 @@ export function HomeViewModel() {
   const navigation = useNavigation<PrivateRouteNavigationProp>();
 
   function handleNavigateSettings() {
-    navigation.navigate('Settings', undefined);
+    navigation.navigate('User', { screen: 'Settings' });
   }
 
   function handleNavigateNotifications() {
-    navigation.navigate('Notifications', undefined);
+    navigation.navigate('User', { screen: 'Notification' });
   }
 
   return {

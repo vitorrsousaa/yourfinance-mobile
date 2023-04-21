@@ -10,6 +10,7 @@ const theme: DefaultTheme = {
       500: '#737373',
       300: '#A6A6A6',
       200: '#CCCCCC',
+      100: '#E4E4E4',
     },
     blue: {
       950: '#0530FB',

@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { ReactElement, memo } from 'react';
 
 import { HeaderView } from './Header.view';
 import { HeaderViewModel } from './Header.view-model';
@@ -6,6 +6,7 @@ import { HeaderViewModel } from './Header.view-model';
 export interface HeaderProps {
   title: string;
   onPressLeftIcon?: () => void;
+  rightIcon?: ReactElement;
 }
 
 // Quando a prop é usada somente aqui, devemos omitir para não ir pra View

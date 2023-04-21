@@ -6,6 +6,7 @@ import { Text } from '../../components/Text';
 import { useTheme } from 'styled-components/native';
 import Touchable from '../../components/Touchable';
 import { useTransactions } from '../../hooks/useTransactions';
+import Header from '../../components/Header';
 
 interface Props {
   viewModel: TransactionsViewModelProps;
@@ -15,26 +16,22 @@ interface Props {
 export function TransactionsView({ viewModel, props }: Props) {
   const { ...transactionsProps } = props;
 
-  const { transactions, errorTransactions, loadingTransactions } =
+  const { transactions, isErrorTransactions, isLoadingTransactions } =
     useTransactions();
 
   const { colors } = useTheme();
 
   return (
     <styled.Transactions>
-      <styled.ContainerHeader>
-        <Text weight="500" size={18} color={colors.white[100]}>
-          Transações
-        </Text>
-        <Touchable item="search" />
-      </styled.ContainerHeader>
+      <Header title="Transações" rightIcon={<Touchable item="search" />} />
+
       <styled.ContainerTransactions>
         <LastTransactions
           title="Transações"
           showFilter={true}
           transactions={transactions}
-          isLoading={loadingTransactions}
-          hasError={errorTransactions}
+          isLoading={isLoadingTransactions}
+          hasError={isErrorTransactions}
         />
       </styled.ContainerTransactions>
     </styled.Transactions>

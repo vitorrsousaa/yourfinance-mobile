@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const Analytics = styled.View``;
+export const Analytics = styled.SafeAreaView``;
 
 export const ContainerHeader = styled.View`
   background: ${({ theme }) => theme.colors.black[900]};
@@ -9,4 +9,8 @@ export const ContainerHeader = styled.View`
   align-items: center;
 
   padding: 72px 24px 36px 24px;
+`;
+
+export const Container = styled.View`
+  padding: 24px;
 `;

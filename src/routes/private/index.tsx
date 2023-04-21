@@ -1,18 +1,16 @@
 import { createStackNavigator } from '@react-navigation/stack';
 
-import Notifications from '../../screens/Home/screens/Notifications';
 import { HomeTabRoutes } from './HomeTab.routes';
-import Settings from '../../screens/Home/screens/Settings';
 import GoalsRoutes, { GoalsRootParamList } from './Goal.routes';
 import {
   NavigationProp,
   NavigatorScreenParams,
 } from '@react-navigation/native';
+import UserRoutes, { UserRootParamList } from './User.routes';
 
 export type PrivateRootParamList = {
   HomeTabs: undefined;
-  Notifications: undefined;
-  Settings: undefined;
+  User: NavigatorScreenParams<UserRootParamList>;
   GoalsRoutes: NavigatorScreenParams<GoalsRootParamList>;
 };
 
@@ -28,8 +26,7 @@ export default function PrivateRoutes() {
       }}
     >
       <Private.Screen name="HomeTabs" component={HomeTabRoutes} />
-      <Private.Screen name="Notifications" component={Notifications} />
-      <Private.Screen name="Settings" component={Settings} />
+      <Private.Screen name="User" component={UserRoutes} />
       <Private.Screen name="GoalsRoutes" component={GoalsRoutes} />
     </Private.Navigator>
   );
