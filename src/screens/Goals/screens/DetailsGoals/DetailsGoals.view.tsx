@@ -44,13 +44,13 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
     handleCreateTransactionGoal,
   } = viewModel;
 
-  const { balance, goalName, goalCost, historicTransaction } = goal;
+  const { balance, goalName, goalCost, historicTransaction, payOff } = goal;
 
   const navigation = useNavigation();
 
   const progress = useMemo(() => {
     return (balance / goalCost) * 100;
-  }, [goal._id]);
+  }, [goal._id, balance]);
 
   const { colors } = useTheme();
 
@@ -81,54 +81,66 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
           <Text weight="500" size={16} color={colors.black[500]}>
             de {formatAmount(goalCost)}
           </Text>
-          <Text>{formatDate(goal.goalTime.endDate)}</Text>
         </View>
 
         <ProgressBar progress={progress} />
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <Text>Data inicio: {formatDate(goal.goalTime.initialDate)}</Text>
+          <Text>Data final: {formatDate(goal.goalTime.endDate)}</Text>
+        </View>
       </styled.ContainerInfo>
 
-      <styled.ContainerHistoric>
-        <Text size={18} weight="500">
-          Histórico
-        </Text>
-        <View style={{ flex: 1, paddingBottom: 86 }}>
-          <FlatList
-            data={historicTransaction}
-            keyExtractor={(item) => item._id}
-            renderItem={({ item }) => (
-              <TransactionDetailHistoric transaction={item} />
-            )}
-            ItemSeparatorComponent={() => (
-              <View
-                style={{
-                  height: 2,
-                  backgroundColor: colors.black[200],
-                  marginVertical: 16,
-                }}
+      {payOff === 0 ? (
+        <styled.Container>
+          <Text>Parabens, você concluiu a sua meta</Text>
+        </styled.Container>
+      ) : (
+        <>
+          <styled.Container>
+            <Text size={18} weight="500">
+              Histórico
+            </Text>
+
+            <View style={{ flex: 1, paddingBottom: 86 }}>
+              <FlatList
+                data={historicTransaction}
+                keyExtractor={(item) => item._id}
+                renderItem={({ item }) => (
+                  <TransactionDetailHistoric transaction={item} />
+                )}
+                ItemSeparatorComponent={() => (
+                  <View
+                    style={{
+                      height: 2,
+                      backgroundColor: colors.black[200],
+                      marginVertical: 16,
+                    }}
+                  />
+                )}
               />
-            )}
-          />
-        </View>
-      </styled.ContainerHistoric>
+            </View>
+          </styled.Container>
 
-      <styled.Footer>
-        <styled.ButtonFooter
-          activeOpacity={0.9}
-          onPress={toggleVisibleModalOutcome}
-        >
-          <Upload />
-          <Text weight="500">Resgatar</Text>
-        </styled.ButtonFooter>
+          <styled.Footer>
+            <styled.ButtonFooter
+              activeOpacity={0.9}
+              onPress={toggleVisibleModalOutcome}
+            >
+              <Upload />
+              <Text weight="500">Resgatar</Text>
+            </styled.ButtonFooter>
 
-        <styled.ButtonFooter
-          income
-          activeOpacity={0.9}
-          onPress={toggleVisibleModalIncome}
-        >
-          <Download />
-          <Text weight="500">Guardar</Text>
-        </styled.ButtonFooter>
-      </styled.Footer>
+            <styled.ButtonFooter
+              income
+              activeOpacity={0.9}
+              onPress={toggleVisibleModalIncome}
+            >
+              <Download />
+              <Text weight="500">Guardar</Text>
+            </styled.ButtonFooter>
+          </styled.Footer>
+        </>
+      )}
 
       <Modal
         visible={modalRemoveVisible}
@@ -158,7 +170,7 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
           autoCorrect={false}
           returnKeyType="next"
           value={formatAmount(amount)}
-          onChangeText={handleAmountChange}
+          onChangeText={(text) => handleAmountChange(text, 'LESS')}
           error={getErrorMessageByFieldName('amount')}
         />
       </Modal>
@@ -179,7 +191,7 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
           autoCorrect={false}
           returnKeyType="next"
           value={formatAmount(amount)}
-          onChangeText={handleAmountChange}
+          onChangeText={(text) => handleAmountChange(text, 'MORE')}
           error={getErrorMessageByFieldName('amount')}
         />
       </Modal>

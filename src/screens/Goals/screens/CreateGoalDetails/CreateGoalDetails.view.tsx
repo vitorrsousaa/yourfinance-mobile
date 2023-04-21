@@ -16,7 +16,7 @@ interface Props {
 export function CreateGoalDetailsView({ viewModel, props }: Props) {
   const { ...createGoalDetailsProps } = props;
 
-  const { goal, month, goBack, handleCreateGoal } = viewModel;
+  const { goal, month, isSubmitting, goBack, handleCreateGoal } = viewModel;
 
   const { colors } = useTheme();
 
@@ -50,7 +50,7 @@ export function CreateGoalDetailsView({ viewModel, props }: Props) {
             <Text weight="500" color={colors.black[500]}>
               {formatAmount(goal.goalCost * month)}
             </Text>{' '}
-            em {month} meses
+            em {month} meses.
           </Text>
           <Text color={colors.black[500]}>
             Verifique as informações e clique em confirmar
@@ -60,6 +60,7 @@ export function CreateGoalDetailsView({ viewModel, props }: Props) {
           variant="primary"
           onPress={handleCreateGoal}
           style={{ width: '100%' }}
+          loading={isSubmitting}
         >
           Confirmar
         </Button>

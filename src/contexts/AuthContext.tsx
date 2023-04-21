@@ -48,6 +48,7 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
     const authData: AuthData = JSON.parse(authDataSerialized || '{}');
 
     if (!authData.access) {
+      console.log('aqui dentro');
       setAuthenticated(false);
       setLoading(false);
       handleLogout();
@@ -59,6 +60,7 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
     setAuth(authData);
 
     setAuthorizationHeader(access);
+    setAuthenticated(true);
 
     setLoading(false);
 

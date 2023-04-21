@@ -25,7 +25,7 @@ export const ContainerInfo = styled.View`
   border-bottom-color: ${({ theme }) => theme.colors.black[200]};
 `;
 
-export const ContainerHistoric = styled.View`
+export const Container = styled.View`
   padding: 24px;
   gap: 24px;
   flex: 1;

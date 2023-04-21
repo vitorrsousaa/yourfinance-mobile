@@ -5,6 +5,7 @@ import { useGoals } from '../../../../hooks/useGoals';
 import { useNavigation } from '@react-navigation/native';
 import useErrors from '../../../../hooks/useErrors';
 import { TModeTransaction } from '../../../../types/Goal/modeTransaction';
+import formatAmount from '../../../../utils/formatAmout';
 
 export interface DetailsGoalsViewModelProps {
   removing: boolean;
@@ -19,7 +20,7 @@ export interface DetailsGoalsViewModelProps {
   toggleVisibleModalIncome: () => void;
   toggleVisibleModalOutcome: () => void;
   toggleVisibleModalRemove: () => void;
-  handleAmountChange: (text: string) => void;
+  handleAmountChange: (text: string, mode: TModeTransaction) => void;
   handleCreateTransactionGoal: (mode: TModeTransaction) => Promise<void>;
   getErrorMessageByFieldName: (fieldName: string) => string | undefined;
 }
@@ -77,7 +78,7 @@ export function DetailsGoalsViewModel(goalResponse: TGoalResponse) {
     setIsModalRemoveVisible(!modalRemoveVisible);
   }
 
-  function handleAmountChange(text: string) {
+  function handleAmountChange(text: string, mode: TModeTransaction) {
     const numericValue = !text ? 0 : parseFloat(text.replace(/\D/g, '')) / 100;
 
     if (!isNaN(numericValue)) {
@@ -86,11 +87,35 @@ export function DetailsGoalsViewModel(goalResponse: TGoalResponse) {
       setAmount(0);
     }
 
+    const { balance, payOff } = goal;
+
     if (numericValue === 0) {
       setError({
         field: 'amount',
         message: 'O valor precisa ser maior do que R$0,00',
       });
+    } else if (mode === 'MORE') {
+      if (numericValue > Number(payOff.toFixed(2))) {
+        setError({
+          field: 'amount',
+          message: `Você só pode depositar um valor até ${formatAmount(
+            payOff
+          )} para atingir sua meta.`,
+        });
+      } else {
+        removeError('amount');
+      }
+    } else if (mode === 'LESS') {
+      if (numericValue > balance) {
+        setError({
+          field: 'amount',
+          message: `Você só pode resgatar um valor até ${formatAmount(
+            balance
+          )}.`,
+        });
+      } else {
+        removeError('amount');
+      }
     } else {
       removeError('amount');
     }
