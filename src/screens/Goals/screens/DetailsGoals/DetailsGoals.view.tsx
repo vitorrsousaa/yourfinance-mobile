@@ -100,25 +100,28 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
             <Text size={18} weight="500">
               Histórico
             </Text>
-
-            <View style={{ flex: 1, paddingBottom: 86 }}>
-              <FlatList
-                data={historicTransaction}
-                keyExtractor={(item) => item._id}
-                renderItem={({ item }) => (
-                  <TransactionDetailHistoric transaction={item} />
-                )}
-                ItemSeparatorComponent={() => (
-                  <View
-                    style={{
-                      height: 2,
-                      backgroundColor: colors.black[200],
-                      marginVertical: 16,
-                    }}
-                  />
-                )}
-              />
-            </View>
+            {historicTransaction.length > 0 ? (
+              <View style={{ flex: 1, paddingBottom: 86 }}>
+                <FlatList
+                  data={historicTransaction}
+                  keyExtractor={(item) => item._id}
+                  renderItem={({ item }) => (
+                    <TransactionDetailHistoric transaction={item} />
+                  )}
+                  ItemSeparatorComponent={() => (
+                    <View
+                      style={{
+                        height: 2,
+                        backgroundColor: colors.black[200],
+                        marginVertical: 16,
+                      }}
+                    />
+                  )}
+                />
+              </View>
+            ) : (
+              <Text>Você ainda não cadastrou nenhuma transação.</Text>
+            )}
           </styled.Container>
 
           <styled.Footer>

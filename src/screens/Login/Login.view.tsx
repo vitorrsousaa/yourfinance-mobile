@@ -4,11 +4,10 @@ import * as styled from './Login.styles';
 import Welcome from '../../components/Welcome';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import { View, ScrollView } from 'react-native';
+import { View, ScrollView, TouchableOpacity } from 'react-native';
 import { isAndroid } from '../../utils/isAndroid';
 import { Text } from '../../components/Text';
 import { useTheme } from 'styled-components/native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 
 interface Props {
   viewModel: LoginViewModelProps;

@@ -2,8 +2,6 @@ import { TransactionsViewModelProps } from './Transactions.view-model';
 import { TransactionsViewProps } from './Transactions';
 import * as styled from './Transactions.styles';
 import LastTransactions from '../../components/LastTransactions';
-import { Text } from '../../components/Text';
-import { useTheme } from 'styled-components/native';
 import Touchable from '../../components/Touchable';
 import { useTransactions } from '../../hooks/useTransactions';
 import Header from '../../components/Header';
@@ -18,8 +16,6 @@ export function TransactionsView({ viewModel, props }: Props) {
 
   const { transactions, isErrorTransactions, isLoadingTransactions } =
     useTransactions();
-
-  const { colors } = useTheme();
 
   return (
     <styled.Transactions>

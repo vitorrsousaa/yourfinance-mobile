@@ -1,14 +1,22 @@
-import { useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { SettingsRoutesNavigationProp } from '../../routes/private/Settings.routes';
 
 export interface SettingsViewModelProps {
-  state: string;
+  handleNavigateToMyAccount: () => void;
+  handleNavigateToFeedback: () => void;
 }
 
 export function SettingsViewModel() {
-  const [state, setState] = useState('')
+  const navigationSettings = useNavigation<SettingsRoutesNavigationProp>();
 
-  return {
-    state,
-    setState
+  function handleNavigateToMyAccount() {
+    navigationSettings.navigate('MyAccount');
   }
+  function handleNavigateToFeedback() {
+    navigationSettings.navigate('Feedback');
+  }
+  return {
+    handleNavigateToMyAccount,
+    handleNavigateToFeedback,
+  };
 }

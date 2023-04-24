@@ -5,7 +5,7 @@ import { InputView } from './Input.view';
 import { InputViewModel } from './Input.view-model';
 
 export interface InputProps extends TextInputProps {
-  label: string;
+  label?: string;
   error?: string;
 }
 
