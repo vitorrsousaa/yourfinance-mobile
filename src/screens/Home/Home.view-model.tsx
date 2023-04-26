@@ -14,6 +14,7 @@ export interface HomeViewModelProps {
   setOutcomeSummary: (summary: TCardSummary) => void;
   handleNavigateSettings: () => void;
   handleNavigateNotifications: () => void;
+  handleNavigateCreateTransaction: () => void;
 }
 
 export function HomeViewModel() {
@@ -37,6 +38,10 @@ export function HomeViewModel() {
     navigation.navigate('User', { screen: 'Notification' });
   }
 
+  function handleNavigateCreateTransaction() {
+    navigation.navigate('TransactionsRoutes', { screen: 'CreateTransactions' });
+  }
+
   return {
     incomeSummary,
     outcomeSummary,
@@ -48,5 +53,6 @@ export function HomeViewModel() {
     setOutcomeSummary,
     handleNavigateSettings,
     handleNavigateNotifications,
+    handleNavigateCreateTransaction,
   };
 }

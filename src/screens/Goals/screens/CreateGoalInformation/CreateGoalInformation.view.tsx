@@ -34,7 +34,7 @@ export function CreateGoalInformationView({ viewModel, props }: Props) {
   return (
     <styled.CreateGoalInformation>
       <KeyboardAvoidingView behavior={isAndroid ? 'height' : 'padding'}>
-        <Header title={'Criando uma meta'} onPressLeftIcon={goBack} />
+        <Header title={'Adicionando uma meta'} onPressLeftIcon={goBack} />
 
         <ScrollView>
           <View style={{ padding: 24 }}>

@@ -31,6 +31,7 @@ export function HomeView({ viewModel, props }: Props) {
     isLoading,
     handleNavigateSettings,
     handleNavigateNotifications,
+    handleNavigateCreateTransaction,
   } = viewModel;
 
   const { isLoadingTransactions, isErrorTransactions, transactions } =
@@ -106,7 +107,7 @@ export function HomeView({ viewModel, props }: Props) {
         />
       </styled.ContainerTransactions>
 
-      <PlusButton />
+      <PlusButton onPress={handleNavigateCreateTransaction} />
     </styled.Home>
   );
 }

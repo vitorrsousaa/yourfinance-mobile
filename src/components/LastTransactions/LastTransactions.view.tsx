@@ -5,7 +5,7 @@ import { Text } from '../Text';
 import { useTheme } from 'styled-components/native';
 import Transaction from './components/Transaction';
 import { Filter } from '../Icons/Filter';
-import { ActivityIndicator, FlatList, View } from 'react-native';
+import { FlatList, View } from 'react-native';
 import Loader from '../Loader';
 import { NoData } from '../Illustrations/NoData';
 import { ErrorContent } from '../Illustrations/ErrorContent';

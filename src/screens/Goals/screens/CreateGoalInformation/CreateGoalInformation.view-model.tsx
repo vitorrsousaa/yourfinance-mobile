@@ -49,6 +49,7 @@ export function CreateGoalInformationViewModel() {
       removeError('name');
     }
   }
+
   function handleGoalCostChange(text: string) {
     const numericValue = !text ? 0 : parseFloat(text.replace(/\D/g, '')) / 100;
 

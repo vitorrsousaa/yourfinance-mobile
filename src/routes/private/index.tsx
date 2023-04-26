@@ -7,11 +7,15 @@ import {
   NavigatorScreenParams,
 } from '@react-navigation/native';
 import UserRoutes, { UserRootParamList } from './User.routes';
+import TransactionsRoutes, {
+  TransactionsRootParamList,
+} from './Transactions.routes';
 
 export type PrivateRootParamList = {
   HomeTabs: undefined;
   User: NavigatorScreenParams<UserRootParamList>;
   GoalsRoutes: NavigatorScreenParams<GoalsRootParamList>;
+  TransactionsRoutes: NavigatorScreenParams<TransactionsRootParamList>;
 };
 
 export type PrivateRouteNavigationProp = NavigationProp<PrivateRootParamList>;
@@ -27,6 +31,10 @@ export default function PrivateRoutes() {
     >
       <Private.Screen name="HomeTabs" component={HomeTabRoutes} />
       <Private.Screen name="User" component={UserRoutes} />
+      <Private.Screen
+        name="TransactionsRoutes"
+        component={TransactionsRoutes}
+      />
       <Private.Screen name="GoalsRoutes" component={GoalsRoutes} />
     </Private.Navigator>
   );

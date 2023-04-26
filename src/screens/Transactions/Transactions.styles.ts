@@ -9,3 +9,8 @@ export const ContainerTransactions = styled.View`
   background: ${({ theme }) => theme.colors.white[200]};
   flex: 1;
 `;
+
+export const ContainerRightIcons = styled.View`
+  flex-direction: row;
+  gap: 4px;
+`;
