@@ -5,6 +5,8 @@ import { View } from 'react-native';
 import Header from '../../components/Header';
 import InputOutlined from '../../components/InputOutlined';
 import formatAmount from '../../utils/formatAmout';
+import Select from '../../components/Select';
+import { isLoading } from 'expo-font';
 
 interface Props {
   viewModel: CreateTransactionsViewModelProps;
@@ -17,6 +19,14 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
   const {
     amount,
     description,
+    selectedCategory,
+    optionsModalities,
+    selectedModality,
+    optionsCategories,
+    isLoadingModalities,
+    isLoadingCategories,
+    handleCategoryChange,
+    handleModalityChange,
     goBack,
     handleAmountChange,
     handleDescriptionChange,
@@ -25,7 +35,7 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
 
   return (
     <styled.CreateTransactions>
-      <Header title="Adicionando uma transação" onPressLeftIcon={goBack} />
+      <Header title="Adicione uma transação" onPressLeftIcon={goBack} />
 
       <styled.Container>
         <InputOutlined
@@ -34,6 +44,24 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
           onChangeText={handleDescriptionChange}
           error={getErrorMessageByFieldName('description')}
         />
+
+        <Select
+          placeholder="Selecione a categoria"
+          selectedValue={selectedCategory}
+          data={optionsCategories}
+          onValueChange={(itemValue) => handleCategoryChange(itemValue)}
+          isLoading={isLoadingCategories}
+        />
+
+        <Select
+          placeholder="Selecione a modalidade"
+          selectedValue={selectedModality}
+          data={optionsModalities}
+          onValueChange={(itemValue) => handleModalityChange(itemValue)}
+          isLoading={isLoadingModalities}
+          disabled={selectedCategory.length > 0 ? false : true}
+        />
+
         <InputOutlined
           placeholder="Digiteo valor da sua transação"
           value={formatAmount(amount)}

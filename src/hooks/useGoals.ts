@@ -2,7 +2,12 @@ import { useQuery } from 'react-query';
 import { TGoalResponse } from '../types/Goal';
 import GoalsService from '../service/GoalsService';
 
-export function useGoals() {
+export function useGoals(): {
+  goals: TGoalResponse[];
+  isErrorGoals: boolean;
+  isLoadingGoals: boolean;
+  refetch: () => Promise<unknown>;
+} {
   const {
     data: goalsResponse,
     isError,

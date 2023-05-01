@@ -2,7 +2,12 @@ import { useQuery } from 'react-query';
 import { TModalityResponse } from '../types/Modality';
 import ModalitiesService from '../service/ModalitiesService';
 
-export function useModalities() {
+export function useModalities(): {
+  modalities: TModalityResponse;
+  isErrorModalities: boolean;
+  isLoadingModalities: boolean;
+  refetch: () => Promise<unknown>;
+} {
   const {
     data: modalities,
     isError,

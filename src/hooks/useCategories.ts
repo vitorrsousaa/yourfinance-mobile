@@ -2,7 +2,12 @@ import { TCategoryResponse } from '../types/Category';
 import { useQuery } from 'react-query';
 import CategoriesService from '../service/CategoriesService';
 
-export function useCategories() {
+export function useCategories(): {
+  categories: TCategoryResponse;
+  isErrorCategories: boolean;
+  refetch: () => Promise<unknown>;
+  isLoadingCategories: boolean;
+} {
   const {
     data: categories,
     isError,

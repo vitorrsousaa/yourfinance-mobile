@@ -1,8 +1,13 @@
-import { TTransactionResponse } from '../types/Transaction';
+import { TTransaction, TTransactionResponse } from '../types/Transaction';
 import TransactionsService from '../service/TransactionsService';
 import { useQuery } from 'react-query';
 
-export function useTransactions() {
+export function useTransactions(): {
+  transactions: TTransaction[];
+  isErrorTransactions: boolean;
+  isLoadingTransactions: boolean;
+  refetch: () => Promise<unknown>;
+} {
   const {
     data: transactionsResponse,
     isError,
