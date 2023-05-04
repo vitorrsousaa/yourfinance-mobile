@@ -15,7 +15,7 @@ export function WelcomeView({ viewModel, props }: Props) {
     <styled.Welcome>
       <Text color="#fff">Bem vindo(a)</Text>
       <Text size={32} weight="300" color="#fff">
-        you
+        your
         <Text weight="700" size={32} color="#fff">
           Finance
         </Text>

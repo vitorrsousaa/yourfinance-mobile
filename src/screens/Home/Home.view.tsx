@@ -72,7 +72,7 @@ export function HomeView({ viewModel, props }: Props) {
             <View>
               <Text color={colors.black[200]}>Saldo disponível</Text>
               <Text weight="500" size={28} color={colors.white[100]}>
-                {formatAmount(difference)}
+                {difference > 0 ? formatAmount(difference) : '-'}
               </Text>
             </View>
           )}

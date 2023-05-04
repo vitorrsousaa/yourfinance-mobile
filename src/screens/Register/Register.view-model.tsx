@@ -3,25 +3,26 @@ import useErrors from '../../hooks/useErrors';
 import isEmailValid from '../../utils/isEmailValid';
 import { useNavigation } from '@react-navigation/native';
 import { AuthRoutesNavigationProp } from '../../routes/public/auth.routes';
+import { useAuth } from '../../hooks/useAuth';
 
-export interface LoginViewModelProps {
+export interface RegisterViewModelProps {
   email: string;
+  name: string;
   password: string;
-  isFormValid: boolean | '';
+  isFormValid: boolean;
   isSubmitting: boolean;
   handleEmailChange: (text: string) => void;
+  handleNameChange: (text: string) => void;
   handlePasswordChange: (text: string) => void;
   getErrorMessageByFieldName: (fieldName: string) => string | undefined;
-  setPassword: (password: string) => void;
-  setIsSubmitting: (state: boolean) => void;
-  setError: ({ field, message }: { field: string; message: string }) => void;
-  navigateToRegisterScreen: () => void;
+  navigateToLoginScreen: () => void;
+  handleSubmit: () => Promise<void>;
 }
 
-export function LoginViewModel() {
+export function RegisterViewModel() {
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
-
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { errors, getErrorMessageByFieldName, removeError, setError } =
@@ -29,7 +30,9 @@ export function LoginViewModel() {
 
   const navigation = useNavigation<AuthRoutesNavigationProp>();
 
-  const isFormValid = password && email && errors.length === 0;
+  const { handleRegister } = useAuth();
+
+  const isFormValid = password && email && name && errors.length === 0;
 
   function handleEmailChange(text: string) {
     setEmail(text);
@@ -51,21 +54,45 @@ export function LoginViewModel() {
     }
   }
 
-  function navigateToRegisterScreen() {
-    navigation.navigate('Register');
+  function handleNameChange(text: string) {
+    setName(text);
+
+    if (!text) {
+      setError({ field: 'name', message: 'Nome é obrigatório' });
+    } else {
+      removeError('name');
+    }
+  }
+
+  function navigateToLoginScreen() {
+    navigation.navigate('Login');
+  }
+
+  async function handleSubmit() {
+    setIsSubmitting(true);
+    const user = { name, email, password };
+
+    try {
+      await handleRegister(user);
+    } catch {
+      console.log('Esse email já foi cadastrado');
+      setPassword('');
+    } finally {
+      setIsSubmitting(false);
+    }
   }
 
   return {
     email,
     password,
     isFormValid,
+    name,
     isSubmitting,
+    handleNameChange,
     handleEmailChange,
     handlePasswordChange,
     getErrorMessageByFieldName,
-    setPassword,
-    setIsSubmitting,
-    setError,
-    navigateToRegisterScreen,
+    navigateToLoginScreen,
+    handleSubmit,
   };
 }

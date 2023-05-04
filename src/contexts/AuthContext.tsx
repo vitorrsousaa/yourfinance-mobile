@@ -19,6 +19,7 @@ interface AuthContextProps {
   authenticated: boolean;
   loading: boolean;
   handleLogin: (user: User) => Promise<void>;
+  handleRegister: (user: User) => Promise<void>;
   handleLogout: () => Promise<void>;
   auth: AuthData;
 }
@@ -86,13 +87,13 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
       setAuth(authData);
 
       setAuthorizationHeader(data.token.access);
-      setAuthenticated(true);
 
       // Salvar o refresh Token
       await AsyncStorage.setItem(
         TOKEN_COLLECTION,
         JSON.stringify(data.token.refresh)
       );
+      setAuthenticated(true);
     } catch (error: any) {
       if (error instanceof APIError) {
         Alert.alert('Email ou senha inválido');
@@ -111,9 +112,15 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
       const authData: AuthData = { user: data.user, access: data.token.access };
 
       await AsyncStorage.setItem(USER_COLLECTION, JSON.stringify(authData));
+
       setAuth(authData);
 
       setAuthorizationHeader(data.token.access);
+
+      await AsyncStorage.setItem(
+        TOKEN_COLLECTION,
+        JSON.stringify(data.token.refresh)
+      );
 
       setAuthenticated(true);
     } catch (error: any) {
@@ -138,7 +145,14 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
 
   return (
     <AuthContext.Provider
-      value={{ authenticated, handleLogin, handleLogout, auth, loading }}
+      value={{
+        authenticated,
+        handleLogin,
+        handleLogout,
+        auth,
+        handleRegister,
+        loading,
+      }}
     >
       {children}
     </AuthContext.Provider>

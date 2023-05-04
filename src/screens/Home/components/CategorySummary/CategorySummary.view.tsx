@@ -13,8 +13,13 @@ interface Props {
 }
 
 export function CategorySummaryView({ viewModel, props }: Props) {
-  const { currentMonth, categoryName, percent, difference } = props;
+  const { ...categorySummaryProps } = props;
+  const { currentMonth, categoryName, percent, difference } = viewModel;
   const { colors } = useTheme();
+
+  console.log('percent', percent);
+  console.log('currentMonth', currentMonth);
+  console.log('difference', difference);
 
   const color =
     categoryName === 'Receitas' ? colors.green[400] : colors.red[400];

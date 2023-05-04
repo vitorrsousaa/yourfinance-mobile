@@ -1,12 +1,22 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import Login from '../../screens/Login';
+import Register from '../../screens/Register';
+import { NavigationProp } from '@react-navigation/native';
 
-const Auth = createStackNavigator();
+export type AuthRootParamList = {
+  Login: undefined;
+  Register: undefined;
+};
+
+export type AuthRoutesNavigationProp = NavigationProp<AuthRootParamList>;
+
+const Auth = createStackNavigator<AuthRootParamList>();
 
 export function AuthRoutes() {
   return (
     <Auth.Navigator screenOptions={{ headerShown: false }}>
       <Auth.Screen name="Login" component={Login} />
+      <Auth.Screen name="Register" component={Register} />
     </Auth.Navigator>
   );
 }
