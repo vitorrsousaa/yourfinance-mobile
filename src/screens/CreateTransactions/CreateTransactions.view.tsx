@@ -6,9 +6,11 @@ import Header from '../../components/Header';
 import InputOutlined from '../../components/InputOutlined';
 import formatAmount from '../../utils/formatAmout';
 import { Text } from '../../components/Text';
-import { useTheme } from 'styled-components/native';
 import Row from './components/Row';
 import Icon from '../../components/Icons';
+import Toggle from '../../components/Toggle';
+import Button from '../../components/Button';
+import { useTheme } from 'styled-components/native';
 
 interface Props {
   viewModel: CreateTransactionsViewModelProps;
@@ -22,17 +24,12 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
     amount,
     description,
     selectedCategory,
-    optionsModalities,
-    selectedModality,
-    optionsCategories,
-    isLoadingModalities,
-    isLoadingCategories,
+    category,
+    isValid,
     handleCategoryChange,
-    handleModalityChange,
     goBack,
     handleAmountChange,
     handleDescriptionChange,
-    getErrorMessageByFieldName,
   } = viewModel;
 
   const { colors } = useTheme();
@@ -44,8 +41,13 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
       <styled.Container>
         <Row
           icon={<Icon name="certificate" />}
-          title="Receitas"
-          rightIcon={<Text>toggle</Text>}
+          title={category.name}
+          rightIcon={
+            <Toggle
+              value={selectedCategory}
+              onValueChange={handleCategoryChange}
+            />
+          }
         />
 
         <Row icon={<Icon name="pencil" />}>
@@ -55,8 +57,27 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
             placeholder="Digite uma descrição da sua transação"
             value={description}
             onChangeText={handleDescriptionChange}
+            autoCorrect={false}
+            maxLength={15}
           />
         </Row>
+
+        <Row
+          icon={<Icon name="wallet" />}
+          title="Modalidades"
+          rightIcon={
+            <View>
+              <Icon name="arrow" color={colors.black[900]} />
+            </View>
+          }
+        />
+
+        <Row
+          icon={<Icon name="calendar" />}
+          title="Data"
+          rightIcon={<Text>toggle</Text>}
+        />
+
         <Row icon={<Icon name="currency" />}>
           <InputOutlined
             border={false}
@@ -70,22 +91,12 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
         <Row
           icon={<Icon name="repeat" />}
           title="Movs Fixa"
-          rightIcon={<Text>toggle</Text>}
+          rightIcon={<Toggle />}
         />
-        <Row
-          icon={<Icon name="calendar" />}
-          title="Data"
-          rightIcon={<Text>toggle</Text>}
-        />
-        <Row
-          icon={<Icon name="wallet" />}
-          title="Modalidades"
-          rightIcon={
-            <View>
-              <Icon name="arrow" color="#101010" />
-            </View>
-          }
-        />
+
+        <Button variant="primary" disabled={!isValid}>
+          Enviar
+        </Button>
       </styled.Container>
     </styled.CreateTransactions>
   );
