@@ -12,15 +12,18 @@ interface Props {
 }
 
 export function InputOutlinedView({ viewModel, props }: Props) {
-  const { error, ...inputProps } = props;
+  const { error, border = true, fixedHeight = true, ...inputProps } = props;
   const { colors } = useTheme();
 
   const { handleBlurInput, handleFocusInput, isFocus } = viewModel;
 
   return (
-    <styled.Container>
+    <styled.Container fixedHeight={fixedHeight}>
       <View style={{ flexDirection: 'row' }}>
         <styled.Input
+          border={border}
+          underlineColorAndroid="transparent"
+          fixedHeight={fixedHeight}
           onFocus={handleFocusInput}
           onBlur={handleBlurInput}
           isFocus={isFocus}
@@ -30,7 +33,7 @@ export function InputOutlinedView({ viewModel, props }: Props) {
               ? colors.red[400]
               : isFocus
               ? colors.green[500]
-              : colors.black[900]
+              : colors.black[700]
           }
           {...inputProps}
         />

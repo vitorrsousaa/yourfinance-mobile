@@ -1,8 +1,9 @@
 import { ContinuousButtonViewModelProps } from './ContinuousButton.view-model';
 import { ContinuousButtonViewProps } from './ContinuousButton';
 import * as styled from './ContinuousButton.styles';
-import { ArrowRight } from '../../../../components/Icons/ArrowRight';
+
 import { useTheme } from 'styled-components/native';
+import Icon from '../../../../components/Icons';
 
 interface Props {
   viewModel: ContinuousButtonViewModelProps;
@@ -20,7 +21,7 @@ export function ContinuousButtonView({ viewModel, props }: Props) {
       disabled={!isValid}
       {...continuousButtonProps}
     >
-      <ArrowRight color={!isValid ? colors.black[600] : ''} />
+      <Icon name="arrowRight" color={!isValid ? colors.black[600] : ''} />
     </styled.ContinuousButton>
   );
 }

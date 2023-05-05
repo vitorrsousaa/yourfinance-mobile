@@ -2,9 +2,9 @@ import { SettingsButtonViewModelProps } from './SettingsButton.view-model';
 import { SettingsButtonViewProps } from './SettingsButton';
 import * as styled from './SettingsButton.styles';
 import { View } from 'react-native';
-import { Arrow } from '../../../../components/Icons/Arrow';
 import { useTheme } from 'styled-components/native';
 import { Text } from '../../../../components/Text';
+import Icon from '../../../../components/Icons';
 
 interface Props {
   viewModel: SettingsButtonViewModelProps;
@@ -23,7 +23,7 @@ export function SettingsButtonView({ viewModel, props }: Props) {
         <Text size={16}>{title}</Text>
       </View>
       <styled.ContainerArrow>
-        <Arrow color={colors.black[900]} />
+        <Icon name="arrow" color={colors.black[900]} />
       </styled.ContainerArrow>
     </styled.SettingsButton>
   );

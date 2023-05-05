@@ -6,6 +6,8 @@ import { InputOutlinedViewModel } from './InputOutlined.view-model';
 
 export interface InputProps extends TextInputProps {
   error?: string;
+  border?: boolean;
+  fixedHeight?: boolean;
 }
 
 // Quando a prop é usada somente aqui, devemos omitir para não ir pra View

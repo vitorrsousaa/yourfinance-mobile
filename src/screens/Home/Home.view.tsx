@@ -7,12 +7,12 @@ import { Text } from '../../components/Text';
 import { useTheme } from 'styled-components/native';
 import formatAmount from '../../utils/formatAmout';
 import LastTransactions from '../../components/LastTransactions';
-import { Logo } from '../../components/Icons/Logo';
 import Touchable from '../../components/Touchable';
 import { useAuth } from '../../hooks/useAuth';
 import PlusButton from '../../components/PlusButton';
 import { useTransactions } from '../../hooks/useTransactions';
 import Loader from '../../components/Loader';
+import Icon from '../../components/Icons';
 
 interface Props {
   viewModel: HomeViewModelProps;
@@ -45,7 +45,7 @@ export function HomeView({ viewModel, props }: Props) {
     <styled.Home>
       <styled.Container>
         <styled.ContainerHeader>
-          <Logo />
+          <Icon name="logo" />
 
           <styled.ContainerButtons>
             <Touchable

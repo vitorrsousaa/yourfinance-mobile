@@ -4,11 +4,11 @@ import * as styled from './LastTransactions.styles';
 import { Text } from '../Text';
 import { useTheme } from 'styled-components/native';
 import Transaction from './components/Transaction';
-import { Filter } from '../Icons/Filter';
 import { FlatList, View } from 'react-native';
 import Loader from '../Loader';
 import { NoData } from '../Illustrations/NoData';
 import { ErrorContent } from '../Illustrations/ErrorContent';
+import Icon from '../Icons';
 
 interface Props {
   viewModel: LastTransactionsViewModelProps;
@@ -46,7 +46,7 @@ export function LastTransactionsView({ viewModel, props }: Props) {
             {showFilter && (
               <styled.Filter activeOpacity={0.6}>
                 <Text>Filtro</Text>
-                <Filter />
+                <Icon name="filter" />
               </styled.Filter>
             )}
           </styled.ContainerHeader>

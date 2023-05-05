@@ -3,14 +3,13 @@ import { GoalCardViewProps } from './GoalCard';
 import * as styled from './GoalCard.styles';
 import { View } from 'react-native';
 import formatAmount from '../../../../../../utils/formatAmout';
-import { Target } from '../../../../../../components/Icons/Target';
 import { useTheme } from 'styled-components/native';
 import { Text } from '../../../../../../components/Text';
-import { DotMenu } from '../../../../../../components/Icons/DotMenu';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import ProgressBar from '../../../ProgressBar';
 import { formatDate } from '../../../../../../utils/formatDate';
 import { useMemo } from 'react';
+import Icon from '../../../../../../components/Icons';
 
 interface Props {
   viewModel: GoalCardViewModelProps;
@@ -34,7 +33,7 @@ export function GoalCardView({ viewModel, props }: Props) {
     <styled.GoalCard>
       <styled.GoalHeader>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-          <Target color={colors.black[900]} />
+          <Icon name="target" color={colors.black[900]} />
           <View>
             <Text weight="500" size={16} color={colors.black[800]}>
               {goalName}
@@ -48,7 +47,7 @@ export function GoalCardView({ viewModel, props }: Props) {
           activeOpacity={0.9}
           onPress={handleNavigateToDetailsGoals}
         >
-          <DotMenu />
+          <Icon name="dotMenu" />
         </TouchableOpacity>
       </styled.GoalHeader>
 

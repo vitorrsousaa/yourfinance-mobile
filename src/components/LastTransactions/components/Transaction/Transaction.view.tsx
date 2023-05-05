@@ -5,9 +5,8 @@ import { View } from 'react-native';
 import formatAmount from '../../../../utils/formatAmout';
 import { Text } from '../../../Text';
 import { useTheme } from 'styled-components/native';
-import { Income } from '../../../Icons/Income';
-import { Outcome } from '../../../Icons/Outcome';
 import { formatDate } from '../../../../utils/formatDate';
+import Icon from '../../../Icons';
 
 interface Props {
   viewModel: TransactionViewModelProps;
@@ -24,7 +23,12 @@ export function TransactionView({ viewModel, props }: Props) {
   const color =
     category.name === 'Receitas' ? colors.green[400] : colors.red[400];
 
-  const icon = category.name === 'Receitas' ? <Income /> : <Outcome />;
+  const icon =
+    category.name === 'Receitas' ? (
+      <Icon name="income" />
+    ) : (
+      <Icon name="outcome" />
+    );
 
   return (
     <styled.Transaction>

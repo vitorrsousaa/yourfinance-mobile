@@ -1,15 +1,25 @@
 /* eslint-disable indent */
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
 
-export const Container = styled.View`
-  height: 85px;
+export const Container = styled.View<{ fixedHeight: boolean }>`
+  ${({ fixedHeight }) =>
+    fixedHeight &&
+    css`
+      height: 85px;
+    `}
+
   align-items: flex-start;
 
   margin-bottom: 16px;
 `;
 
-export const Input = styled.TextInput<{ isFocus: boolean; error?: boolean }>`
-  border-bottom-width: 2px;
+export const Input = styled.TextInput<{
+  isFocus: boolean;
+  error?: boolean;
+  border: boolean;
+  fixedHeight: boolean;
+}>`
+  border-bottom-width: ${({ border }) => (border ? '2px' : '0px')};
 
   border-color: ${({ isFocus, theme, error }) =>
     error
@@ -27,8 +37,8 @@ export const Input = styled.TextInput<{ isFocus: boolean; error?: boolean }>`
 
   margin: 8px 0px;
   width: 100%;
-  height: 50px;
-  /* padding: 8px 13px; */
+  height: ${({ fixedHeight }) => (fixedHeight ? '50px' : '100%')};
+
   font-size: 16px;
   font-family: 'Gotham-400';
 `;

@@ -3,11 +3,8 @@ import { DetailsGoalsViewProps } from './DetailsGoals';
 import * as styled from './DetailsGoals.styles';
 import { Text } from '../../../../components/Text';
 import { View } from 'react-native';
-import { Target } from '../../../../components/Icons/Target';
 import Touchable from '../../../../components/Touchable';
 import { useTheme } from 'styled-components/native';
-import { Upload } from '../../../../components/Icons/Upload';
-import { Download } from '../../../../components/Icons/Download';
 import { useNavigation } from '@react-navigation/native';
 import ProgressBar from '../../components/ProgressBar';
 import { useMemo } from 'react';
@@ -17,6 +14,7 @@ import TransactionDetailHistoric from './components/TransactionDetailHistoric';
 import Modal from '../../../../components/Modal';
 import InputOutlined from '../../../../components/InputOutlined';
 import { formatDate } from '../../../../utils/formatDate';
+import Icon from '../../../../components/Icons';
 
 interface Props {
   viewModel: DetailsGoalsViewModelProps;
@@ -58,7 +56,7 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
     <styled.DetailsGoals>
       <styled.Header>
         <styled.ContainerTextMain>
-          <Target />
+          <Icon name="target" />
           <Text weight="500" size={20} color={colors.white[100]}>
             {goalName}
           </Text>
@@ -129,7 +127,7 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
               activeOpacity={0.9}
               onPress={toggleVisibleModalOutcome}
             >
-              <Upload />
+              <Icon name="upload" />
               <Text weight="500">Resgatar</Text>
             </styled.ButtonFooter>
 
@@ -138,7 +136,7 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
               activeOpacity={0.9}
               onPress={toggleVisibleModalIncome}
             >
-              <Download />
+              <Icon name="download" />
               <Text weight="500">Guardar</Text>
             </styled.ButtonFooter>
           </styled.Footer>

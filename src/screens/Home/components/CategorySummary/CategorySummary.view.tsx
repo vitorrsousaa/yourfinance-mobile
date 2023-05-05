@@ -4,8 +4,7 @@ import * as styled from './CategorySummary.styles';
 import formatAmount from '../../../../utils/formatAmout';
 import { Text } from '../../../../components/Text';
 import { useTheme } from 'styled-components/native';
-import { TrendUp } from '../../../../components/Icons/TrendUp';
-import { TrendDown } from '../../../../components/Icons/TrendDown';
+import Icon from '../../../../components/Icons';
 
 interface Props {
   viewModel: CategorySummaryViewModelProps;
@@ -16,10 +15,6 @@ export function CategorySummaryView({ viewModel, props }: Props) {
   const { ...categorySummaryProps } = props;
   const { currentMonth, categoryName, percent, difference } = viewModel;
   const { colors } = useTheme();
-
-  console.log('percent', percent);
-  console.log('currentMonth', currentMonth);
-  console.log('difference', difference);
 
   const color =
     categoryName === 'Receitas' ? colors.green[400] : colors.red[400];
@@ -39,7 +34,11 @@ export function CategorySummaryView({ viewModel, props }: Props) {
         <Text weight="500" color={color} style={{ marginRight: 4 }}>
           {Math.floor(percent)}%
         </Text>
-        {percent < 0 ? <TrendDown color={color} /> : <TrendUp color={color} />}
+        {percent < 0 ? (
+          <Icon name="trendDown" color={color} />
+        ) : (
+          <Icon name="trendUp" color={color} />
+        )}
       </styled.ContainerDifference>
     </styled.CategorySummary>
   );

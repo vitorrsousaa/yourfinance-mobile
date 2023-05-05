@@ -7,11 +7,10 @@ import Header from '../../components/Header';
 import Button from '../../components/Button';
 import { Text } from '../../components/Text';
 import SettingsSection from './components/SettingsSection';
-import { User } from '../../components/Icons/User';
 
 import SettingsButton from './components/SettingsButton';
 import { useNavigation } from '@react-navigation/native';
-import { Chat } from '../../components/Icons/Chat';
+import Icon from '../../components/Icons';
 
 interface Props {
   viewModel: SettingsViewModelProps;
@@ -38,14 +37,14 @@ export function SettingsView({ viewModel, props }: Props) {
           <SettingsSection title="Geral">
             <SettingsButton
               title="Informações da sua conta"
-              icon={<User />}
+              icon={<Icon name="user" />}
               onPress={handleNavigateToMyAccount}
             />
           </SettingsSection>
           <SettingsSection title="Suporte">
             <SettingsButton
               title="Deixe um feedback"
-              icon={<Chat />}
+              icon={<Icon name="chat" />}
               onPress={handleNavigateToFeedback}
             />
           </SettingsSection>

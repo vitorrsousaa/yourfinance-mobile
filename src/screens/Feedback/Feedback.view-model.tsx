@@ -1,7 +1,5 @@
 import { ReactElement, useMemo, useState } from 'react';
-import { SmileAngry } from '../../components/Icons/SmileAngry';
-import { SmileMeh } from '../../components/Icons/SmileMeh';
-import { SmileGood } from '../../components/Icons/SmileGood';
+import Icon from '../../components/Icons';
 
 interface OptionProps {
   label: string;
@@ -29,17 +27,17 @@ export function FeedbackViewModel() {
       {
         label: 'Ruim',
         value: 'Ruim',
-        icon: (color) => <SmileAngry color={color} />,
+        icon: (color) => <Icon name="smileAngry" color={color} />,
       },
       {
         label: 'Bom',
         value: 'Bom',
-        icon: (color) => <SmileMeh color={color} />,
+        icon: (color) => <Icon name="smileMeh" color={color} />,
       },
       {
         label: 'Muito Bom',
         value: 'Muito Bom',
-        icon: (color) => <SmileGood color={color} />,
+        icon: (color) => <Icon name="smileGood" color={color} />,
       },
     ],
     []

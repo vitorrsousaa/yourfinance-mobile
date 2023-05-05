@@ -7,3 +7,5 @@ export const CreateTransactions = styled.SafeAreaView`
 export const Container = styled.View`
   padding: 24px;
 `;
+
+export const Input = styled.TextInput``;
