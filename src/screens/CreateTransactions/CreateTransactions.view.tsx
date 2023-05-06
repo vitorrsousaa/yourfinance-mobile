@@ -1,7 +1,7 @@
 import { CreateTransactionsViewModelProps } from './CreateTransactions.view-model';
 import { CreateTransactionsViewProps } from './CreateTransactions';
 import * as styled from './CreateTransactions.styles';
-import { View } from 'react-native';
+import { TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
 import Header from '../../components/Header';
 import InputOutlined from '../../components/InputOutlined';
 import formatAmount from '../../utils/formatAmout';
@@ -11,6 +11,7 @@ import Icon from '../../components/Icons';
 import Toggle from '../../components/Toggle';
 import Button from '../../components/Button';
 import { useTheme } from 'styled-components/native';
+import Modal from '../../components/Modal';
 
 interface Props {
   viewModel: CreateTransactionsViewModelProps;
@@ -26,10 +27,12 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
     selectedCategory,
     category,
     isValid,
+    modalityModalIsVisible,
     handleCategoryChange,
     goBack,
     handleAmountChange,
     handleDescriptionChange,
+    toggleModalityModal,
   } = viewModel;
 
   const { colors } = useTheme();
@@ -66,9 +69,11 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
           icon={<Icon name="wallet" />}
           title="Modalidades"
           rightIcon={
-            <View>
-              <Icon name="arrow" color={colors.black[900]} />
-            </View>
+            <TouchableOpacity onPress={toggleModalityModal}>
+              <styled.ContainerArrow>
+                <Icon name="arrow" color={colors.black[900]} />
+              </styled.ContainerArrow>
+            </TouchableOpacity>
           }
         />
 
@@ -98,6 +103,22 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
           Enviar
         </Button>
       </styled.Container>
+
+      <Modal
+        visible={modalityModalIsVisible}
+        title="Selecione a modalidade"
+        subtitle="modality"
+        action="teste"
+        onAction={() => {
+          console.log('action');
+        }}
+        isLoadingAction={false}
+        onClose={toggleModalityModal}
+      >
+        <View>
+          <Text>Testando</Text>
+        </View>
+      </Modal>
     </styled.CreateTransactions>
   );
 }

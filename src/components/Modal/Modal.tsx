@@ -8,7 +8,7 @@ export interface ModalProps {
   onClose: () => void;
   type?: 'danger' | 'primary';
   title: string;
-  subtitle: string;
+  subtitle?: string;
   children?: ReactNode;
   action: string;
   onAction: () => void;

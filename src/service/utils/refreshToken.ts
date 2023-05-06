@@ -37,7 +37,7 @@ export async function refreshToken() {
 
   await AsyncStorage.setItem(USER_COLLECTION, JSON.stringify(newAuthData));
 
-  setAuthorizationHeader(data.token);
+  // setAuthorizationHeader(data.token);
 
   return data.token;
 }

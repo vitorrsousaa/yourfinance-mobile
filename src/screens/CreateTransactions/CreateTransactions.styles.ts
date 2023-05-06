@@ -8,4 +8,6 @@ export const Container = styled.View`
   padding: 24px;
 `;
 
-export const Input = styled.TextInput``;
+export const ContainerArrow = styled.View`
+  transform: rotate(180deg);
+`;

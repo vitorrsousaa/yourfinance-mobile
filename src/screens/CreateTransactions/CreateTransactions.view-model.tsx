@@ -9,16 +9,19 @@ export interface CreateTransactionsViewModelProps {
   isValid: boolean;
   category: TCategory;
   selectedCategory: boolean;
+  modalityModalIsVisible: boolean;
   goBack: () => void;
   handleAmountChange: (text: string) => void;
   handleDescriptionChange: (text: string) => void;
   handleCategoryChange: () => void;
+  toggleModalityModal: () => void;
 }
 
 export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps {
   const [description, setDescription] = useState('');
   const [amount, setAmount] = useState(0);
   const [selectedCategory, setSelectedCategory] = useState(true);
+  const [modalityModalIsVisible, setModalityModalIsVisible] = useState(false);
 
   const { categories, isErrorCategories, isLoadingCategories } =
     useCategories();
@@ -26,7 +29,12 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
   const navigation = useNavigation();
 
   useEffect(() => {
-    console.log('dispara um toast falando pra sair do app e tentar novamente');
+    if (isErrorCategories) {
+      console.log(
+        'dispara um toast falando pra sair do app e tentar novamente'
+      );
+      return;
+    }
   }, [isErrorCategories]);
 
   const isValid = useMemo(
@@ -64,15 +72,20 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
     return categories[1];
   }, [selectedCategory]);
 
+  function toggleModalityModal() {
+    setModalityModalIsVisible(!modalityModalIsVisible);
+  }
   return {
     amount,
     description,
     isValid,
     category,
     selectedCategory,
+    modalityModalIsVisible,
     goBack,
     handleAmountChange,
     handleDescriptionChange,
     handleCategoryChange,
+    toggleModalityModal,
   };
 }
