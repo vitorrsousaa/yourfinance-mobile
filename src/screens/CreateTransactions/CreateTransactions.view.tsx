@@ -1,17 +1,20 @@
-import { CreateTransactionsViewModelProps } from './CreateTransactions.view-model';
+import { FlatList, TouchableOpacity, View } from 'react-native';
+import { useTheme } from 'styled-components/native';
+
+import Button from '../../components/Button';
+import Header from '../../components/Header';
+import Icon from '../../components/Icons';
+import InputOutlined from '../../components/InputOutlined';
+import Modal from '../../components/Modal';
+import Radio from '../../components/Radio';
+import { Text } from '../../components/Text';
+import Toggle from '../../components/Toggle';
+import formatAmount from '../../utils/formatAmout';
+
+import Row from './components/Row';
 import { CreateTransactionsViewProps } from './CreateTransactions';
 import * as styled from './CreateTransactions.styles';
-import { TouchableOpacity, TouchableWithoutFeedback, View } from 'react-native';
-import Header from '../../components/Header';
-import InputOutlined from '../../components/InputOutlined';
-import formatAmount from '../../utils/formatAmout';
-import { Text } from '../../components/Text';
-import Row from './components/Row';
-import Icon from '../../components/Icons';
-import Toggle from '../../components/Toggle';
-import Button from '../../components/Button';
-import { useTheme } from 'styled-components/native';
-import Modal from '../../components/Modal';
+import { CreateTransactionsViewModelProps } from './CreateTransactions.view-model';
 
 interface Props {
   viewModel: CreateTransactionsViewModelProps;
@@ -28,11 +31,15 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
     category,
     isValid,
     modalityModalIsVisible,
+    isLoadingModalities,
+    selectedModality,
+    getModalities,
     handleCategoryChange,
     goBack,
     handleAmountChange,
     handleDescriptionChange,
     toggleModalityModal,
+    onSelectedModality,
   } = viewModel;
 
   const { colors } = useTheme();
@@ -67,7 +74,8 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
 
         <Row
           icon={<Icon name="wallet" />}
-          title="Modalidades"
+          title={selectedModality ? selectedModality?.name : 'Modalidades'}
+          isLoading={isLoadingModalities}
           rightIcon={
             <TouchableOpacity onPress={toggleModalityModal}>
               <styled.ContainerArrow>
@@ -107,17 +115,30 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
       <Modal
         visible={modalityModalIsVisible}
         title="Selecione a modalidade"
-        subtitle="modality"
-        action="teste"
-        onAction={() => {
-          console.log('action');
-        }}
-        isLoadingAction={false}
         onClose={toggleModalityModal}
       >
-        <View>
-          <Text>Testando</Text>
-        </View>
+        <FlatList
+          data={getModalities()}
+          keyExtractor={(item) => item.id}
+          ItemSeparatorComponent={() => (
+            <View style={{ backgroundColor: colors.black[300], height: 1 }} />
+          )}
+          renderItem={({ item }) => (
+            <TouchableOpacity
+              activeOpacity={0.8}
+              style={{
+                padding: 12,
+                flexDirection: 'row',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+              }}
+              onPress={() => onSelectedModality(item)}
+            >
+              <Text size={18}>{item.name}</Text>
+              <Radio selected={selectedModality?.name === item.name} />
+            </TouchableOpacity>
+          )}
+        />
       </Modal>
     </styled.CreateTransactions>
   );
