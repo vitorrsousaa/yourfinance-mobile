@@ -98,7 +98,7 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
             <Text size={18} weight="500">
               Histórico
             </Text>
-            {historicTransaction.length > 0 ? (
+            {historicTransaction ? (
               <View style={{ flex: 1, paddingBottom: 86 }}>
                 <FlatList
                   data={historicTransaction}
