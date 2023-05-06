@@ -1,6 +1,6 @@
 import { ReactElement } from 'react';
-
 import React from 'react';
+
 import { Arrow } from './components/Arrow';
 import { ArrowLeftRight } from './components/ArrowLeftRight';
 import { ArrowRight } from './components/ArrowRight';
@@ -9,11 +9,12 @@ import { Calendar } from './components/Calendar';
 import { Certificate } from './components/Certificate';
 import { ChartBar } from './components/ChartBar';
 import { Chat } from './components/Chat';
+import { Check } from './components/Check';
 import { Currency } from './components/Currency';
 import { DotMenu } from './components/DotMenu';
 import { Download } from './components/Download';
-import { Home } from './components/Home';
 import { Filter } from './components/Filter';
+import { Home } from './components/Home';
 import { Income } from './components/Income';
 import { Logo } from './components/Logo';
 import { Outcome } from './components/Outcome';
@@ -41,6 +42,7 @@ export type Icons =
   | 'certificate'
   | 'chartBar'
   | 'chat'
+  | 'check'
   | 'currency'
   | 'dotMenu'
   | 'download'
@@ -77,6 +79,7 @@ const iconsList: IconMap = {
   certificate: <Certificate />,
   chartBar: <ChartBar />,
   chat: <Chat />,
+  check: <Check />,
   currency: <Currency />,
   dotMenu: <DotMenu />,
   download: <Download />,
