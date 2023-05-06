@@ -1,9 +1,10 @@
 import { useQuery } from 'react-query';
-import { TModalityResponse } from '../types/Modality';
+
 import ModalitiesService from '../service/ModalitiesService';
+import { TModality } from '../types/Modality';
 
 export function useModalities(): {
-  modalities: TModalityResponse;
+  modalities: TModality[];
   isErrorModalities: boolean;
   isLoadingModalities: boolean;
   refetch: () => Promise<unknown>;
@@ -13,7 +14,7 @@ export function useModalities(): {
     isError,
     refetch,
     isLoading,
-  } = useQuery<TModalityResponse>({
+  } = useQuery<TModality[]>({
     queryKey: ['@modalities'],
     queryFn: () => ModalitiesService.list(),
     staleTime: 1000 * 60 * 30, // 30 minutos
