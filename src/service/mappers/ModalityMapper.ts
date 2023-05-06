@@ -4,7 +4,7 @@ class ModalityMapper {
   toDomain(modality: TModalityResponse): TModality {
     return {
       category: modality.categoryId,
-      id: modality._id,
+      id: modality.id,
       name: modality.name,
     };
   }

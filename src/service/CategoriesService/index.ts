@@ -1,5 +1,6 @@
 import { TCategory } from '../../types/Category';
 import HttpClient from '../HttpClient';
+
 import { ICategoriesService } from './ICategoriesService';
 
 class CategoriesService implements ICategoriesService {
@@ -10,7 +11,9 @@ class CategoriesService implements ICategoriesService {
   }
 
   async list() {
-    return this.httpClient.get<TCategory[]>('/category');
+    const categories = await this.httpClient.get<TCategory[]>('/category');
+    console.log(categories);
+    return categories;
   }
 }
 

@@ -1,5 +1,4 @@
 export interface TCategory {
-  _id: string;
+  id: string;
   name: string;
-  __v: number;
 }
