@@ -17,12 +17,12 @@ function Register(props: RegisterProps) {
   const viewModel = useViewModel();
 
   return (
-      <RegisterView viewModel={viewModel} props={viewProps} />
+    <RegisterView viewModel={viewModel} props={viewProps} />
   );
 }
 
 export function useViewModel(){
-  const viewModel = RegisterViewModel()
+  const viewModel = RegisterViewModel();
 
   return viewModel;
 }

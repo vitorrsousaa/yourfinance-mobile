@@ -1,7 +1,8 @@
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-import APIError from '../errors/APIErrors';
 
+import APIError from '../errors/APIErrors';
 import delay from '../utils/delay';
+
 import api from './api';
 
 class HttpClient {

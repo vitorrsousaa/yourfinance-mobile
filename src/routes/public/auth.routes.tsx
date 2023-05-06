@@ -1,7 +1,8 @@
+import { NavigationProp } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+
 import Login from '../../screens/Login';
 import Register from '../../screens/Register';
-import { NavigationProp } from '@react-navigation/native';
 
 export type AuthRootParamList = {
   Login: undefined;

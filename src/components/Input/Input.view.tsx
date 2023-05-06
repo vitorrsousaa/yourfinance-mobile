@@ -1,10 +1,12 @@
 /* eslint-disable indent */
-import { InputViewModelProps } from './Input.view-model';
+import { View } from 'react-native';
+import { useTheme } from 'styled-components/native';
+
+import { Text } from '../Text';
+
 import { InputViewProps } from './Input';
 import * as styled from './Input.styles';
-import { Text } from '../Text';
-import { useTheme } from 'styled-components/native';
-import { View } from 'react-native';
+import { InputViewModelProps } from './Input.view-model';
 
 interface Props {
   viewModel: InputViewModelProps;

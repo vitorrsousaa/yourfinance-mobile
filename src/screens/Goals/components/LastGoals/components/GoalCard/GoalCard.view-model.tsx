@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
+
 import { PrivateRouteNavigationProp } from '../../../../../../routes/private';
 import { TGoalResponse } from '../../../../../../types/Goal';
 

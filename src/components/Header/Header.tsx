@@ -1,4 +1,4 @@
-import { ReactElement, memo } from 'react';
+import { memo,ReactElement } from 'react';
 
 import { HeaderView } from './Header.view';
 import { HeaderViewModel } from './Header.view-model';

@@ -1,7 +1,9 @@
 import styled, { css } from 'styled-components/native';
-import { variants } from './Button';
-import { ButtonVariants } from './theme/types';
+
 import { Text } from '../Text';
+
+import { ButtonVariants } from './theme/types';
+import { variants } from './Button';
 
 export const TextBase = styled(Text)<{
   customTheme: ButtonVariants;

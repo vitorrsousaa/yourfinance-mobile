@@ -1,5 +1,6 @@
 import { UserRequest, UserResponse } from '../../types/User';
 import HttpClient from '../HttpClient';
+
 import { IAuthService } from './IAuthService';
 
 class AuthService implements IAuthService {

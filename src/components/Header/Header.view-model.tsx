@@ -5,10 +5,10 @@ export interface HeaderViewModelProps {
 }
 
 export function HeaderViewModel() {
-  const [state, setState] = useState('')
+  const [state, setState] = useState('');
 
   return {
     state,
     setState
-  }
+  };
 }

@@ -1,9 +1,10 @@
 import { memo, useEffect } from 'react';
 
+import { useCategories } from '../../hooks/useCategories';
+import AnalyticsService from '../../service/AnalyticsService';
+
 import { HomeView } from './Home.view';
 import { HomeViewModel } from './Home.view-model';
-import AnalyticsService from '../../service/AnalyticsService';
-import { useCategories } from '../../hooks/useCategories';
 
 export interface HomeProps {}
 

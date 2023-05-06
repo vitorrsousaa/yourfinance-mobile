@@ -1,8 +1,9 @@
 import { memo } from 'react';
 
+import { TTransaction } from '../../../../types/Transaction';
+
 import { TransactionView } from './Transaction.view';
 import { TransactionViewModel } from './Transaction.view-model';
-import { TTransaction } from '../../../../types/Transaction';
 
 export interface TransactionProps {
   data: TTransaction;

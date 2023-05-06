@@ -17,12 +17,12 @@ function Feedback(props: FeedbackProps) {
   const viewModel = useViewModel();
 
   return (
-      <FeedbackView viewModel={viewModel} props={viewProps} />
+    <FeedbackView viewModel={viewModel} props={viewProps} />
   );
 }
 
 export function useViewModel(){
-  const viewModel = FeedbackViewModel()
+  const viewModel = FeedbackViewModel();
 
   return viewModel;
 }

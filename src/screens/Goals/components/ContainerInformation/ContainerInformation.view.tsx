@@ -1,9 +1,11 @@
-import { ContainerInformationViewModelProps } from './ContainerInformation.view-model';
+import { View } from 'react-native';
+import { useTheme } from 'styled-components/native';
+
+import { Text } from '../../../../components/Text';
+
 import { ContainerInformationViewProps } from './ContainerInformation';
 import * as styled from './ContainerInformation.styles';
-import { View } from 'react-native';
-import { Text } from '../../../../components/Text';
-import { useTheme } from 'styled-components/native';
+import { ContainerInformationViewModelProps } from './ContainerInformation.view-model';
 
 interface Props {
   viewModel: ContainerInformationViewModelProps;

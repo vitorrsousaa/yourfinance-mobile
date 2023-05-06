@@ -1,10 +1,12 @@
-import { HeaderViewModelProps } from './Header.view-model';
+import { View } from 'react-native';
+import { useTheme } from 'styled-components/native';
+
+import { Text } from '../Text';
+import Touchable from '../Touchable';
+
 import { HeaderViewProps } from './Header';
 import * as styled from './Header.styles';
-import { View } from 'react-native';
-import { Text } from '../Text';
-import { useTheme } from 'styled-components/native';
-import Touchable from '../Touchable';
+import { HeaderViewModelProps } from './Header.view-model';
 
 interface Props {
   viewModel: HeaderViewModelProps;

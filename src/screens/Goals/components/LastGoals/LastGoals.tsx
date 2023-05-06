@@ -1,8 +1,9 @@
 import { memo } from 'react';
 
+import { TGoalResponse } from '../../../../types/Goal';
+
 import { LastGoalsView } from './LastGoals.view';
 import { LastGoalsViewModel } from './LastGoals.view-model';
-import { TGoalResponse } from '../../../../types/Goal';
 
 export interface LastGoalsProps {
   goals: TGoalResponse[];

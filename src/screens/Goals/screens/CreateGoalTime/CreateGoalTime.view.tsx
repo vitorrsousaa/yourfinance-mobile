@@ -1,12 +1,13 @@
-import { CreateGoalTimeViewModelProps } from './CreateGoalTime.view-model';
+import { View } from 'react-native';
+
+import Header from '../../../../components/Header';
+import ContainerInformation from '../../components/ContainerInformation';
+import ContinuousButton from '../../components/ContinuousButton';
+
+import CheckBoxForm from './components/CheckBoxForm';
 import { CreateGoalTimeViewProps } from './CreateGoalTime';
 import * as styled from './CreateGoalTime.styles';
-
-import ContainerInformation from '../../components/ContainerInformation';
-import { View } from 'react-native';
-import ContinuousButton from '../../components/ContinuousButton';
-import CheckBoxForm from './components/CheckBoxForm';
-import Header from '../../../../components/Header';
+import { CreateGoalTimeViewModelProps } from './CreateGoalTime.view-model';
 
 interface Props {
   viewModel: CreateGoalTimeViewModelProps;

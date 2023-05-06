@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+
 import { ViewModelProps } from './CategorySummary';
 
 export interface CategorySummaryViewModelProps {

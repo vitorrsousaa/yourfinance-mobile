@@ -1,7 +1,8 @@
-import { WelcomeViewModelProps } from './Welcome.view-model';
+import { Text } from '../Text';
+
 import { WelcomeViewProps } from './Welcome';
 import * as styled from './Welcome.styles';
-import { Text } from '../Text';
+import { WelcomeViewModelProps } from './Welcome.view-model';
 
 interface Props {
   viewModel: WelcomeViewModelProps;

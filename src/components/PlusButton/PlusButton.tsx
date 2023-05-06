@@ -1,8 +1,8 @@
 import { memo } from 'react';
+import { TouchableOpacityProps } from 'react-native';
 
 import { PlusButtonView } from './PlusButton.view';
 import { PlusButtonViewModel } from './PlusButton.view-model';
-import { TouchableOpacityProps } from 'react-native';
 
 export interface PlusButtonProps extends TouchableOpacityProps {}
 

@@ -1,8 +1,8 @@
 import { memo } from 'react';
+import { SwitchProps } from 'react-native';
 
 import { ToggleView } from './Toggle.view';
 import { ToggleViewModel } from './Toggle.view-model';
-import { SwitchProps } from 'react-native';
 
 export interface ToggleProps extends SwitchProps {}
 

@@ -5,10 +5,10 @@ export interface RadioViewModelProps {
 }
 
 export function RadioViewModel() {
-  const [state, setState] = useState('')
+  const [state, setState] = useState('');
 
   return {
     state,
     setState
-  }
+  };
 }

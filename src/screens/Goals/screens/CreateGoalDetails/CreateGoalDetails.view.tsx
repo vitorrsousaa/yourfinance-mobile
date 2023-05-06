@@ -1,12 +1,14 @@
-import { CreateGoalDetailsViewModelProps } from './CreateGoalDetails.view-model';
-import { CreateGoalDetailsViewProps } from './CreateGoalDetails';
-import * as styled from './CreateGoalDetails.styles';
 import { View } from 'react-native';
-import Header from '../../../../components/Header';
+import { useTheme } from 'styled-components/native';
+
 import Button from '../../../../components/Button';
+import Header from '../../../../components/Header';
 import { Text } from '../../../../components/Text';
 import formatAmount from '../../../../utils/formatAmout';
-import { useTheme } from 'styled-components/native';
+
+import { CreateGoalDetailsViewProps } from './CreateGoalDetails';
+import * as styled from './CreateGoalDetails.styles';
+import { CreateGoalDetailsViewModelProps } from './CreateGoalDetails.view-model';
 
 interface Props {
   viewModel: CreateGoalDetailsViewModelProps;

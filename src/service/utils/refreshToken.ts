@@ -1,7 +1,9 @@
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { TOKEN_COLLECTION, USER_COLLECTION } from '../../storage/storageConfig';
-import { setAuthorizationHeader } from './authorizationHeader';
 import axios from 'axios';
+
+import { TOKEN_COLLECTION, USER_COLLECTION } from '../../storage/storageConfig';
+
+import { setAuthorizationHeader } from './authorizationHeader';
 
 type refreshToken = {
   token: string;

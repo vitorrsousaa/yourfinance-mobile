@@ -1,9 +1,9 @@
-import { ButtonViewModelProps } from './Button.view-model';
+import { ActivityIndicator } from 'react-native';
+
 import { ButtonViewProps } from './Button';
 import * as styled from './Button.styles';
-
+import { ButtonViewModelProps } from './Button.view-model';
 import buttonVariants from './theme';
-import { ActivityIndicator } from 'react-native';
 
 interface Props {
   viewModel: ButtonViewModelProps;

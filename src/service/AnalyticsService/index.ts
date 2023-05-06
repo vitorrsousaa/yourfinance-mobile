@@ -1,5 +1,6 @@
 import { TCardSummary } from '../../types/Analytics';
 import HttpClient from '../HttpClient';
+
 import { IAnalyticsService } from './IAnalyticsService';
 
 class AnalyticsService implements IAnalyticsService {

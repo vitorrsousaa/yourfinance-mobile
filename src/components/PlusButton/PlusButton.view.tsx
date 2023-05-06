@@ -1,6 +1,7 @@
-import { PlusButtonViewModelProps } from './PlusButton.view-model';
-import { PlusButtonViewProps } from './PlusButton';
 import Touchable from '../Touchable';
+
+import { PlusButtonViewProps } from './PlusButton';
+import { PlusButtonViewModelProps } from './PlusButton.view-model';
 
 interface Props {
   viewModel: PlusButtonViewModelProps;

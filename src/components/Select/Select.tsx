@@ -1,8 +1,8 @@
 import { memo } from 'react';
+import { PickerProps } from '@react-native-picker/picker';
 
 import { SelectView } from './Select.view';
 import { SelectViewModel } from './Select.view-model';
-import { PickerProps } from '@react-native-picker/picker';
 
 export interface SelectProps extends PickerProps {
   placeholder?: string;

@@ -17,12 +17,12 @@ function Settings(props: SettingsProps) {
   const viewModel = useViewModel();
 
   return (
-      <SettingsView viewModel={viewModel} props={viewProps} />
+    <SettingsView viewModel={viewModel} props={viewProps} />
   );
 }
 
 export function useViewModel(){
-  const viewModel = SettingsViewModel()
+  const viewModel = SettingsViewModel();
 
   return viewModel;
 }

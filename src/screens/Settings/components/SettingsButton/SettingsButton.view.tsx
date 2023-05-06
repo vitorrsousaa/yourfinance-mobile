@@ -1,10 +1,12 @@
-import { SettingsButtonViewModelProps } from './SettingsButton.view-model';
-import { SettingsButtonViewProps } from './SettingsButton';
-import * as styled from './SettingsButton.styles';
 import { View } from 'react-native';
 import { useTheme } from 'styled-components/native';
-import { Text } from '../../../../components/Text';
+
 import Icon from '../../../../components/Icons';
+import { Text } from '../../../../components/Text';
+
+import { SettingsButtonViewProps } from './SettingsButton';
+import * as styled from './SettingsButton.styles';
+import { SettingsButtonViewModelProps } from './SettingsButton.view-model';
 
 interface Props {
   viewModel: SettingsButtonViewModelProps;

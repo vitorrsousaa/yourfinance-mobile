@@ -1,5 +1,6 @@
-import { TGoalResponse, TGoalCreate, TGoalTransaction } from '../../types/Goal';
+import { TGoalCreate, TGoalResponse, TGoalTransaction } from '../../types/Goal';
 import HttpClient from '../HttpClient';
+
 import { IGoalsService } from './IGoalsService';
 
 class GoalsService implements IGoalsService {

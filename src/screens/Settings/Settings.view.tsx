@@ -1,16 +1,17 @@
-import { SettingsViewModelProps } from './Settings.view-model';
-import { SettingsViewProps } from './Settings';
-import * as styled from './Settings.styles';
+import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
-import { useAuth } from '../../hooks/useAuth';
-import Header from '../../components/Header';
+
 import Button from '../../components/Button';
+import Header from '../../components/Header';
+import Icon from '../../components/Icons';
 import { Text } from '../../components/Text';
-import SettingsSection from './components/SettingsSection';
+import { useAuth } from '../../hooks/useAuth';
 
 import SettingsButton from './components/SettingsButton';
-import { useNavigation } from '@react-navigation/native';
-import Icon from '../../components/Icons';
+import SettingsSection from './components/SettingsSection';
+import { SettingsViewProps } from './Settings';
+import * as styled from './Settings.styles';
+import { SettingsViewModelProps } from './Settings.view-model';
 
 interface Props {
   viewModel: SettingsViewModelProps;

@@ -1,4 +1,4 @@
-export { TGoalResponse } from './GoalResponse';
-export { TGoalCreate } from './GoalCreate';
-export { THistoricTransaction } from './HistoricTransaction';
 export { TGoalTransaction } from './CreateTransactionGoal';
+export { TGoalCreate } from './GoalCreate';
+export { TGoalResponse } from './GoalResponse';
+export { THistoricTransaction } from './HistoricTransaction';

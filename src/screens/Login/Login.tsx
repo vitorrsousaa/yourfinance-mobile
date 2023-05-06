@@ -1,8 +1,9 @@
 import { memo } from 'react';
 
+import { useAuth } from '../../hooks/useAuth';
+
 import { LoginView } from './Login.view';
 import { LoginViewModel } from './Login.view-model';
-import { useAuth } from '../../hooks/useAuth';
 
 export interface LoginProps {}
 

@@ -1,14 +1,16 @@
-import { LastTransactionsViewModelProps } from './LastTransactions.view-model';
+import { FlatList, View } from 'react-native';
+import { useTheme } from 'styled-components/native';
+
+import Icon from '../Icons';
+import { ErrorContent } from '../Illustrations/ErrorContent';
+import { NoData } from '../Illustrations/NoData';
+import Loader from '../Loader';
+import { Text } from '../Text';
+
+import Transaction from './components/Transaction';
 import { LastTransactionsViewProps } from './LastTransactions';
 import * as styled from './LastTransactions.styles';
-import { Text } from '../Text';
-import { useTheme } from 'styled-components/native';
-import Transaction from './components/Transaction';
-import { FlatList, View } from 'react-native';
-import Loader from '../Loader';
-import { NoData } from '../Illustrations/NoData';
-import { ErrorContent } from '../Illustrations/ErrorContent';
-import Icon from '../Icons';
+import { LastTransactionsViewModelProps } from './LastTransactions.view-model';
 
 interface Props {
   viewModel: LastTransactionsViewModelProps;

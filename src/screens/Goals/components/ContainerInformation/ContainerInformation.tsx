@@ -1,4 +1,4 @@
-import { ReactNode, memo } from 'react';
+import { memo,ReactNode } from 'react';
 
 import { ContainerInformationView } from './ContainerInformation.view';
 import { ContainerInformationViewModel } from './ContainerInformation.view-model';

@@ -8,7 +8,7 @@ export function useModalities(): {
   isErrorModalities: boolean;
   isLoadingModalities: boolean;
   refetch: () => Promise<unknown>;
-} {
+  } {
   const {
     data: modalities,
     isError,

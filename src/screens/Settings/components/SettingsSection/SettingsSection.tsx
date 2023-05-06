@@ -1,4 +1,4 @@
-import { ReactNode, memo } from 'react';
+import { memo,ReactNode } from 'react';
 
 import { SettingsSectionView } from './SettingsSection.view';
 import { SettingsSectionViewModel } from './SettingsSection.view-model';

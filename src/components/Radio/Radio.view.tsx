@@ -1,7 +1,8 @@
-import { RadioViewModelProps } from './Radio.view-model';
+import Icon from '../Icons';
+
 import { RadioViewProps } from './Radio';
 import * as styled from './Radio.styles';
-import Icon from '../Icons';
+import { RadioViewModelProps } from './Radio.view-model';
 
 interface Props {
   viewModel: RadioViewModelProps;

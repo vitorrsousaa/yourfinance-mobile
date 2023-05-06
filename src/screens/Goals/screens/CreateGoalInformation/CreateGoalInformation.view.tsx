@@ -1,14 +1,15 @@
-import { CreateGoalInformationViewModelProps } from './CreateGoalInformation.view-model';
-import { CreateGoalInformationViewProps } from './CreateGoalInformation';
-import * as styled from './CreateGoalInformation.styles';
 import { KeyboardAvoidingView, ScrollView, View } from 'react-native';
 
-import ContainerInformation from '../../components/ContainerInformation';
-import InputOutlined from '../../../../components/InputOutlined';
-import { isAndroid } from '../../../../utils/isAndroid';
-import ContinuousButton from '../../components/ContinuousButton';
-import formatAmount from '../../../../utils/formatAmout';
 import Header from '../../../../components/Header';
+import InputOutlined from '../../../../components/InputOutlined';
+import formatAmount from '../../../../utils/formatAmout';
+import { isAndroid } from '../../../../utils/isAndroid';
+import ContainerInformation from '../../components/ContainerInformation';
+import ContinuousButton from '../../components/ContinuousButton';
+
+import { CreateGoalInformationViewProps } from './CreateGoalInformation';
+import * as styled from './CreateGoalInformation.styles';
+import { CreateGoalInformationViewModelProps } from './CreateGoalInformation.view-model';
 
 interface Props {
   viewModel: CreateGoalInformationViewModelProps;

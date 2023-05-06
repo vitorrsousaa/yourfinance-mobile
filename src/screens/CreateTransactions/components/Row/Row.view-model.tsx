@@ -5,10 +5,10 @@ export interface RowViewModelProps {
 }
 
 export function RowViewModel() {
-  const [state, setState] = useState('')
+  const [state, setState] = useState('');
 
   return {
     state,
     setState
-  }
+  };
 }

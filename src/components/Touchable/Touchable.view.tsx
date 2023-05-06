@@ -1,7 +1,8 @@
-import { TouchableViewModelProps } from './Touchable.view-model';
+import Icon from '../Icons';
+
 import { TouchableViewProps } from './Touchable';
 import * as styled from './Touchable.styles';
-import Icon from '../Icons';
+import { TouchableViewModelProps } from './Touchable.view-model';
 
 interface Props {
   viewModel: TouchableViewModelProps;

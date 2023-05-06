@@ -1,15 +1,17 @@
-import { GoalCardViewModelProps } from './GoalCard.view-model';
+import { useMemo } from 'react';
+import { View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useTheme } from 'styled-components/native';
+
+import Icon from '../../../../../../components/Icons';
+import { Text } from '../../../../../../components/Text';
+import formatAmount from '../../../../../../utils/formatAmout';
+import { formatDate } from '../../../../../../utils/formatDate';
+import ProgressBar from '../../../ProgressBar';
+
 import { GoalCardViewProps } from './GoalCard';
 import * as styled from './GoalCard.styles';
-import { View } from 'react-native';
-import formatAmount from '../../../../../../utils/formatAmout';
-import { useTheme } from 'styled-components/native';
-import { Text } from '../../../../../../components/Text';
-import { TouchableOpacity } from 'react-native-gesture-handler';
-import ProgressBar from '../../../ProgressBar';
-import { formatDate } from '../../../../../../utils/formatDate';
-import { useMemo } from 'react';
-import Icon from '../../../../../../components/Icons';
+import { GoalCardViewModelProps } from './GoalCard.view-model';
 
 interface Props {
   viewModel: GoalCardViewModelProps;

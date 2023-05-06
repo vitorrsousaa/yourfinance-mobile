@@ -1,13 +1,15 @@
-import { RegisterViewModelProps } from './Register.view-model';
-import { RegisterViewProps } from './Register';
-import * as styled from './Register.styles';
 import { ScrollView, TouchableOpacity, View } from 'react-native';
-import { isAndroid } from '../../utils/isAndroid';
+import { useTheme } from 'styled-components/native';
+
+import Button from '../../components/Button';
+import Input from '../../components/Input';
 import { Text } from '../../components/Text';
 import Welcome from '../../components/Welcome';
-import { useTheme } from 'styled-components/native';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
+import { isAndroid } from '../../utils/isAndroid';
+
+import { RegisterViewProps } from './Register';
+import * as styled from './Register.styles';
+import { RegisterViewModelProps } from './Register.view-model';
 
 interface Props {
   viewModel: RegisterViewModelProps;

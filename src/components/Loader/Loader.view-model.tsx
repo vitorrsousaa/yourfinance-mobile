@@ -5,10 +5,10 @@ export interface LoaderViewModelProps {
 }
 
 export function LoaderViewModel() {
-  const [state, setState] = useState('')
+  const [state, setState] = useState('');
 
   return {
     state,
     setState
-  }
+  };
 }

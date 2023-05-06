@@ -1,7 +1,8 @@
-import { NotificationsViewModelProps } from './Notifications.view-model';
+import { Text } from 'react-native';
+
 import { NotificationsViewProps } from './Notifications';
 import * as styled from './Notifications.styles';
-import { Text } from 'react-native';
+import { NotificationsViewModelProps } from './Notifications.view-model';
 
 interface Props {
   viewModel: NotificationsViewModelProps;

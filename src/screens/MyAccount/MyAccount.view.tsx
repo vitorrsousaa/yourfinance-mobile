@@ -1,13 +1,15 @@
-import { MyAccountViewModelProps } from './MyAccount.view-model';
+import { useNavigation } from '@react-navigation/native';
+import { View } from 'react-native';
+import { useTheme } from 'styled-components/native';
+
+import Button from '../../components/Button';
+import Header from '../../components/Header';
+import { Text } from '../../components/Text';
+import { useAuth } from '../../hooks/useAuth';
+
 import { MyAccountViewProps } from './MyAccount';
 import * as styled from './MyAccount.styles';
-import { View } from 'react-native';
-import Header from '../../components/Header';
-import { useNavigation } from '@react-navigation/native';
-import { Text } from '../../components/Text';
-import { useTheme } from 'styled-components/native';
-import Button from '../../components/Button';
-import { useAuth } from '../../hooks/useAuth';
+import { MyAccountViewModelProps } from './MyAccount.view-model';
 
 interface Props {
   viewModel: MyAccountViewModelProps;

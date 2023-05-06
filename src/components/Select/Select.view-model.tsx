@@ -5,10 +5,10 @@ export interface SelectViewModelProps {
 }
 
 export function SelectViewModel() {
-  const [state, setState] = useState('')
+  const [state, setState] = useState('');
 
   return {
     state,
     setState
-  }
+  };
 }

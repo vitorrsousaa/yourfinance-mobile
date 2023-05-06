@@ -1,8 +1,8 @@
-import { ReactNode, memo } from 'react';
+import { memo,ReactNode } from 'react';
+import { TouchableOpacityProps } from 'react-native';
 
 import { SettingsButtonView } from './SettingsButton.view';
 import { SettingsButtonViewModel } from './SettingsButton.view-model';
-import { TouchableOpacityProps } from 'react-native';
 
 export interface SettingsButtonProps extends TouchableOpacityProps {
   title: string;

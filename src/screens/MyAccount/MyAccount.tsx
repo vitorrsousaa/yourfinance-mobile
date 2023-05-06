@@ -17,12 +17,12 @@ function MyAccount(props: MyAccountProps) {
   const viewModel = useViewModel();
 
   return (
-      <MyAccountView viewModel={viewModel} props={viewProps} />
+    <MyAccountView viewModel={viewModel} props={viewProps} />
   );
 }
 
 export function useViewModel(){
-  const viewModel = MyAccountViewModel()
+  const viewModel = MyAccountViewModel();
 
   return viewModel;
 }

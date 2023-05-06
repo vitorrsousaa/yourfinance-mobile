@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import useErrors from '../../hooks/useErrors';
-import isEmailValid from '../../utils/isEmailValid';
 import { useNavigation } from '@react-navigation/native';
+
+import useErrors from '../../hooks/useErrors';
 import { AuthRoutesNavigationProp } from '../../routes/public/auth.routes';
+import isEmailValid from '../../utils/isEmailValid';
 
 export interface LoginViewModelProps {
   email: string;

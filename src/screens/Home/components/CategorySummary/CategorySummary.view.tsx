@@ -1,10 +1,12 @@
-import { CategorySummaryViewModelProps } from './CategorySummary.view-model';
+import { useTheme } from 'styled-components/native';
+
+import Icon from '../../../../components/Icons';
+import { Text } from '../../../../components/Text';
+import formatAmount from '../../../../utils/formatAmout';
+
 import { CategorySummaryViewProps } from './CategorySummary';
 import * as styled from './CategorySummary.styles';
-import formatAmount from '../../../../utils/formatAmout';
-import { Text } from '../../../../components/Text';
-import { useTheme } from 'styled-components/native';
-import Icon from '../../../../components/Icons';
+import { CategorySummaryViewModelProps } from './CategorySummary.view-model';
 
 interface Props {
   viewModel: CategorySummaryViewModelProps;
