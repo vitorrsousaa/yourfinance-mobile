@@ -1,10 +1,13 @@
-import { CheckBoxFormViewModelProps } from './CheckBoxForm.view-model';
-import { CheckBoxFormViewProps } from './CheckBoxForm';
-import * as styled from './CheckBoxForm.styles';
 import { View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
-import { Text } from '../../../../../../components/Text';
 import { useTheme } from 'styled-components/native';
+
+import Radio from '../../../../../../components/Radio';
+import { Text } from '../../../../../../components/Text';
+
+import { CheckBoxFormViewProps } from './CheckBoxForm';
+import * as styled from './CheckBoxForm.styles';
+import { CheckBoxFormViewModelProps } from './CheckBoxForm.view-model';
 
 interface Props {
   viewModel: CheckBoxFormViewModelProps;
@@ -28,7 +31,7 @@ export function CheckBoxFormView({ viewModel, props }: Props) {
               {item.label}
             </Text>
 
-            <styled.CheckBox selected={selected === item.value} />
+            <Radio selected={selected === item.value} />
           </styled.Row>
         )}
       />
