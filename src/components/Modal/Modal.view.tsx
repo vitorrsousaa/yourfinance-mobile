@@ -35,8 +35,8 @@ export function ModalView({ viewModel, props }: Props) {
       animationType="slide"
       transparent
     >
-      <styled.Overlay behavior={isAndroid ? 'height' : 'padding'}>
-        <TouchableWithoutFeedback onPress={onClose}>
+      <TouchableWithoutFeedback onPress={onClose}>
+        <styled.Overlay behavior={isAndroid ? 'height' : 'padding'}>
           <styled.ModalBody>
             <styled.Header>
               <Text
@@ -74,8 +74,8 @@ export function ModalView({ viewModel, props }: Props) {
               </Button>
             </styled.Actions>
           </styled.ModalBody>
-        </TouchableWithoutFeedback>
-      </styled.Overlay>
+        </styled.Overlay>
+      </TouchableWithoutFeedback>
     </Modal>
   );
 }
