@@ -1,11 +1,13 @@
-import { ModalViewModelProps } from './Modal.view-model';
+import { Modal, TouchableWithoutFeedback, View } from 'react-native';
+import { useTheme } from 'styled-components/native';
+
+import { isAndroid } from '../../utils/isAndroid';
+import Button from '../Button';
+import { Text } from '../Text';
+
 import { ModalViewProps } from './Modal';
 import * as styled from './Modal.styles';
-import { Modal, TouchableWithoutFeedback, View } from 'react-native';
-import { Text } from '../Text';
-import { isAndroid } from '../../utils/isAndroid';
-import { useTheme } from 'styled-components/native';
-import Button from '../Button';
+import { ModalViewModelProps } from './Modal.view-model';
 
 interface Props {
   viewModel: ModalViewModelProps;
@@ -54,25 +56,27 @@ export function ModalView({ viewModel, props }: Props) {
             </styled.Header>
             {children && children}
 
-            <styled.Actions>
-              <Button
-                variant="empty"
-                style={{ flex: 1 }}
-                onPress={onClose}
-                disabled={isLoadingAction}
-              >
-                Cancelar
-              </Button>
-              <Button
-                variant={type === 'danger' ? 'danger' : 'primary'}
-                style={{ flex: 1 }}
-                onPress={onAction}
-                loading={isLoadingAction}
-                disabled={isDisabledAction}
-              >
-                {action}
-              </Button>
-            </styled.Actions>
+            {action && (
+              <styled.Actions>
+                <Button
+                  variant="empty"
+                  style={{ flex: 1 }}
+                  onPress={onClose}
+                  disabled={isLoadingAction}
+                >
+                  Cancelar
+                </Button>
+                <Button
+                  variant={type === 'danger' ? 'danger' : 'primary'}
+                  style={{ flex: 1 }}
+                  onPress={onAction}
+                  loading={isLoadingAction}
+                  disabled={isDisabledAction}
+                >
+                  {action}
+                </Button>
+              </styled.Actions>
+            )}
           </styled.ModalBody>
         </styled.Overlay>
       </TouchableWithoutFeedback>

@@ -1,4 +1,4 @@
-import { ReactNode, memo } from 'react';
+import { memo, ReactNode } from 'react';
 
 import { ModalView } from './Modal.view';
 import { ModalViewModel } from './Modal.view-model';
@@ -10,9 +10,9 @@ export interface ModalProps {
   title: string;
   subtitle?: string;
   children?: ReactNode;
-  action: string;
-  onAction: () => void;
-  isLoadingAction: boolean;
+  action?: string;
+  onAction?: () => void;
+  isLoadingAction?: boolean;
   isDisabledAction?: boolean;
 }
 
