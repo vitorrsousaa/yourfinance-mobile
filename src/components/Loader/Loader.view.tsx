@@ -1,7 +1,8 @@
 import { LoaderViewModelProps } from './Loader.view-model';
 import { LoaderViewProps } from './Loader';
 import * as styled from './Loader.styles';
-import { ActivityIndicator, ActivityIndicatorProps } from 'react-native';
+import { ActivityIndicator } from 'react-native';
+import { useTheme } from 'styled-components/native';
 
 interface Props {
   viewModel: LoaderViewModelProps;
@@ -9,11 +10,13 @@ interface Props {
 }
 
 export function LoaderView({ viewModel, props }: Props) {
-  const { ...loaderProps } = props;
+  const { color, ...loaderProps } = props;
+
+  const { colors } = useTheme();
 
   return (
     <styled.Loader>
-      <ActivityIndicator {...loaderProps} />
+      <ActivityIndicator color={colors.green[400]} {...loaderProps} />
     </styled.Loader>
   );
 }

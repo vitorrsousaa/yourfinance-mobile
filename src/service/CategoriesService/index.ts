@@ -12,7 +12,6 @@ class CategoriesService implements ICategoriesService {
 
   async list() {
     const categories = await this.httpClient.get<TCategory[]>('/category');
-    console.log(categories);
     return categories;
   }
 }
