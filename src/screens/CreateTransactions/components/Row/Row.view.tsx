@@ -14,12 +14,19 @@ interface Props {
 }
 
 export function RowView({ viewModel, props }: Props) {
-  const { icon, title, rightIcon, children, isLoading = false } = props;
+  const {
+    icon,
+    title,
+    rightIcon,
+    children,
+    isLoading = false,
+    ...rowProps
+  } = props;
 
   const { colors } = useTheme();
 
   return (
-    <styled.Row>
+    <styled.Row {...rowProps} activeOpacity={1}>
       <View
         style={{
           gap: 8,

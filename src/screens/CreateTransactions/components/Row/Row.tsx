@@ -1,9 +1,10 @@
 import { memo, ReactNode } from 'react';
+import { TouchableOpacityProps } from 'react-native';
 
 import { RowView } from './Row.view';
 import { RowViewModel } from './Row.view-model';
 
-export interface RowProps {
+export interface RowProps extends TouchableOpacityProps {
   icon: ReactNode;
   title?: string;
   rightIcon?: ReactNode;
