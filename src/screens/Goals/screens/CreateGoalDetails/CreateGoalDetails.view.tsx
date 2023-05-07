@@ -24,7 +24,7 @@ export function CreateGoalDetailsView({ viewModel, props }: Props) {
 
   return (
     <styled.CreateGoalDetails>
-      <Header title={'Adicionando uma meta'} onPressLeftIcon={goBack} />
+      <Header title={'Crie o potinho'} onPressLeftIcon={goBack} />
 
       <View
         style={{

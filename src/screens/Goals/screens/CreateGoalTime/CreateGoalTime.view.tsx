@@ -32,8 +32,8 @@ export function CreateGoalTimeView({ viewModel, props }: Props) {
 
       <View style={{ padding: 32 }}>
         <ContainerInformation
-          title="Em quanto tempo você quer atingir essa meta?"
-          subtitle="O prazo para definição de uma meta é muito importante. Ele deve ser realista e alcançavel."
+          title="Em quanto tempo você deseja encher o potinho?"
+          subtitle="Defina um prazo realista e alcançável para encher o seu potinho. O prazo é crucial para o sucesso!"
         >
           <CheckBoxForm
             data={checkForm}

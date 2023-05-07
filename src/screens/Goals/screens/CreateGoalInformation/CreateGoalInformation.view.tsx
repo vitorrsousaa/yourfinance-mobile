@@ -35,17 +35,17 @@ export function CreateGoalInformationView({ viewModel, props }: Props) {
   return (
     <styled.CreateGoalInformation>
       <KeyboardAvoidingView behavior={isAndroid ? 'height' : 'padding'}>
-        <Header title={'Adicionando uma meta'} onPressLeftIcon={goBack} />
+        <Header title={'Crie o potinho'} onPressLeftIcon={goBack} />
 
         <ScrollView>
           <View style={{ padding: 24 }}>
             <ContainerInformation
-              title="Crie um nome para sua meta"
-              subtitle="O nome da sua meta deve ser algo que te ajude a lembrar o seu objetivo."
+              title="De um nome especial para o potinho"
+              subtitle="O nome do seu potinho deve ser algo que te inspire e lembre o seu objetivo financeiro!"
             >
               <View>
                 <InputOutlined
-                  placeholder="Nome da sua meta"
+                  placeholder="Nome do potinho"
                   autoCorrect={false}
                   returnKeyType="next"
                   value={name}
@@ -57,8 +57,8 @@ export function CreateGoalInformationView({ viewModel, props }: Props) {
             </ContainerInformation>
 
             <ContainerInformation
-              title="Quanto você quer guardar para sua meta?"
-              subtitle="Defina o valor por mês para a sua meta. Mas lembre-se, precisa ser um valor realista para a sua vida atual."
+              title="Quanto você deseja guardar no potinho?"
+              subtitle="Defina o valor mensal para o potinho. Mas lembre-se, escolha um valor realista para a sua vida atual."
             >
               <InputOutlined
                 placeholder="R$ 0,00"
@@ -73,8 +73,8 @@ export function CreateGoalInformationView({ viewModel, props }: Props) {
             </ContainerInformation>
 
             <ContainerInformation
-              title="Quanto você quer guardar agora?"
-              subtitle="Caso você queira cadastrar sua meta com um valor inicial, agora é o momento."
+              title="Quanto você deseja guardar agora?"
+              subtitle="Caso queira cadastrar seu potinho com um valor inicial, aproveite essa oportunidade!"
             >
               <InputOutlined
                 placeholder="R$ 0,00"
