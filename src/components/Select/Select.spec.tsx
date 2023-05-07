@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render } from '@testing-library/react';
+import { render } from '@testing-library/react-native';
 
 import Select from './Select';
 
@@ -9,11 +9,7 @@ describe('Select', () => {
     // Arrange
 
     // Act
-    const rendered = render(
-      <CompositionProvider>
-        <Select />
-      </CompositionProvider>,
-    );
+    const rendered = render(<Select />);
 
     // Assert
     rendered.getByRole('heading', { name: /Select/i });

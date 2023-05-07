@@ -140,23 +140,21 @@ export const ${toPascalCase(inputs.name)} = styled.View\`\`;
             name: (inputs) => `${toPascalCase(inputs.name)}.spec.tsx`,
             content: (inputs) => `import React from 'react';
 
-import { render } from '@testing-library/react';
+import { render } from '@testing-library/react-native';
 
 import ${toPascalCase(inputs.name)} from './${toPascalCase(inputs.name)}';
 
 describe('${toPascalCase(inputs.name)}', () => {
-  it('Should render component When called with default props', () => {
+  it('Should render component when called with default props', () => {
     // Arrange
 
     // Act
     const rendered = render(
-      <CompositionProvider>
         <${toPascalCase(inputs.name)} />
-      </CompositionProvider>,
     );
 
     // Assert
-    rendered.getByRole('heading', { name: /${toPascalCase(inputs.name)}/i });
+    rendered.getByText(/${toPascalCase(inputs.name)}/i);
   });
 });
 `,
