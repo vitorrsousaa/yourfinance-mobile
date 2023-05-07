@@ -148,7 +148,7 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
         type="danger"
         onClose={toggleVisibleModalRemove}
         title="Você tem certeza que deseja excluir sua meta?"
-        subtitle="Essa ação não pode ser desfeita!"
+        subtitle="Cuidado! Ao prosseguir, essa ação será definitiva e não poderá ser revertida. Pense bem antes de confirmar!"
         action="Deletar"
         onAction={handleRemoveGoal}
         isLoadingAction={removing}
@@ -159,7 +159,7 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
         onClose={toggleVisibleModalOutcome}
         type="danger"
         title="Quanto você deseja resgatar?"
-        subtitle="Lembre-se, você esta cada vez mais distante da sua meta."
+        subtitle="Parece que você está mais distante da meta, mas não desanime! Estamos aqui para te apoiar!"
         action="Resgatar"
         onAction={() => handleCreateTransactionGoal('LESS')}
         isLoadingAction={updatingGoal}
@@ -180,7 +180,7 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
         visible={modalIncomeVisible}
         onClose={toggleVisibleModalIncome}
         title="Quanto você deseja guardar?"
-        subtitle="Você esta cada vez mais próximo de atingir seu objetivo!"
+        subtitle="Você esta quase atingindo a meta que definiu para o seu potinho! Continue assim!"
         action="Guardar"
         onAction={() => handleCreateTransactionGoal('MORE')}
         isLoadingAction={updatingGoal}
