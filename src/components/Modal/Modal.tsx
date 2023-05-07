@@ -14,6 +14,7 @@ export interface ModalProps {
   onAction?: () => void;
   isLoadingAction?: boolean;
   isDisabledAction?: boolean;
+  customTitleSize?: number;
 }
 
 // Quando a prop é usada somente aqui, devemos omitir para não ir pra View

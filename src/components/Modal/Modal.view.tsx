@@ -24,6 +24,7 @@ export function ModalView({ viewModel, props }: Props) {
     visible,
     isLoadingAction,
     isDisabledAction,
+    customTitleSize = 24,
     onClose,
     onAction,
   } = props;
@@ -42,7 +43,7 @@ export function ModalView({ viewModel, props }: Props) {
           <styled.ModalBody>
             <styled.Header>
               <Text
-                size={24}
+                size={customTitleSize}
                 weight="500"
                 color={type === 'primary' ? colors.black[900] : colors.red[400]}
               >
