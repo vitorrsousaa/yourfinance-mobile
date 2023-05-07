@@ -27,19 +27,24 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
   const {
     amount,
     description,
-    selectedCategory,
-    category,
     isValid,
+    category,
+    selectedCategory,
     modalityModalIsVisible,
     isLoadingModalities,
     selectedModality,
+    transactionRepeatModalIsVisible,
+    transactionRepeat,
     getModalities,
-    handleCategoryChange,
     goBack,
     handleAmountChange,
     handleDescriptionChange,
+    handleCategoryChange,
     toggleModalityModal,
     onSelectedModality,
+    toggleTransactionRepeatModal,
+    handleClickOnToggleMovFixed,
+    handleClickOnRowMovFixed,
   } = viewModel;
 
   const { colors } = useTheme();
@@ -80,12 +85,11 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
           icon={<Icon name="wallet" />}
           title={selectedModality ? selectedModality?.name : 'Modalidades'}
           isLoading={isLoadingModalities}
+          onPress={toggleModalityModal}
           rightIcon={
-            <TouchableOpacity onPress={toggleModalityModal}>
-              <styled.ContainerArrow>
-                <Icon name="arrow" color={colors.black[900]} />
-              </styled.ContainerArrow>
-            </TouchableOpacity>
+            <styled.ContainerArrow rotate={180}>
+              <Icon name="arrow" color={colors.black[900]} />
+            </styled.ContainerArrow>
           }
         />
 
@@ -108,7 +112,13 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
         <Row
           icon={<Icon name="repeat" />}
           title="Movs Fixa"
-          rightIcon={<Toggle />}
+          onPress={handleClickOnRowMovFixed}
+          rightIcon={
+            <Toggle
+              value={transactionRepeat}
+              onValueChange={handleClickOnToggleMovFixed}
+            />
+          }
         />
 
         <Button variant="primary" disabled={!isValid}>
@@ -120,6 +130,7 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
         visible={modalityModalIsVisible}
         title="Selecione a modalidade"
         onClose={toggleModalityModal}
+        customTitleSize={20}
       >
         <FlatList
           data={getModalities()}
@@ -143,6 +154,30 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
             </TouchableOpacity>
           )}
         />
+      </Modal>
+
+      <Modal
+        visible={transactionRepeatModalIsVisible}
+        onClose={toggleTransactionRepeatModal}
+        title="Selecione o período de repetição"
+        customTitleSize={20}
+        action="Salvar"
+      >
+        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+            <Icon name="repeat" />
+            <Text size={17}>Mensalmente</Text>
+          </View>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
+            <styled.ContainerArrow rotate={90}>
+              <Icon name="arrow" color="black" />
+            </styled.ContainerArrow>
+            <Text size={18}>1</Text>
+            <styled.ContainerArrow rotate={270}>
+              <Icon name="arrow" color="black" />
+            </styled.ContainerArrow>
+          </View>
+        </View>
       </Modal>
     </styled.CreateTransactions>
   );

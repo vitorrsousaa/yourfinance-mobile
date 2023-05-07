@@ -15,6 +15,8 @@ export interface CreateTransactionsViewModelProps {
   modalityModalIsVisible: boolean;
   isLoadingModalities: boolean;
   selectedModality: TModality | null;
+  transactionRepeatModalIsVisible: boolean;
+  transactionRepeat: boolean;
   getModalities: () => TModality[] | undefined;
   goBack: () => void;
   handleAmountChange: (text: string) => void;
@@ -22,6 +24,9 @@ export interface CreateTransactionsViewModelProps {
   handleCategoryChange: () => void;
   toggleModalityModal: () => void;
   onSelectedModality: (modality: TModality) => void;
+  toggleTransactionRepeatModal: () => void;
+  handleClickOnToggleMovFixed: () => void;
+  handleClickOnRowMovFixed: () => void;
 }
 
 export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps {
@@ -32,6 +37,9 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
     null
   );
   const [modalityModalIsVisible, setModalityModalIsVisible] = useState(false);
+  const [transactionRepeat, setTransactionRepeat] = useState(false);
+  const [transactionRepeatModalIsVisible, setTransactionRepeatModalIsVisible] =
+    useState(false);
 
   const { categories, isErrorCategories } = useCategories();
 
@@ -104,6 +112,32 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
     toggleModalityModal();
   }
 
+  function toggleTransactionRepeatModal() {
+    setTransactionRepeatModalIsVisible(!transactionRepeatModalIsVisible);
+  }
+
+  function toggleTransactionRepeat() {
+    setTransactionRepeat(!transactionRepeat);
+  }
+
+  function handleClickOnToggleMovFixed() {
+    const valueTransactionRepeat = !transactionRepeat;
+    toggleTransactionRepeat();
+
+    if (valueTransactionRepeat) {
+      toggleTransactionRepeatModal();
+      return;
+    }
+  }
+
+  function handleClickOnRowMovFixed() {
+    if (!transactionRepeat) {
+      toggleTransactionRepeat();
+    }
+
+    toggleTransactionRepeatModal();
+  }
+
   return {
     amount,
     description,
@@ -113,6 +147,8 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
     modalityModalIsVisible,
     selectedModality,
     isLoadingModalities,
+    transactionRepeatModalIsVisible,
+    transactionRepeat,
     getModalities,
     goBack,
     handleAmountChange,
@@ -120,5 +156,8 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
     handleCategoryChange,
     toggleModalityModal,
     onSelectedModality,
+    toggleTransactionRepeatModal,
+    handleClickOnToggleMovFixed,
+    handleClickOnRowMovFixed,
   };
 }
