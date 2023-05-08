@@ -1,7 +1,7 @@
 import { LoaderViewModelProps } from './Loader.view-model';
 import { LoaderViewProps } from './Loader';
 import * as styled from './Loader.styles';
-import { ActivityIndicator, ActivityIndicatorProps } from 'react-native';
+import { ActivityIndicator } from 'react-native';
 
 interface Props {
   viewModel: LoaderViewModelProps;

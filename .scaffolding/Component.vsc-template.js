@@ -144,6 +144,8 @@ import { render } from '@testing-library/react';
 
 import ${toPascalCase(inputs.name)} from './${toPascalCase(inputs.name)}';
 
+import 'jest-styled-components';
+
 describe('${toPascalCase(inputs.name)}', () => {
   it('Should render component When called with default props', () => {
     // Arrange
