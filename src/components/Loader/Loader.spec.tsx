@@ -6,8 +6,8 @@ import Loader from './Loader';
 
 describe('Loader Component', () => {
   it('Should render component when called with default props', () => {
-    const rendered = render(<Loader />);
+    const rendered = render(<Loader testID="loader-test" />);
 
-    rendered.getByText('Default button');
+    rendered.getByTestId('loader-test');
   });
 });
