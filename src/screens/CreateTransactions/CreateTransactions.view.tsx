@@ -1,3 +1,4 @@
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { FlatList, TouchableOpacity, View } from 'react-native';
 import { useTheme } from 'styled-components/native';
 
@@ -10,6 +11,7 @@ import Radio from '../../components/Radio';
 import { Text } from '../../components/Text';
 import Toggle from '../../components/Toggle';
 import formatAmount from '../../utils/formatAmout';
+import { formatDate } from '../../utils/formatDate';
 
 import Row from './components/Row';
 import { CreateTransactionsViewProps } from './CreateTransactions';
@@ -35,6 +37,9 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
     selectedModality,
     transactionRepeatModalIsVisible,
     transactionRepeat,
+    monthsThatRepeatTransaction,
+    datePickerIsVisible,
+    date,
     getModalities,
     goBack,
     handleAmountChange,
@@ -45,9 +50,15 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
     toggleTransactionRepeatModal,
     handleClickOnToggleMovFixed,
     handleClickOnRowMovFixed,
+    handlePlusMonthRepeatTransaction,
+    handleMinusMonthRepeatTransaction,
+    toggleDatePicker,
+    handleChangeDate,
   } = viewModel;
 
   const { colors } = useTheme();
+
+  console.log(formatDate(date.toString()));
 
   console.log(
     'Verificar se é necessário dar um warning na tela quando o usuário trocar a category'
@@ -96,8 +107,18 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
         <Row
           icon={<Icon name="calendar" />}
           title="Data"
-          rightIcon={<Text>toggle</Text>}
+          onPress={toggleDatePicker}
         />
+
+        {datePickerIsVisible && (
+          <DateTimePicker
+            value={date}
+            mode="date"
+            onChange={(event, date) => handleChangeDate(date)}
+            textColor="green"
+            locale="pt-BR"
+          />
+        )}
 
         <Row icon={<Icon name="currency" />}>
           <InputOutlined
@@ -168,12 +189,18 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
             <Icon name="repeat" />
             <Text size={17}>Mensalmente</Text>
           </View>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-            <styled.ContainerArrow rotate={90}>
+          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
+            <styled.ContainerArrow
+              rotate={90}
+              onPress={handlePlusMonthRepeatTransaction}
+            >
               <Icon name="arrow" color="black" />
             </styled.ContainerArrow>
-            <Text size={18}>1</Text>
-            <styled.ContainerArrow rotate={270}>
+            <Text size={18}>{monthsThatRepeatTransaction}</Text>
+            <styled.ContainerArrow
+              rotate={270}
+              onPress={handleMinusMonthRepeatTransaction}
+            >
               <Icon name="arrow" color="black" />
             </styled.ContainerArrow>
           </View>

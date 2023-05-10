@@ -17,6 +17,9 @@ export interface CreateTransactionsViewModelProps {
   selectedModality: TModality | null;
   transactionRepeatModalIsVisible: boolean;
   transactionRepeat: boolean;
+  monthsThatRepeatTransaction: number;
+  datePickerIsVisible: boolean;
+  date: Date;
   getModalities: () => TModality[] | undefined;
   goBack: () => void;
   handleAmountChange: (text: string) => void;
@@ -27,6 +30,10 @@ export interface CreateTransactionsViewModelProps {
   toggleTransactionRepeatModal: () => void;
   handleClickOnToggleMovFixed: () => void;
   handleClickOnRowMovFixed: () => void;
+  handlePlusMonthRepeatTransaction: () => void;
+  handleMinusMonthRepeatTransaction: () => void;
+  toggleDatePicker: () => void;
+  handleChangeDate: (date: Date | undefined) => void;
 }
 
 export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps {
@@ -40,6 +47,10 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
   const [transactionRepeat, setTransactionRepeat] = useState(false);
   const [transactionRepeatModalIsVisible, setTransactionRepeatModalIsVisible] =
     useState(false);
+  const [monthsThatRepeatTransaction, setMonthsThatRepeatTransaction] =
+    useState(1);
+  const [datePickerIsVisible, setDatePickerIsVisible] = useState(false);
+  const [date, setDate] = useState(new Date());
 
   const { categories, isErrorCategories } = useCategories();
 
@@ -57,8 +68,15 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
     }
   }, [isErrorCategories, isErrorModalities]);
 
+  useEffect(() => {
+    setSelectedModality(null);
+  }, [selectedCategory]);
+
   const isValid = useMemo(
-    () => Boolean(description.length > 0 && amount > 0),
+    () =>
+      Boolean(
+        description.length > 0 && amount > 0 && selectedModality !== null
+      ),
     [description, amount]
   );
 
@@ -138,6 +156,28 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
     toggleTransactionRepeatModal();
   }
 
+  function handlePlusMonthRepeatTransaction() {
+    if (monthsThatRepeatTransaction < 12) {
+      setMonthsThatRepeatTransaction((prevState) => prevState + 1);
+    }
+  }
+
+  function handleMinusMonthRepeatTransaction() {
+    if (monthsThatRepeatTransaction > 1) {
+      setMonthsThatRepeatTransaction((prevState) => prevState - 1);
+    }
+  }
+
+  function toggleDatePicker() {
+    setDatePickerIsVisible(!datePickerIsVisible);
+  }
+
+  function handleChangeDate(date: Date | undefined) {
+    if (date) {
+      setDate(date);
+    }
+  }
+
   return {
     amount,
     description,
@@ -149,6 +189,9 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
     isLoadingModalities,
     transactionRepeatModalIsVisible,
     transactionRepeat,
+    monthsThatRepeatTransaction,
+    datePickerIsVisible,
+    date,
     getModalities,
     goBack,
     handleAmountChange,
@@ -159,5 +202,9 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
     toggleTransactionRepeatModal,
     handleClickOnToggleMovFixed,
     handleClickOnRowMovFixed,
+    handlePlusMonthRepeatTransaction,
+    handleMinusMonthRepeatTransaction,
+    toggleDatePicker,
+    handleChangeDate,
   };
 }

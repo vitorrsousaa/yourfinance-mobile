@@ -12,4 +12,6 @@ export const ContainerArrow = styled.TouchableOpacity<{ rotate: number }>`
   transform: ${({ rotate }) => css`
   rotate(${rotate}deg)
   `};
+
+  padding: 0 4px;
 `;
