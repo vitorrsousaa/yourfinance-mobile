@@ -25,13 +25,13 @@ export function TransactionView({ viewModel, props }: Props) {
 
   const icon =
     category.name === 'Receitas' ? (
-      <Icon name="income" />
+      <Icon name="income" testID="income-icon" />
     ) : (
-      <Icon name="outcome" />
+      <Icon name="outcome" testID="outcome-icon" />
     );
 
   return (
-    <styled.Transaction>
+    <styled.Transaction {...transactionProps}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
         {icon}
         <View>
