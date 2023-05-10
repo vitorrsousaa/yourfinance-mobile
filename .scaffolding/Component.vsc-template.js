@@ -143,7 +143,7 @@ export const ${toPascalCase(inputs.name)} = styled.View\`\`;
 import { render } from '@testing-library/react-native';
 
 import ${toPascalCase(inputs.name)} from './${toPascalCase(inputs.name)}';
-
+import ThemeProvider from '../ThemeProvider';
 import 'jest-styled-components';
 
 describe('${toPascalCase(inputs.name)}', () => {
@@ -152,7 +152,9 @@ describe('${toPascalCase(inputs.name)}', () => {
 
     // Act
     const rendered = render(
-        <${toPascalCase(inputs.name)} />
+        <ThemeProvider>
+          <${toPascalCase(inputs.name)} />
+        </ThemeProvider>
     );
 
     // Assert
