@@ -12,7 +12,7 @@ export function WelcomeView({ viewModel, props }: Props) {
   const { ...welcomeProps } = props;
 
   return (
-    <styled.Welcome>
+    <styled.Welcome {...welcomeProps}>
       <Text color="#fff">Bem vindo(a)</Text>
       <Text size={32} weight="300" color="#fff">
         your
