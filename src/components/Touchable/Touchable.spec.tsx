@@ -6,7 +6,7 @@ import 'jest-styled-components';
 import ThemeProvider from '../ThemeProvider';
 import Touchable from './Touchable';
 
-describe('Header Component', () => {
+describe('Touchable Component', () => {
   it('Should render component when called with default props', () => {
     const rendered = render(
       <ThemeProvider>
