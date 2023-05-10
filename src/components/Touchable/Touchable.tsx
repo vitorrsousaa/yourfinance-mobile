@@ -15,7 +15,14 @@ export interface TouchableViewProps extends Omit<TouchableProps, ''> {
   // Quando alguma prop vai ser utilizada somente na View, devemos acrescentar aqui
 }
 
-function Touchable(props: TouchableProps) {
+type DefaultProps = Pick<TouchableProps, 'background'>;
+type Props = TouchableProps & DefaultProps;
+
+const defaultProps: DefaultProps = {
+  background: 'white',
+};
+
+function Touchable(props: Props) {
   const { ...viewProps } = props;
 
   const viewModel = useViewModel();
@@ -28,5 +35,7 @@ export function useViewModel() {
 
   return viewModel;
 }
+
+Touchable.defaultProps = defaultProps;
 
 export default memo(Touchable);
