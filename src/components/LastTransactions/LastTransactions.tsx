@@ -12,13 +12,17 @@ export interface LastTransactionsProps {
   hasError: boolean;
 }
 
-// Quando a prop é usada somente aqui, devemos omitir para não ir pra View
-export interface LastTransactionsViewProps
-  extends Omit<LastTransactionsProps, ''> {
-  // Quando alguma prop vai ser utilizada somente na View, devemos acrescentar aqui
-}
+type DefaultProps = Pick<LastTransactionsProps, 'title'>;
+type Props = LastTransactionsProps & DefaultProps;
 
-function LastTransactions(props: LastTransactionsProps) {
+const defaultProps: DefaultProps = {
+  title: 'Últimas transações',
+};
+
+export interface LastTransactionsViewProps
+  extends Omit<LastTransactionsProps, ''> {}
+
+function LastTransactions(props: Props) {
   const { ...viewProps } = props;
 
   const viewModel = useViewModel();
@@ -31,5 +35,7 @@ export function useViewModel() {
 
   return viewModel;
 }
+
+LastTransactions.defaultProps = defaultProps;
 
 export default memo(LastTransactions);
