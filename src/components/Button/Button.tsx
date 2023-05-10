@@ -13,10 +13,7 @@ export interface ButtonProps extends TouchableOpacityProps {
   loading?: boolean;
 }
 
-// Quando a prop é usada somente aqui, devemos omitir para não ir pra View
-export interface ButtonViewProps extends Omit<ButtonProps, ''> {
-  // Quando alguma prop vai ser utilizada somente na View, devemos acrescentar aqui
-}
+export interface ButtonViewProps extends Omit<ButtonProps, ''> {}
 
 function Button(props: ButtonProps) {
   const { ...viewProps } = props;
