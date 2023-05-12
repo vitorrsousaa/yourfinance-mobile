@@ -15,6 +15,7 @@ export interface ModalProps {
   isLoadingAction?: boolean;
   isDisabledAction?: boolean;
   customTitleSize?: number;
+  hasCancelButton?: boolean;
 }
 
 // Quando a prop é usada somente aqui, devemos omitir para não ir pra View

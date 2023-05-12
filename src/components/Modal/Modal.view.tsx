@@ -25,6 +25,7 @@ export function ModalView({ viewModel, props }: Props) {
     isLoadingAction,
     isDisabledAction,
     customTitleSize = 24,
+    hasCancelButton = true,
     onClose,
     onAction,
   } = props;
@@ -58,14 +59,16 @@ export function ModalView({ viewModel, props }: Props) {
 
           {action && (
             <styled.Actions>
-              <Button
-                variant="empty"
-                style={{ flex: 1 }}
-                onPress={onClose}
-                disabled={isLoadingAction}
-              >
-                Cancelar
-              </Button>
+              {hasCancelButton && (
+                <Button
+                  variant="empty"
+                  style={{ flex: 1 }}
+                  onPress={onClose}
+                  disabled={isLoadingAction}
+                >
+                  Cancelar
+                </Button>
+              )}
               <Button
                 variant={type === 'danger' ? 'danger' : 'primary'}
                 style={{ flex: 1 }}
