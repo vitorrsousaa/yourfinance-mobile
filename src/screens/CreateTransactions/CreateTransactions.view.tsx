@@ -1,8 +1,8 @@
-import DateTimePicker from '@react-native-community/datetimepicker';
 import { FlatList, TouchableOpacity, View } from 'react-native';
 import { useTheme } from 'styled-components/native';
 
 import Button from '../../components/Button';
+import DatePicker from '../../components/DatePicker';
 import Header from '../../components/Header';
 import Icon from '../../components/Icons';
 import InputOutlined from '../../components/InputOutlined';
@@ -104,27 +104,19 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
           }
         />
 
-        <Row
-          icon={<Icon name="calendar" />}
-          title="Data"
-          onPress={toggleDatePicker}
-        />
-
-        {datePickerIsVisible && (
-          <DateTimePicker
-            value={date}
-            mode="date"
-            onChange={(event, date) => handleChangeDate(date)}
-            textColor="green"
-            locale="pt-BR"
+        <Row icon={<Icon name="calendar" />} onPress={toggleDatePicker}>
+          <InputOutlined
+            border={false}
+            fixedHeight={false}
+            value={formatDate(date.toString())}
+            editable={false}
           />
-        )}
+        </Row>
 
         <Row icon={<Icon name="currency" />}>
           <InputOutlined
             border={false}
             fixedHeight={false}
-            placeholder="Digiteo valor da sua transação"
             value={formatAmount(amount)}
             onChangeText={handleAmountChange}
           />
@@ -145,6 +137,12 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
         <Button variant="primary" disabled={!isValid}>
           Enviar
         </Button>
+
+        <DatePicker
+          visible={datePickerIsVisible}
+          value={date}
+          onChange={(event, date) => handleChangeDate(event, date)}
+        />
       </styled.Container>
 
       <Modal
@@ -183,6 +181,8 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
         title="Selecione o período de repetição"
         customTitleSize={20}
         action="Salvar"
+        onAction={toggleTransactionRepeatModal}
+        hasCancelButton={false}
       >
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
           <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>

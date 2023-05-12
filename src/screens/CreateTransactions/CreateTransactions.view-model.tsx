@@ -1,10 +1,12 @@
 import { useEffect, useMemo, useState } from 'react';
+import { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
 
 import { useCategories } from '../../hooks/useCategories';
 import { useModalities } from '../../hooks/useModalities';
 import { TCategory } from '../../types/Category';
 import { TModality } from '../../types/Modality';
+import { isAndroid } from '../../utils/isAndroid';
 
 export interface CreateTransactionsViewModelProps {
   amount: number;
@@ -33,7 +35,10 @@ export interface CreateTransactionsViewModelProps {
   handlePlusMonthRepeatTransaction: () => void;
   handleMinusMonthRepeatTransaction: () => void;
   toggleDatePicker: () => void;
-  handleChangeDate: (date: Date | undefined) => void;
+  handleChangeDate: (
+    event: DateTimePickerEvent,
+    date: Date | undefined
+  ) => void;
 }
 
 export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps {
@@ -172,9 +177,19 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
     setDatePickerIsVisible(!datePickerIsVisible);
   }
 
-  function handleChangeDate(date: Date | undefined) {
-    if (date) {
-      setDate(date);
+  function handleChangeDate(
+    event: DateTimePickerEvent,
+    date: Date | undefined
+  ) {
+    if (event.type == 'set') {
+      const currentDate = date;
+      setDate(currentDate!);
+
+      if (isAndroid) {
+        toggleDatePicker();
+      }
+    } else {
+      toggleDatePicker();
     }
   }
 
