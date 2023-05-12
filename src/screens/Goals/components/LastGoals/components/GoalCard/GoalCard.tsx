@@ -1,18 +1,15 @@
 import { memo } from 'react';
 
-import { TGoalResponse } from '../../../../../../types/Goal';
+import { TGoal } from '../../../../../../types/Goal';
 
 import { GoalCardView } from './GoalCard.view';
 import { GoalCardViewModel } from './GoalCard.view-model';
 
 export interface GoalCardProps {
-  goal: TGoalResponse;
+  goal: TGoal;
 }
 
-// Quando a prop é usada somente aqui, devemos omitir para não ir pra View
-export interface GoalCardViewProps extends Omit<GoalCardProps, ''> {
-  // Quando alguma prop vai ser utilizada somente na View, devemos acrescentar aqui
-}
+export interface GoalCardViewProps extends Omit<GoalCardProps, ''> {}
 
 function GoalCard(props: GoalCardProps) {
   const { ...viewProps } = props;
@@ -22,7 +19,7 @@ function GoalCard(props: GoalCardProps) {
   return <GoalCardView viewModel={viewModel} props={viewProps} />;
 }
 
-export function useViewModel(goal: TGoalResponse) {
+export function useViewModel(goal: TGoal) {
   const viewModel = GoalCardViewModel(goal);
 
   return viewModel;

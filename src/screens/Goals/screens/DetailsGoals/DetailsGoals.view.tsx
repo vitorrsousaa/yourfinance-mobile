@@ -10,7 +10,6 @@ import Modal from '../../../../components/Modal';
 import { Text } from '../../../../components/Text';
 import Touchable from '../../../../components/Touchable';
 import formatAmount from '../../../../utils/formatAmout';
-import { formatDate } from '../../../../utils/formatDate';
 import ProgressBar from '../../components/ProgressBar';
 
 import TransactionDetailHistoric from './components/TransactionDetailHistoric';
@@ -44,13 +43,13 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
     handleCreateTransactionGoal,
   } = viewModel;
 
-  const { balance, goalName, goalCost, historicTransaction, payOff } = goal;
+  const { balance, name, date, historic, payOff, total } = goal;
 
   const navigation = useNavigation();
 
   const progress = useMemo(() => {
-    return (balance / goalCost) * 100;
-  }, [goal._id, balance]);
+    return (balance / total) * 100;
+  }, [goal.id, balance]);
 
   const { colors } = useTheme();
 
@@ -60,7 +59,7 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
         <styled.ContainerTextMain>
           <Icon name="target" />
           <Text weight="500" size={20} color={colors.white[100]}>
-            {goalName}
+            {name}
           </Text>
         </styled.ContainerTextMain>
         <View style={{ flexDirection: 'row' }}>
@@ -79,14 +78,14 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
             {formatAmount(balance)}
           </Text>
           <Text weight="500" size={16} color={colors.black[500]}>
-            de {formatAmount(goalCost)}
+            de {formatAmount(total)}
           </Text>
         </View>
 
         <ProgressBar progress={progress} />
         <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <Text>Data inicio: {formatDate(goal.goalTime.initialDate)}</Text>
-          <Text>Data final: {formatDate(goal.goalTime.endDate)}</Text>
+          <Text>Data inicio: {date.initial}</Text>
+          <Text>Data final: {date.end}</Text>
         </View>
       </styled.ContainerInfo>
 
@@ -100,11 +99,11 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
             <Text size={18} weight="500">
               Histórico
             </Text>
-            {historicTransaction ? (
+            {historic ? (
               <View style={{ flex: 1, paddingBottom: 86 }}>
                 <FlatList
-                  data={historicTransaction}
-                  keyExtractor={(item) => item._id}
+                  data={historic}
+                  keyExtractor={(item) => item.id}
                   renderItem={({ item }) => (
                     <TransactionDetailHistoric transaction={item} />
                   )}

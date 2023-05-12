@@ -4,7 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 import useErrors from '../../../../hooks/useErrors';
 import { useGoals } from '../../../../hooks/useGoals';
 import GoalsService from '../../../../service/GoalsService';
-import { TGoalResponse, TGoalTransaction } from '../../../../types/Goal';
+import { TGoal, TGoalTransaction } from '../../../../types/Goal';
 import { TModeTransaction } from '../../../../types/Goal/modeTransaction';
 import formatAmount from '../../../../utils/formatAmout';
 
@@ -16,7 +16,7 @@ export interface DetailsGoalsViewModelProps {
   inputIsValid: boolean;
   updatingGoal: boolean;
   amount: number;
-  goal: TGoalResponse;
+  goal: TGoal;
   handleRemoveGoal: () => Promise<void>;
   toggleVisibleModalIncome: () => void;
   toggleVisibleModalOutcome: () => void;
@@ -26,8 +26,8 @@ export interface DetailsGoalsViewModelProps {
   getErrorMessageByFieldName: (fieldName: string) => string | undefined;
 }
 
-export function DetailsGoalsViewModel(goalResponse: TGoalResponse) {
-  const [goal, setGoal] = useState<TGoalResponse>(goalResponse);
+export function DetailsGoalsViewModel(goalResponse: TGoal) {
+  const [goal, setGoal] = useState<TGoal>(goalResponse);
   const [removing, setRemoving] = useState(false);
   const [updatingGoal, setUpdatingGoal] = useState(false);
   const [modalIncomeVisible, setIsModalIncomeVisible] = useState(false);
@@ -46,7 +46,7 @@ export function DetailsGoalsViewModel(goalResponse: TGoalResponse) {
     try {
       setRemoving(true);
 
-      await GoalsService.delete(goal._id);
+      await GoalsService.delete(goal.id);
 
       refetch();
     } catch (error) {
@@ -132,7 +132,7 @@ export function DetailsGoalsViewModel(goalResponse: TGoalResponse) {
 
     try {
       const response = await GoalsService.createTransaction(
-        goal._id,
+        goal.id,
         goalTransaction
       );
 

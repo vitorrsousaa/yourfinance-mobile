@@ -3,7 +3,6 @@ import { useTheme } from 'styled-components/native';
 
 import { Text } from '../../../../../../components/Text';
 import formatAmount from '../../../../../../utils/formatAmout';
-import { formatDate } from '../../../../../../utils/formatDate';
 
 import { TransactionDetailHistoricViewProps } from './TransactionDetailHistoric';
 import * as styled from './TransactionDetailHistoric.styles';
@@ -17,7 +16,7 @@ interface Props {
 export function TransactionDetailHistoricView({ viewModel, props }: Props) {
   const { transaction } = props;
 
-  const { date, amount, modeTransaction } = transaction;
+  const { date, amount, mode } = transaction;
 
   const { colors } = useTheme();
 
@@ -25,16 +24,16 @@ export function TransactionDetailHistoricView({ viewModel, props }: Props) {
     <styled.TransactionDetailHistoric>
       <View style={{ gap: 4 }}>
         <Text color={colors.black[600]} weight="500" size={16}>
-          {formatDate(date)}
+          {date}
         </Text>
         <Text weight="500" size={14}>
-          {modeTransaction === 'MORE' ? 'Aplicação' : 'Resgate'}
+          {mode === 'MORE' ? 'Aplicação' : 'Resgate'}
         </Text>
       </View>
       <Text
         weight="500"
         size={16}
-        color={modeTransaction === 'MORE' ? colors.green[500] : colors.red[400]}
+        color={mode === 'MORE' ? colors.green[500] : colors.red[400]}
       >
         {formatAmount(amount)}
       </Text>

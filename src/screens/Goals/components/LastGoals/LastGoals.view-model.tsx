@@ -1,14 +1,5 @@
-import { useState } from 'react';
-
-export interface LastGoalsViewModelProps {
-  state: string;
-}
+export interface LastGoalsViewModelProps {}
 
 export function LastGoalsViewModel() {
-  const [state, setState] = useState('');
-
-  return {
-    state,
-    setState,
-  };
+  return {};
 }

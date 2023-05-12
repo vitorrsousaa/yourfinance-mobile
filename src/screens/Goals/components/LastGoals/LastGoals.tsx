@@ -1,20 +1,17 @@
 import { memo } from 'react';
 
-import { TGoalResponse } from '../../../../types/Goal';
+import { TGoal } from '../../../../types/Goal';
 
 import { LastGoalsView } from './LastGoals.view';
 import { LastGoalsViewModel } from './LastGoals.view-model';
 
 export interface LastGoalsProps {
-  goals: TGoalResponse[];
+  goals: TGoal[];
   hasError: boolean;
   isLoading: boolean;
 }
 
-// Quando a prop é usada somente aqui, devemos omitir para não ir pra View
-export interface LastGoalsViewProps extends Omit<LastGoalsProps, ''> {
-  // Quando alguma prop vai ser utilizada somente na View, devemos acrescentar aqui
-}
+export interface LastGoalsViewProps extends Omit<LastGoalsProps, ''> {}
 
 function LastGoals(props: LastGoalsProps) {
   const { ...viewProps } = props;

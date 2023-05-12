@@ -1,4 +1,4 @@
-import { ScrollView, TouchableOpacity,View } from 'react-native';
+import { ScrollView, TouchableOpacity, View } from 'react-native';
 import { useTheme } from 'styled-components/native';
 
 import Button from '../../components/Button';
@@ -66,6 +66,7 @@ export function LoginView({ viewModel, props }: Props) {
             value={password}
             returnKeyType="go"
             onChangeText={handlePasswordChange}
+            autoCorrect={false}
             secureTextEntry
             onSubmitEditing={handleSubmit}
           />

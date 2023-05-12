@@ -1,12 +1,9 @@
-import { TGoalCreate, TGoalResponse, TGoalTransaction } from '../../types/Goal';
+import { TGoal, TGoalCreate, TGoalTransaction } from '../../types/Goal';
 
 export interface IGoalsService {
-  list(): Promise<TGoalResponse[]>;
-  listOne(goalId: string): Promise<TGoalResponse>;
-  create(data: TGoalCreate): Promise<TGoalResponse>;
+  list(): Promise<TGoal[]>;
+  listOne(goalId: string): Promise<TGoal>;
+  create(data: TGoalCreate): Promise<TGoal>;
   delete(goalId: string): Promise<void>;
-  createTransaction(
-    goalId: string,
-    data: TGoalTransaction
-  ): Promise<TGoalResponse>;
+  createTransaction(goalId: string, data: TGoalTransaction): Promise<TGoal>;
 }

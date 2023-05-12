@@ -1,8 +1,5 @@
-import { useTheme } from 'styled-components/native';
-
 import Header from '../../components/Header';
 import PlusButton from '../../components/PlusButton';
-import { Text } from '../../components/Text';
 import Touchable from '../../components/Touchable';
 import { useGoals } from '../../hooks/useGoals';
 
@@ -21,13 +18,14 @@ export function GoalsView({ viewModel, props }: Props) {
 
   const { handleNavigateToCreateGoalInformation } = viewModel;
 
-  const { colors } = useTheme();
-
   const { goals, isErrorGoals, isLoadingGoals } = useGoals();
 
   return (
-    <styled.Goals>
-      <Header title="Metas" rightIcon={<Touchable item="search" />} />
+    <styled.Goals {...goalsProps}>
+      <Header
+        title="Metas"
+        rightIcon={<Touchable item="search" background="black" />}
+      />
 
       <LastGoals
         goals={goals}
