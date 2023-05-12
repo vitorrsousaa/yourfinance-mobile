@@ -9,7 +9,7 @@ interface Props {
 }
 
 export function TouchableView({ viewModel, props }: Props) {
-  const { background = 'black', item, ...touchableProps } = props;
+  const { background, item, ...touchableProps } = props;
 
   return (
     <styled.Touchable

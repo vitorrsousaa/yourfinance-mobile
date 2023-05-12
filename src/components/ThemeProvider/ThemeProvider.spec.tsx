@@ -1,18 +1,24 @@
 import React from 'react';
 
 import { render } from '@testing-library/react-native';
-import 'jest-styled-components';
-import ThemeProvider from '../ThemeProvider';
-import Toggle from './Toggle';
 
-describe('Toggle Component', () => {
+import ThemeProvider from './ThemeProvider';
+
+import 'jest-styled-components';
+import { View } from 'react-native';
+
+describe('ThemeProvider', () => {
   it('Should render component when called with default props', () => {
+    // Arrange
+
+    // Act
     const rendered = render(
       <ThemeProvider>
-        <Toggle testID="toggle-test" />
+        <View testID="children-data" />
       </ThemeProvider>
     );
 
-    expect(rendered.getByTestId('toggle-test'));
+    // Assert
+    expect(rendered.getByTestId('children-data'));
   });
 });

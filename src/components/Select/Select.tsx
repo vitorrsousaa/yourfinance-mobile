@@ -16,10 +16,7 @@ export type SelectOptions = {
   value: string;
 };
 
-// Quando a prop é usada somente aqui, devemos omitir para não ir pra View
-export interface SelectViewProps extends Omit<SelectProps, ''> {
-  // Quando alguma prop vai ser utilizada somente na View, devemos acrescentar aqui
-}
+export interface SelectViewProps extends Omit<SelectProps, ''> {}
 
 function Select(props: SelectProps) {
   const { ...viewProps } = props;

@@ -20,7 +20,11 @@ export function HeaderView({ viewModel, props }: Props) {
     <styled.Header>
       <View style={{ gap: 8, flexDirection: 'row', alignItems: 'center' }}>
         {onPressLeftIcon && (
-          <Touchable item="arrow" onPress={onPressLeftIcon} />
+          <Touchable
+            item="arrow"
+            onPress={onPressLeftIcon}
+            testID="left-icon"
+          />
         )}
         <Text weight="500" size={22} color={colors.white[100]}>
           {title}

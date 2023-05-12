@@ -1,14 +1,5 @@
-import { useState } from 'react';
-
-export interface WelcomeViewModelProps {
-  state: string;
-}
+export interface WelcomeViewModelProps {}
 
 export function WelcomeViewModel() {
-  const [state, setState] = useState('');
-
-  return {
-    state,
-    setState,
-  };
+  return {};
 }

@@ -1,18 +1,19 @@
 import React from 'react';
 
 import { render } from '@testing-library/react-native';
+
 import 'jest-styled-components';
 import ThemeProvider from '../ThemeProvider';
-import Toggle from './Toggle';
+import Welcome from './Welcome';
 
-describe('Toggle Component', () => {
-  it('Should render component when called with default props', () => {
+describe('Welcome', () => {
+  it('Should render correctly with default props', () => {
     const rendered = render(
       <ThemeProvider>
-        <Toggle testID="toggle-test" />
+        <Welcome testID="welcome-test" />
       </ThemeProvider>
     );
 
-    expect(rendered.getByTestId('toggle-test'));
+    expect(rendered.getByTestId('welcome-test'));
   });
 });

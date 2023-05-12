@@ -1,7 +1,6 @@
 import { SelectViewModelProps } from './Select.view-model';
 import { SelectViewProps } from './Select';
 import * as styled from './Select.styles';
-import { View } from 'react-native';
 import { Picker } from '@react-native-picker/picker';
 import { useTheme } from 'styled-components/native';
 

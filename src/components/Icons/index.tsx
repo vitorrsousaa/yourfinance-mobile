@@ -104,6 +104,7 @@ const iconsList: IconMap = {
 export default function Icon(props: {
   name: Icons;
   color?: string;
+  testID?: string;
 }): ReactElement {
   const { name, ...iconProps } = props;
 

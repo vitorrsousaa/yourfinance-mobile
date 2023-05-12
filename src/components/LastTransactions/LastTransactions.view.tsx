@@ -16,20 +16,17 @@ interface Props {
 }
 
 export function LastTransactionsView({ viewModel, props }: Props) {
-  const {
-    title = 'Últimas transações',
-    showFilter,
-    transactions,
-    isLoading,
-    hasError,
-  } = props;
+  const { title, showFilter, transactions, isLoading, hasError } = props;
 
   const { colors } = useTheme();
 
   return (
     <styled.LastTransactions>
       {hasError ? (
-        <View style={{ marginTop: 16, alignItems: 'center', gap: 16 }}>
+        <View
+          style={{ marginTop: 16, alignItems: 'center', gap: 16 }}
+          testID="data-error-content"
+        >
           <ErrorContent />
           <Text style={{ textAlign: 'center' }}>
             Tivemos um erro para encontrar suas transações. Tente novamente mais
@@ -44,7 +41,7 @@ export function LastTransactionsView({ viewModel, props }: Props) {
             </Text>
 
             {showFilter && (
-              <styled.Filter activeOpacity={0.6}>
+              <styled.Filter activeOpacity={0.6} testID="data-filter">
                 <Text>Filtro</Text>
                 <Icon name="filter" />
               </styled.Filter>
@@ -63,7 +60,10 @@ export function LastTransactionsView({ viewModel, props }: Props) {
               />
             </View>
           ) : (
-            <View style={{ marginTop: 16, alignItems: 'center', gap: 16 }}>
+            <View
+              style={{ marginTop: 16, alignItems: 'center', gap: 16 }}
+              testID="data-without-transactions"
+            >
               <NoData />
               <Text>Você ainda não cadastrou transações.</Text>
             </View>
