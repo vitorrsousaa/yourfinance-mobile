@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
-import useErrors from '../../../../hooks/useErrors';
 import { useNavigation } from '@react-navigation/native';
+
+import useErrors from '../../../../hooks/useErrors';
 import { GoalsRoutesNavigationProp } from '../../../../routes/private/Goal.routes';
 
 export interface CreateGoalInformationViewModelProps {

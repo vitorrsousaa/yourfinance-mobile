@@ -1,9 +1,10 @@
-import { ContinuousButtonViewModelProps } from './ContinuousButton.view-model';
+import { useTheme } from 'styled-components/native';
+
+import Icon from '../../../../components/Icons';
+
 import { ContinuousButtonViewProps } from './ContinuousButton';
 import * as styled from './ContinuousButton.styles';
-
-import { useTheme } from 'styled-components/native';
-import Icon from '../../../../components/Icons';
+import { ContinuousButtonViewModelProps } from './ContinuousButton.view-model';
 
 interface Props {
   viewModel: ContinuousButtonViewModelProps;

@@ -1,6 +1,10 @@
 import React from 'react';
+<<<<<<< HEAD
+import { render } from '@testing-library/react';
+=======
 
 import { render } from '@testing-library/react-native';
+>>>>>>> 6cb0cbf0f62c8eb0329fe630f43513432e8edc7b
 
 import Select, { SelectOptions } from './Select';
 import ThemeProvider from '../ThemeProvider';

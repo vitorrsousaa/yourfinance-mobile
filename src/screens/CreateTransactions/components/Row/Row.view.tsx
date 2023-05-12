@@ -1,9 +1,12 @@
-import { RowViewModelProps } from './Row.view-model';
+import { View } from 'react-native';
+import { useTheme } from 'styled-components/native';
+
+import Loader from '../../../../components/Loader';
+import { Text } from '../../../../components/Text';
+
 import { RowViewProps } from './Row';
 import * as styled from './Row.styles';
-import { View } from 'react-native';
-import { Text } from '../../../../components/Text';
-import { useTheme } from 'styled-components/native';
+import { RowViewModelProps } from './Row.view-model';
 
 interface Props {
   viewModel: RowViewModelProps;
@@ -11,12 +14,19 @@ interface Props {
 }
 
 export function RowView({ viewModel, props }: Props) {
-  const { icon, title, rightIcon, children } = props;
+  const {
+    icon,
+    title,
+    rightIcon,
+    children,
+    isLoading = false,
+    ...rowProps
+  } = props;
 
   const { colors } = useTheme();
 
   return (
-    <styled.Row>
+    <styled.Row {...rowProps} activeOpacity={1}>
       <View
         style={{
           gap: 8,
@@ -33,7 +43,7 @@ export function RowView({ viewModel, props }: Props) {
         )}
       </View>
       {children && <View style={{ flex: 1 }}>{children}</View>}
-      {rightIcon && rightIcon}
+      {rightIcon && (isLoading ? <Loader /> : rightIcon)}
     </styled.Row>
   );
 }

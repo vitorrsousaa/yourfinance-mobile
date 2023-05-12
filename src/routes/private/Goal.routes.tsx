@@ -1,11 +1,11 @@
+import { NavigationProp } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import DetailsGoals from '../../screens/Goals/screens/DetailsGoals';
+import CreateGoalDetails from '../../screens/Goals/screens/CreateGoalDetails';
 import CreateGoalInformation from '../../screens/Goals/screens/CreateGoalInformation';
 import CreateGoalTime from '../../screens/Goals/screens/CreateGoalTime';
-import { NavigationProp } from '@react-navigation/native';
+import DetailsGoals from '../../screens/Goals/screens/DetailsGoals';
 import { TGoalCreate, TGoalResponse } from '../../types/Goal';
-import CreateGoalDetails from '../../screens/Goals/screens/CreateGoalDetails';
 
 export type GoalsRootParamList = {
   DetailsGoals: { goal: TGoalResponse };

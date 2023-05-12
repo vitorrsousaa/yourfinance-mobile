@@ -1,11 +1,13 @@
-import GoalsService from '../../../../service/GoalsService';
-import { useGoals } from '../../../../hooks/useGoals';
+import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
+
+import { useGoals } from '../../../../hooks/useGoals';
 import { PrivateRouteNavigationProp } from '../../../../routes/private';
 import { GoalsRoutesNavigationProp } from '../../../../routes/private/Goal.routes';
-import { CreateGoalDetailsParams } from './CreateGoalDetails';
+import GoalsService from '../../../../service/GoalsService';
 import { TGoalCreate } from '../../../../types/Goal';
-import { useState } from 'react';
+
+import { CreateGoalDetailsParams } from './CreateGoalDetails';
 
 export interface CreateGoalDetailsViewModelProps {
   goal: TGoalCreate;

@@ -5,10 +5,10 @@ export interface SettingsSectionViewModelProps {
 }
 
 export function SettingsSectionViewModel() {
-  const [state, setState] = useState('')
+  const [state, setState] = useState('');
 
   return {
     state,
     setState
-  }
+  };
 }

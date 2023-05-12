@@ -1,9 +1,10 @@
 import { useState } from 'react';
-import useErrors from '../../hooks/useErrors';
-import isEmailValid from '../../utils/isEmailValid';
 import { useNavigation } from '@react-navigation/native';
-import { AuthRoutesNavigationProp } from '../../routes/public/auth.routes';
+
 import { useAuth } from '../../hooks/useAuth';
+import useErrors from '../../hooks/useErrors';
+import { AuthRoutesNavigationProp } from '../../routes/public/auth.routes';
+import isEmailValid from '../../utils/isEmailValid';
 
 export interface RegisterViewModelProps {
   email: string;

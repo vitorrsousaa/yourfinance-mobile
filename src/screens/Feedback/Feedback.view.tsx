@@ -1,20 +1,22 @@
-import { FeedbackViewModelProps } from './Feedback.view-model';
-import { FeedbackViewProps } from './Feedback';
-import * as styled from './Feedback.styles';
+import { useNavigation } from '@react-navigation/native';
 import {
   FlatList,
+  KeyboardAvoidingView,
   TouchableOpacity,
   View,
-  KeyboardAvoidingView,
 } from 'react-native';
-import { useNavigation } from '@react-navigation/native';
-import Header from '../../components/Header';
-import { Text } from '../../components/Text';
-import { useTheme } from 'styled-components/native';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
-import { isAndroid } from '../../utils/isAndroid';
 import { ScrollView } from 'react-native-gesture-handler';
+import { useTheme } from 'styled-components/native';
+
+import Button from '../../components/Button';
+import Header from '../../components/Header';
+import Input from '../../components/Input';
+import { Text } from '../../components/Text';
+import { isAndroid } from '../../utils/isAndroid';
+
+import { FeedbackViewProps } from './Feedback';
+import * as styled from './Feedback.styles';
+import { FeedbackViewModelProps } from './Feedback.view-model';
 
 interface Props {
   viewModel: FeedbackViewModelProps;

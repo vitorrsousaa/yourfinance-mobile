@@ -1,7 +1,8 @@
 import { useState } from 'react';
-import { TCardSummary } from '../../types/Analytics';
 import { useNavigation } from '@react-navigation/native';
+
 import { PrivateRouteNavigationProp } from '../../routes/private';
+import { TCardSummary } from '../../types/Analytics';
 
 export interface HomeViewModelProps {
   incomeSummary: TCardSummary;

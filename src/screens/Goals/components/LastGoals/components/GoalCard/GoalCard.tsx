@@ -1,8 +1,9 @@
 import { memo } from 'react';
 
+import { TGoalResponse } from '../../../../../../types/Goal';
+
 import { GoalCardView } from './GoalCard.view';
 import { GoalCardViewModel } from './GoalCard.view-model';
-import { TGoalResponse } from '../../../../../../types/Goal';
 
 export interface GoalCardProps {
   goal: TGoalResponse;

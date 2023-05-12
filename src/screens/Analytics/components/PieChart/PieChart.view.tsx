@@ -1,10 +1,12 @@
-import { PieChartViewModelProps } from './PieChart.view-model';
+import { View } from 'react-native';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useTheme } from 'styled-components/native';
+
+import { Text } from '../../../../components/Text';
+
 import { PieChartViewProps } from './PieChart';
 import * as styled from './PieChart.styles';
-import { View } from 'react-native';
-import { Text } from '../../../../components/Text';
-import { useTheme } from 'styled-components/native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
+import { PieChartViewModelProps } from './PieChart.view-model';
 
 interface Props {
   viewModel: PieChartViewModelProps;

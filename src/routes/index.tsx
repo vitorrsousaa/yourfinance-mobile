@@ -1,9 +1,10 @@
 import { NavigationContainer } from '@react-navigation/native';
+import { ActivityIndicator, View } from 'react-native';
 
 import { useAuth } from '../hooks/useAuth';
-import { AuthRoutes } from './public';
+
 import PrivateRoutes from './private';
-import { ActivityIndicator, View } from 'react-native';
+import { AuthRoutes } from './public';
 
 export function Router() {
   const { authenticated, loading } = useAuth();

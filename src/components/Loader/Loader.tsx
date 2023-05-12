@@ -1,10 +1,10 @@
-import { memo } from 'react';
+import { ActivityIndicatorProps } from 'react-native';
 
 import { LoaderView } from './Loader.view';
 import { LoaderViewModel } from './Loader.view-model';
-import { ActivityIndicatorProps } from 'react-native';
 
 export interface LoaderProps extends ActivityIndicatorProps {}
+import { memo } from 'react';
 
 export interface LoaderViewProps extends Omit<LoaderProps, ''> {}
 

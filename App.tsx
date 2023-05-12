@@ -1,10 +1,12 @@
-import 'react-native-gesture-handler';
 import { useFonts } from 'expo-font';
-import Main from './src/Main';
-import { AuthProvider } from './src/contexts/AuthContext';
 import { StatusBar } from 'expo-status-bar';
 import { QueryClient, QueryClientProvider } from 'react-query';
+
 import ThemeProvider from './src/components/ThemeProvider';
+import { AuthProvider } from './src/contexts/AuthContext';
+import Main from './src/Main';
+
+import 'react-native-gesture-handler';
 
 const queryClient = new QueryClient();
 
@@ -22,12 +24,12 @@ export default function App() {
 
   return (
     <ThemeProvider>
+      <StatusBar style="dark" />
       <AuthProvider>
         <QueryClientProvider client={queryClient}>
           <Main />
         </QueryClientProvider>
       </AuthProvider>
-      <StatusBar style="light" />
     </ThemeProvider>
   );
 }

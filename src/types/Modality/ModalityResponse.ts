@@ -1,3 +1,6 @@
-import { TModality } from './Modality';
+export type TModalityResponse = {
+  name: string;
 
-export type TModalityResponse = TModality[];
+  id: string;
+  categoryId: string;
+};

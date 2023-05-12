@@ -1,10 +1,11 @@
-import { useNavigation } from '@react-navigation/native';
-import { GoalsRoutesNavigationProp } from '../../../../routes/private/Goal.routes';
-import { CreateGoalTimeParams } from './CreateGoalTime';
 import { useMemo, useState } from 'react';
+import { useNavigation } from '@react-navigation/native';
+
+import { GoalsRoutesNavigationProp } from '../../../../routes/private/Goal.routes';
 import { TGoalCreate } from '../../../../types/Goal';
 
 import { CheckBoxItem } from './components/CheckBoxForm/CheckBoxForm';
+import { CreateGoalTimeParams } from './CreateGoalTime';
 
 export interface CreateGoalTimeViewModelProps {
   checkForm: CheckBoxItem[];

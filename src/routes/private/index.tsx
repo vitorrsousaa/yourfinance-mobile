@@ -1,15 +1,15 @@
-import { createStackNavigator } from '@react-navigation/stack';
-
-import { HomeTabRoutes } from './HomeTab.routes';
-import GoalsRoutes, { GoalsRootParamList } from './Goal.routes';
 import {
   NavigationProp,
   NavigatorScreenParams,
 } from '@react-navigation/native';
-import UserRoutes, { UserRootParamList } from './User.routes';
+import { createStackNavigator } from '@react-navigation/stack';
+
+import GoalsRoutes, { GoalsRootParamList } from './Goal.routes';
+import { HomeTabRoutes } from './HomeTab.routes';
 import TransactionsRoutes, {
   TransactionsRootParamList,
 } from './Transactions.routes';
+import UserRoutes, { UserRootParamList } from './User.routes';
 
 export type PrivateRootParamList = {
   HomeTabs: undefined;

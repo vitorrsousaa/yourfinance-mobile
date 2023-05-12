@@ -1,8 +1,9 @@
-import { SelectViewModelProps } from './Select.view-model';
-import { SelectViewProps } from './Select';
-import * as styled from './Select.styles';
 import { Picker } from '@react-native-picker/picker';
 import { useTheme } from 'styled-components/native';
+
+import { SelectViewProps } from './Select';
+import * as styled from './Select.styles';
+import { SelectViewModelProps } from './Select.view-model';
 
 interface Props {
   viewModel: SelectViewModelProps;

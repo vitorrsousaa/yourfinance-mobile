@@ -1,12 +1,13 @@
 import { UserRequest, UserResponse } from '../../types/User';
 import HttpClient from '../HttpClient';
+
 import { IAuthService } from './IAuthService';
 
 class AuthService implements IAuthService {
   private httpClient;
 
   constructor() {
-    this.httpClient = new HttpClient('http://192.168.0.106:3001/api');
+    this.httpClient = new HttpClient();
   }
 
   login(user: UserRequest) {

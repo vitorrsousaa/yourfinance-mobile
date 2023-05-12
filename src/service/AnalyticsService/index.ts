@@ -1,17 +1,18 @@
 import { TCardSummary } from '../../types/Analytics';
 import HttpClient from '../HttpClient';
+
 import { IAnalyticsService } from './IAnalyticsService';
 
 class AnalyticsService implements IAnalyticsService {
   private httpClient;
 
   constructor() {
-    this.httpClient = new HttpClient('http://192.168.0.106:3001/api/analytics');
+    this.httpClient = new HttpClient();
   }
 
   async getCardsSummary(categoryId: string) {
     return this.httpClient.get<TCardSummary>(
-      `/getSummaryByCategory/${categoryId}`
+      `/analytics/getSummaryByCategory/${categoryId}`
     );
   }
 }

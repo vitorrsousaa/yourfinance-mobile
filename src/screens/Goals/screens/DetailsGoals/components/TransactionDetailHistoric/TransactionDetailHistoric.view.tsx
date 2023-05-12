@@ -1,11 +1,13 @@
-import { TransactionDetailHistoricViewModelProps } from './TransactionDetailHistoric.view-model';
-import { TransactionDetailHistoricViewProps } from './TransactionDetailHistoric';
-import * as styled from './TransactionDetailHistoric.styles';
 import { View } from 'react-native';
 import { useTheme } from 'styled-components/native';
+
 import { Text } from '../../../../../../components/Text';
-import { formatDate } from '../../../../../../utils/formatDate';
 import formatAmount from '../../../../../../utils/formatAmout';
+import { formatDate } from '../../../../../../utils/formatDate';
+
+import { TransactionDetailHistoricViewProps } from './TransactionDetailHistoric';
+import * as styled from './TransactionDetailHistoric.styles';
+import { TransactionDetailHistoricViewModelProps } from './TransactionDetailHistoric.view-model';
 
 interface Props {
   viewModel: TransactionDetailHistoricViewModelProps;

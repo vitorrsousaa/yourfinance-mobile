@@ -17,12 +17,12 @@ function Notifications(props: NotificationsProps) {
   const viewModel = useViewModel();
 
   return (
-      <NotificationsView viewModel={viewModel} props={viewProps} />
+    <NotificationsView viewModel={viewModel} props={viewProps} />
   );
 }
 
 export function useViewModel(){
-  const viewModel = NotificationsViewModel()
+  const viewModel = NotificationsViewModel();
 
   return viewModel;
 }

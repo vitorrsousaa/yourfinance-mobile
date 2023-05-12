@@ -1,15 +1,15 @@
 import React, { createContext, ReactNode, useEffect, useState } from 'react';
-
-import { User } from '../types/User';
-import AuthService from '../service/AuthService';
-import APIError from '../errors/APIErrors';
-import { Alert } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-import { TOKEN_COLLECTION, USER_COLLECTION } from '../storage/storageConfig';
+import { Alert } from 'react-native';
+
+import APIError from '../errors/APIErrors';
+import AuthService from '../service/AuthService';
 import {
   removeAuthorizationHeader,
   setAuthorizationHeader,
 } from '../service/utils/authorizationHeader';
+import { TOKEN_COLLECTION, USER_COLLECTION } from '../storage/storageConfig';
+import { User } from '../types/User';
 
 interface AuthContextProviderProps {
   children: ReactNode;

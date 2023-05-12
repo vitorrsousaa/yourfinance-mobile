@@ -1,12 +1,14 @@
-import { TransactionViewModelProps } from './Transaction.view-model';
-import { TransactionViewProps } from './Transaction';
-import * as styled from './Transaction.styles';
 import { View } from 'react-native';
-import formatAmount from '../../../../utils/formatAmout';
-import { Text } from '../../../Text';
 import { useTheme } from 'styled-components/native';
+
+import formatAmount from '../../../../utils/formatAmout';
 import { formatDate } from '../../../../utils/formatDate';
 import Icon from '../../../Icons';
+import { Text } from '../../../Text';
+
+import { TransactionViewProps } from './Transaction';
+import * as styled from './Transaction.styles';
+import { TransactionViewModelProps } from './Transaction.view-model';
 
 interface Props {
   viewModel: TransactionViewModelProps;

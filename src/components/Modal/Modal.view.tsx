@@ -1,11 +1,13 @@
-import { ModalViewModelProps } from './Modal.view-model';
+import { Modal, View } from 'react-native';
+import { useTheme } from 'styled-components/native';
+
+import { isAndroid } from '../../utils/isAndroid';
+import Button from '../Button';
+import { Text } from '../Text';
+
 import { ModalViewProps } from './Modal';
 import * as styled from './Modal.styles';
-import { Modal, View } from 'react-native';
-import { Text } from '../Text';
-import { isAndroid } from '../../utils/isAndroid';
-import { useTheme } from 'styled-components/native';
-import Button from '../Button';
+import { ModalViewModelProps } from './Modal.view-model';
 
 interface Props {
   viewModel: ModalViewModelProps;
@@ -22,6 +24,8 @@ export function ModalView({ viewModel, props }: Props) {
     visible,
     isLoadingAction,
     isDisabledAction,
+    customTitleSize = 24,
+    hasCancelButton = true,
     onClose,
     onAction,
   } = props;
@@ -39,37 +43,43 @@ export function ModalView({ viewModel, props }: Props) {
         <styled.ModalBody>
           <styled.Header>
             <Text
-              size={24}
+              size={customTitleSize}
               weight="500"
               color={type === 'primary' ? colors.black[900] : colors.red[400]}
             >
               {title}
             </Text>
-            <Text size={16} color={colors.black[600]}>
-              {subtitle}
-            </Text>
+            {subtitle && (
+              <Text size={16} color={colors.black[600]}>
+                {subtitle}
+              </Text>
+            )}
           </styled.Header>
           {children && children}
 
-          <styled.Actions>
-            <Button
-              variant="empty"
-              style={{ flex: 1 }}
-              onPress={onClose}
-              disabled={isLoadingAction}
-            >
-              Cancelar
-            </Button>
-            <Button
-              variant={type === 'danger' ? 'danger' : 'primary'}
-              style={{ flex: 1 }}
-              onPress={onAction}
-              loading={isLoadingAction}
-              disabled={isDisabledAction}
-            >
-              {action}
-            </Button>
-          </styled.Actions>
+          {action && (
+            <styled.Actions>
+              {hasCancelButton && (
+                <Button
+                  variant="empty"
+                  style={{ flex: 1 }}
+                  onPress={onClose}
+                  disabled={isLoadingAction}
+                >
+                  Cancelar
+                </Button>
+              )}
+              <Button
+                variant={type === 'danger' ? 'danger' : 'primary'}
+                style={{ flex: 1 }}
+                onPress={onAction}
+                loading={isLoadingAction}
+                disabled={isDisabledAction}
+              >
+                {action}
+              </Button>
+            </styled.Actions>
+          )}
         </styled.ModalBody>
       </styled.Overlay>
     </Modal>

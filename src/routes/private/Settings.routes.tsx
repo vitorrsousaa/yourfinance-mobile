@@ -1,6 +1,5 @@
-import { createStackNavigator } from '@react-navigation/stack';
-
 import { NavigationProp } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
 
 import Feedback from '../../screens/Feedback';
 import MyAccount from '../../screens/MyAccount';

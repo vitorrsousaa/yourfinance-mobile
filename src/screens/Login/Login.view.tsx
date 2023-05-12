@@ -1,13 +1,15 @@
-import { LoginViewModelProps } from './Login.view-model';
+import { ScrollView, TouchableOpacity,View } from 'react-native';
+import { useTheme } from 'styled-components/native';
+
+import Button from '../../components/Button';
+import Input from '../../components/Input';
+import { Text } from '../../components/Text';
+import Welcome from '../../components/Welcome';
+import { isAndroid } from '../../utils/isAndroid';
+
 import { LoginViewProps } from './Login';
 import * as styled from './Login.styles';
-import Welcome from '../../components/Welcome';
-import Input from '../../components/Input';
-import Button from '../../components/Button';
-import { View, ScrollView, TouchableOpacity } from 'react-native';
-import { isAndroid } from '../../utils/isAndroid';
-import { Text } from '../../components/Text';
-import { useTheme } from 'styled-components/native';
+import { LoginViewModelProps } from './Login.view-model';
 
 interface Props {
   viewModel: LoginViewModelProps;

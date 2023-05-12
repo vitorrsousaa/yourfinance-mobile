@@ -1,8 +1,9 @@
 import { memo } from 'react';
 
+import { TTransaction } from '../../types/Transaction';
+
 import { LastTransactionsView } from './LastTransactions.view';
 import { LastTransactionsViewModel } from './LastTransactions.view-model';
-import { TTransaction } from '../../types/Transaction';
 
 export interface LastTransactionsProps {
   title?: string;

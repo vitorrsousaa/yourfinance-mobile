@@ -1,13 +1,14 @@
-import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios';
-import APIError from '../errors/APIErrors';
+import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
+import APIError from '../errors/APIErrors';
 import delay from '../utils/delay';
+
 import api from './api';
 
 class HttpClient {
   private baseURL;
 
-  constructor(baseURL: string) {
+  constructor(baseURL = 'https://7e82-179-108-186-3.ngrok-free.app/api') {
     this.baseURL = baseURL;
   }
 
@@ -26,6 +27,9 @@ class HttpClient {
   }
 
   post<T>(path: string, data: unknown) {
+    console.log(this.baseURL);
+    console.log('path', path);
+    console.log(data);
     return this.makeRequest<T>({
       method: 'post',
       url: `${this.baseURL}${path}`,
@@ -42,7 +46,7 @@ class HttpClient {
   }
 
   async makeRequest<T>(options: AxiosRequestConfig): Promise<T> {
-    await delay(1000);
+    // await delay(1000);
 
     const response: AxiosResponse = await api({
       ...options,

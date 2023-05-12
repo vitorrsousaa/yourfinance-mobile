@@ -1,4 +1,4 @@
-import { ReactNode, memo } from 'react';
+import { memo, ReactNode } from 'react';
 
 import { ModalView } from './Modal.view';
 import { ModalViewModel } from './Modal.view-model';
@@ -8,12 +8,14 @@ export interface ModalProps {
   onClose: () => void;
   type?: 'danger' | 'primary';
   title: string;
-  subtitle: string;
+  subtitle?: string;
   children?: ReactNode;
-  action: string;
-  onAction: () => void;
-  isLoadingAction: boolean;
+  action?: string;
+  onAction?: () => void;
+  isLoadingAction?: boolean;
   isDisabledAction?: boolean;
+  customTitleSize?: number;
+  hasCancelButton?: boolean;
 }
 
 // Quando a prop é usada somente aqui, devemos omitir para não ir pra View

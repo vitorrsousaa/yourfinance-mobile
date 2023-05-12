@@ -1,4 +1,5 @@
 import { useNavigation } from '@react-navigation/native';
+
 import { SettingsRoutesNavigationProp } from '../../routes/private/Settings.routes';
 
 export interface SettingsViewModelProps {

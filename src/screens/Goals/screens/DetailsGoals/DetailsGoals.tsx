@@ -1,10 +1,11 @@
 import { memo } from 'react';
+import { RouteProp } from '@react-navigation/native';
+
+import { GoalsRootParamList } from '../../../../routes/private/Goal.routes';
+import { TGoalResponse } from '../../../../types/Goal';
 
 import { DetailsGoalsView } from './DetailsGoals.view';
 import { DetailsGoalsViewModel } from './DetailsGoals.view-model';
-import { RouteProp } from '@react-navigation/native';
-import { GoalsRootParamList } from '../../../../routes/private/Goal.routes';
-import { TGoalResponse } from '../../../../types/Goal';
 
 type RouteProps = RouteProp<GoalsRootParamList, 'DetailsGoals'>;
 

@@ -1,13 +1,15 @@
-import { ReactNode, memo } from 'react';
+import { memo, ReactNode } from 'react';
+import { TouchableOpacityProps } from 'react-native';
 
 import { RowView } from './Row.view';
 import { RowViewModel } from './Row.view-model';
 
-export interface RowProps {
+export interface RowProps extends TouchableOpacityProps {
   icon: ReactNode;
   title?: string;
   rightIcon?: ReactNode;
   children?: ReactNode;
+  isLoading?: boolean;
 }
 
 // Quando a prop é usada somente aqui, devemos omitir para não ir pra View

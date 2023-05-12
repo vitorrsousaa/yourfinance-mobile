@@ -1,8 +1,9 @@
-import { ProgressBarViewModelProps } from './ProgressBar.view-model';
-import { ProgressBarViewProps } from './ProgressBar';
-import * as styled from './ProgressBar.styles';
 import { View } from 'react-native';
 import { useTheme } from 'styled-components/native';
+
+import { ProgressBarViewProps } from './ProgressBar';
+import * as styled from './ProgressBar.styles';
+import { ProgressBarViewModelProps } from './ProgressBar.view-model';
 
 interface Props {
   viewModel: ProgressBarViewModelProps;

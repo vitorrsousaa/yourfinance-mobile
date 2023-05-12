@@ -1,16 +1,18 @@
 import { TCategory } from '../../types/Category';
 import HttpClient from '../HttpClient';
+
 import { ICategoriesService } from './ICategoriesService';
 
 class CategoriesService implements ICategoriesService {
   private httpClient;
 
   constructor() {
-    this.httpClient = new HttpClient('http://192.168.0.106:3001/api');
+    this.httpClient = new HttpClient();
   }
 
   async list() {
-    return this.httpClient.get<TCategory[]>('/category');
+    const categories = await this.httpClient.get<TCategory[]>('/category');
+    return categories;
   }
 }
 

@@ -1,8 +1,8 @@
 import { memo } from 'react';
+import { TouchableOpacityProps } from 'react-native';
 
 import { ContinuousButtonView } from './ContinuousButton.view';
 import { ContinuousButtonViewModel } from './ContinuousButton.view-model';
-import { TouchableOpacityProps } from 'react-native';
 
 export interface ContinuousButtonProps extends TouchableOpacityProps {
   isValid: boolean;

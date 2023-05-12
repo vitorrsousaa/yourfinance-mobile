@@ -1,14 +1,16 @@
-import { LastGoalsViewModelProps } from './LastGoals.view-model';
-import { LastGoalsViewProps } from './LastGoals';
-import * as styled from './LastGoals.styles';
 import { View } from 'react-native';
-import GoalCard from './components/GoalCard';
-import Loader from '../../../../components/Loader';
 import { FlatList } from 'react-native-gesture-handler';
 import { useTheme } from 'styled-components/native';
+
 import { ErrorContent } from '../../../../components/Illustrations/ErrorContent';
-import { Text } from '../../../../components/Text';
 import { NoData } from '../../../../components/Illustrations/NoData';
+import Loader from '../../../../components/Loader';
+import { Text } from '../../../../components/Text';
+
+import GoalCard from './components/GoalCard';
+import { LastGoalsViewProps } from './LastGoals';
+import * as styled from './LastGoals.styles';
+import { LastGoalsViewModelProps } from './LastGoals.view-model';
 
 interface Props {
   viewModel: LastGoalsViewModelProps;

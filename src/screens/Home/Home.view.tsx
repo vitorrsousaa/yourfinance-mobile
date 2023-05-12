@@ -1,18 +1,20 @@
-import { HomeViewModelProps } from './Home.view-model';
-import { HomeViewProps } from './Home';
-import * as styled from './Home.styles';
 import { View } from 'react-native';
-import CategorySummary from './components/CategorySummary';
-import { Text } from '../../components/Text';
 import { useTheme } from 'styled-components/native';
-import formatAmount from '../../utils/formatAmout';
+
+import Icon from '../../components/Icons';
 import LastTransactions from '../../components/LastTransactions';
+import Loader from '../../components/Loader';
+import PlusButton from '../../components/PlusButton';
+import { Text } from '../../components/Text';
 import Touchable from '../../components/Touchable';
 import { useAuth } from '../../hooks/useAuth';
-import PlusButton from '../../components/PlusButton';
 import { useTransactions } from '../../hooks/useTransactions';
-import Loader from '../../components/Loader';
-import Icon from '../../components/Icons';
+import formatAmount from '../../utils/formatAmout';
+
+import CategorySummary from './components/CategorySummary';
+import { HomeViewProps } from './Home';
+import * as styled from './Home.styles';
+import { HomeViewModelProps } from './Home.view-model';
 
 interface Props {
   viewModel: HomeViewModelProps;

@@ -1,7 +1,8 @@
-import { SettingsSectionViewModelProps } from './SettingsSection.view-model';
+import { Text } from '../../../../components/Text';
+
 import { SettingsSectionViewProps } from './SettingsSection';
 import * as styled from './SettingsSection.styles';
-import { Text } from '../../../../components/Text';
+import { SettingsSectionViewModelProps } from './SettingsSection.view-model';
 
 interface Props {
   viewModel: SettingsSectionViewModelProps;

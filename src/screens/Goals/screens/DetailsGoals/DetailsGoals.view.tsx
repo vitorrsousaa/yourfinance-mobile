@@ -1,20 +1,22 @@
-import { DetailsGoalsViewModelProps } from './DetailsGoals.view-model';
+import { useMemo } from 'react';
+import { useNavigation } from '@react-navigation/native';
+import { View } from 'react-native';
+import { FlatList } from 'react-native-gesture-handler';
+import { useTheme } from 'styled-components/native';
+
+import Icon from '../../../../components/Icons';
+import InputOutlined from '../../../../components/InputOutlined';
+import Modal from '../../../../components/Modal';
+import { Text } from '../../../../components/Text';
+import Touchable from '../../../../components/Touchable';
+import formatAmount from '../../../../utils/formatAmout';
+import { formatDate } from '../../../../utils/formatDate';
+import ProgressBar from '../../components/ProgressBar';
+
+import TransactionDetailHistoric from './components/TransactionDetailHistoric';
 import { DetailsGoalsViewProps } from './DetailsGoals';
 import * as styled from './DetailsGoals.styles';
-import { Text } from '../../../../components/Text';
-import { View } from 'react-native';
-import Touchable from '../../../../components/Touchable';
-import { useTheme } from 'styled-components/native';
-import { useNavigation } from '@react-navigation/native';
-import ProgressBar from '../../components/ProgressBar';
-import { useMemo } from 'react';
-import formatAmount from '../../../../utils/formatAmout';
-import { FlatList } from 'react-native-gesture-handler';
-import TransactionDetailHistoric from './components/TransactionDetailHistoric';
-import Modal from '../../../../components/Modal';
-import InputOutlined from '../../../../components/InputOutlined';
-import { formatDate } from '../../../../utils/formatDate';
-import Icon from '../../../../components/Icons';
+import { DetailsGoalsViewModelProps } from './DetailsGoals.view-model';
 
 interface Props {
   viewModel: DetailsGoalsViewModelProps;
@@ -98,7 +100,7 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
             <Text size={18} weight="500">
               Histórico
             </Text>
-            {historicTransaction.length > 0 ? (
+            {historicTransaction ? (
               <View style={{ flex: 1, paddingBottom: 86 }}>
                 <FlatList
                   data={historicTransaction}

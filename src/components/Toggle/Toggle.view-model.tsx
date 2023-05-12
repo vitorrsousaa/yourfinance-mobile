@@ -5,10 +5,10 @@ export interface ToggleViewModelProps {
 }
 
 export function ToggleViewModel() {
-  const [state, setState] = useState('')
+  const [state, setState] = useState('');
 
   return {
     state,
     setState
-  }
+  };
 }

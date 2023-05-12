@@ -1,9 +1,10 @@
 import { memo } from 'react';
+import { TouchableOpacityProps } from 'react-native';
+
+import { Icons } from '../Icons';
 
 import { TouchableView } from './Touchable.view';
 import { TouchableViewModel } from './Touchable.view-model';
-import { TouchableOpacityProps } from 'react-native';
-import { Icons } from '../Icons';
 
 export interface TouchableProps extends TouchableOpacityProps {
   item: Icons;

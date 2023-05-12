@@ -1,14 +1,14 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Home as HomeIcon } from '../../components/Icons/components/Home';
-
 import { useTheme } from 'styled-components/native';
-import Analytics from '../../screens/Analytics';
-import { ChartBar } from '../../components/Icons/components/ChartBar';
-import Transactions from '../../screens/Transactions';
+
 import { ArrowLeftRight } from '../../components/Icons/components/ArrowLeftRight';
-import Goals from '../../screens/Goals';
+import { ChartBar } from '../../components/Icons/components/ChartBar';
+import { Home as HomeIcon } from '../../components/Icons/components/Home';
 import { Target } from '../../components/Icons/components/Target';
+import Analytics from '../../screens/Analytics';
+import Goals from '../../screens/Goals';
 import Home from '../../screens/Home';
+import Transactions from '../../screens/Transactions';
 
 export type HomeTabParamList = {
   Home: undefined;

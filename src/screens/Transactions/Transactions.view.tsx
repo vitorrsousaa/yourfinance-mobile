@@ -1,11 +1,13 @@
-import { TransactionsViewModelProps } from './Transactions.view-model';
-import { TransactionsViewProps } from './Transactions';
-import * as styled from './Transactions.styles';
+import { View } from 'react-native';
+
+import Header from '../../components/Header';
 import LastTransactions from '../../components/LastTransactions';
 import Touchable from '../../components/Touchable';
 import { useTransactions } from '../../hooks/useTransactions';
-import Header from '../../components/Header';
-import { View } from 'react-native';
+
+import { TransactionsViewProps } from './Transactions';
+import * as styled from './Transactions.styles';
+import { TransactionsViewModelProps } from './Transactions.view-model';
 
 interface Props {
   viewModel: TransactionsViewModelProps;

@@ -1,13 +1,15 @@
-import { GoalsViewModelProps } from './Goals.view-model';
+import { useTheme } from 'styled-components/native';
+
+import Header from '../../components/Header';
+import PlusButton from '../../components/PlusButton';
+import { Text } from '../../components/Text';
+import Touchable from '../../components/Touchable';
+import { useGoals } from '../../hooks/useGoals';
+
+import LastGoals from './components/LastGoals';
 import { GoalsViewProps } from './Goals';
 import * as styled from './Goals.styles';
-import LastGoals from './components/LastGoals';
-import { useTheme } from 'styled-components/native';
-import Touchable from '../../components/Touchable';
-import { Text } from '../../components/Text';
-import PlusButton from '../../components/PlusButton';
-import { useGoals } from '../../hooks/useGoals';
-import Header from '../../components/Header';
+import { GoalsViewModelProps } from './Goals.view-model';
 
 interface Props {
   viewModel: GoalsViewModelProps;

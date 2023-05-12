@@ -1,4 +1,5 @@
 import theme from '../../../assets/theme';
+
 import { ButtonVariants } from './types';
 
 const border = 'solid 2px';

@@ -1,8 +1,9 @@
 import { memo } from 'react';
 
+import { THistoricTransaction } from '../../../../../../types/Goal';
+
 import { TransactionDetailHistoricView } from './TransactionDetailHistoric.view';
 import { TransactionDetailHistoricViewModel } from './TransactionDetailHistoric.view-model';
-import { THistoricTransaction } from '../../../../../../types/Goal';
 
 export interface TransactionDetailHistoricProps {
   transaction: THistoricTransaction;

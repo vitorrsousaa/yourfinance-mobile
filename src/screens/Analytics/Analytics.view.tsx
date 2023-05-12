@@ -1,12 +1,11 @@
-import { AnalyticsViewModelProps } from './Analytics.view-model';
-import { AnalyticsViewProps } from './Analytics';
-import * as styled from './Analytics.styles';
-import { Text } from '../../components/Text';
-
-import Touchable from '../../components/Touchable';
 import Header from '../../components/Header';
+import { Text } from '../../components/Text';
+import Touchable from '../../components/Touchable';
 
 import PieChart from './components/PieChart';
+import { AnalyticsViewProps } from './Analytics';
+import * as styled from './Analytics.styles';
+import { AnalyticsViewModelProps } from './Analytics.view-model';
 
 interface Props {
   viewModel: AnalyticsViewModelProps;

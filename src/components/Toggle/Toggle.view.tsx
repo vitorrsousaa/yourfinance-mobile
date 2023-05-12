@@ -1,7 +1,8 @@
-import { ToggleViewModelProps } from './Toggle.view-model';
+import { Switch } from 'react-native';
+
 import { ToggleViewProps } from './Toggle';
 import * as styled from './Toggle.styles';
-import { Switch } from 'react-native';
+import { ToggleViewModelProps } from './Toggle.view-model';
 
 interface Props {
   viewModel: ToggleViewModelProps;
