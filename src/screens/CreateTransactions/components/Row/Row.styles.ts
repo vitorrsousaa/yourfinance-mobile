@@ -11,6 +11,8 @@ export const Row = styled.TouchableOpacity`
   border-bottom-width: 1px;
   border-bottom-color: ${({ theme }) => theme.colors.black[200]};
 
+  padding-bottom: 12px;
+
   margin-top: 12px;
   margin-bottom: 12px;
 `;
