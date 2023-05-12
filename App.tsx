@@ -1,9 +1,8 @@
 import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
 import { QueryClient, QueryClientProvider } from 'react-query';
-import { ThemeProvider } from 'styled-components/native';
 
-import theme from './src/assets/theme';
+import ThemeProvider from './src/components/ThemeProvider';
 import { AuthProvider } from './src/contexts/AuthContext';
 import Main from './src/Main';
 
@@ -24,7 +23,7 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider>
       <StatusBar style="dark" />
       <AuthProvider>
         <QueryClientProvider client={queryClient}>

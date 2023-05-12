@@ -6,10 +6,7 @@ import { PlusButtonViewModel } from './PlusButton.view-model';
 
 export interface PlusButtonProps extends TouchableOpacityProps {}
 
-// Quando a prop é usada somente aqui, devemos omitir para não ir pra View
-export interface PlusButtonViewProps extends Omit<PlusButtonProps, ''> {
-  // Quando alguma prop vai ser utilizada somente na View, devemos acrescentar aqui
-}
+export interface PlusButtonViewProps extends Omit<PlusButtonProps, ''> {}
 
 function PlusButton(props: PlusButtonProps) {
   const { ...viewProps } = props;

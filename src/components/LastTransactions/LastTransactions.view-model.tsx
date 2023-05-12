@@ -1,14 +1,5 @@
-import { useState } from 'react';
-
-export interface LastTransactionsViewModelProps {
-  state: string;
-}
+export interface LastTransactionsViewModelProps {}
 
 export function LastTransactionsViewModel() {
-  const [state, setState] = useState('');
-
-  return {
-    state,
-    setState,
-  };
+  return {};
 }

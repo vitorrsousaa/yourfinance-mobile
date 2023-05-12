@@ -1,14 +1,5 @@
-import { useState } from 'react';
-
-export interface TransactionViewModelProps {
-  state: string;
-}
+export interface TransactionViewModelProps {}
 
 export function TransactionViewModel() {
-  const [state, setState] = useState('');
-
-  return {
-    state,
-    setState,
-  };
+  return {};
 }
