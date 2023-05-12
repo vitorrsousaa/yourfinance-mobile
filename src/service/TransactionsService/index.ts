@@ -5,17 +5,17 @@ class TransactionsService {
   private httpClient;
 
   constructor() {
-    this.httpClient = new HttpClient(
-      'http://192.168.0.106:3001/api/transactions'
-    );
+    this.httpClient = new HttpClient();
   }
 
   async list(page?: number) {
     if (page) {
-      return this.httpClient.get<TTransactionResponse>(`/?page=${page}`);
+      return this.httpClient.get<TTransactionResponse>(
+        `/transactions/?page=${page}`
+      );
     }
 
-    return this.httpClient.get<TTransactionResponse>('/');
+    return this.httpClient.get<TTransactionResponse>('/transactions');
   }
 }
 

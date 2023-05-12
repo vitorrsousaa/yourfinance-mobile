@@ -7,7 +7,7 @@ class CategoriesService implements ICategoriesService {
   private httpClient;
 
   constructor() {
-    this.httpClient = new HttpClient('http://192.168.0.106:3001/api');
+    this.httpClient = new HttpClient();
   }
 
   async list() {
