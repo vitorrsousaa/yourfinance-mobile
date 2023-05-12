@@ -20,7 +20,7 @@ type DefaultProps = Pick<TouchableProps, 'background'>;
 type Props = TouchableProps & DefaultProps;
 
 const defaultProps: DefaultProps = {
-  background: 'white',
+  background: 'black',
 };
 
 function Touchable(props: Props) {
