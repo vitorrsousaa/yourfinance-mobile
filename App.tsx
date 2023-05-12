@@ -25,12 +25,12 @@ export default function App() {
 
   return (
     <ThemeProvider theme={theme}>
+      <StatusBar style="dark" />
       <AuthProvider>
         <QueryClientProvider client={queryClient}>
           <Main />
         </QueryClientProvider>
       </AuthProvider>
-      <StatusBar style="light" />
     </ThemeProvider>
   );
 }
