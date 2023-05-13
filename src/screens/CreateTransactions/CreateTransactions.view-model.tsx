@@ -4,8 +4,10 @@ import { useNavigation } from '@react-navigation/native';
 
 import { useCategories } from '../../hooks/useCategories';
 import { useModalities } from '../../hooks/useModalities';
+import TransactionsService from '../../service/TransactionsService';
 import { TCategory } from '../../types/Category';
 import { TModality } from '../../types/Modality';
+import { TTransactionCreate } from '../../types/Transaction';
 import { isAndroid } from '../../utils/isAndroid';
 
 export interface CreateTransactionsViewModelProps {
@@ -22,6 +24,7 @@ export interface CreateTransactionsViewModelProps {
   monthsThatRepeatTransaction: number;
   datePickerIsVisible: boolean;
   date: Date;
+  isSubmitting: boolean;
   getModalities: () => TModality[] | undefined;
   goBack: () => void;
   handleAmountChange: (text: string) => void;
@@ -39,6 +42,7 @@ export interface CreateTransactionsViewModelProps {
     event: DateTimePickerEvent,
     date: Date | undefined
   ) => void;
+  handleSubmit: () => void;
 }
 
 export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps {
@@ -56,6 +60,7 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
     useState(1);
   const [datePickerIsVisible, setDatePickerIsVisible] = useState(false);
   const [date, setDate] = useState(new Date());
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { categories, isErrorCategories } = useCategories();
 
@@ -82,7 +87,7 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
       Boolean(
         description.length > 0 && amount > 0 && selectedModality !== null
       ),
-    [description, amount]
+    [description, amount, selectedModality]
   );
 
   function goBack() {
@@ -193,6 +198,33 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
     }
   }
 
+  async function handleSubmit() {
+    setIsSubmitting(true);
+
+    const transactionCreate: TTransactionCreate = {
+      modality: selectedModality ? selectedModality.id : '',
+      description: description,
+      amount: amount,
+      category: category.id,
+      date: date,
+    };
+
+    try {
+      const response = await TransactionsService.create(transactionCreate);
+
+      console.log(response);
+    } catch (error) {
+      console.log(error);
+      console.log(
+        'TEve um erro para cadastrar sua transação - Create transactions'
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
+
+    // console.log(transaction);
+  }
+
   return {
     amount,
     description,
@@ -207,6 +239,7 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
     monthsThatRepeatTransaction,
     datePickerIsVisible,
     date,
+    isSubmitting,
     getModalities,
     goBack,
     handleAmountChange,
@@ -221,5 +254,6 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
     handleMinusMonthRepeatTransaction,
     toggleDatePicker,
     handleChangeDate,
+    handleSubmit,
   };
 }
