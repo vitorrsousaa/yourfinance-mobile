@@ -3,7 +3,13 @@ export interface TTransactionCreate {
   description: string;
   amount: number;
   category: string;
-  type: string;
-  date: string;
-  // eslint-disable-next-line semi
+  date: Date;
+}
+
+export interface TTransactionCreatePersistance {
+  name: string;
+  categoryId: string;
+  modalityId: string;
+  amount: number;
+  date: Date;
 }

@@ -1,7 +1,14 @@
-import { TTransactionResponse } from '../../types/Transaction';
+import {
+  TTransactionCreate,
+  TTransactionResponse,
+} from '../../types/Transaction';
+import { TTransactionPersistance } from '../../types/Transaction/Transaction';
 import HttpClient from '../HttpClient';
+import TransactionMapper from '../mappers/Transaction/TransactionMapper';
 
-class TransactionsService {
+import { ITransactionsService } from './ITransactionsService';
+
+class TransactionsService implements ITransactionsService {
   private httpClient;
 
   constructor() {
@@ -16,6 +23,17 @@ class TransactionsService {
     }
 
     return this.httpClient.get<TTransactionResponse>('/transactions');
+  }
+
+  async create(transaction: TTransactionCreate) {
+    const transactionPersistance = TransactionMapper.toPersistance(transaction);
+
+    const response = await this.httpClient.post<TTransactionPersistance>(
+      '/transactions',
+      transactionPersistance
+    );
+
+    return TransactionMapper.toDomain(response);
   }
 }
 
