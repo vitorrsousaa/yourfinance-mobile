@@ -1,19 +1,16 @@
 import { memo } from 'react';
 
-import { THistoricTransaction } from '../../../../../../types/Goal';
+import { THistoricGoal } from '../../../../../../types/Goal';
 
 import { TransactionDetailHistoricView } from './TransactionDetailHistoric.view';
 import { TransactionDetailHistoricViewModel } from './TransactionDetailHistoric.view-model';
 
 export interface TransactionDetailHistoricProps {
-  transaction: THistoricTransaction;
+  transaction: THistoricGoal;
 }
 
-// Quando a prop é usada somente aqui, devemos omitir para não ir pra View
 export interface TransactionDetailHistoricViewProps
-  extends Omit<TransactionDetailHistoricProps, ''> {
-  // Quando alguma prop vai ser utilizada somente na View, devemos acrescentar aqui
-}
+  extends Omit<TransactionDetailHistoricProps, ''> {}
 
 function TransactionDetailHistoric(props: TransactionDetailHistoricProps) {
   const { ...viewProps } = props;

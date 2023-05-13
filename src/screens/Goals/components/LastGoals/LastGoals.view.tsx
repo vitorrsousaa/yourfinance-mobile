@@ -54,7 +54,7 @@ export function LastGoalsView({ viewModel, props }: Props) {
           <FlatList
             data={goals}
             renderItem={({ item }) => <GoalCard goal={item} />}
-            keyExtractor={(item) => item._id}
+            keyExtractor={(item) => item.id}
             ItemSeparatorComponent={() => <View style={{ height: 8 }} />}
           />
         </View>

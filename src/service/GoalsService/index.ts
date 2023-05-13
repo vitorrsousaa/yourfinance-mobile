@@ -1,5 +1,6 @@
 import { TGoalCreate, TGoalResponse, TGoalTransaction } from '../../types/Goal';
 import HttpClient from '../HttpClient';
+import GoalMapper from '../mappers/GoalMapper';
 
 import { IGoalsService } from './IGoalsService';
 
@@ -11,23 +12,34 @@ class GoalsService implements IGoalsService {
   }
 
   async list() {
-    return this.httpClient.get<TGoalResponse[]>('/goalbox/');
+    const goals = await this.httpClient.get<TGoalResponse[]>('/goalbox');
+
+    return goals.map(GoalMapper.toDomain);
   }
 
-  async listOne(goalId: string) {
-    return this.httpClient.get<TGoalResponse>(`/goalbox/findUnique/${goalId}`);
+  async listOne(id: string) {
+    const goal = await this.httpClient.get<TGoalResponse>(
+      `/goalbox/findUnique/${id}`
+    );
+
+    return GoalMapper.toDomain(goal);
   }
 
   async create(data: TGoalCreate) {
-    return this.httpClient.post<TGoalResponse>('/goalbox/', data);
+    const goal = await this.httpClient.post<TGoalResponse>('/goalbox', data);
+    return GoalMapper.toDomain(goal);
   }
 
-  async delete(goalId: string) {
-    return this.httpClient.delete<void>(`/goalbox/${goalId}`);
+  async delete(id: string) {
+    return this.httpClient.delete<void>(`/goalbox/${id}`);
   }
 
-  async createTransaction(goalId: string, data: TGoalTransaction) {
-    return this.httpClient.patch<TGoalResponse>(`/goalbox/${goalId}`, data);
+  async createTransaction(id: string, data: TGoalTransaction) {
+    const goal = await this.httpClient.patch<TGoalResponse>(
+      `/goalbox/${id}`,
+      data
+    );
+    return GoalMapper.toDomain(goal);
   }
 }
 

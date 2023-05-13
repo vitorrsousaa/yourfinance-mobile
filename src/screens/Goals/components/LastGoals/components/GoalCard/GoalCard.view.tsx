@@ -6,7 +6,6 @@ import { useTheme } from 'styled-components/native';
 import Icon from '../../../../../../components/Icons';
 import { Text } from '../../../../../../components/Text';
 import formatAmount from '../../../../../../utils/formatAmout';
-import { formatDate } from '../../../../../../utils/formatDate';
 import ProgressBar from '../../../ProgressBar';
 
 import { GoalCardViewProps } from './GoalCard';
@@ -21,11 +20,11 @@ interface Props {
 export function GoalCardView({ viewModel, props }: Props) {
   const { goal } = props;
 
-  const { goalName, goalTime, balance, payOff, goalCost } = goal;
+  const { name, date, balance, payOff, total } = goal;
 
   const progress = useMemo(() => {
-    return (balance / goalCost) * 100;
-  }, [goal._id]);
+    return (balance / total) * 100;
+  }, [goal.id]);
 
   const { handleNavigateToDetailsGoals } = viewModel;
 
@@ -38,10 +37,10 @@ export function GoalCardView({ viewModel, props }: Props) {
           <Icon name="target" color={colors.black[900]} />
           <View>
             <Text weight="500" size={16} color={colors.black[800]}>
-              {goalName}
+              {name}
             </Text>
             <Text weight="500" size={12} color={colors.black[500]}>
-              {formatDate(goalTime.initialDate)}
+              {date.initial}
             </Text>
           </View>
         </View>
@@ -59,7 +58,7 @@ export function GoalCardView({ viewModel, props }: Props) {
             {formatAmount(balance)}
           </Text>
           <Text weight="500" size={12} color={colors.black[500]}>
-            de {formatAmount(goalCost)}
+            de {formatAmount(total)}
           </Text>
         </View>
         <Text weight="500" size={12} color={colors.black[500]}>

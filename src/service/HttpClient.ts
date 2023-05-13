@@ -27,9 +27,6 @@ class HttpClient {
   }
 
   post<T>(path: string, data: unknown) {
-    console.log(this.baseURL);
-    console.log('path', path);
-    console.log(data);
     return this.makeRequest<T>({
       method: 'post',
       url: `${this.baseURL}${path}`,
