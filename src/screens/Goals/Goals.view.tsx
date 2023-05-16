@@ -1,7 +1,10 @@
+import { View } from 'react-native';
+
 import Header from '../../components/Header';
 import PlusButton from '../../components/PlusButton';
-import Touchable from '../../components/Touchable';
+import { Text } from '../../components/Text';
 import { useGoals } from '../../hooks/useGoals';
+import formatAmount from '../../utils/formatAmout';
 
 import LastGoals from './components/LastGoals';
 import { GoalsViewProps } from './Goals';
@@ -20,13 +23,26 @@ export function GoalsView({ viewModel, props }: Props) {
 
   const { goals, isErrorGoals, isLoadingGoals } = useGoals();
 
+  const total = goals.reduce((acc, goal) => {
+    if (goal.payOff == 0) {
+      return acc;
+    }
+
+    return (acc += goal.balance);
+  }, 0);
+
   return (
     <styled.Goals {...goalsProps}>
-      <Header
-        title="Metas"
-        rightIcon={<Touchable item="search" background="black" />}
-      />
+      <Header title="Metas" />
 
+      <View style={{ paddingHorizontal: 24, paddingTop: 16 }}>
+        <View>
+          <Text weight="500">Total acumulado</Text>
+          <Text weight="500" size={28}>
+            {formatAmount(total)}
+          </Text>
+        </View>
+      </View>
       <LastGoals
         goals={goals}
         hasError={isErrorGoals}

@@ -122,6 +122,7 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
             fixedHeight={false}
             value={formatAmount(amount)}
             onChangeText={handleAmountChange}
+            keyboardType="number-pad"
           />
         </Row>
 

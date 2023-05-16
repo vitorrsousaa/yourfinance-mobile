@@ -1,2 +1,2 @@
 export { TCategory } from './Category';
-export { TCategoryResponse } from './CategoryResponse';
+export { TCategoryPersistance } from './CategoryPersistance';

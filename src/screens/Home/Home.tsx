@@ -29,8 +29,8 @@ function Home(props: HomeProps) {
     async function loadData() {
       try {
         const [dataOutcome, dataIncome] = await Promise.all([
-          AnalyticsService.getCardsSummary(categories[0]._id),
-          AnalyticsService.getCardsSummary(categories[1]._id),
+          AnalyticsService.getCardsSummary(categories[0].id),
+          AnalyticsService.getCardsSummary(categories[1].id),
         ]);
 
         setIncomeSummary(dataIncome);

@@ -1,4 +1,6 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
+
+import { isAndroid } from '../../../../utils/isAndroid';
 
 export const DetailsGoals = styled.SafeAreaView`
   flex: 1;
@@ -41,6 +43,11 @@ export const Footer = styled.View`
   flex-direction: row;
   justify-content: space-between;
   gap: 24px;
+
+  ${!isAndroid &&
+  css`
+    padding-bottom: 48px;
+  `}
 `;
 
 export const ButtonFooter = styled.TouchableOpacity<{ income?: boolean }>`

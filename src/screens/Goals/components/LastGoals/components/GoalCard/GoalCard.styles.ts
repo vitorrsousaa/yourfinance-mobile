@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const GoalCard = styled.View`
+export const GoalCard = styled.TouchableOpacity`
   background: ${({ theme }) => theme.colors.white[100]};
   flex-direction: column;
   padding: 12px;

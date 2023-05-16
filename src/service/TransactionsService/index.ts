@@ -4,7 +4,7 @@ import {
 } from '../../types/Transaction';
 import { TTransactionPersistance } from '../../types/Transaction/Transaction';
 import HttpClient from '../HttpClient';
-import TransactionMapper from '../mappers/Transaction/TransactionMapper';
+import TransactionMapper from '../mappers/Transaction';
 
 import { ITransactionsService } from './ITransactionsService';
 
