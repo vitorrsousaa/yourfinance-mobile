@@ -76,7 +76,6 @@ export function RegisterViewModel() {
     try {
       await handleRegister(user);
     } catch (error) {
-      console.log(error);
       console.log('Esse email já foi cadastrado');
       setPassword('');
     } finally {
