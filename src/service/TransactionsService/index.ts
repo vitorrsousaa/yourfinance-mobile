@@ -35,6 +35,12 @@ class TransactionsService implements ITransactionsService {
 
     return TransactionMapper.toDomain(response);
   }
+
+  async createFixed(transaction: any) {
+    const response = await this.httpClient.post('/infoFixed', transaction);
+
+    return response;
+  }
 }
 
 export default new TransactionsService();
