@@ -4,6 +4,7 @@ import { useNavigation } from '@react-navigation/native';
 
 import { useCategories } from '../../hooks/useCategories';
 import { useModalities } from '../../hooks/useModalities';
+import { useTransactions } from '../../hooks/useTransactions';
 import TransactionsService from '../../service/TransactionsService';
 import { TCategory } from '../../types/Category';
 import { TModality } from '../../types/Modality';
@@ -66,6 +67,8 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
 
   const { modalities, isErrorModalities, isLoadingModalities } =
     useModalities();
+
+  const { refetch } = useTransactions();
 
   const navigation = useNavigation();
 
@@ -209,8 +212,16 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
       date: date,
     };
 
+    const data = {
+      time: monthsThatRepeatTransaction,
+      initialDate: date,
+      infosTransactionFixed: transactionCreate,
+    };
+
     try {
       const response = await TransactionsService.create(transactionCreate);
+
+      await refetch();
 
       console.log(response);
     } catch (error) {
@@ -219,6 +230,7 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
         'TEve um erro para cadastrar sua transação - Create transactions'
       );
     } finally {
+      // goBack();
       setIsSubmitting(false);
     }
 
