@@ -7,6 +7,8 @@ export const PieChart = styled.View`
   gap: 16px;
   background-color: ${({ theme }) => theme.colors.white[100]};
   border-radius: 12px;
+
+  align-items: center;
 `;
 
 export const HeaderChart = styled.View`
