@@ -158,7 +158,7 @@ describe('${toPascalCase(inputs.name)}', () => {
     );
 
     // Assert
-    expect(rendered.getByText(/${toPascalCase(inputs.name)}/i));
+    expect(rendered.getByText(/^${toPascalCase(inputs.name)}$/i));
   });
 });
 `,
