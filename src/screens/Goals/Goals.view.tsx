@@ -1,3 +1,5 @@
+/* eslint-disable indent */
+import { useMemo } from 'react';
 import { View } from 'react-native';
 
 import Header from '../../components/Header';
@@ -23,26 +25,36 @@ export function GoalsView({ viewModel, props }: Props) {
 
   const { goals, isErrorGoals, isLoadingGoals } = useGoals();
 
-  const total = goals.reduce((acc, goal) => {
-    if (goal.payOff == 0) {
-      return acc;
-    }
+  const total = useMemo(
+    () =>
+      goals
+        ? goals.reduce((acc, goal) => {
+            if (goal.payOff == 0) {
+              return acc;
+            }
 
-    return (acc += goal.balance);
-  }, 0);
+            return (acc += goal.balance);
+          }, 0)
+        : 0,
+    [goals]
+  );
+
+  console.log(isLoadingGoals);
 
   return (
     <styled.Goals {...goalsProps}>
       <Header title="Metas" />
 
-      <View style={{ paddingHorizontal: 24, paddingTop: 16 }}>
-        <View>
-          <Text weight="500">Total acumulado</Text>
-          <Text weight="500" size={28}>
-            {formatAmount(total)}
-          </Text>
+      {isLoadingGoals && (
+        <View style={{ paddingHorizontal: 24, paddingTop: 16 }}>
+          <View>
+            <Text weight="500">Total acumulado</Text>
+            <Text weight="500" size={28}>
+              {formatAmount(total)}
+            </Text>
+          </View>
         </View>
-      </View>
+      )}
       <LastGoals
         goals={goals}
         hasError={isErrorGoals}
