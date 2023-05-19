@@ -86,7 +86,7 @@ export function LoginView({ viewModel, props }: Props) {
             <Text color={colors.white[100]}>Ainda não tem uma conta? </Text>
             <TouchableOpacity
               activeOpacity={0.8}
-              onPress={navigateToRegisterScreen}
+              onPress={isSubmitting ? navigateToRegisterScreen : () => ''}
             >
               <Text color={colors.green[400]} weight="700">
                 Crie uma agora
