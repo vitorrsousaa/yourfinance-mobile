@@ -1,9 +1,8 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
 
-import { TOKEN_COLLECTION, USER_COLLECTION } from '../../storage/storageConfig';
-
-import { setAuthorizationHeader } from './authorizationHeader';
+import Auth from '../../storage/Auth';
+import Token from '../../storage/Token';
+import { AuthData } from '../../types/Auth';
 
 type refreshToken = {
   token: string;
@@ -12,13 +11,9 @@ type refreshToken = {
 // Adicionar o axios puro aqui, e não utilizar a instância do axios que criei dentro de api
 
 export async function refreshToken() {
-  const tokenSerialized = await AsyncStorage.getItem(TOKEN_COLLECTION);
+  const refreshToken = await Token.get();
 
-  const authDataSerialized = await AsyncStorage.getItem(USER_COLLECTION);
-
-  const authData = JSON.parse(authDataSerialized || '{}');
-
-  const refreshToken: string = JSON.parse(tokenSerialized || '');
+  const authData = await Auth.get();
 
   console.log('dentro da refreshToken');
 
@@ -32,12 +27,12 @@ export async function refreshToken() {
     }
   );
 
-  const newAuthData = {
-    token: data.token,
+  const newAuthData: AuthData = {
+    access: data.token,
     user: authData.user,
   };
 
-  await AsyncStorage.setItem(USER_COLLECTION, JSON.stringify(newAuthData));
+  await Auth.save(newAuthData);
 
   // setAuthorizationHeader(data.token);
 

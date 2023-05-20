@@ -1,5 +1,4 @@
 import React, { createContext, ReactNode, useEffect, useState } from 'react';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Alert } from 'react-native';
 
 import APIError from '../errors/APIErrors';
@@ -8,7 +7,9 @@ import {
   removeAuthorizationHeader,
   setAuthorizationHeader,
 } from '../service/utils/authorizationHeader';
-import { TOKEN_COLLECTION, USER_COLLECTION } from '../storage/storageConfig';
+import Auth from '../storage/Auth';
+import Token from '../storage/Token';
+import { AuthData } from '../types/Auth';
 import { User } from '../types/User';
 
 interface AuthContextProviderProps {
@@ -22,11 +23,6 @@ interface AuthContextProps {
   handleRegister: (user: User) => Promise<void>;
   handleLogout: () => Promise<void>;
   auth: AuthData;
-}
-
-interface AuthData {
-  access: string;
-  user: User;
 }
 
 export const AuthContext = createContext<AuthContextProps>(
@@ -44,9 +40,8 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
 
   async function loadStorageData(): Promise<void> {
     setLoading(true);
-    const authDataSerialized = await AsyncStorage.getItem(USER_COLLECTION);
 
-    const authData: AuthData = JSON.parse(authDataSerialized || '{}');
+    const authData = await Auth.get();
 
     if (!authData.access) {
       console.log('aqui dentro');
@@ -83,16 +78,14 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
 
       const authData: AuthData = { user: data.user, access: data.token.access };
 
-      await AsyncStorage.setItem(USER_COLLECTION, JSON.stringify(authData));
+      await Auth.save(authData);
       setAuth(authData);
 
       setAuthorizationHeader(data.token.access);
 
       // Salvar o refresh Token
-      await AsyncStorage.setItem(
-        TOKEN_COLLECTION,
-        JSON.stringify(data.token.refresh)
-      );
+      await Token.save(data.token.refresh);
+
       setAuthenticated(true);
     } catch (error: any) {
       if (error instanceof APIError) {
@@ -111,16 +104,13 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
 
       const authData: AuthData = { user: data.user, access: data.token.access };
 
-      await AsyncStorage.setItem(USER_COLLECTION, JSON.stringify(authData));
+      await Auth.save(authData);
 
       setAuth(authData);
 
       setAuthorizationHeader(data.token.access);
 
-      await AsyncStorage.setItem(
-        TOKEN_COLLECTION,
-        JSON.stringify(data.token.refresh)
-      );
+      await Token.save(data.token.refresh);
 
       setAuthenticated(true);
     } catch (error: any) {
@@ -138,7 +128,7 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
   async function handleLogout() {
     setAuthenticated(false);
     setAuth({} as AuthData);
-    await AsyncStorage.removeItem(USER_COLLECTION);
+    await Auth.remove();
 
     removeAuthorizationHeader();
   }
