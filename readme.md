@@ -85,3 +85,5 @@ await AsyncStorage.setItem(USER_COLLECTION, JSON.stringify(newAuthData));
 
 return data.token;
 }
+
+testes
