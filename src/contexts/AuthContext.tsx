@@ -22,7 +22,7 @@ interface AuthContextProps {
   handleLogin: (user: User) => Promise<void>;
   handleRegister: (user: User) => Promise<void>;
   handleLogout: () => Promise<void>;
-  auth: AuthData;
+  auth: AuthData | Record<string, never>;
 }
 
 export const AuthContext = createContext<AuthContextProps>(
@@ -32,7 +32,9 @@ export const AuthContext = createContext<AuthContextProps>(
 export function AuthProvider({ children }: AuthContextProviderProps) {
   const [authenticated, setAuthenticated] = useState(false);
   const [loading, setLoading] = useState(true);
-  const [auth, setAuth] = useState<AuthData>({} as AuthData);
+  const [auth, setAuth] = useState<AuthData | Record<string, never>>(
+    {} as AuthData
+  );
 
   useEffect(() => {
     loadStorageData();
@@ -51,7 +53,7 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
       return;
     }
 
-    const { access, ...user } = authData;
+    const { access, user } = authData;
 
     setAuth(authData);
 
