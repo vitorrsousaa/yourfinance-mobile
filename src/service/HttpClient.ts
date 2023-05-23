@@ -1,5 +1,6 @@
 import { AxiosRequestConfig, AxiosResponse } from 'axios';
 
+import BASE_URL from '../constants/baseURL';
 import APIError from '../errors/APIErrors';
 import delay from '../utils/delay';
 
@@ -8,7 +9,7 @@ import api from './api';
 class HttpClient {
   private baseURL;
 
-  constructor(baseURL = 'https://7e82-179-108-186-3.ngrok-free.app/api') {
+  constructor(baseURL = BASE_URL) {
     this.baseURL = baseURL;
   }
 
