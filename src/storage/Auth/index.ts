@@ -13,7 +13,7 @@ class AuthStorage implements IAuthStorage {
     await AsyncStorage.setItem(USER_COLLECTION, JSON.stringify(validateItem));
   }
 
-  async get(): Promise<AuthData> {
+  async get(): Promise<AuthData | Record<string, never>> {
     const data = await AsyncStorage.getItem(USER_COLLECTION);
 
     const authData: AuthData = JSON.parse(data || '{}');
@@ -22,7 +22,7 @@ class AuthStorage implements IAuthStorage {
 
     // Pensar em tratar com uma exceção
 
-    return validate!;
+    return validate;
   }
 
   async remove(): Promise<void> {
