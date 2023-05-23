@@ -48,9 +48,6 @@ class HttpClient {
 
     const response: AxiosResponse = await api({
       ...options,
-      validateStatus: function (status) {
-        return status >= 200 && status < 500;
-      },
     });
 
     if (response.status >= 200 && response.status < 400) {
