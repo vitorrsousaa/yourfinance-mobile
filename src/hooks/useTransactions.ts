@@ -8,23 +8,21 @@ export function useTransactions(): {
   isErrorTransactions: boolean;
   isLoadingTransactions: boolean;
   refetch: () => Promise<unknown>;
-  } {
+} {
   const {
     data: transactionsResponse,
     isError,
     isLoading,
     refetch,
-  } = useQuery<TTransactionResponse>({
+  } = useQuery<TTransaction[]>({
     queryKey: ['@transactions'],
     queryFn: () => TransactionsService.list(),
     staleTime: 1000 * 60 * 30, // 30 minutos
     cacheTime: 1000 * 60 * 20, // 20 minutos
   });
 
-  const transactions = transactionsResponse?.transactions;
-
   return {
-    transactions: transactions!,
+    transactions: transactionsResponse!,
     isErrorTransactions: isError,
     isLoadingTransactions: isLoading,
     refetch,
