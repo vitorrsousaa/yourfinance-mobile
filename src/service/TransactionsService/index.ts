@@ -1,8 +1,8 @@
 import {
   TTransactionCreate,
+  TTransactionPersistance,
   TTransactionResponse,
 } from '../../types/Transaction';
-import { TTransactionPersistance } from '../../types/Transaction/Transaction';
 import HttpClient from '../HttpClient';
 import TransactionMapper from '../mappers/Transaction';
 
@@ -15,14 +15,21 @@ class TransactionsService implements ITransactionsService {
     this.httpClient = new HttpClient();
   }
 
-  async list(page?: number) {
-    if (page) {
-      return this.httpClient.get<TTransactionResponse>(
-        `/transactions/?page=${page}`
-      );
-    }
+  async list() {
+    // if (page) {
+    //   return this.httpClient.get<TTransactionResponse>(
+    //     `/transactions/?page=${page}`
+    //   );
+    // }
 
-    return this.httpClient.get<TTransactionResponse>('/transactions');
+    const transactionsResponse =
+      await this.httpClient.get<TTransactionResponse>('/transactions');
+
+    const transactionsDomain = transactionsResponse.transactions.map(
+      TransactionMapper.toDomain
+    );
+
+    return transactionsDomain;
   }
 
   async create(transaction: TTransactionCreate) {

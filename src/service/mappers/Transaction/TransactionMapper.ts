@@ -3,7 +3,7 @@ import {
   TTransactionCreate,
   TTransactionCreatePersistance,
 } from '../../../types/Transaction';
-import { TTransactionPersistance } from '../../../types/Transaction/Transaction';
+import { TTransactionPersistance } from '../../../types/Transaction';
 
 import { ITransactionMapper } from './ITransactionMapper';
 
@@ -23,12 +23,19 @@ class TransactionMapper implements ITransactionMapper {
   toDomain(transaction: TTransactionPersistance): TTransaction {
     return {
       amount: transaction.amount,
-      category: transaction.categoryId,
+      category: {
+        id: transaction.Category.id,
+        name: transaction.Category.name,
+      },
       createdAt: transaction.createdAt,
       date: transaction.date,
       description: transaction.name,
       id: transaction.id,
-      modality: transaction.modalityId,
+      modality: {
+        category: transaction.Modality.categoryId,
+        id: transaction.Modality.id,
+        name: transaction.Modality.name,
+      },
       type: transaction.type,
       updatedAt: transaction.updatedAt,
       user: transaction.userId,

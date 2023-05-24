@@ -1,10 +1,6 @@
-import {
-  TTransaction,
-  TTransactionCreate,
-  TTransactionResponse,
-} from '../../types/Transaction';
+import { TTransaction, TTransactionCreate } from '../../types/Transaction';
 
 export interface ITransactionsService {
-  list(page?: number): Promise<TTransactionResponse>;
+  list(): Promise<TTransaction[]>;
   create(transaction: TTransactionCreate): Promise<TTransaction>;
 }
