@@ -1,7 +1,7 @@
 export { TTransaction } from './Transaction';
 export {
   TTransactionCreate,
-  TTransactionCreateDomain,
   TTransactionCreatePersistance,
 } from './TransactionCreate';
+export { TTransactionPersistance } from './TransactionPersistance';
 export { TTransactionResponse } from './TransactionResponse';
