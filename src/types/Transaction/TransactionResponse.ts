@@ -1,7 +1,7 @@
-import { TTransaction } from './Transaction';
+import { TTransactionPersistance } from './TransactionPersistance';
 
 export interface TTransactionResponse {
-  transactions: TTransaction[];
+  transactions: TTransactionPersistance[];
   itemsPerPage: number;
   totalItems: number;
 }
