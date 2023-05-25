@@ -1,7 +1,6 @@
 import { memo, useEffect } from 'react';
 
 import { useCategories } from '../../hooks/useCategories';
-import AnalyticsService from '../../service/AnalyticsService';
 
 import { HomeView } from './Home.view';
 import { HomeViewModel } from './Home.view-model';
@@ -18,32 +17,15 @@ function Home(props: HomeProps) {
 
   const viewModel = useViewModel();
 
-  const { setIncomeSummary, setOutcomeSummary, setIsLoading, setHasError } =
-    viewModel;
+  const { loadSummary } = viewModel;
 
   const { categories } = useCategories();
 
   console.log('Alterar o carregamento da página Home para React Query');
 
   useEffect(() => {
-    async function loadData() {
-      try {
-        const [dataOutcome, dataIncome] = await Promise.all([
-          AnalyticsService.getCardsSummary(categories[0].id),
-          AnalyticsService.getCardsSummary(categories[1].id),
-        ]);
-
-        setIncomeSummary(dataIncome);
-        setOutcomeSummary(dataOutcome);
-      } catch {
-        setHasError(true);
-      } finally {
-        setIsLoading(false);
-      }
-    }
-
     if (categories) {
-      loadData();
+      loadSummary();
     }
   }, [categories]);
 
