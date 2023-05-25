@@ -1,7 +1,7 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import TransactionsService from '../service/TransactionsService';
-import { TTransaction, TTransactionResponse } from '../types/Transaction';
+import { TTransaction } from '../types/Transaction';
 
 export function useTransactions(): {
   transactions: TTransaction[];

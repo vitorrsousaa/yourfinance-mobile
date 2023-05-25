@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import GoalsService from '../service/GoalsService';
 import { TGoal } from '../types/Goal';

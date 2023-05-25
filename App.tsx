@@ -1,6 +1,7 @@
+import { QueryClient } from '@tanstack/react-query';
+import { QueryClientProvider } from '@tanstack/react-query';
 import { useFonts } from 'expo-font';
 import { StatusBar } from 'expo-status-bar';
-import { QueryClient, QueryClientProvider } from 'react-query';
 
 import ThemeProvider from './src/components/ThemeProvider';
 import { AuthProvider } from './src/contexts/AuthContext';
