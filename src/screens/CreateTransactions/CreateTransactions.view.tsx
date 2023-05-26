@@ -14,6 +14,7 @@ import formatAmount from '../../utils/formatAmout';
 import { formatDate } from '../../utils/formatDate';
 import { isAndroid } from '../../utils/isAndroid';
 
+import ModalRepeatTransaction from './components/ModalRepeatTransaction';
 import Row from './components/Row';
 import { CreateTransactionsViewProps } from './CreateTransactions';
 import * as styled from './CreateTransactions.styles';
@@ -62,7 +63,7 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
   const { colors } = useTheme();
 
   return (
-    <styled.CreateTransactions>
+    <styled.CreateTransactions {...createTransactionsProps}>
       <Header title="Adicione uma transação" onPressLeftIcon={goBack} />
 
       <styled.Container>
@@ -120,7 +121,7 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
           />
         </Row>
 
-        <Row
+        {/* <Row
           icon={<Icon name="repeat" />}
           title="Movs Fixa"
           onPress={handleClickOnRowMovFixed}
@@ -130,7 +131,7 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
               onValueChange={handleClickOnToggleMovFixed}
             />
           }
-        />
+        /> */}
 
         <Button
           variant="primary"
@@ -189,37 +190,13 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
         />
       </Modal>
 
-      <Modal
-        visible={transactionRepeatModalIsVisible}
-        onClose={toggleTransactionRepeatModal}
-        title="Selecione o período de repetição"
-        customTitleSize={20}
-        action="Salvar"
-        onAction={toggleTransactionRepeatModal}
-        hasCancelButton={false}
-      >
-        <View style={{ flexDirection: 'row', justifyContent: 'space-between' }}>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
-            <Icon name="repeat" />
-            <Text size={17}>Mensalmente</Text>
-          </View>
-          <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-            <styled.ContainerArrow
-              rotate={90}
-              onPress={handlePlusMonthRepeatTransaction}
-            >
-              <Icon name="arrow" color="black" />
-            </styled.ContainerArrow>
-            <Text size={18}>{monthsThatRepeatTransaction}</Text>
-            <styled.ContainerArrow
-              rotate={270}
-              onPress={handleMinusMonthRepeatTransaction}
-            >
-              <Icon name="arrow" color="black" />
-            </styled.ContainerArrow>
-          </View>
-        </View>
-      </Modal>
+      <ModalRepeatTransaction
+        isVisible={transactionRepeatModalIsVisible}
+        onToggle={toggleTransactionRepeatModal}
+        onPlus={handlePlusMonthRepeatTransaction}
+        month={monthsThatRepeatTransaction}
+        onMinus={handleMinusMonthRepeatTransaction}
+      />
     </styled.CreateTransactions>
   );
 }

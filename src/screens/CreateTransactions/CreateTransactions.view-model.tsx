@@ -222,23 +222,18 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
     };
 
     try {
-      const response = await TransactionsService.createFixed(data);
+      await TransactionsService.create(transactionCreate);
 
-      // await refetch();
-      // await refetchSummaries();
-
-      console.log(response);
+      await refetch();
+      await refetchSummaries();
     } catch (error) {
-      console.log(error);
       console.log(
         'TEve um erro para cadastrar sua transação - Create transactions'
       );
     } finally {
-      // goBack();
+      goBack();
       setIsSubmitting(false);
     }
-
-    // console.log(transaction);
   }
 
   return {
