@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { useQuery } from '@tanstack/react-query';
 
 import CategoriesService from '../service/CategoriesService';

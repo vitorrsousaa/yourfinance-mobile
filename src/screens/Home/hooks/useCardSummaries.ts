@@ -1,3 +1,4 @@
+/* eslint-disable indent */
 import { useEffect, useState } from 'react';
 import { useQueries } from '@tanstack/react-query';
 
