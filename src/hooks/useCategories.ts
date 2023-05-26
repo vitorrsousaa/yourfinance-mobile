@@ -3,7 +3,7 @@ import { useQuery } from '@tanstack/react-query';
 import CategoriesService from '../service/CategoriesService';
 import { TCategory } from '../types/Category';
 
-export function useCategories(): {
+export default function useCategories(): {
   categories: TCategory[];
   isErrorCategories: boolean;
   refetch: () => Promise<unknown>;
@@ -22,7 +22,7 @@ export function useCategories(): {
   });
 
   return {
-    categories: categories!,
+    categories: categories ? categories : [],
     isErrorCategories: isError,
     refetch,
     isLoadingCategories: isLoading,
