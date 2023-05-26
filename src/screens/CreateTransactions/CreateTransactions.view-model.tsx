@@ -2,7 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
 
-import { useCategories } from '../../hooks/useCategories';
+import useCategories from '../../hooks/useCategories';
 import { useModalities } from '../../hooks/useModalities';
 import { useTransactions } from '../../hooks/useTransactions';
 import TransactionsService from '../../service/TransactionsService';
