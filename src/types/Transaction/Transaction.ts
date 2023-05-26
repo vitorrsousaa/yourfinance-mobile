@@ -3,7 +3,6 @@ import { TModality } from '../Modality';
 
 export interface TTransaction {
   id: string;
-  user: string;
   description: string;
   amount: number;
   modality: TModality;

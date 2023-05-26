@@ -38,7 +38,6 @@ class TransactionMapper implements ITransactionMapper {
       },
       type: transaction.type,
       updatedAt: transaction.updatedAt,
-      user: transaction.userId,
     };
   }
 }
