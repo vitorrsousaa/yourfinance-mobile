@@ -1,4 +1,9 @@
-import { FlatList, TouchableOpacity, View } from 'react-native';
+import {
+  KeyboardAvoidingView,
+  ScrollView,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import { useTheme } from 'styled-components/native';
 
 import Button from '../../components/Button';
@@ -6,8 +11,6 @@ import DatePicker from '../../components/DatePicker';
 import Header from '../../components/Header';
 import Icon from '../../components/Icons';
 import InputOutlined from '../../components/InputOutlined';
-import Modal from '../../components/Modal';
-import Radio from '../../components/Radio';
 import { Text } from '../../components/Text';
 import Toggle from '../../components/Toggle';
 import formatAmount from '../../utils/formatAmout';
@@ -65,64 +68,69 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
 
   return (
     <styled.CreateTransactions {...createTransactionsProps}>
-      <Header title="Adicione uma transação" onPressLeftIcon={goBack} />
+      <KeyboardAvoidingView behavior={isAndroid ? 'height' : 'padding'}>
+        <Header
+          title="Adicione uma transação"
+          onPressLeftIcon={!isSubmitting ? goBack : undefined}
+        />
 
-      <styled.Container>
-        <Row
-          icon={<Icon name="certificate" />}
-          title={category.name}
-          rightIcon={
-            <Toggle
-              value={selectedCategory}
-              onValueChange={handleCategoryChange}
+        <ScrollView>
+          <styled.Container>
+            <Row
+              icon={<Icon name="certificate" />}
+              title={category.name}
+              rightIcon={
+                <Toggle
+                  value={selectedCategory}
+                  onValueChange={handleCategoryChange}
+                />
+              }
             />
-          }
-        />
 
-        <Row icon={<Icon name="pencil" />}>
-          <InputOutlined
-            border={false}
-            fixedHeight={false}
-            placeholder="Digite uma descrição da sua transação"
-            value={description}
-            onChangeText={handleDescriptionChange}
-            autoCorrect={false}
-            maxLength={15}
-          />
-        </Row>
+            <Row icon={<Icon name="pencil" />}>
+              <InputOutlined
+                border={false}
+                fixedHeight={false}
+                placeholder="Digite uma descrição da sua transação"
+                value={description}
+                onChangeText={handleDescriptionChange}
+                autoCorrect={false}
+                maxLength={15}
+              />
+            </Row>
 
-        <Row
-          icon={<Icon name="wallet" />}
-          title={selectedModality ? selectedModality?.name : 'Modalidades'}
-          isLoading={isLoadingModalities}
-          onPress={toggleModalityModal}
-          rightIcon={
-            <styled.ContainerArrow rotate={180}>
-              <Icon name="arrow" color={colors.black[900]} />
-            </styled.ContainerArrow>
-          }
-        />
+            <Row
+              icon={<Icon name="wallet" />}
+              title={selectedModality ? selectedModality?.name : 'Modalidades'}
+              isLoading={isLoadingModalities}
+              onPress={toggleModalityModal}
+              rightIcon={
+                <styled.ContainerArrow rotate={180}>
+                  <Icon name="arrow" color={colors.black[900]} />
+                </styled.ContainerArrow>
+              }
+            />
 
-        <Row icon={<Icon name="calendar" />} onPress={toggleDatePicker}>
-          <InputOutlined
-            border={false}
-            fixedHeight={false}
-            value={formatDate(date.toString())}
-            editable={false}
-          />
-        </Row>
+            <Row icon={<Icon name="calendar" />} onPress={toggleDatePicker}>
+              <InputOutlined
+                border={false}
+                fixedHeight={false}
+                value={formatDate(date.toString())}
+                editable={false}
+              />
+            </Row>
 
-        <Row icon={<Icon name="currency" />}>
-          <InputOutlined
-            border={false}
-            fixedHeight={false}
-            value={formatAmount(amount)}
-            onChangeText={handleAmountChange}
-            keyboardType="number-pad"
-          />
-        </Row>
+            <Row icon={<Icon name="currency" />}>
+              <InputOutlined
+                border={false}
+                fixedHeight={false}
+                value={formatAmount(amount)}
+                onChangeText={handleAmountChange}
+                keyboardType="number-pad"
+              />
+            </Row>
 
-        {/* <Row
+            {/* <Row
           icon={<Icon name="repeat" />}
           title="Movs Fixa"
           onPress={handleClickOnRowMovFixed}
@@ -134,32 +142,35 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
           }
         /> */}
 
-        <Button
-          variant="primary"
-          disabled={!isValid}
-          onPress={handleSubmit}
-          loading={isSubmitting}
-        >
-          Enviar
-        </Button>
+            <Button
+              variant="primary"
+              disabled={!isValid}
+              onPress={handleSubmit}
+              loading={isSubmitting}
+              style={{ width: '100%' }}
+            >
+              Enviar
+            </Button>
 
-        <DatePicker
-          visible={datePickerIsVisible}
-          value={date}
-          onChange={(event, date) => handleChangeDate(event, date)}
-          style={{ height: 150 }}
-        />
+            <DatePicker
+              visible={datePickerIsVisible}
+              value={date}
+              onChange={(event, date) => handleChangeDate(event, date)}
+              style={{ height: 150 }}
+            />
 
-        {datePickerIsVisible && !isAndroid && (
-          <View
-            style={{ flexDirection: 'row', justifyContent: 'space-around' }}
-          >
-            <TouchableOpacity onPress={toggleDatePicker}>
-              <Text>Salvar</Text>
-            </TouchableOpacity>
-          </View>
-        )}
-      </styled.Container>
+            {datePickerIsVisible && !isAndroid && (
+              <View
+                style={{ flexDirection: 'row', justifyContent: 'space-around' }}
+              >
+                <TouchableOpacity onPress={toggleDatePicker}>
+                  <Text>Salvar</Text>
+                </TouchableOpacity>
+              </View>
+            )}
+          </styled.Container>
+        </ScrollView>
+      </KeyboardAvoidingView>
 
       <ModalSelectedModality
         isVisible={modalityModalIsVisible}
