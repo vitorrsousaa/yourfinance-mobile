@@ -10,7 +10,7 @@ export default function useCardSummaries(): {
   isErrorSummaries: boolean;
   isLoadingSummaries: boolean;
   summaries: TCardSummary[];
-  refetch: () => void;
+  refetch: () => Promise<void>;
 } {
   const { categories, isLoadingCategories, isErrorCategories } =
     useCategories();
@@ -37,7 +37,7 @@ export default function useCardSummaries(): {
     }
   }, [income.data, outcome.data]);
 
-  const refetch = useCallback(() => {
+  const refetch = useCallback(async () => {
     income.refetch();
     outcome.refetch();
   }, []);
