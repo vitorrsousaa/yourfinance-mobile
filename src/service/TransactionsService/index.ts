@@ -16,12 +16,6 @@ class TransactionsService implements ITransactionsService {
   }
 
   async list() {
-    // if (page) {
-    //   return this.httpClient.get<TTransactionResponse>(
-    //     `/transactions/?page=${page}`
-    //   );
-    // }
-
     const transactionsResponse =
       await this.httpClient.get<TTransactionResponse>('/transactions');
 
