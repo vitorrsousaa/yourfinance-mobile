@@ -1,6 +1,4 @@
-import { memo, useEffect } from 'react';
-
-import { useCategories } from '../../hooks/useCategories';
+import { memo } from 'react';
 
 import { HomeView } from './Home.view';
 import { HomeViewModel } from './Home.view-model';
@@ -16,18 +14,6 @@ function Home(props: HomeProps) {
   const { ...viewProps } = props;
 
   const viewModel = useViewModel();
-
-  const { loadSummary } = viewModel;
-
-  const { categories } = useCategories();
-
-  console.log('Alterar o carregamento da página Home para React Query');
-
-  useEffect(() => {
-    if (categories) {
-      loadSummary();
-    }
-  }, [categories]);
 
   return <HomeView viewModel={viewModel} props={viewProps} />;
 }
