@@ -22,7 +22,7 @@ export function useModalities(): {
   });
 
   return {
-    modalities: modalities!,
+    modalities: modalities ? modalities : [],
     isErrorModalities: isError,
     refetch,
     isLoadingModalities: isLoading,
