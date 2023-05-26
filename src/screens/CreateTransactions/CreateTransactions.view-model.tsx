@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from 'react';
 import { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
 
+import useCardSummaries from '../../hooks/entities/useCardSummaries';
 import useCategories from '../../hooks/useCategories';
 import { useModalities } from '../../hooks/useModalities';
 import { useTransactions } from '../../hooks/useTransactions';
@@ -67,6 +68,8 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
 
   const { modalities, isErrorModalities, isLoadingModalities } =
     useModalities();
+
+  const { refetch: refetchSummaries } = useCardSummaries();
 
   const { refetch } = useTransactions();
 
@@ -219,9 +222,10 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
     };
 
     try {
-      const response = await TransactionsService.create(transactionCreate);
+      const response = await TransactionsService.createFixed(data);
 
-      await refetch();
+      // await refetch();
+      // await refetchSummaries();
 
       console.log(response);
     } catch (error) {

@@ -61,12 +61,6 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
 
   const { colors } = useTheme();
 
-  console.log(formatDate(date.toString()));
-
-  console.log(
-    'Verificar se é necessário dar um warning na tela quando o usuário trocar a category'
-  );
-
   return (
     <styled.CreateTransactions>
       <Header title="Adicione uma transação" onPressLeftIcon={goBack} />
