@@ -1,11 +1,12 @@
 import React from 'react';
+import { fireEvent, render } from '@testing-library/react-native';
+import { View } from 'react-native';
 
-import { render, fireEvent } from '@testing-library/react-native';
+import ThemeProvider from '../ThemeProvider';
 
 import Header from './Header';
+
 import 'jest-styled-components';
-import ThemeProvider from '../ThemeProvider';
-import { View } from 'react-native';
 
 describe('Header Component', () => {
   it('Should render component when called with default props', () => {
@@ -17,7 +18,8 @@ describe('Header Component', () => {
       </ThemeProvider>
     );
 
-    rendered.getByText(title);
+    expect(rendered.getByText(title));
+    expect(rendered.getByTestId('left-icon'));
   });
 
   it('Should render correctly leftIcon and execute onPressLeftIcon prop', () => {
@@ -44,5 +46,17 @@ describe('Header Component', () => {
     );
 
     expect(rendered.getByTestId('view-test'));
+  });
+
+  it('Should render correctly without left icon', () => {
+    const title = 'default title';
+
+    const rendered = render(
+      <ThemeProvider>
+        <Header title={title} leftIcon={false} />
+      </ThemeProvider>
+    );
+
+    expect(rendered.queryByTestId('left-icon')).toBeNull();
   });
 });
