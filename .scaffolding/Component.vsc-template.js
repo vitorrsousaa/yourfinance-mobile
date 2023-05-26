@@ -132,7 +132,7 @@ export const ${toPascalCase(inputs.name)} = styled.View\`\`;
             type: 'file',
             name: (inputs) => `${toPascalCase(inputs.name)}.spec.tsx`,
             content: (inputs) => `import React from 'react';
-            import { render } from '@testing-library/react-native';
+import { render } from '@testing-library/react-native';
 
 import ThemeProvider from '../ThemeProvider';
 
