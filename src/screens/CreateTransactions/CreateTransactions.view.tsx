@@ -15,6 +15,7 @@ import { formatDate } from '../../utils/formatDate';
 import { isAndroid } from '../../utils/isAndroid';
 
 import ModalRepeatTransaction from './components/ModalRepeatTransaction';
+import ModalSelectedModality from './components/ModalSelectedModality';
 import Row from './components/Row';
 import { CreateTransactionsViewProps } from './CreateTransactions';
 import * as styled from './CreateTransactions.styles';
@@ -160,35 +161,13 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
         )}
       </styled.Container>
 
-      <Modal
-        visible={modalityModalIsVisible}
-        title="Selecione a modalidade"
-        onClose={toggleModalityModal}
-        customTitleSize={20}
-      >
-        <FlatList
-          data={getModalities()}
-          keyExtractor={(item) => item.id}
-          ItemSeparatorComponent={() => (
-            <View style={{ backgroundColor: colors.black[300], height: 1 }} />
-          )}
-          renderItem={({ item }) => (
-            <TouchableOpacity
-              activeOpacity={0.8}
-              style={{
-                padding: 12,
-                flexDirection: 'row',
-                justifyContent: 'space-between',
-                alignItems: 'center',
-              }}
-              onPress={() => onSelectedModality(item)}
-            >
-              <Text size={18}>{item.name}</Text>
-              <Radio selected={selectedModality?.name === item.name} />
-            </TouchableOpacity>
-          )}
-        />
-      </Modal>
+      <ModalSelectedModality
+        isVisible={modalityModalIsVisible}
+        data={getModalities()}
+        onPressItem={onSelectedModality}
+        onToggle={toggleModalityModal}
+        selectedModality={selectedModality}
+      />
 
       <ModalRepeatTransaction
         isVisible={transactionRepeatModalIsVisible}

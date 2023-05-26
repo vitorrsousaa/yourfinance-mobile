@@ -27,7 +27,7 @@ export interface CreateTransactionsViewModelProps {
   datePickerIsVisible: boolean;
   date: Date;
   isSubmitting: boolean;
-  getModalities: () => TModality[] | undefined;
+  getModalities: () => TModality[];
   goBack: () => void;
   handleAmountChange: (text: string) => void;
   handleDescriptionChange: (text: string) => void;
@@ -127,13 +127,11 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
   }, [selectedCategory]);
 
   function getModalities() {
-    if (modalities) {
-      const modalitiesFiltered = modalities.filter(
-        (modality) => modality.category === category.id
-      );
+    const modalitiesFiltered = modalities.filter(
+      (modality) => modality.category === category.id
+    );
 
-      return modalitiesFiltered;
-    }
+    return modalitiesFiltered;
   }
 
   function toggleModalityModal() {
@@ -142,8 +140,6 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
 
   function onSelectedModality(modality: TModality) {
     setSelectedModality(modality);
-
-    toggleModalityModal();
   }
 
   function toggleTransactionRepeatModal() {
