@@ -1,15 +1,16 @@
 /* eslint-disable indent */
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useQueries } from '@tanstack/react-query';
 
-import useCategories from '../../../hooks/useCategories';
-import AnalyticsService from '../../../service/AnalyticsService';
-import { TCardSummary } from '../../../types/Analytics';
+import AnalyticsService from '../../service/AnalyticsService';
+import { TCardSummary } from '../../types/Analytics';
+import useCategories from '../useCategories';
 
 export default function useCardSummaries(): {
   isErrorSummaries: boolean;
   isLoadingSummaries: boolean;
   summaries: TCardSummary[];
+  refetch: () => void;
 } {
   const { categories, isLoadingCategories, isErrorCategories } =
     useCategories();
@@ -36,10 +37,16 @@ export default function useCardSummaries(): {
     }
   }, [income.data, outcome.data]);
 
+  const refetch = useCallback(() => {
+    income.refetch();
+    outcome.refetch();
+  }, []);
+
   return {
     isErrorSummaries: isErrorCategories || income.isError || outcome.isError,
     isLoadingSummaries:
       isLoadingCategories || income.isLoading || outcome.isLoading,
     summaries,
+    refetch,
   };
 }

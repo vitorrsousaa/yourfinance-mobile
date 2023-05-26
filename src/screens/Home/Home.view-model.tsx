@@ -1,10 +1,9 @@
 import { useNavigation } from '@react-navigation/native';
 
+import useCardSummaries from '../../hooks/entities/useCardSummaries';
 import { PrivateRouteNavigationProp } from '../../routes/private';
 import { TCardSummary } from '../../types/Analytics';
 import formatAmount from '../../utils/formatAmout';
-
-import useCardSummaries from './hooks/useCardSummaries';
 
 export interface HomeViewModelProps {
   isLoading: boolean;
