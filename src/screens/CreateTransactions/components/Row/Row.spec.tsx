@@ -1,5 +1,8 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render } from '@testing-library/react-native';
+import { View } from 'react-native';
+
+import ThemeProvider from '../../../../components/ThemeProvider';
 
 import Row from './Row';
 
@@ -9,12 +12,12 @@ describe('Row', () => {
 
     // Act
     const rendered = render(
-      <CompositionProvider>
-        <Row />
-      </CompositionProvider>,
+      <ThemeProvider>
+        <Row icon={<View testID="icon-row" />} />
+      </ThemeProvider>
     );
 
     // Assert
-    rendered.getByRole('heading', { name: /Row/i });
+    rendered.getByTestId('icon-row');
   });
 });

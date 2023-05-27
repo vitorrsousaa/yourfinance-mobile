@@ -6,7 +6,7 @@ export function addTimeZone(date: string) {
   return localDate;
 }
 
-export function formatDate(date: string) {
+export function formatDate(date: string | Date) {
   const options = {
     timeZone: 'America/Sao_Paulo',
   };

@@ -53,6 +53,8 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
 
   const { colors } = useTheme();
 
+  // console.log(historic);
+
   return (
     <styled.DetailsGoals>
       <styled.Header>
@@ -99,7 +101,7 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
             <Text size={18} weight="500">
               Histórico
             </Text>
-            {historic ? (
+            {historic.length > 0 ? (
               <View style={{ flex: 1, paddingBottom: 86 }}>
                 <FlatList
                   data={historic}
@@ -119,7 +121,7 @@ export function DetailsGoalsView({ viewModel, props }: Props) {
                 />
               </View>
             ) : (
-              <Text>Você ainda não cadastrou nenhuma transação.</Text>
+              <Text>Você ainda não adicionou valor.</Text>
             )}
           </styled.Container>
 

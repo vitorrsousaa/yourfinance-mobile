@@ -1,9 +1,16 @@
-import styled from 'styled-components/native';
+import styled, { css } from 'styled-components/native';
+
+import { isAndroid } from '../../utils/isAndroid';
 
 export const ModalBody = styled.View`
   background: #fafafa;
   padding: 16px 24px;
   gap: 32px;
+
+  ${!isAndroid &&
+  css`
+    padding-bottom: 48px;
+  `}
 `;
 
 export const Overlay = styled.KeyboardAvoidingView`
@@ -22,4 +29,9 @@ export const Actions = styled.View`
 
   justify-content: flex-end;
   flex-direction: row;
+
+  ${isAndroid &&
+  css`
+    padding-bottom: 16px;
+  `}
 `;

@@ -1,35 +1,25 @@
-import { useState } from 'react';
 import { useNavigation } from '@react-navigation/native';
 
+import useCardSummaries from '../../hooks/entities/useCardSummaries';
 import { PrivateRouteNavigationProp } from '../../routes/private';
 import { TCardSummary } from '../../types/Analytics';
+import formatAmount from '../../utils/formatAmout';
 
 export interface HomeViewModelProps {
-  incomeSummary: TCardSummary;
-  outcomeSummary: TCardSummary;
   isLoading: boolean;
   hasError: boolean;
-  setHasError: (state: boolean) => void;
-  setIsLoading: (state: boolean) => void;
-  setIncomeSummary: (summary: TCardSummary) => void;
-  setOutcomeSummary: (summary: TCardSummary) => void;
+  summaries: TCardSummary[];
   handleNavigateSettings: () => void;
   handleNavigateNotifications: () => void;
   handleNavigateCreateTransaction: () => void;
+  getDifference: () => string;
 }
 
 export function HomeViewModel() {
-  const [incomeSummary, setIncomeSummary] = useState<TCardSummary>(
-    {} as TCardSummary
-  );
-  const [outcomeSummary, setOutcomeSummary] = useState<TCardSummary>(
-    {} as TCardSummary
-  );
-
-  const [isLoading, setIsLoading] = useState(true);
-  const [hasError, setHasError] = useState(false);
-
   const navigation = useNavigation<PrivateRouteNavigationProp>();
+
+  const { isErrorSummaries, isLoadingSummaries, summaries } =
+    useCardSummaries();
 
   function handleNavigateSettings() {
     navigation.navigate('User', { screen: 'Settings' });
@@ -43,17 +33,32 @@ export function HomeViewModel() {
     navigation.navigate('TransactionsRoutes', { screen: 'CreateTransactions' });
   }
 
+  function getDifference() {
+    if (isLoadingSummaries || isErrorSummaries) {
+      return '-';
+    }
+
+    const income = summaries.find((summary) => summary.category === 'Receitas');
+
+    const outcome = summaries.find(
+      (summary) => summary.category === 'Despesas'
+    );
+
+    if (income && outcome) {
+      const difference = income.currentMonth - outcome.currentMonth;
+      return formatAmount(difference);
+    } else {
+      return '-';
+    }
+  }
+
   return {
-    incomeSummary,
-    outcomeSummary,
-    isLoading,
-    hasError,
-    setHasError,
-    setIsLoading,
-    setIncomeSummary,
-    setOutcomeSummary,
+    isLoading: isLoadingSummaries,
+    hasError: isErrorSummaries,
+    summaries,
     handleNavigateSettings,
     handleNavigateNotifications,
     handleNavigateCreateTransaction,
+    getDifference,
   };
 }

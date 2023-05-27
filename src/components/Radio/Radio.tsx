@@ -1,9 +1,10 @@
 import { memo } from 'react';
+import { ViewProps } from 'react-native';
 
 import { RadioView } from './Radio.view';
 import { RadioViewModel } from './Radio.view-model';
 
-export interface RadioProps {
+export interface RadioProps extends ViewProps {
   selected?: boolean;
 }
 

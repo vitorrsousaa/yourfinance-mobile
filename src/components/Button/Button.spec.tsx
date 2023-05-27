@@ -1,9 +1,11 @@
 import React from 'react';
-
 import { fireEvent, render } from '@testing-library/react-native';
-import Button from './Button';
-import 'jest-styled-components';
+
 import ThemeProvider from '../ThemeProvider';
+
+import Button from './Button';
+
+import 'jest-styled-components';
 
 describe('Button Component', () => {
   it('Should render component when called with default props', () => {

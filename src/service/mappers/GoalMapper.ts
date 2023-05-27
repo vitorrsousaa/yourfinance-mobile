@@ -9,7 +9,7 @@ class GoalMapper {
     const historic: THistoricGoal[] = historicTransactions
       ? historicTransactions.map((transaction) => {
           return {
-            id: transaction.id,
+            id: Math.random().toString(),
             amount: transaction.amount,
             date: formatDate(transaction.date),
             mode: transaction.modeTransaction,

@@ -96,7 +96,10 @@ export function AuthProvider({ children }: AuthContextProviderProps) {
       setAuthenticated(true);
     } catch (error: any) {
       if (error instanceof APIError) {
-        Alert.alert('Email ou senha inválido');
+        if (error.message.includes('encontrado')) {
+          Alert.alert('Usuário não encontrado');
+          return;
+        }
         throw new Error('Email ou senha inválido');
       }
 

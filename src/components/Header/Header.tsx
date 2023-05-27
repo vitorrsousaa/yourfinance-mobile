@@ -1,4 +1,4 @@
-import { memo,ReactElement } from 'react';
+import { memo, ReactElement } from 'react';
 
 import { HeaderView } from './Header.view';
 import { HeaderViewModel } from './Header.view-model';
@@ -7,14 +7,19 @@ export interface HeaderProps {
   title: string;
   onPressLeftIcon?: () => void;
   rightIcon?: ReactElement;
+  leftIcon?: boolean;
 }
 
-// Quando a prop é usada somente aqui, devemos omitir para não ir pra View
-export interface HeaderViewProps extends Omit<HeaderProps, ''> {
-  // Quando alguma prop vai ser utilizada somente na View, devemos acrescentar aqui
-}
+export interface HeaderViewProps extends Omit<HeaderProps, ''> {}
 
-function Header(props: HeaderProps) {
+type DefaultProps = Pick<HeaderProps, 'leftIcon'>;
+type Props = HeaderProps & DefaultProps;
+
+const defaultProps: DefaultProps = {
+  leftIcon: true,
+};
+
+function Header(props: Props) {
   const { ...viewProps } = props;
 
   const viewModel = useViewModel();
@@ -27,5 +32,7 @@ export function useViewModel() {
 
   return viewModel;
 }
+
+Header.defaultProps = defaultProps;
 
 export default memo(Header);

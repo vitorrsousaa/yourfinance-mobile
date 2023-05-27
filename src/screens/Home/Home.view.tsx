@@ -9,7 +9,6 @@ import { Text } from '../../components/Text';
 import Touchable from '../../components/Touchable';
 import { useAuth } from '../../hooks/useAuth';
 import { useTransactions } from '../../hooks/useTransactions';
-import formatAmount from '../../utils/formatAmout';
 
 import CategorySummary from './components/CategorySummary';
 import { HomeViewProps } from './Home';
@@ -24,27 +23,25 @@ interface Props {
 export function HomeView({ viewModel, props }: Props) {
   const { ...homeProps } = props;
 
-  const { auth } = useAuth();
-  const { user } = auth;
-
   const {
-    incomeSummary,
-    outcomeSummary,
+    summaries,
     isLoading,
     handleNavigateSettings,
     handleNavigateNotifications,
     handleNavigateCreateTransaction,
+    getDifference,
   } = viewModel;
+
+  const { auth } = useAuth();
+  const { user } = auth;
 
   const { isLoadingTransactions, isErrorTransactions, transactions } =
     useTransactions();
 
-  const difference = incomeSummary.currentMonth - outcomeSummary.currentMonth;
-
   const { colors } = useTheme();
 
   return (
-    <styled.Home>
+    <styled.Home {...homeProps}>
       <styled.Container>
         <styled.ContainerHeader>
           <Icon name="logo" />
@@ -74,7 +71,7 @@ export function HomeView({ viewModel, props }: Props) {
             <View>
               <Text color={colors.black[200]}>Saldo disponível</Text>
               <Text weight="500" size={28} color={colors.white[100]}>
-                {difference > 0 ? formatAmount(difference) : '-'}
+                {getDifference()}
               </Text>
             </View>
           )}
@@ -84,18 +81,15 @@ export function HomeView({ viewModel, props }: Props) {
               <Loader size={'large'} color={colors.green[400]} />
             ) : (
               <>
-                <CategorySummary
-                  categoryName="Receitas"
-                  currentMonth={incomeSummary.currentMonth}
-                  percent={incomeSummary.percent}
-                  difference={incomeSummary.difference}
-                />
-                <CategorySummary
-                  categoryName="Despesas"
-                  currentMonth={outcomeSummary.currentMonth}
-                  percent={outcomeSummary.percent}
-                  difference={outcomeSummary.difference}
-                />
+                {summaries.map((summary) => (
+                  <CategorySummary
+                    key={summary.currentMonth}
+                    categoryName={summary.category}
+                    currentMonth={summary.currentMonth}
+                    percent={summary.percent}
+                    difference={summary.difference}
+                  />
+                ))}
               </>
             )}
           </styled.ContainerSummary>

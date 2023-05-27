@@ -28,7 +28,7 @@ export function CreateGoalTimeView({ viewModel, props }: Props) {
 
   return (
     <styled.CreateGoalTime>
-      <Header onPressLeftIcon={goBack} title="Adicionando uma meta" />
+      <Header onPressLeftIcon={goBack} title="Crie o potinho" />
 
       <View style={{ padding: 32 }}>
         <ContainerInformation

@@ -28,12 +28,14 @@ export function ModalView({ viewModel, props }: Props) {
     hasCancelButton = true,
     onClose,
     onAction,
+    ...modalProps
   } = props;
 
   const { colors } = useTheme();
 
   return (
     <Modal
+      {...modalProps}
       visible={visible}
       onRequestClose={onClose}
       animationType="slide"

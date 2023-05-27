@@ -1,6 +1,8 @@
 import React from 'react';
 import { render } from '@testing-library/react-native';
 
+import ThemeProvider from '../ThemeProvider';
+
 import DatePicker from './DatePicker';
 
 describe('DatePicker', () => {
@@ -8,9 +10,18 @@ describe('DatePicker', () => {
     // Arrange
 
     // Act
-    const rendered = render(<DatePicker />);
+    const rendered = render(
+      <ThemeProvider>
+        <DatePicker
+          visible
+          style={{ backgroundColor: '#FFF' }}
+          value={new Date()}
+          testID="date-picker"
+        />
+      </ThemeProvider>
+    );
 
     // Assert
-    rendered.getByText(/DatePicker/i);
+    rendered.getByTestId('date-picker');
   });
 });

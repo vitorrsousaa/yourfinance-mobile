@@ -1,20 +1,21 @@
-import { useQuery } from 'react-query';
+/* eslint-disable indent */
+import { useQuery } from '@tanstack/react-query';
 
 import CategoriesService from '../service/CategoriesService';
-import { TCategoryResponse } from '../types/Category';
+import { TCategory } from '../types/Category';
 
-export function useCategories(): {
-  categories: TCategoryResponse;
+export default function useCategories(): {
+  categories: TCategory[];
   isErrorCategories: boolean;
   refetch: () => Promise<unknown>;
   isLoadingCategories: boolean;
-  } {
+} {
   const {
     data: categories,
     isError,
     refetch,
     isLoading,
-  } = useQuery<TCategoryResponse>({
+  } = useQuery<TCategory[]>({
     queryKey: ['@categories'],
     queryFn: () => CategoriesService.list(),
     staleTime: 1000 * 60 * 30, // 30 minutos
@@ -22,7 +23,7 @@ export function useCategories(): {
   });
 
   return {
-    categories: categories!,
+    categories: categories ? categories : [],
     isErrorCategories: isError,
     refetch,
     isLoadingCategories: isLoading,
