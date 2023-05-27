@@ -10,10 +10,10 @@ interface Props {
 }
 
 export function RadioView({ viewModel, props }: Props) {
-  const { selected = false } = props;
+  const { selected = false, ...radioProps } = props;
 
   return (
-    <styled.Radio selected={selected}>
+    <styled.Radio selected={selected} {...radioProps}>
       {selected && <Icon name="check" />}
     </styled.Radio>
   );
