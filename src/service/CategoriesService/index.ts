@@ -1,5 +1,6 @@
-import { TCategory } from '../../types/Category';
+import { TCategory, TCategoryPersistance } from '../../types/Category';
 import HttpClient from '../HttpClient';
+import CategoryMapper from '../mappers/Category';
 
 import { ICategoriesService } from './ICategoriesService';
 
@@ -10,9 +11,12 @@ class CategoriesService implements ICategoriesService {
     this.httpClient = new HttpClient();
   }
 
-  async list() {
-    const categories = await this.httpClient.get<TCategory[]>('/category');
-    return categories;
+  async list(): Promise<TCategory[]> {
+    const categories = await this.httpClient.get<TCategoryPersistance[]>(
+      '/category'
+    );
+
+    return categories.map(CategoryMapper.toDomain);
   }
 }
 

@@ -1,11 +1,12 @@
 import React from 'react';
-
 import { render } from '@testing-library/react-native';
 
-import 'jest-styled-components';
-import LastTransactions from './LastTransactions';
 import { TTransaction } from '../../types/Transaction';
 import ThemeProvider from '../ThemeProvider';
+
+import LastTransactions from './LastTransactions';
+
+import 'jest-styled-components';
 
 // yarn test LastTransactions.spec.tsx
 
@@ -14,25 +15,22 @@ describe('Last Transactions Component', () => {
     const now = new Date();
     const dataMocked: TTransaction[] = [
       {
-        _id: '',
+        id: '',
         amount: 123,
-        __v: 0,
         modality: {
           name: '',
-          __v: 0,
-          _id: '',
+          id: '',
           category: '',
         },
         category: {
-          _id: '',
+          id: '',
           name: '',
-          __v: 0,
         },
         type: '',
-        user: '',
         description: 'description mocked',
-        date: now.toLocaleString(),
-        updatedAt: '',
+        date: now,
+        updatedAt: now,
+        createdAt: now,
       },
     ];
     const rendered = render(
@@ -52,27 +50,25 @@ describe('Last Transactions Component', () => {
     const now = new Date();
     const dataMocked: TTransaction[] = [
       {
-        _id: '',
+        id: '',
         amount: 123,
-        __v: 0,
         modality: {
           name: '',
-          __v: 0,
-          _id: '',
+          id: '',
           category: '',
         },
         category: {
-          _id: '',
+          id: '',
           name: '',
-          __v: 0,
         },
         type: '',
-        user: '',
         description: 'description mocked',
-        date: now.toLocaleString(),
-        updatedAt: '',
+        date: now,
+        updatedAt: now,
+        createdAt: now,
       },
     ];
+
     const rendered = render(
       <ThemeProvider>
         <LastTransactions
@@ -91,25 +87,22 @@ describe('Last Transactions Component', () => {
     const now = new Date();
     const dataMocked: TTransaction[] = [
       {
-        _id: '',
+        id: '',
         amount: 123,
-        __v: 0,
         modality: {
           name: '',
-          __v: 0,
-          _id: '',
+          id: '',
           category: '',
         },
         category: {
-          _id: '',
+          id: '',
           name: '',
-          __v: 0,
         },
         type: '',
-        user: '',
         description: 'description mocked',
-        date: now.toLocaleString(),
-        updatedAt: '',
+        date: now,
+        updatedAt: now,
+        createdAt: now,
       },
     ];
     const rendered = render(
@@ -130,25 +123,22 @@ describe('Last Transactions Component', () => {
     const now = new Date();
     const dataMocked: TTransaction[] = [
       {
-        _id: '',
+        id: '',
         amount: 123,
-        __v: 0,
         modality: {
           name: '',
-          __v: 0,
-          _id: '',
+          id: '',
           category: '',
         },
         category: {
-          _id: '',
+          id: '',
           name: '',
-          __v: 0,
         },
         type: '',
-        user: '',
         description: 'description mocked',
-        date: now.toLocaleString(),
-        updatedAt: '',
+        date: now,
+        updatedAt: now,
+        createdAt: now,
       },
     ];
     const rendered = render(
@@ -170,25 +160,22 @@ describe('Last Transactions Component', () => {
     const now = new Date();
     const dataMocked: TTransaction[] = [
       {
-        _id: '',
+        id: '',
         amount: 123,
-        __v: 0,
         modality: {
           name: '',
-          __v: 0,
-          _id: '',
+          id: '',
           category: '',
         },
         category: {
-          _id: '',
+          id: '',
           name: '',
-          __v: 0,
         },
         type: '',
-        user: '',
         description: 'description mocked',
-        date: now.toLocaleString(),
-        updatedAt: '',
+        date: now,
+        updatedAt: now,
+        createdAt: now,
       },
     ];
     const rendered = render(

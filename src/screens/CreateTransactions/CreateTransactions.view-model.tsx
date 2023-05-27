@@ -2,10 +2,14 @@ import { useEffect, useMemo, useState } from 'react';
 import { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
 
-import { useCategories } from '../../hooks/useCategories';
+import useCardSummaries from '../../hooks/entities/useCardSummaries';
+import useCategories from '../../hooks/useCategories';
 import { useModalities } from '../../hooks/useModalities';
+import { useTransactions } from '../../hooks/useTransactions';
+import TransactionsService from '../../service/TransactionsService';
 import { TCategory } from '../../types/Category';
 import { TModality } from '../../types/Modality';
+import { TTransactionCreate } from '../../types/Transaction';
 import { isAndroid } from '../../utils/isAndroid';
 
 export interface CreateTransactionsViewModelProps {
@@ -22,7 +26,8 @@ export interface CreateTransactionsViewModelProps {
   monthsThatRepeatTransaction: number;
   datePickerIsVisible: boolean;
   date: Date;
-  getModalities: () => TModality[] | undefined;
+  isSubmitting: boolean;
+  getModalities: () => TModality[];
   goBack: () => void;
   handleAmountChange: (text: string) => void;
   handleDescriptionChange: (text: string) => void;
@@ -39,6 +44,7 @@ export interface CreateTransactionsViewModelProps {
     event: DateTimePickerEvent,
     date: Date | undefined
   ) => void;
+  handleSubmit: () => void;
 }
 
 export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps {
@@ -56,11 +62,16 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
     useState(1);
   const [datePickerIsVisible, setDatePickerIsVisible] = useState(false);
   const [date, setDate] = useState(new Date());
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { categories, isErrorCategories } = useCategories();
 
   const { modalities, isErrorModalities, isLoadingModalities } =
     useModalities();
+
+  const { refetch: refetchSummaries } = useCardSummaries();
+
+  const { refetch } = useTransactions();
 
   const navigation = useNavigation();
 
@@ -82,7 +93,7 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
       Boolean(
         description.length > 0 && amount > 0 && selectedModality !== null
       ),
-    [description, amount]
+    [description, amount, selectedModality]
   );
 
   function goBack() {
@@ -116,13 +127,11 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
   }, [selectedCategory]);
 
   function getModalities() {
-    if (modalities) {
-      const modalitiesFiltered = modalities.filter(
-        (modality) => modality.category === category.id
-      );
+    const modalitiesFiltered = modalities.filter(
+      (modality) => modality.category === category.id
+    );
 
-      return modalitiesFiltered;
-    }
+    return modalitiesFiltered;
   }
 
   function toggleModalityModal() {
@@ -131,8 +140,6 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
 
   function onSelectedModality(modality: TModality) {
     setSelectedModality(modality);
-
-    toggleModalityModal();
   }
 
   function toggleTransactionRepeatModal() {
@@ -193,6 +200,38 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
     }
   }
 
+  async function handleSubmit() {
+    setIsSubmitting(true);
+
+    const transactionCreate: TTransactionCreate = {
+      modality: selectedModality ? selectedModality.id : '',
+      description: description,
+      amount: amount,
+      category: category.id,
+      date: date,
+    };
+
+    const data = {
+      time: monthsThatRepeatTransaction,
+      initialDate: date,
+      infosTransactionFixed: transactionCreate,
+    };
+
+    try {
+      await TransactionsService.create(transactionCreate);
+
+      await refetch();
+      await refetchSummaries();
+    } catch (error) {
+      console.log(
+        'TEve um erro para cadastrar sua transação - Create transactions'
+      );
+    } finally {
+      goBack();
+      setIsSubmitting(false);
+    }
+  }
+
   return {
     amount,
     description,
@@ -207,6 +246,7 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
     monthsThatRepeatTransaction,
     datePickerIsVisible,
     date,
+    isSubmitting,
     getModalities,
     goBack,
     handleAmountChange,
@@ -221,5 +261,6 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
     handleMinusMonthRepeatTransaction,
     toggleDatePicker,
     handleChangeDate,
+    handleSubmit,
   };
 }

@@ -14,14 +14,14 @@ interface Props {
 }
 
 export function HeaderView({ viewModel, props }: Props) {
-  const { title, rightIcon, onPressLeftIcon } = props;
+  const { title, rightIcon, leftIcon, onPressLeftIcon } = props;
 
   const { colors } = useTheme();
 
   return (
     <styled.Header>
       <View style={{ gap: 8, flexDirection: 'row', alignItems: 'center' }}>
-        {onPressLeftIcon && (
+        {leftIcon && (
           <Touchable
             item="arrow"
             onPress={onPressLeftIcon}

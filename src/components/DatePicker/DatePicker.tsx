@@ -1,10 +1,12 @@
 import { memo } from 'react';
 import { DateTimePickerEvent } from '@react-native-community/datetimepicker';
+import { ViewProps, ViewStyle } from 'react-native';
 
 import { DatePickerView } from './DatePicker.view';
 import { DatePickerViewModel } from './DatePicker.view-model';
 
-export interface DatePickerProps {
+export interface DatePickerProps extends ViewProps {
+  style: ViewStyle;
   visible: boolean;
   value: Date;
   onChange?: (event: DateTimePickerEvent, date?: Date) => void;

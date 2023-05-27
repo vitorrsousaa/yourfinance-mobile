@@ -31,7 +31,7 @@ export function GoalCardView({ viewModel, props }: Props) {
   const { colors } = useTheme();
 
   return (
-    <styled.GoalCard>
+    <styled.GoalCard onPress={handleNavigateToDetailsGoals} activeOpacity={0.9}>
       <styled.GoalHeader>
         <View style={{ flexDirection: 'row', alignItems: 'center', gap: 4 }}>
           <Icon name="target" color={colors.black[900]} />
@@ -44,12 +44,8 @@ export function GoalCardView({ viewModel, props }: Props) {
             </Text>
           </View>
         </View>
-        <TouchableOpacity
-          activeOpacity={0.9}
-          onPress={handleNavigateToDetailsGoals}
-        >
-          <Icon name="dotMenu" />
-        </TouchableOpacity>
+
+        <Icon name="dotMenu" />
       </styled.GoalHeader>
 
       <styled.GoalTargets>

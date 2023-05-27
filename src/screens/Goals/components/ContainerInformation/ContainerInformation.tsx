@@ -1,4 +1,4 @@
-import { memo,ReactNode } from 'react';
+import { memo, ReactNode } from 'react';
 
 import { ContainerInformationView } from './ContainerInformation.view';
 import { ContainerInformationViewModel } from './ContainerInformation.view-model';
@@ -9,11 +9,8 @@ export interface ContainerInformationProps {
   children: ReactNode;
 }
 
-// Quando a prop é usada somente aqui, devemos omitir para não ir pra View
 export interface ContainerInformationViewProps
-  extends Omit<ContainerInformationProps, ''> {
-  // Quando alguma prop vai ser utilizada somente na View, devemos acrescentar aqui
-}
+  extends Omit<ContainerInformationProps, ''> {}
 
 function ContainerInformation(props: ContainerInformationProps) {
   const { ...viewProps } = props;

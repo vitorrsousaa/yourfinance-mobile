@@ -3,4 +3,5 @@ export interface TCardSummary {
   percent: number;
   currentMonth: number;
   lastMonth: number;
+  category: string;
 }

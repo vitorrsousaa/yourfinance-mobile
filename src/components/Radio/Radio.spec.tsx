@@ -1,5 +1,7 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render } from '@testing-library/react-native';
+
+import ThemeProvider from '../ThemeProvider';
 
 import Radio from './Radio';
 
@@ -8,9 +10,13 @@ describe('Radio', () => {
     // Arrange
 
     // Act
-    const rendered = render(<Radio />);
+    const rendered = render(
+      <ThemeProvider>
+        <Radio testID="radio-test" />
+      </ThemeProvider>
+    );
 
     // Assert
-    rendered.getByRole('heading', { name: /Radio/i });
+    rendered.getByTestId('radio-test');
   });
 });

@@ -26,6 +26,8 @@ export function DatePickerView({ viewModel, props }: Props) {
         display="spinner"
         negativeButton={{ label: 'Cancelar', textColor: 'red' }}
         positiveButton={{ label: 'Confirmar' }}
+        minimumDate={new Date(2022, 0, 1)}
+        maximumDate={new Date()}
         {...datePickerProps}
       />
     </styled.DatePicker>

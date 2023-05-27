@@ -1,3 +1,6 @@
 export { TTransaction } from './Transaction';
-export { TTransactionCreate } from './TransactionCreate';
-export { TTransactionResponse } from './TransactionResponse';
+export {
+  TTransactionCreate,
+  TTransactionCreatePersistance,
+} from './TransactionCreate';
+export { TTransactionPersistance } from './TransactionPersistance';

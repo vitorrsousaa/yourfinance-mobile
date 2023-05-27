@@ -2,14 +2,13 @@ import { TCategory } from '../Category';
 import { TModality } from '../Modality';
 
 export interface TTransaction {
-  _id: string;
-  __v: 0;
-  user: string;
-  modality: TModality;
+  id: string;
   description: string;
   amount: number;
+  modality: TModality;
   category: TCategory;
   type: string;
-  date: string;
-  updatedAt: string;
+  date: Date;
+  updatedAt: Date;
+  createdAt: Date;
 }

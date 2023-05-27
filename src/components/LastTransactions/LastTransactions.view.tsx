@@ -50,13 +50,20 @@ export function LastTransactionsView({ viewModel, props }: Props) {
             )}
           </styled.ContainerHeader>
           {isLoading ? (
-            <Loader size="large" color={colors.green[400]} />
+            <View
+              style={{
+                flex: 1,
+                justifyContent: 'center',
+              }}
+            >
+              <Loader size="large" color={colors.green[400]} />
+            </View>
           ) : transactions.length > 0 ? (
             <View style={{ gap: 16 }}>
               <FlatList
                 data={transactions}
                 renderItem={({ item }) => <Transaction data={item} />}
-                keyExtractor={(item) => item._id}
+                keyExtractor={(item) => item.id}
                 ItemSeparatorComponent={() => <View style={{ height: 8 }} />}
                 contentContainerStyle={{ paddingBottom: 48 }}
               />

@@ -82,19 +82,12 @@ export default memo(${toPascalCase(inputs.name)});
           {
             type: 'file',
             name: (inputs) => `${toPascalCase(inputs.name)}.view-model.tsx`,
-            content: (inputs) => `import { useState } from 'react';
-
-export interface ${toPascalCase(inputs.name)}ViewModelProps {
-  state: string;
-}
+            content: (inputs) => `
+export interface ${toPascalCase(inputs.name)}ViewModelProps {}
 
 export function ${toPascalCase(inputs.name)}ViewModel() {
-  const [state, setState] = useState('')
 
-  return {
-    state,
-    setState
-  }
+  return {}
 }
 `,
           },
@@ -139,26 +132,29 @@ export const ${toPascalCase(inputs.name)} = styled.View\`\`;
             type: 'file',
             name: (inputs) => `${toPascalCase(inputs.name)}.spec.tsx`,
             content: (inputs) => `import React from 'react';
-
 import { render } from '@testing-library/react-native';
 
-import ${toPascalCase(inputs.name)} from './${toPascalCase(inputs.name)}';
 import ThemeProvider from '../ThemeProvider';
+
+import ${toPascalCase(inputs.name)} from './${toPascalCase(inputs.name)}';
+
 import 'jest-styled-components';
 
-describe('${toPascalCase(inputs.name)}', () => {
-  it('Should render component when called with default props', () => {
-    // Arrange
+// yarn test ${toPascalCase(inputs.name)}.spec.tsx
 
-    // Act
+describe('${toPascalCase(inputs.name)}', () => {
+  it('Should render correctly when called with default props', () => {
+    // Arrange
     const rendered = render(
-        <ThemeProvider>
-          <${toPascalCase(inputs.name)} />
-        </ThemeProvider>
+      <ThemeProvider>
+        <${toPascalCase(inputs.name)} />
+      </ThemeProvider>
     );
 
+    // Act
+
     // Assert
-    expect(rendered.getByText(/^${toPascalCase(inputs.name)}$/i));
+    expect(rendered.getByTestId(/${toPascalCase(inputs.name)}/i));
   });
 });
 `,

@@ -1,4 +1,4 @@
-import { useQuery } from 'react-query';
+import { useQuery } from '@tanstack/react-query';
 
 import ModalitiesService from '../service/ModalitiesService';
 import { TModality } from '../types/Modality';
@@ -8,7 +8,7 @@ export function useModalities(): {
   isErrorModalities: boolean;
   isLoadingModalities: boolean;
   refetch: () => Promise<unknown>;
-  } {
+} {
   const {
     data: modalities,
     isError,
@@ -22,7 +22,7 @@ export function useModalities(): {
   });
 
   return {
-    modalities: modalities!,
+    modalities: modalities ? modalities : [],
     isErrorModalities: isError,
     refetch,
     isLoadingModalities: isLoading,

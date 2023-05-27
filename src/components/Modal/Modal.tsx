@@ -1,9 +1,10 @@
 import { memo, ReactNode } from 'react';
+import { ViewProps } from 'react-native';
 
 import { ModalView } from './Modal.view';
 import { ModalViewModel } from './Modal.view-model';
 
-export interface ModalProps {
+export interface ModalProps extends ViewProps {
   visible: boolean;
   onClose: () => void;
   type?: 'danger' | 'primary';

@@ -33,7 +33,7 @@ export function RegisterViewModel() {
 
   const { handleRegister } = useAuth();
 
-  const isFormValid = password && email && name && errors.length === 0;
+  const isFormValid = Boolean(password && email && name && errors.length === 0);
 
   function handleEmailChange(text: string) {
     setEmail(text);
@@ -75,7 +75,7 @@ export function RegisterViewModel() {
 
     try {
       await handleRegister(user);
-    } catch {
+    } catch (error) {
       console.log('Esse email já foi cadastrado');
       setPassword('');
     } finally {
