@@ -4,4 +4,3 @@ export {
   TTransactionCreatePersistance,
 } from './TransactionCreate';
 export { TTransactionPersistance } from './TransactionPersistance';
-export { TTransactionResponse } from './TransactionResponse';

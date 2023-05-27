@@ -10,7 +10,7 @@ export function useTransactions(): {
   refetch: () => Promise<unknown>;
 } {
   const {
-    data: transactionsResponse,
+    data: transactions,
     isError,
     isLoading,
     refetch,
@@ -22,7 +22,7 @@ export function useTransactions(): {
   });
 
   return {
-    transactions: transactionsResponse!,
+    transactions: transactions ? transactions : [],
     isErrorTransactions: isError,
     isLoadingTransactions: isLoading,
     refetch,

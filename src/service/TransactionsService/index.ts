@@ -1,7 +1,6 @@
 import {
   TTransactionCreate,
   TTransactionPersistance,
-  TTransactionResponse,
 } from '../../types/Transaction';
 import HttpClient from '../HttpClient';
 import TransactionMapper from '../mappers/Transaction';
@@ -16,10 +15,11 @@ class TransactionsService implements ITransactionsService {
   }
 
   async list() {
-    const transactionsResponse =
-      await this.httpClient.get<TTransactionResponse>('/transactions');
+    const transactionsResponse = await this.httpClient.get<
+      TTransactionPersistance[]
+    >('/transactions');
 
-    const transactionsDomain = transactionsResponse.transactions.map(
+    const transactionsDomain = transactionsResponse.map(
       TransactionMapper.toDomain
     );
 
