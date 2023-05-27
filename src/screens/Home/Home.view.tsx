@@ -9,7 +9,6 @@ import { Text } from '../../components/Text';
 import Touchable from '../../components/Touchable';
 import { useAuth } from '../../hooks/useAuth';
 import { useTransactions } from '../../hooks/useTransactions';
-import formatAmount from '../../utils/formatAmout';
 
 import CategorySummary from './components/CategorySummary';
 import { HomeViewProps } from './Home';
@@ -84,7 +83,7 @@ export function HomeView({ viewModel, props }: Props) {
               <>
                 {summaries.map((summary) => (
                   <CategorySummary
-                    key={summary.category}
+                    key={summary.currentMonth}
                     categoryName={summary.category}
                     currentMonth={summary.currentMonth}
                     percent={summary.percent}

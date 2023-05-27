@@ -65,7 +65,6 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
   } = viewModel;
 
   const { colors } = useTheme();
-
   return (
     <styled.CreateTransactions {...createTransactionsProps}>
       <KeyboardAvoidingView behavior={isAndroid ? 'height' : 'padding'}>

@@ -22,7 +22,7 @@ export function CategorySummaryView({ viewModel, props }: Props) {
     categoryName === 'Receitas' ? colors.green[400] : colors.red[400];
 
   return (
-    <styled.CategorySummary>
+    <styled.CategorySummary {...categorySummaryProps}>
       <Text size={14} color={colors.black[700]}>
         {categoryName}
       </Text>
