@@ -1,3 +1,5 @@
+import { ScrollView, View } from 'react-native';
+
 import Header from '../../components/Header';
 import { Text } from '../../components/Text';
 import Touchable from '../../components/Touchable';
@@ -16,12 +18,22 @@ export function AnalyticsView({ viewModel, props }: Props) {
   const { ...analyticsProps } = props;
 
   return (
-    <styled.Analytics>
-      <Header title="Analytics" rightIcon={<Touchable item="search" />} />
+    <styled.Analytics {...analyticsProps}>
+      <Header
+        title="Analytics"
+        rightIcon={<Touchable item="search" />}
+        leftIcon={false}
+      />
 
-      <styled.Container>
-        <PieChart />
-      </styled.Container>
+      <ScrollView style={{ flex: 1 }}>
+        <styled.Container>
+          <PieChart />
+
+          <View>
+            <Text>Oi</Text>
+          </View>
+        </styled.Container>
+      </ScrollView>
     </styled.Analytics>
   );
 }
