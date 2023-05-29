@@ -11,7 +11,8 @@ interface Props {
 }
 
 export function ButtonView({ viewModel, props }: Props) {
-  const { children, variant, disabled, loading, ...buttonProps } = props;
+  const { children, variant, disabled, loading, onPress, ...buttonProps } =
+    props;
 
   return (
     <styled.Button
