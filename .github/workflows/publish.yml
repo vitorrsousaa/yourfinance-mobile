@@ -1,4 +1,4 @@
-name: CI
+name: Publish components
 
 on:
   pull_request:
