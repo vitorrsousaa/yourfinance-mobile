@@ -1,10 +1,11 @@
 import React from 'react';
+import { fireEvent, render } from '@testing-library/react-native';
 
-import { render, fireEvent } from '@testing-library/react-native';
+import ThemeProvider from '../ThemeProvider';
+
+import Touchable from './Touchable';
 
 import 'jest-styled-components';
-import ThemeProvider from '../ThemeProvider';
-import Touchable from './Touchable';
 
 describe('Touchable Component', () => {
   it('Should render component when called with default props', () => {
