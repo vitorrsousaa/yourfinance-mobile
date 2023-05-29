@@ -1,6 +1,9 @@
 name: Publish components
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
@@ -21,5 +24,5 @@ jobs:
       - name: Install dependencies
         run: yarn
 
-      - name: Run prepush script
-        run: yarn prepush
+      - name: Run the tests
+        run: yarn test
