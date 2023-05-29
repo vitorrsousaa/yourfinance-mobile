@@ -16,11 +16,12 @@ export function ButtonView({ viewModel, props }: Props) {
 
   return (
     <styled.Button
+      {...buttonProps}
+      onPress={() => console.log('aqui')}
       customTheme={buttonVariants}
       variant={variant}
       disabled={disabled || loading}
       activeOpacity={0.7}
-      {...buttonProps}
     >
       {!loading && (
         <styled.TextBase
