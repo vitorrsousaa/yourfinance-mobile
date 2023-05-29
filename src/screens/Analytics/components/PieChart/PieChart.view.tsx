@@ -1,5 +1,4 @@
 import { View } from 'react-native';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useTheme } from 'styled-components/native';
 import { VictoryPie } from 'victory-native';
 
@@ -15,6 +14,8 @@ interface Props {
   props: PieChartViewProps;
 }
 
+const names = ['MArianna ', 'Catssfawwe', 'JOaquim fernandes', 'Pass', 'Birds'];
+
 const teste = ['#0D2535', '#5388D8', '#F4BE37', '#FF9F40', '#72E485'];
 
 export function PieChartView({ viewModel, props }: Props) {
@@ -25,7 +26,7 @@ export function PieChartView({ viewModel, props }: Props) {
   // Preciso passar a prop em ordem crescente já
 
   return (
-    <styled.PieChart>
+    <styled.PieChart {...pieChartProps}>
       <View style={{ width: '100%', alignItems: 'flex-start' }}>
         <Text size={18} color={colors.black[900]} weight="500">
           Maiores despesas
@@ -60,7 +61,17 @@ export function PieChartView({ viewModel, props }: Props) {
         colorScale={teste}
       />
 
-      <LabelChart background="#395bfc" label="despesas" />
+      <View
+        style={{
+          flexDirection: 'row',
+          flexWrap: 'wrap',
+          justifyContent: 'center',
+        }}
+      >
+        {names.map((name) => (
+          <LabelChart key={name} background="#395bfc" label={name} />
+        ))}
+      </View>
     </styled.PieChart>
   );
 }
