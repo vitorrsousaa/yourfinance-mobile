@@ -14,7 +14,7 @@ export function RadioView({ viewModel, props }: Props) {
 
   return (
     <styled.Radio selected={selected} {...radioProps}>
-      {selected && <Icon name="check" />}
+      {selected && <Icon name="check" testID="icon-test" />}
     </styled.Radio>
   );
 }

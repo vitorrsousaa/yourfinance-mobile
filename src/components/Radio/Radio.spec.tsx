@@ -19,4 +19,17 @@ describe('Radio', () => {
     // Assert
     rendered.getByTestId('radio-test');
   });
+  it('Should render icon when user selected', () => {
+    // Arrange
+
+    // Act
+    const rendered = render(
+      <ThemeProvider>
+        <Radio testID="radio-test" selected />
+      </ThemeProvider>
+    );
+
+    // Assert
+    rendered.getByTestId('icon-test');
+  });
 });
