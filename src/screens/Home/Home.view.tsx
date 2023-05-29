@@ -83,7 +83,7 @@ export function HomeView({ viewModel, props }: Props) {
               <>
                 {summaries.map((summary) => (
                   <CategorySummary
-                    key={summary.currentMonth}
+                    key={Math.random()}
                     categoryName={summary.category}
                     currentMonth={summary.currentMonth}
                     percent={summary.percent}
