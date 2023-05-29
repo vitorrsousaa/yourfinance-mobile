@@ -23,9 +23,10 @@ export function TransactionsView({ viewModel, props }: Props) {
     useTransactions();
 
   return (
-    <styled.Transactions>
+    <styled.Transactions {...transactionsProps}>
       <Header
         title="Transações"
+        leftIcon={false}
         rightIcon={
           <styled.ContainerRightIcons>
             <Touchable item="search" />
