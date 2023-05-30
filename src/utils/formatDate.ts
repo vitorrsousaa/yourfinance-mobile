@@ -32,3 +32,20 @@ export function formatShortDate(date: string | Date) {
 
   return upperDate;
 }
+
+export function formatCompleteDate(date: Date) {
+  const newDate = new Intl.DateTimeFormat('pt-br', {
+    day: '2-digit',
+    month: 'short',
+    year: 'numeric',
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+  }).format(new Date(date));
+
+  const formattedDateWithoutDe = newDate.replace('. de', '').replace(' de', '');
+
+  const upperDate = formattedDateWithoutDe.toUpperCase();
+
+  return upperDate;
+}
