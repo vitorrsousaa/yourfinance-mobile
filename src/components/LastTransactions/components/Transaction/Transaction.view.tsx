@@ -27,6 +27,7 @@ export function TransactionView({ viewModel, props }: Props) {
     <styled.Transaction
       {...transactionProps}
       activeOpacity={0.9}
+      touchSoundDisabled
       onPress={() => {
         if (onSelected) {
           onSelected(data);
