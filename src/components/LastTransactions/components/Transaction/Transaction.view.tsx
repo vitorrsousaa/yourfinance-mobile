@@ -15,7 +15,7 @@ interface Props {
 }
 
 export function TransactionView({ viewModel, props }: Props) {
-  const { data, ...transactionProps } = props;
+  const { data, onSelected, ...transactionProps } = props;
 
   const { getColor, getIcon } = viewModel;
 
@@ -24,7 +24,15 @@ export function TransactionView({ viewModel, props }: Props) {
   const { category, description, date, amount, modality } = data;
 
   return (
-    <styled.Transaction {...transactionProps}>
+    <styled.Transaction
+      {...transactionProps}
+      activeOpacity={0.9}
+      onPress={() => {
+        if (onSelected) {
+          onSelected(data);
+        }
+      }}
+    >
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
         {getIcon(category.name)}
         <View>

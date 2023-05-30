@@ -1,8 +1,8 @@
 import React from 'react';
-import { render } from '@testing-library/react-native';
+import { fireEvent, render } from '@testing-library/react-native';
 
 import { TTransaction } from '../../../../types/Transaction';
-import { formatDate } from '../../../../utils/formatDate';
+import { formatShortDate } from '../../../../utils/formatDate';
 import ThemeProvider from '../../../ThemeProvider';
 
 import Transaction from './Transaction';
@@ -121,7 +121,7 @@ describe('Transaction Component', () => {
       </ThemeProvider>
     );
 
-    expect(rendered.getByText(formatDate(new Date())));
+    expect(rendered.getByText(formatShortDate(new Date())));
   });
 
   it('Should render amount correctly with formatAmount', () => {
@@ -151,5 +151,40 @@ describe('Transaction Component', () => {
     );
 
     expect(rendered.getByText('R$ 123,40'));
+  });
+
+  it('Should rendered when uses onSelected prop', () => {
+    // Arrange
+    const now = new Date();
+    const transactionMocked: TTransaction = {
+      id: '',
+      amount: 123,
+      modality: {
+        name: 'Salário',
+        id: '',
+        category: '',
+      },
+      category: {
+        id: '',
+        name: '',
+      },
+      type: '',
+      description: 'description mocked',
+      date: now,
+      updatedAt: now,
+      createdAt: now,
+    };
+    const onSelected = jest.fn();
+    const rendered = render(
+      <ThemeProvider>
+        <Transaction data={transactionMocked} onSelected={onSelected} />
+      </ThemeProvider>
+    );
+
+    // Act
+    fireEvent.press(rendered.getByText(/^description mocked$/i));
+
+    // Assert
+    expect(onSelected).toHaveBeenCalled();
   });
 });

@@ -7,6 +7,7 @@ import { TransactionViewModel } from './Transaction.view-model';
 
 export interface TransactionProps {
   data: TTransaction;
+  onSelected?: (transaction: TTransaction) => void;
 }
 
 export interface TransactionViewProps extends Omit<TransactionProps, ''> {}

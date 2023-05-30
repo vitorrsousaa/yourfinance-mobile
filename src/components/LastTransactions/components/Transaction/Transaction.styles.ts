@@ -1,6 +1,6 @@
 import styled from 'styled-components/native';
 
-export const Transaction = styled.View`
+export const Transaction = styled.TouchableOpacity`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
