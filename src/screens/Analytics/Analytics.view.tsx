@@ -1,7 +1,6 @@
-import { ScrollView, View } from 'react-native';
+import { ScrollView } from 'react-native';
 
 import Header from '../../components/Header';
-import { Text } from '../../components/Text';
 import Touchable from '../../components/Touchable';
 
 import PieChart from './components/PieChart';
@@ -28,10 +27,6 @@ export function AnalyticsView({ viewModel, props }: Props) {
       <ScrollView style={{ flex: 1 }}>
         <styled.Container>
           <PieChart />
-
-          <View>
-            <Text>Oi</Text>
-          </View>
         </styled.Container>
       </ScrollView>
     </styled.Analytics>
