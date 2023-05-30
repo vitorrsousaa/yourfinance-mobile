@@ -18,11 +18,17 @@ export function formatDate(date: string | Date) {
   return new Intl.DateTimeFormat('pt-br', options).format(localDate);
 }
 
-export function formatShortDate(date: string) {
+export function formatShortDate(date: string | Date) {
   const localDate = new Date(date);
 
-  return new Intl.DateTimeFormat('pt-br', {
+  const dateFormated = new Intl.DateTimeFormat('pt-br', {
+    day: '2-digit',
     month: 'short',
-    year: 'numeric',
   }).format(localDate);
+
+  const removedString = dateFormated.replace(' de', '');
+  const removedDot = removedString.replace('.', '');
+  const upperDate = removedDot.toUpperCase();
+
+  return upperDate;
 }
