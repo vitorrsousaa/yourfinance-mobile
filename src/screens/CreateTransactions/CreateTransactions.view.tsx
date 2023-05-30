@@ -94,7 +94,7 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
                 value={description}
                 onChangeText={handleDescriptionChange}
                 autoCorrect={false}
-                maxLength={15}
+                maxLength={28}
               />
             </Row>
 

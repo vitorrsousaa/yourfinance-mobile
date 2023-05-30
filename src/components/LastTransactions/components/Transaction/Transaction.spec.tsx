@@ -18,7 +18,7 @@ describe('Transaction Component', () => {
       id: '',
       amount: 123,
       modality: {
-        name: '',
+        name: 'Salário',
         id: '',
         category: '',
       },
@@ -40,6 +40,7 @@ describe('Transaction Component', () => {
     );
 
     expect(rendered.getByText(/^description mocked$/i));
+    expect(rendered.getByText(/^Salário$/i));
   });
 
   it('Should render icon correctly according to category Name', () => {

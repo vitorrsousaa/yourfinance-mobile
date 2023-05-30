@@ -1,7 +1,9 @@
-import { ThemeProviderViewModelProps } from './ThemeProvider.view-model';
-import { ThemeProviderViewProps } from './ThemeProvider';
 import { ThemeProvider } from 'styled-components/native';
+
 import theme from '../../assets/theme';
+
+import { ThemeProviderViewProps } from './ThemeProvider';
+import { ThemeProviderViewModelProps } from './ThemeProvider.view-model';
 
 interface Props {
   viewModel: ThemeProviderViewModelProps;

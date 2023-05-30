@@ -18,33 +18,25 @@ interface Props {
 export function TransactionView({ viewModel, props }: Props) {
   const { data, ...transactionProps } = props;
 
+  const { getColor, getIcon } = viewModel;
+
   const { colors } = useTheme();
 
   const { category, description, date, amount, modality } = data;
 
-  const color =
-    category.name === 'Receitas' ? colors.green[400] : colors.red[400];
-
-  const icon =
-    category.name === 'Receitas' ? (
-      <Icon name="income" testID="income-icon" />
-    ) : (
-      <Icon name="outcome" testID="outcome-icon" />
-    );
-
   return (
     <styled.Transaction {...transactionProps}>
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
-        {icon}
+        {getIcon(category.name)}
         <View>
           <Text weight="500" color={colors.black[900]} size={14}>
-            {category.name}
+            {description}
           </Text>
-          <Text color={colors.black[600]}>{description}</Text>
+          <Text color={colors.black[600]}>{modality.name}</Text>
           <Text color={colors.black[600]}>{formatDate(date)}</Text>
         </View>
       </View>
-      <Text weight="500" color={color}>
+      <Text weight="500" color={getColor(category.name)}>
         {formatAmount(amount)}
       </Text>
     </styled.Transaction>
