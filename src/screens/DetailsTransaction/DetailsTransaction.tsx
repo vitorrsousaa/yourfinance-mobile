@@ -1,28 +1,36 @@
 import { memo } from 'react';
+import { RouteProp } from '@react-navigation/native';
+
+import { TransactionsRootParamList } from '../../routes/private/Transactions.routes';
+import { TTransaction } from '../../types/Transaction';
 
 import { DetailsTransactionView } from './DetailsTransaction.view';
 import { DetailsTransactionViewModel } from './DetailsTransaction.view-model';
 
-export interface DetailsTransactionProps {}
+type RouteProps = RouteProp<TransactionsRootParamList, 'DetailsTransaction'>;
 
-// Quando a prop é usada somente aqui, devemos omitir para não ir pra View
-export interface DetailsTransactionViewProps
-    extends Omit<DetailsTransactionProps, ''> {
-// Quando alguma prop vai ser utilizada somente na View, devemos acrescentar aqui
+export interface DetailsTransactionProps {
+  route: RouteProps;
 }
+
+export interface DetailsTransactionViewProps
+  extends Omit<DetailsTransactionProps, 'route'> {}
+
+export type DetailsTransactionParams =
+  TransactionsRootParamList['DetailsTransaction'];
 
 function DetailsTransaction(props: DetailsTransactionProps) {
-  const { ...viewProps } = props;
+  const { route, ...viewProps } = props;
 
-  const viewModel = useViewModel();
-
-  return (
-      <DetailsTransactionView viewModel={viewModel} props={viewProps} />
+  const viewModel = useViewModel<DetailsTransactionParams['transaction']>(
+    route.params.transaction as DetailsTransactionParams['transaction']
   );
+
+  return <DetailsTransactionView viewModel={viewModel} props={viewProps} />;
 }
 
-export function useViewModel(){
-  const viewModel = DetailsTransactionViewModel()
+export function useViewModel<T>(params: T) {
+  const viewModel = DetailsTransactionViewModel(params as TTransaction);
 
   return viewModel;
 }
