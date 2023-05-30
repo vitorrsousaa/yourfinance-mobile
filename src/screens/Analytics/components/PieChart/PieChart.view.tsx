@@ -1,7 +1,8 @@
 import { View } from 'react-native';
-import { useTheme } from 'styled-components/native';
 import { VictoryPie } from 'victory-native';
 
+import { AnalyticsError } from '../../../../components/Illustrations/AnalyticsError';
+import Loader from '../../../../components/Loader';
 import { Text } from '../../../../components/Text';
 import LabelChart from '../LabelChart';
 
@@ -14,64 +15,85 @@ interface Props {
   props: PieChartViewProps;
 }
 
-const names = ['MArianna ', 'Catssfawwe', 'JOaquim fernandes', 'Pass', 'Birds'];
-
-const teste = ['#0D2535', '#5388D8', '#F4BE37', '#FF9F40', '#72E485'];
-
 export function PieChartView({ viewModel, props }: Props) {
   const { ...pieChartProps } = props;
 
-  const { colors } = useTheme();
-
-  // Preciso passar a prop em ordem crescente já
+  const {
+    hasError,
+    isLoading,
+    colors,
+    getMonthOptions,
+    setSelectedPeriod,
+    getBiggestModality,
+    getLabelChart,
+  } = viewModel;
 
   return (
     <styled.PieChart {...pieChartProps}>
-      <View style={{ width: '100%', alignItems: 'flex-start' }}>
-        <Text size={18} color={colors.black[900]} weight="500">
-          Maiores despesas
-        </Text>
-      </View>
-      <styled.HeaderChart>
-        <styled.ButtonMonth selected={true}>
-          <styled.TextMonth selected>Março</styled.TextMonth>
-        </styled.ButtonMonth>
-        <styled.ButtonMonth selected={false}>
-          <styled.TextMonth selected={false}>Trimestre</styled.TextMonth>
-        </styled.ButtonMonth>
-        <styled.ButtonMonth selected={false}>
-          <styled.TextMonth selected={false}>Semestre</styled.TextMonth>
-        </styled.ButtonMonth>
-        <styled.ButtonMonth selected={false}>
-          <styled.TextMonth selected={false}>Anual</styled.TextMonth>
-        </styled.ButtonMonth>
-      </styled.HeaderChart>
+      {hasError ? (
+        <View style={{ alignItems: 'center', gap: 24 }}>
+          <Text size={14} style={{ textAlign: 'center' }}>
+            Parece que tem um erro! Não conseguimos calcular nada. Tente
+            novamente mais tarde.
+          </Text>
+          <AnalyticsError />
+        </View>
+      ) : (
+        <>
+          <View style={{ width: '100%', alignItems: 'flex-start' }}>
+            <Text size={18} weight="500">
+              Maiores despesas
+            </Text>
+          </View>
+          <styled.HeaderChart>
+            {getMonthOptions().map((options) => (
+              <styled.ButtonMonth
+                key={options.label}
+                selected={options.selected}
+                onPress={() => setSelectedPeriod(options.month)}
+              >
+                <styled.TextMonth selected={options.selected}>
+                  {options.label}
+                </styled.TextMonth>
+              </styled.ButtonMonth>
+            ))}
+          </styled.HeaderChart>
 
-      <VictoryPie
-        data={[
-          { x: 'Dogs', y: 40 },
-          { x: 'Cats', y: 35 },
-          { x: 'Birds', y: 55 },
-          { x: 'Pass', y: 55 },
-          { x: 'Two', y: 55 },
-        ]}
-        labels={({ datum }) => `${datum.x}`}
-        innerRadius={60}
-        width={320}
-        colorScale={teste}
-      />
+          {isLoading ? (
+            <View style={{ height: 150, justifyContent: 'center' }}>
+              <Loader size={'large'} />
+            </View>
+          ) : (
+            <>
+              <VictoryPie
+                data={getBiggestModality()}
+                labels={() => ''}
+                innerRadius={40}
+                colorScale={colors}
+                x="name"
+                y="amount"
+                height={250}
+              />
 
-      <View
-        style={{
-          flexDirection: 'row',
-          flexWrap: 'wrap',
-          justifyContent: 'center',
-        }}
-      >
-        {names.map((name) => (
-          <LabelChart key={name} background="#395bfc" label={name} />
-        ))}
-      </View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  flexWrap: 'wrap',
+                  justifyContent: 'center',
+                }}
+              >
+                {getLabelChart().map((label) => (
+                  <LabelChart
+                    key={label.name}
+                    background={label.background}
+                    label={label.name}
+                  />
+                ))}
+              </View>
+            </>
+          )}
+        </>
+      )}
     </styled.PieChart>
   );
 }

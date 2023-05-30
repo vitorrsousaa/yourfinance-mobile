@@ -16,13 +16,13 @@ export const HeaderChart = styled.View`
   background-color: ${({ theme }) => theme.colors.black[100]};
   justify-content: space-between;
   padding: 4px;
-  gap: 4px;
+  gap: 2px;
   width: 100%;
   border-radius: 8px;
 `;
 
 export const ButtonMonth = styled.TouchableOpacity<{ selected: boolean }>`
-  width: 70px;
+  width: 74px;
   background-color: ${({ theme, selected }) =>
     selected ? theme.colors.white[100] : 'transparent'};
   border-radius: 8px;
