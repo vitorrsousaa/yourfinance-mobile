@@ -14,7 +14,7 @@ export default function useBiggestModalities(): {
     isError,
     isLoading,
     refetch,
-  } = useQuery<TBiggestModality>({
+  } = useQuery<TBiggestModality | null>({
     queryKey: ['@biggestModalities'],
     queryFn: () => AnalyticsService.getBiggestModalities(),
     staleTime: 1000 * 60 * 30, // 30 minutos
