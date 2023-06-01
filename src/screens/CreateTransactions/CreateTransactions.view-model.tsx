@@ -97,7 +97,7 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
   );
 
   function goBack() {
-    navigation.goBack();
+    return navigation.goBack();
   }
 
   function handleAmountChange(text: string) {
