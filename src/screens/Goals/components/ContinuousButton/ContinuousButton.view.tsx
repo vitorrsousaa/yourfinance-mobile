@@ -18,11 +18,15 @@ export function ContinuousButtonView({ viewModel, props }: Props) {
 
   return (
     <styled.ContinuousButton
+      {...continuousButtonProps}
       activeOpacity={0.9}
       disabled={!isValid}
-      {...continuousButtonProps}
     >
-      <Icon name="arrowRight" color={!isValid ? colors.black[600] : ''} />
+      <Icon
+        name="arrowRight"
+        color={!isValid ? colors.black[600] : ''}
+        testID="arrowRight"
+      />
     </styled.ContinuousButton>
   );
 }
