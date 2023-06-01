@@ -53,9 +53,10 @@ describe('DangerZone', () => {
     );
 
     // Act
-    fireEvent.press(rendered.getByText(/action testing/i));
+    fireEvent.press(rendered.getByTestId('action-danger-zone'));
 
     // Assert
+    expect(rendered.queryByText(/action testing/i)).toBeNull();
     expect(onAction).not.toHaveBeenCalled();
   });
 });

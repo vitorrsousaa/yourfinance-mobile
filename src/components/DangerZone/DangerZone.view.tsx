@@ -33,6 +33,7 @@ export function DangerZoneView({ viewModel, props }: Props) {
         style={{ width: '100%' }}
         onPress={onAction}
         loading={isLoading}
+        testID="action-danger-zone"
       >
         {action}
       </Button>
