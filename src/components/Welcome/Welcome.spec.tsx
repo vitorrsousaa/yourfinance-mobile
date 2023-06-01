@@ -1,10 +1,11 @@
 import React from 'react';
-
 import { render } from '@testing-library/react-native';
 
-import 'jest-styled-components';
 import ThemeProvider from '../ThemeProvider';
+
 import Welcome from './Welcome';
+
+import 'jest-styled-components';
 
 describe('Welcome', () => {
   it('Should render correctly with default props', () => {
