@@ -14,7 +14,7 @@ interface Props {
 }
 
 export function DangerZoneView({ viewModel, props }: Props) {
-  const { action, onAction, ...dangerZoneProps } = props;
+  const { action, onAction, isLoading, ...dangerZoneProps } = props;
 
   const { colors } = useTheme();
 
@@ -28,7 +28,12 @@ export function DangerZoneView({ viewModel, props }: Props) {
           Cuidado, essas ações não podem ser desfeitas
         </Text>
       </View>
-      <Button variant="danger" style={{ width: '100%' }} onPress={onAction}>
+      <Button
+        variant="danger"
+        style={{ width: '100%' }}
+        onPress={onAction}
+        loading={isLoading}
+      >
         {action}
       </Button>
     </styled.DangerZone>

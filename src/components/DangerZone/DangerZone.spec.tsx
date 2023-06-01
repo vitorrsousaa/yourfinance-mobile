@@ -39,4 +39,23 @@ describe('DangerZone', () => {
     // Assert
     expect(onAction).toHaveBeenCalled();
   });
+  it('Should does not selected when button isLoading', () => {
+    // Arrange
+    const onAction = jest.fn();
+    const rendered = render(
+      <ThemeProvider>
+        <DangerZone
+          action="action testing"
+          onAction={onAction}
+          isLoading={true}
+        />
+      </ThemeProvider>
+    );
+
+    // Act
+    fireEvent.press(rendered.getByText(/action testing/i));
+
+    // Assert
+    expect(onAction).not.toHaveBeenCalled();
+  });
 });

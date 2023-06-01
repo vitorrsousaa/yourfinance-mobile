@@ -6,6 +6,7 @@ import { DangerZoneViewModel } from './DangerZone.view-model';
 export interface DangerZoneProps {
   action: string;
   onAction: () => void;
+  isLoading?: boolean;
 }
 
 export interface DangerZoneViewProps extends Omit<DangerZoneProps, ''> {}
