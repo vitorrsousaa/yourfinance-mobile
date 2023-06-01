@@ -10,7 +10,7 @@ interface Props {
 }
 
 export function TouchableView({ viewModel, props }: Props) {
-  const { background, item, ...touchableProps } = props;
+  const { background, item, color, ...touchableProps } = props;
 
   return (
     <styled.Touchable
@@ -18,7 +18,7 @@ export function TouchableView({ viewModel, props }: Props) {
       activeOpacity={0.6}
       {...touchableProps}
     >
-      <Icon name={item} />
+      <Icon name={item} color={color} />
     </styled.Touchable>
   );
 }

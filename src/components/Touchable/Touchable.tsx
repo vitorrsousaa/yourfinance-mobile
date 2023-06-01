@@ -9,6 +9,7 @@ import { TouchableViewModel } from './Touchable.view-model';
 export interface TouchableProps extends TouchableOpacityProps {
   item: Icons;
   background?: 'white' | 'black';
+  color?: string;
 }
 
 // Quando a prop é usada somente aqui, devemos omitir para não ir pra View
@@ -16,11 +17,12 @@ export interface TouchableViewProps extends Omit<TouchableProps, ''> {
   // Quando alguma prop vai ser utilizada somente na View, devemos acrescentar aqui
 }
 
-type DefaultProps = Pick<TouchableProps, 'background'>;
+type DefaultProps = Pick<TouchableProps, 'background' | 'color'>;
 type Props = TouchableProps & DefaultProps;
 
 const defaultProps: DefaultProps = {
   background: 'black',
+  color: '#f5f5f5',
 };
 
 function Touchable(props: Props) {
