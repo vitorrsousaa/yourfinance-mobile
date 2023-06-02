@@ -1,5 +1,4 @@
 import { View } from 'react-native';
-import { useTheme } from 'styled-components/native';
 
 import DangerZone from '../../components/DangerZone';
 
@@ -18,7 +17,6 @@ export function DetailsTransactionView({ viewModel, props }: Props) {
   const { ...detailsTransactionProps } = props;
   const { params, isLoading, getIcon, handleDeleteTransaction, goBack } =
     viewModel;
-  const { colors } = useTheme();
 
   return (
     <styled.DetailsTransaction {...detailsTransactionProps}>

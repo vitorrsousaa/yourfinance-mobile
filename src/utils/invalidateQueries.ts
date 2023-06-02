@@ -1,6 +1,6 @@
 import { Query, QueryKey } from '@tanstack/react-query';
 
-type Entities = '@transactions' | '@income' | '@outcome' | '@biggestModalities';
+import { Entities } from '../hooks/useInvalidateQueries';
 
 export default function invalidateQueries(queries: Entities[]) {
   return ({ queryKey }: Query<unknown, unknown, unknown, QueryKey>) => {

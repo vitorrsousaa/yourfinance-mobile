@@ -1,10 +1,10 @@
 import { useNavigation } from '@react-navigation/native';
-import { Query, useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 
 import Icon from '../../components/Icons';
+import useInvalidateQueries from '../../hooks/useInvalidateQueries';
 import TransactionsService from '../../service/TransactionsService';
 import { TTransaction } from '../../types/Transaction';
-import invalidateQueries from '../../utils/invalidateQueries';
 
 export interface DetailsTransactionViewModelProps {
   params: TTransaction;
@@ -17,7 +17,11 @@ export interface DetailsTransactionViewModelProps {
 
 export function DetailsTransactionViewModel(params: TTransaction) {
   const navigate = useNavigation();
-  const queryClient = useQueryClient();
+
+  const invalidate = useInvalidateQueries([
+    '@biggestModalities',
+    '@transactions',
+  ]);
 
   function getIcon(category: string) {
     if (category === 'Receitas') {
@@ -29,14 +33,7 @@ export function DetailsTransactionViewModel(params: TTransaction) {
   const { isLoading, isError, mutateAsync } = useMutation<void>({
     mutationFn: () => TransactionsService.delete(params.id),
     onSuccess: () => {
-      queryClient.invalidateQueries({
-        predicate: invalidateQueries([
-          '@transactions',
-          '@income',
-          '@outcome',
-          '@biggestModalities',
-        ]),
-      });
+      invalidate();
     },
   });
 
