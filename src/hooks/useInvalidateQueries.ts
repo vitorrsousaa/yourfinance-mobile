@@ -8,14 +8,12 @@ export type Entities =
   | '@outcome'
   | '@biggestModalities';
 
-export default function useInvalidateQueries(params: Entities[]) {
+export default function useInvalidateQueries() {
   const queryClient = useQueryClient();
 
-  function invalidate() {
+  return function invalidate(params: Entities[]) {
     queryClient.invalidateQueries({
       predicate: invalidateQueries(params),
     });
-  }
-
-  return invalidate;
+  };
 }

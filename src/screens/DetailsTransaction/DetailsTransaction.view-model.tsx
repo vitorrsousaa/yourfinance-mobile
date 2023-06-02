@@ -18,10 +18,7 @@ export interface DetailsTransactionViewModelProps {
 export function DetailsTransactionViewModel(params: TTransaction) {
   const navigate = useNavigation();
 
-  const invalidate = useInvalidateQueries([
-    '@biggestModalities',
-    '@transactions',
-  ]);
+  const invalidate = useInvalidateQueries();
 
   function getIcon(category: string) {
     if (category === 'Receitas') {
@@ -33,7 +30,7 @@ export function DetailsTransactionViewModel(params: TTransaction) {
   const { isLoading, isError, mutateAsync } = useMutation<void>({
     mutationFn: () => TransactionsService.delete(params.id),
     onSuccess: () => {
-      invalidate();
+      invalidate(['@biggestModalities', '@transactions']);
     },
   });
 
