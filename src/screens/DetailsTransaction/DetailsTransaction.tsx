@@ -7,7 +7,10 @@ import { TTransaction } from '../../types/Transaction';
 import { DetailsTransactionView } from './DetailsTransaction.view';
 import { DetailsTransactionViewModel } from './DetailsTransaction.view-model';
 
-type RouteProps = RouteProp<TransactionsRootParamList, 'DetailsTransaction'>;
+export type RouteProps = RouteProp<
+  TransactionsRootParamList,
+  'DetailsTransaction'
+>;
 
 export interface DetailsTransactionProps {
   route: RouteProps;
