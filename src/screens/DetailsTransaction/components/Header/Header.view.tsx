@@ -28,7 +28,7 @@ export function HeaderView({ viewModel, props }: Props) {
         color={colors.black[900]}
         onPress={onBack}
         touchSoundDisabled
-        testID="back-button"
+        testID="back-button-header"
       />
 
       <Text weight="500" size={15}>
@@ -39,7 +39,7 @@ export function HeaderView({ viewModel, props }: Props) {
         touchSoundDisabled
         onPress={onDelete}
         disabled={disabled}
-        testID="delete-button"
+        testID="delete-button-header"
       >
         <Icon name="trash" color={colors.black[900]} />
       </TouchableOpacity>

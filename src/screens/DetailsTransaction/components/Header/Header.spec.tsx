@@ -51,7 +51,7 @@ describe('Header', () => {
     );
 
     // Act
-    fireEvent.press(rendered.getByTestId('back-button'));
+    fireEvent.press(rendered.getByTestId('back-button-header'));
 
     // Assert
     expect(onBack).toHaveBeenCalled();
@@ -74,7 +74,7 @@ describe('Header', () => {
     );
 
     // Act
-    fireEvent.press(rendered.getByTestId('delete-button'));
+    fireEvent.press(rendered.getByTestId('delete-button-header'));
 
     // Assert
     expect(onDelete).toHaveBeenCalled();
@@ -97,7 +97,7 @@ describe('Header', () => {
     );
 
     // Act
-    fireEvent.press(rendered.getByTestId('delete-button'));
+    fireEvent.press(rendered.getByTestId('delete-button-header'));
 
     // Assert
     expect(onDelete).not.toHaveBeenCalled();
