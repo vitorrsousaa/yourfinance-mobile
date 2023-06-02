@@ -8,18 +8,6 @@ import Header from './Header';
 
 import 'jest-styled-components';
 
-jest.mock('styled-components/native', () => {
-  return {
-    useTheme: jest.fn().mockReturnValue({
-      colors: {
-        black: {
-          900: '#000',
-        },
-      },
-    }),
-  };
-});
-
 // yarn test Header.spec.tsx
 
 describe('Header', () => {

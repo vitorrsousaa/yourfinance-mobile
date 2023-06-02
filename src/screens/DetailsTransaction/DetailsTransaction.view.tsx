@@ -2,11 +2,9 @@ import { View } from 'react-native';
 import { useTheme } from 'styled-components/native';
 
 import DangerZone from '../../components/DangerZone';
-import Icon from '../../components/Icons';
-import { Text } from '../../components/Text';
-import formatAmount from '../../utils/formatAmout';
-import { formatCompleteDate } from '../../utils/formatDate';
 
+import ContainerInformation from './components/ContainerInformation';
+import Header from './components/Header';
 import { DetailsTransactionViewProps } from './DetailsTransaction';
 import * as styled from './DetailsTransaction.styles';
 import { DetailsTransactionViewModelProps } from './DetailsTransaction.view-model';
@@ -18,43 +16,33 @@ interface Props {
 
 export function DetailsTransactionView({ viewModel, props }: Props) {
   const { ...detailsTransactionProps } = props;
-  const { params, getIcon } = viewModel;
+  const { params, isLoading, getIcon, handleDeleteTransaction, goBack } =
+    viewModel;
   const { colors } = useTheme();
 
   return (
     <styled.DetailsTransaction {...detailsTransactionProps}>
-      <styled.Header>
-        <Text>X</Text>
-        <Text weight="500" size={15}>
-          {formatCompleteDate(params.date)}
-        </Text>
-        <Icon name="trash" color={colors.black[900]} />
-      </styled.Header>
+      <Header
+        onBack={goBack}
+        date={params.date}
+        onDelete={handleDeleteTransaction}
+        disabled={isLoading}
+      />
 
-      <styled.ContainerInformation>
-        <styled.ContainerIcon>
-          {getIcon(params.category.name)}
-        </styled.ContainerIcon>
-        <View style={{ marginVertical: 12, alignItems: 'center' }}>
-          <Text size={20} weight="500">
-            {params.description}
-          </Text>
-          <Text size={18} weight="500" color={colors.black[600]}>
-            {params.modality.name}
-          </Text>
-        </View>
-
-        <Text size={36} weight="700">
-          {formatAmount(params.amount)}
-        </Text>
-      </styled.ContainerInformation>
+      <ContainerInformation
+        icon={getIcon(params.category.name)}
+        description={params.description}
+        modality={params.modality.name}
+        amount={params.amount}
+      />
 
       <View style={{ paddingHorizontal: 24 }}>
         <styled.Divider />
 
         <DangerZone
           action="Excluir movs"
-          onAction={() => console.log('testando')}
+          onAction={handleDeleteTransaction}
+          isLoading={isLoading}
         />
       </View>
     </styled.DetailsTransaction>
