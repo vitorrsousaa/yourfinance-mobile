@@ -4,13 +4,6 @@ export const DetailsTransaction = styled.SafeAreaView`
   flex: 1;
 `;
 
-export const Header = styled.View`
-  flex-direction: row;
-  align-items: center;
-  justify-content: space-between;
-  padding: 56px 24px;
-`;
-
 export const ContainerInformation = styled.View`
   align-items: center;
   justify-content: center;
