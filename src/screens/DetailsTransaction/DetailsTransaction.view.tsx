@@ -28,7 +28,7 @@ export function DetailsTransactionView({ viewModel, props }: Props) {
       />
 
       <ContainerInformation
-        icon={getIcon(params.category.name)}
+        icon={getIcon()}
         description={params.description}
         modality={params.modality.name}
         amount={params.amount}

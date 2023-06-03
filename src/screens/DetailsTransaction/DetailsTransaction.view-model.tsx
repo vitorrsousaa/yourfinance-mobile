@@ -10,7 +10,7 @@ export interface DetailsTransactionViewModelProps {
   params: TTransaction;
   isLoading: boolean;
   isError: boolean;
-  getIcon: (category: string) => JSX.Element;
+  getIcon: () => JSX.Element;
   handleDeleteTransaction: () => Promise<void>;
   goBack: () => void;
 }
@@ -20,8 +20,8 @@ export function DetailsTransactionViewModel(params: TTransaction) {
 
   const invalidate = useInvalidateQueries();
 
-  function getIcon(category: string) {
-    if (category === 'Receitas') {
+  function getIcon() {
+    if (params.category.name === 'Receitas') {
       return <Icon name="income" testID="income-icon" />;
     }
     return <Icon name="outcome" testID="outcome-icon" />;
