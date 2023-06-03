@@ -29,6 +29,7 @@ export function HeaderView({ viewModel, props }: Props) {
         onPress={onBack}
         touchSoundDisabled
         testID="back-button-header"
+        disabled={disabled}
       />
 
       <Text weight="500" size={15}>

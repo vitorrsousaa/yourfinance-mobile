@@ -102,4 +102,27 @@ describe('Header', () => {
     // Assert
     expect(onDelete).not.toHaveBeenCalled();
   });
+  it('Should not call function onBack when user press back button with disabled', () => {
+    // Arrange
+    const onBack = jest.fn();
+    const onDelete = jest.fn();
+    const disabled = true;
+    const date = new Date();
+    const rendered = render(
+      <ThemeProvider>
+        <Header
+          date={date}
+          onBack={onBack}
+          onDelete={onDelete}
+          disabled={disabled}
+        />
+      </ThemeProvider>
+    );
+
+    // Act
+    fireEvent.press(rendered.getByTestId('back-button-header'));
+
+    // Assert
+    expect(onBack).not.toHaveBeenCalled();
+  });
 });
