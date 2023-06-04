@@ -1,5 +1,3 @@
-import { View } from 'react-native';
-
 import Header from '../../components/Header';
 import LastTransactions from '../../components/LastTransactions';
 import Touchable from '../../components/Touchable';
@@ -17,7 +15,10 @@ interface Props {
 export function TransactionsView({ viewModel, props }: Props) {
   const { ...transactionsProps } = props;
 
-  const { handleNavigateToCreateTransaction } = viewModel;
+  const {
+    handleNavigateToCreateTransaction,
+    handleNavigateToDetailsTransaction,
+  } = viewModel;
 
   const { transactions, isErrorTransactions, isLoadingTransactions } =
     useTransactions();
@@ -45,6 +46,7 @@ export function TransactionsView({ viewModel, props }: Props) {
           transactions={transactions}
           isLoading={isLoadingTransactions}
           hasError={isErrorTransactions}
+          onSelected={handleNavigateToDetailsTransaction}
         />
       </styled.ContainerTransactions>
     </styled.Transactions>

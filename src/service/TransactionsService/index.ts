@@ -42,6 +42,10 @@ class TransactionsService implements ITransactionsService {
 
     return response;
   }
+
+  async delete(id: string) {
+    return this.httpClient.delete<void>(`/transactions/${id}`);
+  }
 }
 
 export default new TransactionsService();

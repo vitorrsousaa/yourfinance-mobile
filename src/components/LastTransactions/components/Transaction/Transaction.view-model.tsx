@@ -14,7 +14,7 @@ export function TransactionViewModel() {
     if (name === 'Receitas') {
       return colors.green[400];
     } else {
-      colors.red[400];
+      return colors.red[400];
     }
   }
 

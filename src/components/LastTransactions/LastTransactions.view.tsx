@@ -18,7 +18,8 @@ interface Props {
 }
 
 export function LastTransactionsView({ viewModel, props }: Props) {
-  const { title, showFilter, transactions, isLoading, hasError } = props;
+  const { title, showFilter, transactions, isLoading, hasError, onSelected } =
+    props;
 
   const { colors } = useTheme();
 
@@ -62,7 +63,9 @@ export function LastTransactionsView({ viewModel, props }: Props) {
             <View style={{ gap: 16 }}>
               <FlatList
                 data={transactions}
-                renderItem={({ item }) => <Transaction data={item} />}
+                renderItem={({ item }) => (
+                  <Transaction data={item} onSelected={onSelected} />
+                )}
                 keyExtractor={(item) => item.id}
                 ItemSeparatorComponent={() => <View style={{ height: 8 }} />}
                 contentContainerStyle={{ paddingBottom: 48 }}

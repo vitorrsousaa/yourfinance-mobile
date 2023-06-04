@@ -11,6 +11,7 @@ export interface LastTransactionsProps {
   transactions: TTransaction[];
   isLoading: boolean;
   hasError: boolean;
+  onSelected?: (transaction: TTransaction) => void;
 }
 
 type DefaultProps = Pick<LastTransactionsProps, 'title'>;

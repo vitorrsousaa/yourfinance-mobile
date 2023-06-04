@@ -18,11 +18,34 @@ export function formatDate(date: string | Date) {
   return new Intl.DateTimeFormat('pt-br', options).format(localDate);
 }
 
-export function formatShortDate(date: string) {
+export function formatShortDate(date: string | Date) {
   const localDate = new Date(date);
 
-  return new Intl.DateTimeFormat('pt-br', {
+  const dateFormated = new Intl.DateTimeFormat('pt-br', {
+    day: '2-digit',
+    month: 'short',
+  }).format(localDate);
+
+  const removedString = dateFormated.replace(' de', '');
+  const removedDot = removedString.replace('.', '');
+  const upperDate = removedDot.toUpperCase();
+
+  return upperDate;
+}
+
+export function formatCompleteDate(date: Date) {
+  const newDate = new Intl.DateTimeFormat('pt-br', {
+    day: '2-digit',
     month: 'short',
     year: 'numeric',
-  }).format(localDate);
+    hour: 'numeric',
+    minute: 'numeric',
+    second: 'numeric',
+  }).format(new Date(date));
+
+  const formattedDateWithoutDe = newDate.replace('. de', '').replace(' de', '');
+
+  const upperDate = formattedDateWithoutDe.toUpperCase();
+
+  return upperDate;
 }

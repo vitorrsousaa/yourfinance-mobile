@@ -2,7 +2,7 @@ import { useNavigation } from '@react-navigation/native';
 import { View } from 'react-native';
 import { useTheme } from 'styled-components/native';
 
-import Button from '../../components/Button';
+import DangerZone from '../../components/DangerZone';
 import Header from '../../components/Header';
 import { Text } from '../../components/Text';
 import { useAuth } from '../../hooks/useAuth';
@@ -26,7 +26,7 @@ export function MyAccountView({ viewModel, props }: Props) {
   const { auth } = useAuth();
 
   return (
-    <styled.MyAccount>
+    <styled.MyAccount {...myAccountProps}>
       <Header title="Minha conta" onPressLeftIcon={() => navigation.goBack()} />
 
       <styled.Container>
@@ -55,26 +55,10 @@ export function MyAccountView({ viewModel, props }: Props) {
           </View>
         </View>
 
-        <View
-          style={{
-            gap: 24,
-            paddingBottom: 16,
-            borderBottomColor: colors.black[200],
-            borderBottomWidth: 1,
-          }}
-        >
-          <View style={{ gap: 4 }}>
-            <Text size={20} weight="500" color={colors.red[600]}>
-              Danger zone
-            </Text>
-            <Text size={14} color={colors.black[700]}>
-              Cuidado, essas ações não podem ser desfeitas
-            </Text>
-          </View>
-          <Button variant="danger" style={{ width: '100%' }}>
-            Excluir conta
-          </Button>
-        </View>
+        <DangerZone
+          action="Excluir conta"
+          onAction={() => console.log('onAction')}
+        />
       </styled.Container>
     </styled.MyAccount>
   );

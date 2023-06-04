@@ -22,15 +22,17 @@ export function HomeViewModel() {
     useCardSummaries();
 
   function handleNavigateSettings() {
-    navigation.navigate('User', { screen: 'Settings' });
+    return navigation.navigate('User', { screen: 'Settings' });
   }
 
   function handleNavigateNotifications() {
-    navigation.navigate('User', { screen: 'Notification' });
+    return navigation.navigate('User', { screen: 'Notification' });
   }
 
   function handleNavigateCreateTransaction() {
-    navigation.navigate('TransactionsRoutes', { screen: 'CreateTransactions' });
+    return navigation.navigate('TransactionsRoutes', {
+      screen: 'CreateTransactions',
+    });
   }
 
   function getDifference() {

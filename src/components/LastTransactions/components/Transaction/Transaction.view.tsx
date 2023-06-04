@@ -2,8 +2,7 @@ import { View } from 'react-native';
 import { useTheme } from 'styled-components/native';
 
 import formatAmount from '../../../../utils/formatAmout';
-import { formatDate } from '../../../../utils/formatDate';
-import Icon from '../../../Icons';
+import { formatShortDate } from '../../../../utils/formatDate';
 import { Text } from '../../../Text';
 
 import { TransactionViewProps } from './Transaction';
@@ -16,7 +15,7 @@ interface Props {
 }
 
 export function TransactionView({ viewModel, props }: Props) {
-  const { data, ...transactionProps } = props;
+  const { data, onSelected, ...transactionProps } = props;
 
   const { getColor, getIcon } = viewModel;
 
@@ -25,7 +24,16 @@ export function TransactionView({ viewModel, props }: Props) {
   const { category, description, date, amount, modality } = data;
 
   return (
-    <styled.Transaction {...transactionProps}>
+    <styled.Transaction
+      {...transactionProps}
+      activeOpacity={0.9}
+      touchSoundDisabled
+      onPress={() => {
+        if (onSelected) {
+          onSelected(data);
+        }
+      }}
+    >
       <View style={{ flexDirection: 'row', alignItems: 'center', gap: 8 }}>
         {getIcon(category.name)}
         <View>
@@ -33,7 +41,7 @@ export function TransactionView({ viewModel, props }: Props) {
             {description}
           </Text>
           <Text color={colors.black[600]}>{modality.name}</Text>
-          <Text color={colors.black[600]}>{formatDate(date)}</Text>
+          <Text color={colors.black[600]}>{formatShortDate(date)}</Text>
         </View>
       </View>
       <Text weight="500" color={getColor(category.name)}>

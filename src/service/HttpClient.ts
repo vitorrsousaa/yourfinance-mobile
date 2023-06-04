@@ -8,7 +8,7 @@ import api from './api';
 class HttpClient {
   private baseURL;
 
-  constructor(baseURL = 'https://f14e-179-108-188-102.ngrok-free.app/api') {
+  constructor(baseURL = 'https://c04a-179-108-189-13.ngrok-free.app/api') {
     this.baseURL = baseURL;
   }
 

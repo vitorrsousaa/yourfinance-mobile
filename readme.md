@@ -1,88 +1,148 @@
-yarn add global expo-cli
+# yourFinance
 
-api
+Um parágrafo da descrição do projeto vai aqui
 
-import axios from 'axios';
-import { refreshToken } from './utils/refreshToken';
+## Tópicos
 
-const api = axios.create();
+<div>
+ • <a href="#-sobre-o-yourfinance">Sobre o yourFinance</a> </br>
+ • <a href="#%EF%B8%8F-tecnologias">Tecnologias</a> </br>
+ • <a href="#-pré-requisitos">Pré requisitos</a> </br>
+ • <a href="#-rodando-a-aplicação">Rodando a aplicação</a> </br>
+ • <a href="#%EF%B8%8F-executando-os-testes">Executando os testes</a> </br>
+ • <a href="#-colaborando">Colaborando</a> </br>
+ • <a href="#user-content--licença">Licença</a></br>
+</div>
 
-api.interceptors.response.use(
-(response) => {
-return response;
-},
-async (error) => {
-console.log('dentro do interceptor');
-const originalRequest = error.config;
+## 💰 Sobre o yourFinance
 
-    if (error.response.status === 401 && !originalRequest._retry) {
-      originalRequest._retry = true;
+O **yourFinance** é um software para gerenciamento e controle de finanças pessoais!
 
-      try {
-        const token = await refreshToken();
+O projeto foi desenvolvido com o intuito de eliminar a utilização de planilhas para gerenciamento de controle financeiro. Com o armazenamento das informações através de transações, que são chamadas de movs, e podem ser definidas através de categorias, modalidades e tipo. A partir das definições do usuário, o projeto apresenta algumas informações em tela, e realiza determinadas análises da usabilidade do usuário.
 
-        api.defaults.headers.Authorization = `Bearer ${token}`;
+## 🛠️ Tecnologias
 
-        return api(originalRequest);
-      } catch (error) {
-        console.log(error);
+Tecnologias e ferramentas utilizadas no desenvolvimento do projeto:
 
-        return Promise.reject(error);
-      }
-    }
+#### **Mobile** ( [React Native](https://reactnative.dev/) + [TypeScript](https://www.typescriptlang.org/) )
 
-    return Promise.reject(error);
+- [Axios](https://github.com/axios/axios)
+- [StyledComponents](https://styled-components.com/)
+- [React Query](https://tanstack.com/query/v4/)
+- [AsyncStorage](https://react-native-async-storage.github.io/async-storage/)
+- [DateTimePicker](https://github.com/react-native-datetimepicker/datetimepicker)
+- [React Navigation](https://reactnavigation.org/)
+- [Victory Native](https://formidable.com/open-source/victory/)
 
+#### **Utilitários**
+
+- Protótipo: **[Figma](https://www.figma.com/)**
+- Fontes: **Gotham**
+- Editor: **[Visual Studio Code](https://code.visualstudio.com/)** → Extensions: **[Prettier](https://prettier.io/)** + **[EditorConfig](https://editorconfig.org/)**
+- Versionamento: **[Git](https://git-scm.com)**
+- Padronização de código: **[ESLint](https://eslint.org/)**
+
+## 🎨 Layout
+
+## 📋 Pré-requisitos
+
+Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas: <br />
+→ [Git](https://git-scm.com);<br />
+→ [Node.js](https://nodejs.org/en/);<br />
+
+💡 O Frontend precisa que o Backend esteja sendo executado para funcionar.
+
+## 🎲 Rodando a aplicação
+
+```bash
+# Clone este repositório
+$ git clone https://github.com/yourFinanceApp/mobile.git
+
+# Vá para a pasta da aplicação Mobile
+$ cd mobile
+
+# Instale as dependências
+yarn install
+```
+
+Após a instalação das dependências, atualize o arquivo httpClient com a url e porta onde o back-end esta rodando localmente.
+
+```
+class HttpClient {
+  private baseURL;
+
+  constructor(baseURL = 'url-back-end') {
+    this.baseURL = baseURL;
+  }
 }
-);
+```
 
-console.log(api.interceptors.response);
+Logo após, você já pode rodar a aplicação com os comandos abaixo.
 
-export default api;
+```bash
+# Inicie o projeto com expo
+$ yarn start
 
-refreshToken
+# Selecione a plataforma para inicializar o projeto
+# A aplicação será inicializada na plataforma selecionada
+```
 
-import AsyncStorage from '@react-native-async-storage/async-storage';
-import { TOKEN_COLLECTION, USER_COLLECTION } from '../../storage/storageConfig';
-import { setAuthorizationHeader } from './authorizationHeader';
-import axios from 'axios';
+## ⚙️ Executando os testes
 
-type refreshToken = {
-token: string;
-};
+Para rodar todos os testes no repositório, utilize:
 
-// Adicionar o axios puro aqui, e não utilizar a instância do axios que criei dentro de api
+```
+yarn test
+```
 
-export async function refreshToken() {
-const tokenSerialized = await AsyncStorage.getItem(TOKEN_COLLECTION);
+Caso seja necessário rodar apenas um único teste, utilize:
 
-const authDataSerialized = await AsyncStorage.getItem(USER_COLLECTION);
+```
+yarn test <nome-do-arquivo>.spec.tsx
+```
 
-const authData = JSON.parse(authDataSerialized || '{}');
+### 🔩 Analise os testes de ponta a ponta
 
-const refreshToken: string = JSON.parse(tokenSerialized || '');
+Os testes são construídos utilizando o Triple AAA(Arrange, Act, Assert). Esses sistema consiste em uma metodologia comumente utilizada para escrever testes unitários estruturados e bem organizados. Sendo:
 
-console.log('dentro da refreshToken');
+- Arrange(Preparação)
+  Nesta etapa você define o cenário de teste, preparando o ambiente, realizando os mocks necessários para realizar o teste, e as definições de entrada de teste.
 
-const data: refreshToken = await axios.post(
-'http://192.168.0.106:3001/api/auth/refresh',
-{},
-{
-headers: {
-Authorization: `Bearer ${refreshToken}`,
-},
-}
-);
+- Act(Execução)
+  Nesta etapa, você executa a ação ou o comportamento que está sendo testado. Podendo ser a chamada de uma função, interação com objeto, ou qualquer outra operação que esta sendo testada.
 
-const newAuthData = {
-token: data.token,
-user: authData.user,
-};
+- Assert(Verificação)
+  Nesta etapa, você verifica se o resultado obtido após a execução esta de acordo com o esperado
 
-await AsyncStorage.setItem(USER_COLLECTION, JSON.stringify(newAuthData));
+A metodologia triple AAA promove uma estrutura clara e organizada para os testes, tornando mais legíveis, fáceis de entender e de fácil manutenção. Garantindo uma clareza sobre o que esta sendo testado e cada etapa do teste.
 
-// setAuthorizationHeader(data.token);
+```
+import React from 'react';
+import { render, fireEvent } from '@testing-library/react-native';
+import MyComponent from './MyComponent';
 
-return data.token;
-}
-testando 2
+test('Incrementa o contador ao pressionar o botão', () => {
+  // Arrange
+  const { getByText } = render(<MyComponent />);
+  const incrementButton = getByText('Incrementar');
+  const counterText = getByText('Contador: 0');
+
+  // Act
+  fireEvent.press(incrementButton);
+
+  // Assert
+  expect(counterText).toHaveTextContent('Contador: 1');
+});
+```
+
+## 💭 Colaborando
+
+Por favor, leia o [COLABORACAO.md](https://gist.github.com/usuario/linkParaInfoSobreContribuicoes) para obter detalhes sobre o nosso código de conduta e o processo para nos enviar pedidos de solicitação.
+
+## 📌 Versão
+
+Nós usamos [SemVer](http://semver.org/) para controle de versão. Para as versões disponíveis, observe as [tags neste repositório](https://github.com/suas/tags/do/projeto).
+
+## 📄 Licença
+
+Este projeto está sob a licença MIT - veja o arquivo [LICENSE.md](https://github.com/yourFinanceApp/mobile/blob/main/LICENSE) para detalhes.

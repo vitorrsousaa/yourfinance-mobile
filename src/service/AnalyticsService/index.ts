@@ -25,10 +25,15 @@ class AnalyticsService implements IAnalyticsService {
     return CardSummaryMapper.toDomain(response);
   }
 
-  async getBiggestModalities(): Promise<TBiggestModality> {
-    const response = await this.httpClient.get<TBiggestModalityPersistance>(
-      '/analytics/getBiggestModalities'
-    );
+  async getBiggestModalities(): Promise<TBiggestModality | null> {
+    const response =
+      await this.httpClient.get<TBiggestModalityPersistance | null>(
+        '/analytics/getBiggestModalities'
+      );
+
+    if (response === null) {
+      return null;
+    }
 
     return BiggestModalityMapper.toDomain(response);
   }
