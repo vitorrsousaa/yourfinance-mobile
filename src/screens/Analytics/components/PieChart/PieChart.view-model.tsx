@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 
 import useBiggestModalities from '../../../../hooks/entities/useBiggestModalities';
 
@@ -19,9 +19,9 @@ export interface PieChartViewModelProps {
   isLoading: boolean;
   colors: string[];
   setSelectedPeriod: (period: number) => void;
-  getBiggestModality: () => Omit<OptionChart, 'background'>[];
-  getLabelChart: () => Omit<OptionChart, 'amount'>[];
-  getMonthOptions: () => OptionMonthChart[];
+  getBiggestModality: Omit<OptionChart, 'background'>[];
+  getLabelChart: Omit<OptionChart, 'amount'>[];
+  getMonthOptions: OptionMonthChart[];
 }
 
 export function PieChartViewModel() {
@@ -43,7 +43,7 @@ export function PieChartViewModel() {
       .replace(/^\w/, (letra) => letra.toUpperCase());
   }, []);
 
-  const getMonthOptions = useCallback((): OptionMonthChart[] => {
+  const getMonthOptions = useMemo((): OptionMonthChart[] => {
     return [
       {
         label: getMonth(),
@@ -68,12 +68,10 @@ export function PieChartViewModel() {
     ];
   }, [selectedPeriod]);
 
-  const getBiggestModality = useCallback(():
-    | Omit<OptionChart, 'background'>[]
-    | undefined => {
-    const biggest = biggestModalities && biggestModalities[selectedPeriod];
+  const getBiggestModality = useMemo((): Omit<OptionChart, 'background'>[] => {
+    const biggest = biggestModalities[selectedPeriod];
 
-    const data = biggest?.map((big) => {
+    const data = biggest.map((big) => {
       return {
         name: big.name,
         amount: big.amount,
@@ -83,12 +81,10 @@ export function PieChartViewModel() {
     return data;
   }, [selectedPeriod, biggestModalities]);
 
-  const getLabelChart = useCallback(():
-    | Omit<OptionChart, 'amount'>[]
-    | undefined => {
-    const biggest = biggestModalities && biggestModalities[selectedPeriod];
+  const getLabelChart = useMemo((): Omit<OptionChart, 'amount'>[] => {
+    const biggest = biggestModalities[selectedPeriod];
 
-    const data = biggest?.map((big, index) => {
+    const data = biggest.map((big, index) => {
       return {
         name: big.name,
         background: colors[index],
