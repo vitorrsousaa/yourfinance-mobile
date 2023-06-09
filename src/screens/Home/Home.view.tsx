@@ -106,7 +106,7 @@ export function HomeView({ viewModel, props }: Props) {
             />
           </styled.ContainerTransactions>
 
-          <View style={{ marginBottom: 48 }}>
+          <View style={{ marginBottom: 94 }}>
             <Feedback />
           </View>
         </ScrollView>
