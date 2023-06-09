@@ -130,16 +130,16 @@ export function CreateTransactionsView({ viewModel, props }: Props) {
             </Row>
 
             {/* <Row
-          icon={<Icon name="repeat" />}
-          title="Movs Fixa"
-          onPress={handleClickOnRowMovFixed}
-          rightIcon={
-            <Toggle
-              value={transactionRepeat}
-              onValueChange={handleClickOnToggleMovFixed}
-            />
-          }
-        /> */}
+              icon={<Icon name="repeat" />}
+              title="Movs Fixa"
+              onPress={handleClickOnRowMovFixed}
+              rightIcon={
+                <Toggle
+                  value={transactionRepeat}
+                  onValueChange={handleClickOnToggleMovFixed}
+                />
+              }
+            /> */}
 
             <Button
               variant="primary"

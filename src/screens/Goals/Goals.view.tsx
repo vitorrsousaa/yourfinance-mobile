@@ -39,13 +39,11 @@ export function GoalsView({ viewModel, props }: Props) {
     [goals]
   );
 
-  console.log(isLoadingGoals);
-
   return (
     <styled.Goals {...goalsProps}>
-      <Header title="Metas" />
+      <Header title="Metas" leftIcon={false} />
 
-      {isLoadingGoals && (
+      {!isLoadingGoals && !isErrorGoals && (
         <View style={{ paddingHorizontal: 24, paddingTop: 16 }}>
           <View>
             <Text weight="500">Total acumulado</Text>

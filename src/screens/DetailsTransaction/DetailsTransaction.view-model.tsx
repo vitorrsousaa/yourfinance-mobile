@@ -30,7 +30,12 @@ export function DetailsTransactionViewModel(params: TTransaction) {
   const { isLoading, isError, mutateAsync } = useMutation<void>({
     mutationFn: () => TransactionsService.delete(params.id),
     onSuccess: () => {
-      invalidate(['@biggestModalities', '@transactions']);
+      invalidate([
+        '@biggestModalities',
+        '@transactions',
+        '@income',
+        '@outcome',
+      ]);
     },
   });
 

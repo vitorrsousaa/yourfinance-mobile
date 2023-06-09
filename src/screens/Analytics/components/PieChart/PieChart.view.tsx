@@ -2,6 +2,7 @@ import { View } from 'react-native';
 import { VictoryPie } from 'victory-native';
 
 import { AnalyticsError } from '../../../../components/Illustrations/AnalyticsError';
+import { NoData } from '../../../../components/Illustrations/NoData';
 import Loader from '../../../../components/Loader';
 import { Text } from '../../../../components/Text';
 import LabelChart from '../LabelChart';
@@ -28,6 +29,10 @@ export function PieChartView({ viewModel, props }: Props) {
     getLabelChart,
   } = viewModel;
 
+  console.log(getBiggestModality);
+
+  const hasBiggestModality = getBiggestModality.length > 0;
+
   return (
     <styled.PieChart {...pieChartProps}>
       {hasError ? (
@@ -46,7 +51,7 @@ export function PieChartView({ viewModel, props }: Props) {
             </Text>
           </View>
           <styled.HeaderChart>
-            {getMonthOptions().map((options) => (
+            {getMonthOptions.map((options) => (
               <styled.ButtonMonth
                 key={options.label}
                 selected={options.selected}
@@ -63,10 +68,10 @@ export function PieChartView({ viewModel, props }: Props) {
             <View style={{ height: 150, justifyContent: 'center' }}>
               <Loader size={'large'} />
             </View>
-          ) : (
+          ) : hasBiggestModality ? (
             <>
               <VictoryPie
-                data={getBiggestModality()}
+                data={getBiggestModality}
                 labels={() => ''}
                 innerRadius={40}
                 colorScale={colors}
@@ -74,7 +79,6 @@ export function PieChartView({ viewModel, props }: Props) {
                 y="amount"
                 height={250}
               />
-
               <View
                 style={{
                   flexDirection: 'row',
@@ -82,7 +86,7 @@ export function PieChartView({ viewModel, props }: Props) {
                   justifyContent: 'center',
                 }}
               >
-                {getLabelChart().map((label) => (
+                {getLabelChart.map((label) => (
                   <LabelChart
                     key={label.name}
                     background={label.background}
@@ -91,6 +95,16 @@ export function PieChartView({ viewModel, props }: Props) {
                 ))}
               </View>
             </>
+          ) : (
+            <View
+              style={{ paddingVertical: 48, alignItems: 'center', gap: 24 }}
+            >
+              <Text style={{ textAlign: 'center' }}>
+                Você ainda não tem nenhuma despesa cadastrada. Acesse a página
+                de movs para cadastrar!
+              </Text>
+              <NoData />
+            </View>
           )}
         </>
       )}

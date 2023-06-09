@@ -23,7 +23,7 @@ export function useGoals(): {
   });
 
   return {
-    goals: goalsResponse!,
+    goals: goalsResponse ?? [],
     isErrorGoals: isError,
     isLoadingGoals: isLoading || isFetching,
     refetch,

@@ -1,11 +1,11 @@
 import { useEffect, useMemo, useState } from 'react';
 import { DateTimePickerEvent } from '@react-native-community/datetimepicker';
 import { useNavigation } from '@react-navigation/native';
+import { useMutation } from '@tanstack/react-query';
 
-import useCardSummaries from '../../hooks/entities/useCardSummaries';
 import useCategories from '../../hooks/useCategories';
+import useInvalidateQueries from '../../hooks/useInvalidateQueries';
 import { useModalities } from '../../hooks/useModalities';
-import { useTransactions } from '../../hooks/useTransactions';
 import TransactionsService from '../../service/TransactionsService';
 import { TCategory } from '../../types/Category';
 import { TModality } from '../../types/Modality';
@@ -62,16 +62,34 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
     useState(1);
   const [datePickerIsVisible, setDatePickerIsVisible] = useState(false);
   const [date, setDate] = useState(new Date());
-  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const { categories, isErrorCategories } = useCategories();
 
   const { modalities, isErrorModalities, isLoadingModalities } =
     useModalities();
 
-  const { refetch: refetchSummaries } = useCardSummaries();
+  const invalidate = useInvalidateQueries();
 
-  const { refetch } = useTransactions();
+  const {
+    isLoading: isSubmitting,
+    isError,
+    mutateAsync,
+  } = useMutation({
+    mutationFn: () => TransactionsService.create(getTransaction()),
+    onSuccess: () => {
+      invalidate([
+        '@transactions',
+        '@biggestModalities',
+        '@income',
+        '@outcome',
+      ]);
+      goBack();
+    },
+    onError: () => {
+      console.log('Dispara um toast falandoq ue deu erro');
+      goBack();
+    },
+  });
 
   const navigation = useNavigation();
 
@@ -98,6 +116,18 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
 
   function goBack() {
     return navigation.goBack();
+  }
+
+  function getTransaction() {
+    const transactionCreate: TTransactionCreate = {
+      modality: selectedModality ? selectedModality.id : '',
+      description: description,
+      amount: amount,
+      category: category.id,
+      date: date,
+    };
+
+    return transactionCreate;
   }
 
   function handleAmountChange(text: string) {
@@ -201,35 +231,13 @@ export function CreateTransactionsViewModel(): CreateTransactionsViewModelProps 
   }
 
   async function handleSubmit() {
-    setIsSubmitting(true);
-
-    const transactionCreate: TTransactionCreate = {
-      modality: selectedModality ? selectedModality.id : '',
-      description: description,
-      amount: amount,
-      category: category.id,
-      date: date,
-    };
-
     const data = {
       time: monthsThatRepeatTransaction,
       initialDate: date,
-      infosTransactionFixed: transactionCreate,
+      infosTransactionFixed: getTransaction(),
     };
 
-    try {
-      await TransactionsService.create(transactionCreate);
-
-      await refetch();
-      await refetchSummaries();
-    } catch (error) {
-      console.log(
-        'TEve um erro para cadastrar sua transação - Create transactions'
-      );
-    } finally {
-      goBack();
-      setIsSubmitting(false);
-    }
+    await mutateAsync();
   }
 
   return {
