@@ -46,7 +46,7 @@ export function LastTransactionsView({ viewModel, props }: Props) {
       ) : (
         <>
           <styled.ContainerHeader showFilter={showFilter}>
-            <Text weight="500" color={colors.black[900]} size={17}>
+            <Text weight="500" color={colors.black[900]} size={18}>
               {title}
             </Text>
 
