@@ -21,14 +21,14 @@ interface Props {
 export function SettingsView({ viewModel, props }: Props) {
   const { ...settingsProps } = props;
 
-  const { handleNavigateToMyAccount, handleNavigateToFeedback } = viewModel;
+  const { handleNavigateToMyAccount } = viewModel;
 
   const navigation = useNavigation();
 
   const { handleLogout } = useAuth();
 
   return (
-    <styled.Settings>
+    <styled.Settings {...settingsProps}>
       <Header
         title="Configurações"
         onPressLeftIcon={() => navigation.goBack()}
@@ -40,13 +40,6 @@ export function SettingsView({ viewModel, props }: Props) {
               title="Informações da sua conta"
               icon={<Icon name="user" />}
               onPress={handleNavigateToMyAccount}
-            />
-          </SettingsSection>
-          <SettingsSection title="Suporte">
-            <SettingsButton
-              title="Deixe um feedback"
-              icon={<Icon name="chat" />}
-              onPress={handleNavigateToFeedback}
             />
           </SettingsSection>
         </View>
