@@ -1,16 +1,16 @@
-import { View } from 'react-native';
+import { ScrollView, View } from 'react-native';
 import { useTheme } from 'styled-components/native';
 
 import Icon from '../../components/Icons';
 import LastTransactions from '../../components/LastTransactions';
 import Loader from '../../components/Loader';
-import PlusButton from '../../components/PlusButton';
 import { Text } from '../../components/Text';
 import Touchable from '../../components/Touchable';
 import { useAuth } from '../../hooks/useAuth';
 import { useTransactions } from '../../hooks/useTransactions';
 
 import CategorySummary from './components/CategorySummary';
+import Feedback from './components/Feedback';
 import { HomeViewProps } from './Home';
 import * as styled from './Home.styles';
 import { HomeViewModelProps } from './Home.view-model';
@@ -28,7 +28,6 @@ export function HomeView({ viewModel, props }: Props) {
     isLoading,
     handleNavigateSettings,
     handleNavigateNotifications,
-    handleNavigateCreateTransaction,
     getDifference,
   } = viewModel;
 
@@ -42,68 +41,73 @@ export function HomeView({ viewModel, props }: Props) {
 
   return (
     <styled.Home {...homeProps}>
-      <styled.Container>
-        <styled.ContainerHeader>
-          <Icon name="logo" />
+      <ScrollView style={{ flex: 1 }}>
+        <styled.Container>
+          <styled.ContainerHeader>
+            <Icon name="logo" />
 
-          <styled.ContainerButtons>
-            <Touchable
-              item="bell"
-              style={{ marginRight: 8 }}
-              onPress={handleNavigateNotifications}
-            />
-            <Touchable
-              item="user"
-              background="white"
-              onPress={handleNavigateSettings}
-            />
-          </styled.ContainerButtons>
-        </styled.ContainerHeader>
-        <styled.ContainerHero>
-          <Text size={24} color={colors.white[100]}>
-            Olá,
-            <Text weight="700" size={24} color={colors.white[100]}>
-              {` ${user.name}`}
-            </Text>
-          </Text>
-
-          {!isLoading && (
-            <View>
-              <Text color={colors.black[200]}>Saldo disponível</Text>
-              <Text weight="500" size={28} color={colors.white[100]}>
-                {getDifference()}
+            <styled.ContainerButtons>
+              <Touchable
+                item="bell"
+                style={{ marginRight: 8 }}
+                onPress={handleNavigateNotifications}
+              />
+              <Touchable
+                item="user"
+                background="white"
+                onPress={handleNavigateSettings}
+              />
+            </styled.ContainerButtons>
+          </styled.ContainerHeader>
+          <styled.ContainerHero>
+            <Text size={24} color={colors.white[100]}>
+              Olá,
+              <Text weight="700" size={24} color={colors.white[100]}>
+                {` ${user.name}`}
               </Text>
-            </View>
-          )}
+            </Text>
 
-          <styled.ContainerSummary>
-            {isLoading ? (
-              <Loader size={'large'} color={colors.green[400]} />
-            ) : (
-              <>
-                {summaries.map((summary) => (
-                  <CategorySummary
-                    key={Math.random()}
-                    categoryName={summary.category}
-                    currentMonth={summary.currentMonth}
-                    percent={summary.percent}
-                    difference={summary.difference}
-                  />
-                ))}
-              </>
+            {!isLoading && (
+              <View>
+                <Text color={colors.black[200]}>Saldo disponível</Text>
+                <Text weight="500" size={28} color={colors.white[100]}>
+                  {getDifference()}
+                </Text>
+              </View>
             )}
-          </styled.ContainerSummary>
-        </styled.ContainerHero>
-      </styled.Container>
-      <styled.ContainerTransactions>
-        <LastTransactions
-          transactions={transactions?.slice(0, 4)}
-          isLoading={isLoadingTransactions}
-          hasError={isErrorTransactions}
-        />
-      </styled.ContainerTransactions>
 
-      <PlusButton onPress={handleNavigateCreateTransaction} />
+            <styled.ContainerSummary>
+              {isLoading ? (
+                <Loader size={'large'} color={colors.green[400]} />
+              ) : (
+                <>
+                  {summaries.map((summary) => (
+                    <CategorySummary
+                      key={Math.random()}
+                      categoryName={summary.category}
+                      currentMonth={summary.currentMonth}
+                      percent={summary.percent}
+                      difference={summary.difference}
+                    />
+                  ))}
+                </>
+              )}
+            </styled.ContainerSummary>
+          </styled.ContainerHero>
+        </styled.Container>
+        <styled.ContainerTransactions>
+          <LastTransactions
+            transactions={transactions?.slice(0, 4)}
+            isLoading={isLoadingTransactions}
+            hasError={isErrorTransactions}
+            scrollable={false}
+          />
+        </styled.ContainerTransactions>
+
+        <View>
+          <Feedback />
+        </View>
+      </ScrollView>
     </styled.Home>
   );
 }

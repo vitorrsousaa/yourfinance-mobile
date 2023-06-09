@@ -11,7 +11,6 @@ export interface HomeViewModelProps {
   summaries: TCardSummary[];
   handleNavigateSettings: () => void;
   handleNavigateNotifications: () => void;
-  handleNavigateCreateTransaction: () => void;
   getDifference: () => string;
 }
 
@@ -27,12 +26,6 @@ export function HomeViewModel() {
 
   function handleNavigateNotifications() {
     return navigation.navigate('User', { screen: 'Notification' });
-  }
-
-  function handleNavigateCreateTransaction() {
-    return navigation.navigate('TransactionsRoutes', {
-      screen: 'CreateTransactions',
-    });
   }
 
   function getDifference() {
@@ -60,7 +53,6 @@ export function HomeViewModel() {
     summaries,
     handleNavigateSettings,
     handleNavigateNotifications,
-    handleNavigateCreateTransaction,
     getDifference,
   };
 }
