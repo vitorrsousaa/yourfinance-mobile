@@ -18,8 +18,15 @@ interface Props {
 }
 
 export function LastTransactionsView({ viewModel, props }: Props) {
-  const { title, showFilter, transactions, isLoading, hasError, onSelected } =
-    props;
+  const {
+    title,
+    showFilter,
+    transactions,
+    isLoading,
+    hasError,
+    scrollable,
+    onSelected,
+  } = props;
 
   const { colors } = useTheme();
 
@@ -69,6 +76,7 @@ export function LastTransactionsView({ viewModel, props }: Props) {
                 keyExtractor={(item) => item.id}
                 ItemSeparatorComponent={() => <View style={{ height: 8 }} />}
                 contentContainerStyle={{ paddingBottom: 48 }}
+                scrollEnabled={scrollable}
               />
             </View>
           ) : (
