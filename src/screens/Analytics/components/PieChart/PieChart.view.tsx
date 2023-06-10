@@ -29,8 +29,6 @@ export function PieChartView({ viewModel, props }: Props) {
     getLabelChart,
   } = viewModel;
 
-  console.log(getBiggestModality);
-
   const hasBiggestModality = getBiggestModality.length > 0;
 
   return (

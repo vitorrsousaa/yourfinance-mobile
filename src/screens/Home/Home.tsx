@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useEffect } from 'react';
 
 import { HomeView } from './Home.view';
 import { HomeViewModel } from './Home.view-model';
@@ -14,6 +14,10 @@ function Home(props: HomeProps) {
   const { ...viewProps } = props;
 
   const viewModel = useViewModel();
+
+  useEffect(() => {
+    viewModel.loadFeedback();
+  }, []);
 
   return <HomeView viewModel={viewModel} props={viewProps} />;
 }

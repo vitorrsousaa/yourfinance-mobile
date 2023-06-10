@@ -27,6 +27,7 @@ export function HomeView({ viewModel, props }: Props) {
   const {
     summaries,
     isLoading,
+    hasFeedback,
     handleNavigateSettings,
     handleNavigateNotifications,
     getDifference,
@@ -106,9 +107,11 @@ export function HomeView({ viewModel, props }: Props) {
             />
           </styled.ContainerTransactions>
 
-          <View style={{ marginBottom: 94 }}>
-            <Feedback />
-          </View>
+          {!hasFeedback && (
+            <View style={{ marginBottom: 94 }}>
+              <Feedback />
+            </View>
+          )}
         </ScrollView>
       </KeyboardAvoidingView>
     </styled.Home>
