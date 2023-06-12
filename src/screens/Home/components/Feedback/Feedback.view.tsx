@@ -69,6 +69,7 @@ export function FeedbackView({ viewModel, props }: Props) {
                   onPress={() => setSelectedFeedback(item.value)}
                   activeOpacity={0.9}
                   style={{ alignItems: 'center', width: 90 }}
+                  testID={`feedback-icon-${item.value.toLocaleLowerCase()}`}
                 >
                   {item.icon(color)}
                   <Text weight="500" color={color}>
