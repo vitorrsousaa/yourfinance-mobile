@@ -46,7 +46,7 @@ Tecnologias e ferramentas utilizadas no desenvolvimento do projeto:
 
 O layout do projeto foi pensado para ser o mais clean possível, mantendo poucos elementos visuais e alinhado com a expectativa do usuário.
 
-<div display='flex' gap='16px'>
+<div display='flex' gap='16px' align='center'>
 <img src='./.github/images/Splash.png' height='400px' alt='Splash' />
 <img src='./.github/images/Login.png' height='400px' alt='login' />
 <img src='./.github/images/Home.png' height='400px' alt='home' />
