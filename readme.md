@@ -44,6 +44,12 @@ Tecnologias e ferramentas utilizadas no desenvolvimento do projeto:
 
 ## 🎨 Layout
 
+O layout do projeto foi pensado para ser o mais clean possível, mantendo poucos elementos visuais e alinhado com a expectativa do usuário.
+
+<div display='flex' gap='16px'>
+<img src='./.github/images/Splash.png' />
+</div>
+
 ## 📋 Pré-requisitos
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas: <br />
@@ -146,3 +152,28 @@ Nós usamos [SemVer](http://semver.org/) para controle de versão. Para as vers�
 ## 📄 Licença
 
 Este projeto está sob a licença MIT - veja o arquivo [LICENSE.md](https://github.com/yourFinanceApp/mobile/blob/main/LICENSE) para detalhes.
+
+## 🤝 Colaboradores
+
+Agradecemos às seguintes pessoas que contribuíram para este projeto:
+
+<table>
+  <tr>
+    <td align="center">
+      <a href="https://www.linkedin.com/in/vitorr-sousaa/">
+        <img src="https://avatars.githubusercontent.com/u/94024958?v=4" width="100px;" alt="Foto do Vitor Sousa no GitHub"/><br>
+        <sub>
+          <b>Vitor Sousa</b>
+        </sub>
+      </a>
+    </td>
+    <td align="center">
+      <a href="https://github.com/luucassjooao">
+        <img src="https://avatars.githubusercontent.com/u/88796528?v=4" width="100px;" alt="Foto do João"/><br>
+        <sub>
+          <b>João Lucas</b>
+        </sub>
+      </a>
+    </td>
+  </tr>
+</table>
