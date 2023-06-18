@@ -147,11 +147,7 @@ test('Incrementa o contador ao pressionar o botão', () => {
 
 ## 💭 Colaborando
 
-Por favor, leia o [COLABORACAO.md](https://gist.github.com/usuario/linkParaInfoSobreContribuicoes) para obter detalhes sobre o nosso código de conduta e o processo para nos enviar pedidos de solicitação.
-
-## 📌 Versão
-
-Nós usamos [SemVer](http://semver.org/) para controle de versão. Para as versões disponíveis, observe as [tags neste repositório](https://github.com/suas/tags/do/projeto).
+Por favor, leia o [COLABORACAO.md](https://github.com/yourFinanceApp/mobile/blob/main/docs/colaboracao.md) para obter detalhes sobre o nosso código de conduta e o processo para nos enviar pedidos de solicitação.
 
 ## 📄 Licença
 
