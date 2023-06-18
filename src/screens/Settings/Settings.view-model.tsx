@@ -4,7 +4,6 @@ import { SettingsRoutesNavigationProp } from '../../routes/private/Settings.rout
 
 export interface SettingsViewModelProps {
   handleNavigateToMyAccount: () => void;
-  handleNavigateToFeedback: () => void;
 }
 
 export function SettingsViewModel() {
@@ -13,11 +12,8 @@ export function SettingsViewModel() {
   function handleNavigateToMyAccount() {
     navigationSettings.navigate('MyAccount');
   }
-  function handleNavigateToFeedback() {
-    navigationSettings.navigate('Feedback');
-  }
+
   return {
     handleNavigateToMyAccount,
-    handleNavigateToFeedback,
   };
 }

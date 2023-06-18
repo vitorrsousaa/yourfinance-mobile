@@ -6,19 +6,21 @@ import { LastTransactionsView } from './LastTransactions.view';
 import { LastTransactionsViewModel } from './LastTransactions.view-model';
 
 export interface LastTransactionsProps {
-  title?: string;
-  showFilter?: boolean;
   transactions: TTransaction[];
   isLoading: boolean;
   hasError: boolean;
+  title?: string;
+  showFilter?: boolean;
+  scrollable?: boolean;
   onSelected?: (transaction: TTransaction) => void;
 }
 
-type DefaultProps = Pick<LastTransactionsProps, 'title'>;
+type DefaultProps = Pick<LastTransactionsProps, 'title' | 'scrollable'>;
 type Props = LastTransactionsProps & DefaultProps;
 
 const defaultProps: DefaultProps = {
   title: 'Últimas transações',
+  scrollable: true,
 };
 
 export interface LastTransactionsViewProps
